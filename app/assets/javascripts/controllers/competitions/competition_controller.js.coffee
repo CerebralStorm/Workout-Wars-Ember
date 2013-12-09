@@ -3,7 +3,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
 
   exercises:( ->
     @get("model").get('exercises')
-  ).property('eventExercises')
+  ).property('eventExercise.@each')
 
   actions:
     activateDelete: ->
