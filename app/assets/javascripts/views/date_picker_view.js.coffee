@@ -15,7 +15,4 @@ WorkoutWars.DatePicker = Ember.View.extend
     @get("attributes").forEach (attr) ->
       options[attr] = self[attr]  if self[attr] isnt `undefined`
 
-    $(event.target).on 'change', ->
-      console.log $(event.target).val()
-
     @$().pickadate options

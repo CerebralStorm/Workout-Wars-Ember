@@ -3,7 +3,6 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
     msg = ""
     isValid = true
     value = @get("name")
-    console.log value
     if /^\s+$/.test(value)
       isValid = false
       msg['name'].push "Field can't be empty"
@@ -19,11 +18,10 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   actions:
     saveCompetition: ->
       competition = @get('model')
-
       competition = {
         name: @get('name')
-        startDate: @get('startDate')
-        endDate: @get('endDate')
+        startDate: Date.create("#{@get('startDate')}")
+        endDate: Date.create("#{@get('endDate')}")
         lowerLevelRestriction: @get('lowerLevelRestriction')
         upperLevelRestriction: @get('upperLevelRestriction')
         maxParticipants: @get('maxParticipants')
