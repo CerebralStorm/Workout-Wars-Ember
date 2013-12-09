@@ -8,6 +8,3 @@ WorkoutWars.Competition = DS.Model.extend
   lowerLevelRestriction: DS.attr('number')
   upperLevelRestriction: DS.attr('string')
 
-  save: ->
-    @get('store').commit()
-

@@ -1,3 +1,3 @@
 WorkoutWars.CompetitionsRoute = Ember.Route.extend
   model: ->
-    @store.findAll('competition')
+    @store.find('competition')

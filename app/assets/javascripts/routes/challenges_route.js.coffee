@@ -1,3 +1,3 @@
 WorkoutWars.ChallengesRoute = Ember.Route.extend
   model: ->
-    @store.findAll("challenge")
+    @store.find("challenge")
