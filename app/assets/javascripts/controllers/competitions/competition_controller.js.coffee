@@ -1,11 +1,17 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
   deleteMode: false
 
-  exercises:( ->
-    @get("model").get('exercises')
-  ).property('eventExercise.@each')
-
   actions:
+    join: ->
+      eventJoin = {
+        userId: 1
+        joinableId: @get("model").get('id')
+        joinableType: "Competition"
+      }
+
+      eventJoin = @store.createRecord("eventJoin", eventJoin)
+      eventJoin.save()
+
     activateDelete: ->
       @toggleProperty('deleteMode')
     

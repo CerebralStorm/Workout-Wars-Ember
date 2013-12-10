@@ -1,5 +1,6 @@
 <button class="btn btn-danger"{{action "activateDelete"}}>Delete</button>
 <button class="btn btn-default"{{action "edit"}}>Edit</button>
+<button class="btn btn-default"{{action "join"}}>Join</button>
 
 {{#if deleteMode}}
 <div class="confirm-box">
@@ -24,22 +25,23 @@
   </div>
 
   <div class="col-md-2">
+    <h4>Exercises</h4>
     <ul>
     {{#each controller.exercises}}
       <li>{{name}}</li>
     {{/each}}
     </ul>
+
+    <h4>Users</h4>
+    <ul>
+    {{#each controller.users}}
+      <li>{{email}}</li>
+    {{else}}
+      <li>None currently registered</li>
+    {{/each}}
+    </ul>
   </div>
 </div>
-<div>
-  <h4>Exercises for this Competition </h4>
-  <ul>
-  {{#each controller.eventExercises}}
-    <li>{{name}}</li>
-  {{/each}}
-  </ul>
-</div>
-<hr class="featurette-divider">
 
 {{outlet}}
 
