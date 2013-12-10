@@ -1,5 +1,6 @@
 <h3>Competitions</h3>
-
-{{#each controller.competitions}}
-  {{name}}
-{{/each}}
+<ul>
+  {{#each comp in controller}}
+    <li><a href="#" {{action goToCompetition comp}}>{{comp.name}}</a></li>
+  {{/each}}
+</ul>
