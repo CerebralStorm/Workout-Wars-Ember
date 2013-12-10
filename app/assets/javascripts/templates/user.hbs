@@ -1,24 +1,13 @@
-<div class="row">
-  <h1>{{email}}</h1>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-9">
-        {{outlet}}
-      </div>
-      
-      <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked">
-          <li>{{#linkTo "activities"}}Activities{{/linkTo}}</li>
-          <li>{{#linkTo "user.stats"}}Stats{{/linkTo}}</li>
-          <li>{{#linkTo "user.competitions"}}Competitions{{/linkTo}}</li>
-          <li>{{#linkTo "user.teamCompetitions"}}Team Competitions{{/linkTo}}</li>
-          <li>{{#linkTo "user.challenges"}}Challenges{{/linkTo}}</li>
-          <li>{{#linkTo "user.teamChallenges"}}Team Challenges{{/linkTo}}</li>
-          {{#if isCurrentUser}}
-          <li>{{#linkTo "user.edit"}}Settings{{/linkTo}}</li>
-          {{/if}}
-        </ul>
-      </div>
-    </div> 
-  </div>
-</div>
+<ul class="nav nav-pills">
+  <li>{{#linkTo "user.stats"}}Stats{{/linkTo}}</li>
+  <li>{{#linkTo "activities"}}Activities{{/linkTo}}</li>
+  <li>{{#linkTo "user.competitions"}}Competitions{{/linkTo}}</li>
+  <li>{{#linkTo "user.teamCompetitions"}}Team Competitions{{/linkTo}}</li>
+  <li>{{#linkTo "user.challenges"}}Challenges{{/linkTo}}</li>
+  <li>{{#linkTo "user.teamChallenges"}}Team Challenges{{/linkTo}}</li>
+  {{#if isCurrentUser}}
+  <li>{{#linkTo "user.edit"}}Settings{{/linkTo}}</li>
+  {{/if}}
+</ul>
+
+{{outlet}}

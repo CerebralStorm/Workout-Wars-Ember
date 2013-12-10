@@ -6,4 +6,5 @@ WorkoutWars.Activity = DS.Model.extend
   duration: DS.attr('number')
   calories: DS.attr('number')
   weight: DS.attr('number')
+  createdAt: DS.attr('date')
 

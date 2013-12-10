@@ -1,7 +1,7 @@
 <h3>Exercises</h3>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav">
   {{#each controller}}
-  <li><a href="#" {{ action "addExercise" this}}>{{name}}</a></li>
+  <li {{ action "addExercise" this}}><a href="#">{{name}}</a></li>
   {{/each}}
 </ul>
 
