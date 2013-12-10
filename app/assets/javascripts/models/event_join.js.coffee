@@ -1,5 +1,5 @@
 WorkoutWars.EventJoin = DS.Model.extend
   competition: DS.belongsTo('competition') 
-  userId: DS.attr('number')
+  user:  DS.belongsTo('user') 
   joinableId: DS.attr('number')
   joinableType: DS.attr('string')

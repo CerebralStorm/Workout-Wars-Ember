@@ -1,6 +1,8 @@
 <button class="btn btn-danger"{{action "activateDelete"}}>Delete</button>
 <button class="btn btn-default"{{action "edit"}}>Edit</button>
-<button class="btn btn-default"{{action "join"}}>Join</button>
+{{#unless isJoined}}
+  <button class="btn btn-default"{{action "join"}}>Join</button>
+{{/unless}}
 
 {{#if deleteMode}}
 <div class="confirm-box">
