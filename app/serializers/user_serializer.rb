@@ -4,4 +4,6 @@ class UserSerializer < ActiveModel::Serializer
   embed :ids
   
   has_many :activities
+  has_many :event_joins, as: :joinable
+  has_many :competitions, through: :event_joins
 end

@@ -9,12 +9,23 @@
 </div>
 {{/if}}
 
-<h2>Activity</h2>
+<h2>{{exercise.name}}</h2>
 
-<p>Reps: {{reps}}</p>
-<p>Distance: {{distance}}</p>
-<p>Duration: {{duration}}</p>
-<p>Calories: {{calories}}</p>
-<p>Weigth: {{weight}}</p>
+{{#if exercise.reps}}
+  <p>Reps: {{reps}}</p>
+{{/if}}
+{{#if exercise.distance}}
+  <p>Distance: {{distance}}</p>
+{{/if}}
+{{#if exercise.duration}}
+  <p>Duration: {{duration}}</p>
+{{/if}}
+{{#if exercise.calories}}
+  <p>Calories: {{calories}}</p>
+{{/if}}
+{{#if exercise.weight}}
+  <p>Weigth: {{weight}}</p>
+{{/if}}
 <br />
 {{outlet}}
+

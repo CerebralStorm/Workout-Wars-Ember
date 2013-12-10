@@ -17,7 +17,6 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
 
   actions:
     saveCompetition: ->
-      competition = @get('model')
       competition = {
         name: @get('name')
         startDate: Date.create("#{@get('startDate')}")

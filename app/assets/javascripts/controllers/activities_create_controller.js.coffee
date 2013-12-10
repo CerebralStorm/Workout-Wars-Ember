@@ -1,17 +1,25 @@
 WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
   needs: ['application']
 
+  exercise: null
+
   actions:
+    addExercise: (exercise) ->
+      @set('exercise', exercise)
+      console.log @get('exercise')
+
     saveActivity: -> 
-      activity = @get('content')
-      activity.set('user', @get('controllers.application.currentUser'))
-      activity.set('reps', @get('reps'))
-      activity.set('distance', @get('distance'))
-      activity.set('duration', @get('duration'))
-      activity.set('calories', @get('calories'))
-      activity.set('weight', @get('weight'))        
-      @get('store').commit()
-    
-    transitionAfterSave: (->
-      @transitionToRoute('activity', @get('content')) if @get('content.id')
-    ).observes('content.id')
+      console.log @get('exercise')
+      activity = {
+        user: @get('controllers.application.currentUser')
+        exercise: @get('exercise')
+        reps: @get('reps')
+        distance: @get('distance')
+        duration: @get('duration')
+        calories: @get('calories')
+        weight: @get('weight')
+      }
+
+      activity = @store.createRecord('activity', activity)
+      activity.save().then ->
+        @transitionTo activity

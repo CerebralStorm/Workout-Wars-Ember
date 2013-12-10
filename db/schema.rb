@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20131209194240) do
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
-    t.integer  "exericise_id"
+    t.integer  "exercise_id"
     t.integer  "user_id"
     t.integer  "reps"
     t.float    "weight"
