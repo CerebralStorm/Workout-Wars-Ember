@@ -1,8 +1,5 @@
-<h3>Exercises</h3>
-<ul class="nav">
-  {{#each controller}}
-  <li {{ action "addExercise" this}}><a href="#">{{name}}</a></li>
-  {{/each}}
-</ul>
+{{#each controller}}
+<li {{ action "addExercise" this}}><a href="#">{{name}}</a></li>
+{{/each}}
 
 

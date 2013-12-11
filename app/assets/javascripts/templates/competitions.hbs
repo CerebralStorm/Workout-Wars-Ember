@@ -1,21 +1,33 @@
-<h1>Competitions</h1>
-{{#linkTo "competitions.create" class="btn btn-lg btn-success btn-block"}}New Competition{{/linkTo}}
+<h3>Competitions for Individuals</h3>
+<p>Competitions are the <strong>best way to get great results</strong>. They will motivate you harder than you have ever been motivated before.</p>
+<p class="text-warning">There can be only one winner!</p>
 <hr>
 <div class="row">
-  <div class="col-md-2">
-    <ul class="nav nav-pills nav-stacked">
+  <div class="col-md-4">
+    {{#linkTo "competitions.create" class="btn btn-lg btn-success btn-block"}}New Competition{{/linkTo}}
+    <h4>Active Competitions</h4>
+    <ul class="nav">
     {{#each controller}}
       {{#unless isDirty}}
-      <li>{{#linkTo "competition" this}}{{name}}{{/linkTo}}</li>
+      <li>
+        {{#linkTo "competition" this}}{{name}}{{/linkTo}}
+        <span class="pull-right">          
+          {{#linkTo "competition.edit" this class="btn btn-default"}}Edit{{/linkTo}}
+          <a href="#" class="btn btn-default" {{action delete this}}>Delete</a>
+        </span>
+      </li>
       {{/unless}}
     {{else}}
       <li>There are no competitions.</li>
     {{/each}}
     </ul>
   </div>
-  <div class="col-md-10">
+
+  <div class="col-md-8">
     {{outlet}}
   </div>
 </div>
+
+{{partial "available_exercises"}}
 
 
