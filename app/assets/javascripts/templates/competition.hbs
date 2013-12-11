@@ -1,20 +1,15 @@
-<button class="btn btn-danger"{{action "activateDelete"}}>Delete</button>
-<button class="btn btn-default"{{action "edit"}}>Edit</button>
+<h2>{{name}}</h2>
+<hr>
+
+{{outlet}}
+
 {{#unless isJoined}}
   <button class="btn btn-default"{{action "join"}}>Join</button>
 {{/unless}}
 
-{{#if deleteMode}}
-<div class="confirm-box">
-  <h4>Are you sure?</h4>
-  <button class="btn btn-danger"{{action "confirmDelete"}}> Yes </button>
-  <button class="btn btn-default"{{action "cancelDelete"}}> No </button>
-</div>
-{{/if}}
-
 <div class="row">
-  <div class="col-md-10">
-    <h2>{{name}}</h2>
+  <div class="col-md-4">
+    <h4>Information</h4>
     <p>Start Date: {{date startDate}}</p>
     <p>End Date: {{date endDate}}</p>
     <p>Max Participants: {{maxParticipants}}</p>
@@ -26,14 +21,16 @@
     <br />
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-4">
     <h4>Exercises</h4>
     <ul>
     {{#each controller.exercises}}
       <li>{{name}}</li>
     {{/each}}
     </ul>
+  </div>
 
+  <div class="col-md-4">
     <h4>Users</h4>
     <ul>
     {{#each controller.users}}
@@ -44,6 +41,4 @@
     </ul>
   </div>
 </div>
-
-{{outlet}}
 
