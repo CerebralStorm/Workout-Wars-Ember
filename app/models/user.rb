@@ -6,6 +6,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   has_many :activities
+  has_many :event_activities
   has_many :event_joins
   has_many :competitions, through: :event_joins, source: :joinable, source_type: "Competition"
+
+  def create_event_activities(activity)
+    competitions.each do |competition|
+      if competition.has_exercise?(activity.exercise)
+        competition.event_activities.create!(activity_id: activity.id, user_id: self.id)
+      end
+    end
+  end
 end
