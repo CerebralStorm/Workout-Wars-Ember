@@ -20,8 +20,11 @@ WorkoutWars::Application.routes.draw do
       resources :event_exercises
       resources :event_joins
       devise_for :users
+      get 'current_user' => 'users#get_current_user'
     end
   end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

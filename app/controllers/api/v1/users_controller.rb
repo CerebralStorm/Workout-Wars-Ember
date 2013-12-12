@@ -19,6 +19,14 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def get_current_user
+    if current_user
+      render json: current_user
+    else 
+      render json: {message: "Not currently signed in", status: :unprocessable_entity}
+    end
+  end
+
   private
 
   def user_params
