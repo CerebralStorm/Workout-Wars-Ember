@@ -28,7 +28,8 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       if window.confirm "Are you sure?"
         @get("model").deleteRecord()
         @get("model").save()
-        @transitionToRoute "competitions"      
+        @transitionToRoute("competitions").then -> 
+          location.reload()     
     
     edit: ->
       @transitionToRoute "competition.edit"
