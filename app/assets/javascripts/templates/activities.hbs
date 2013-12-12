@@ -4,8 +4,8 @@
 {{/if}}
 <hr>
 <div class="row">
-  <div class="col-sm-2">
-    <ul class="nav nav-pills nav-stacked">
+  <div class="col-sm-4">
+    <ul class="nav">
     {{#each controller}}
       <li>{{#linkTo "activity" this}}{{date createdAt}} - {{exercise.name}}{{/linkTo}}</li>
     {{else}}
@@ -13,7 +13,7 @@
     {{/each}}
     </ul>
   </div>
-  <div class="col-sm-10">
+  <div class="col-sm-8">
     {{outlet}}
   </div>
 </div>

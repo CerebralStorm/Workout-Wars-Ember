@@ -6,8 +6,6 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     users = @get('model').get('users')
     result = false
     users.forEach (user, index) ->  
-      console.log user.get("id") 
-      console.log currentUser.get("id")
       result = true if user == currentUser        
     result
   ).property('model', 'content')

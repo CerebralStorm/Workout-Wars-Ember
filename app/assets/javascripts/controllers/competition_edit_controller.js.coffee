@@ -15,7 +15,6 @@ WorkoutWars.CompetitionEditController = Ember.ObjectController.extend
       location.reload()
 
     removeExercise: (exercise) -> 
-      console.log @get("model")
       eventExercises = @get("model").get('eventExercises')
       eventExercises.forEach (eventExercise) ->
         if eventExercise

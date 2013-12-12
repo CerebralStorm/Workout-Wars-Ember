@@ -5,6 +5,8 @@
 
 {{#unless isJoined}}
   <button class="btn btn-success"{{action "join"}}>Join this competition</button>
+{{else}}
+  {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
 
 <div class="pull-right">          

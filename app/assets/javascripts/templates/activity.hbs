@@ -1,13 +1,6 @@
-<button class="btn btn-danger"{{action "delete"}}>Delete</button>
-<button class="btn btn-default"{{action "edit"}}>Edit</button>
-
-{{#if deleteMode}}
-<div class="confirm-box">
-  <h4>Are you sure?</h4>
-  <button class="btn btn-danger"{{action "confirmDelete"}}> Yes </button>
-  <button class="btn btn-default"{{action "cancelDelete"}}> No </button>
+<div class="pull-right">          
+  <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
 </div>
-{{/if}}
 
 <h2>{{exercise.name}}</h2>
 
@@ -26,6 +19,7 @@
 {{#if exercise.weight}}
   <p>Weigth: {{weight}}</p>
 {{/if}}
+<p>Created At: {{date createdAt}}</p>
 <br />
 {{outlet}}
 
