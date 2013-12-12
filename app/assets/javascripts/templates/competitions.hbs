@@ -11,10 +11,6 @@
       {{#unless isDirty}}
       <li>
         {{#linkTo "competition" this}}{{name}}{{/linkTo}}
-        <span class="pull-right">          
-          {{#linkTo "competition.edit" this class="btn btn-default"}}Edit{{/linkTo}}
-          <a href="#" class="btn btn-default" {{action delete this}}>Delete</a>
-        </span>
       </li>
       {{/unless}}
     {{else}}

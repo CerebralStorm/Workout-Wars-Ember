@@ -4,8 +4,13 @@
 {{outlet}}
 
 {{#unless isJoined}}
-  <button class="btn btn-default"{{action "join"}}>Join</button>
+  <button class="btn btn-success"{{action "join"}}>Join this competition</button>
 {{/unless}}
+
+<div class="pull-right">          
+  {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
+  <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
+</div>
 
 <div class="row">
   <div class="col-md-4">

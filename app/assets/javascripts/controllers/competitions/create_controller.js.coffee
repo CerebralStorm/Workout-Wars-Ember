@@ -1,4 +1,6 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
+  exercises: []
+
   isValid: (->
     msg = ""
     isValid = true
@@ -16,6 +18,10 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   errors: ""
 
   actions:
+
+    addExercise: (exercise) ->
+      @get('exercises').add(exercise)
+
     saveCompetition: ->
       competition = {
         name: @get('name')
@@ -25,8 +31,9 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
         upperLevelRestriction: @get('upperLevelRestriction')
         maxParticipants: @get('maxParticipants')
         isPublic: @get('isPublic')
+        exercises: @get('exercises')
       }
 
       competition = @store.createRecord('competition', competition)
-      competition.save().then ->
-        @transitionTo competition
+      competition.save().then (competition) =>
+        @transitionToRoute 'competition', competition

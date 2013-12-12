@@ -42,4 +42,4 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
 
       activity = @store.createRecord('activity', activity)
       activity.save().then ->
-        @transitionTo activity
+        @transitionToRoute activity
