@@ -42,5 +42,5 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
 
       activity = @store.createRecord('activity', activity)
       activity.save()
-      @transitionToRoute 'activities', @get('controllers.application.currentUser').then ->
+      @transitionToRoute('activities', @get('controllers.application.currentUser')).then ->
         location.reload()

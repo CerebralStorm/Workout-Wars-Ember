@@ -5,5 +5,6 @@ class UserSerializer < ActiveModel::Serializer
   
   has_many :activities
   has_many :event_joins, as: :joinable
+  has_many :event_activities, as: :actable
   has_many :competitions, through: :event_joins
 end

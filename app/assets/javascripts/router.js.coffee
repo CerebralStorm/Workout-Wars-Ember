@@ -24,6 +24,7 @@ WorkoutWars.Router.map (match)->
       path: "/:user_id", ->
         @route "edit",
         @route "competitions", 
+        @route "competition", path: "/competitions/:competition_id"
         @route "teamCompetitions",
         @route "challenges",
         @route "teamChallenges",
