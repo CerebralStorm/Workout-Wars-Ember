@@ -1,4 +1,1 @@
-WorkoutWars.UserCompetitionsController = Ember.ArrayController.extend 
-  actions:
-    goToCompetition: (competition) ->
-      @transitionToRoute "competition", competition
+WorkoutWars.UserCompetitionsController = Ember.ArrayController.extend()

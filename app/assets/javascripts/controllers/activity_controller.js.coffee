@@ -4,9 +4,8 @@ WorkoutWars.ActivityController = Ember.ObjectController.extend
     delete: (activity) ->
       if window.confirm "Are you sure?"
         @get("model").deleteRecord()
-        @get("model").save()
-        @transitionToRoute("activities", @get('controllers.application.currentUser')).then -> 
-          location.reload() 
+        @get("model").save().then =>
+          @transitionToRoute("activities", @get('controllers.application.currentUser'))          
     
     edit: ->
       @transitionToRoute "activity.edit"

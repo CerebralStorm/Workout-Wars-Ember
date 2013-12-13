@@ -2,7 +2,7 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
 
-  has_many :event_activites, dependent: :destroy
+  has_many :event_activities, dependent: :destroy
 
   after_create :create_event_activities
 

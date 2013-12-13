@@ -11,7 +11,7 @@
               <li>{{this.activity.exercise.name}} - {{this.activity.reps}} - {{date this.activity.createdAt}}</li>
             {{/each}}
             <hr>
-            <li>Total: Coming Soon</li>
+            <li>{{total user.eventActivities}}</li>
           </ul>
         </li>
       {{/each}}

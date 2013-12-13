@@ -25,8 +25,8 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
     saveCompetition: ->
       competition = {
         name: @get('name')
-        startDate: Date.create("#{@get('startDate')}")
-        endDate: Date.create("#{@get('endDate')}")
+        startDate: "#{@get('startDate')}"
+        endDate: "#{@get('endDate')}"
         lowerLevelRestriction: @get('lowerLevelRestriction')
         upperLevelRestriction: @get('upperLevelRestriction')
         maxParticipants: @get('maxParticipants')
