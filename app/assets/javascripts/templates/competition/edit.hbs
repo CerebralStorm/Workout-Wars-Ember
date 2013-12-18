@@ -101,8 +101,8 @@
   <div class="col-md-3">
     <h4>Remove Exercise</h4>
     <ul class="nav">
-      {{#each "exercises"}}
-        <li><a href="#" {{action removeExercise this}}>{{name}}</a></li>
+      {{#each "competitionExercises"}}
+        <li><a href="#" {{action removeExercise this}}>{{exercise.name}}</a></li>
       {{/each}}
     </ul>
   </div>
