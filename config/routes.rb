@@ -18,7 +18,7 @@ WorkoutWars::Application.routes.draw do
       resources :activities
       resources :exercises
       resources :event_exercises
-      resources :event_joins
+      resources :competition_joins
       resources :event_activities
       devise_for :users
       get 'current_user' => 'users#get_current_user'

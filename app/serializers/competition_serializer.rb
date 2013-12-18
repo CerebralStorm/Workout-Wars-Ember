@@ -6,6 +6,6 @@ class CompetitionSerializer < ActiveModel::Serializer
   has_many :event_exercises, as: :exerciseable
   has_many :event_activities, as: :actable
   has_many :exercises, through: :event_exercises
-  has_many :event_joins, as: :joinable
-  has_many :users, through: :event_joins
+  has_many :competition_joins
+  has_many :users, through: :competition_joins
 end

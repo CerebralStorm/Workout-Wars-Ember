@@ -8,19 +8,17 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     users.forEach (user, index) ->  
       result = true if user == currentUser   
     result
-  ).property('users.@each', 'eventJoins.@each')
+  ).property('users.@each', 'competitionJoins.@each')
 
   actions:
     join: ->
-      eventJoin = {
+      competitionJoin = {
         user: @get('controllers.application.currentUser')
-        joinableId: @get("model").get('id')
-        joinableType: "Competition"
+        competition: @get("model")        
       }
 
-      eventJoin = @store.createRecord("eventJoin", eventJoin)
-      eventJoin.save().then =>
-        location.reload()
+      competitionJoin = @store.createRecord("competitionJoin", competitionJoin)
+      competitionJoin.save()
 
     delete: (competition) ->
       if window.confirm "Are you sure?"

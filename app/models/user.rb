@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :activities
   has_many :event_activities
-  has_many :event_joins
-  has_many :competitions, through: :event_joins, source: :joinable, source_type: "Competition"
-
+  has_many :competition_joins
+  has_many :competitions, through: :competition_joins
+  
   def create_event_activities(activity)
     competitions.each do |competition|
       if competition.has_exercise?(activity.exercise)
