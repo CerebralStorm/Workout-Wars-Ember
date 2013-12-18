@@ -4,5 +4,5 @@ class ActivitySerializer < ActiveModel::Serializer
   has_one :user
   has_one :exercise
 
-  has_many :event_activities
+  has_many :competition_activities
 end

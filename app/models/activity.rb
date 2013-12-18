@@ -2,11 +2,11 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
 
-  has_many :event_activities, dependent: :destroy
+  has_many :competition_activities, dependent: :destroy
 
-  after_create :create_event_activities
+  after_create :create_competition_activities
 
-  def create_event_activities
-    user.create_event_activities(self)
+  def create_competition_activities
+    user.create_competition_activities(self)
   end
 end

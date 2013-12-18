@@ -1,6 +1,5 @@
-WorkoutWars.EventActivity = DS.Model.extend
+WorkoutWars.CompetitionActivity = DS.Model.extend
   user: DS.belongsTo('user') 
-  activity: DS.belongsTo('activity') 
-  actableId: DS.attr('number')
-  actableId: DS.attr('number')
-  actableType: DS.attr('string')
+  activity: DS.belongsTo('activity')
+  competition: DS.belongsTo('competition') 
+  
