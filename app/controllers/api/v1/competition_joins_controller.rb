@@ -35,6 +35,6 @@ class Api::V1::CompetitionJoinsController < ApplicationController
   private
 
   def competition_join_params
-    params.require(:competition_join).permit(:user_id, :competiton_id)
+    params.require(:competition_join).permit(:user_id, :competition_id)
   end
 end

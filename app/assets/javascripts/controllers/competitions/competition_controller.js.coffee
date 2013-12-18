@@ -4,11 +4,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   isJoined: (->
     result = false
     currentUser = @get('controllers.application.currentUser')
-    users = @get('model').get('users')
-    users.forEach (user, index) ->  
-      result = true if user == currentUser   
+    joins = @get('model').get('competitionJoins')
+    joins.forEach (join, index) ->
+      result = true if join.get('user') == currentUser   
     result
-  ).property('users.@each', 'competitionJoins.@each')
+  ).property('competitionJoins.@each', 'users.@each')
 
   actions:
     join: ->
