@@ -1,8 +1,8 @@
 WorkoutWars.UserCompetitionController = Ember.ObjectController.extend
   needs: ['user']
 
-  total: ->
-    competition =  @get('model')
-    activities = competition.get('eventActivities')
+  total: (activities) ->
+    console.log @get('model').get('competitionActivities')
     console.log activities
-    console.log @get('controllers.user.model')
+
+    
