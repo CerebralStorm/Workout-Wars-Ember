@@ -3,8 +3,8 @@ class CompetitionSerializer < ActiveModel::Serializer
 
   embed :ids, include: true
   
-  has_many :event_exercises, as: :exerciseable
-  has_many :event_activities, as: :actable
+  has_many :competition_exercises
+  has_many :competition_activities
   has_many :exercises, through: :event_exercises
   has_many :competition_joins
   has_many :users, through: :competition_joins

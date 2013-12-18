@@ -4,26 +4,26 @@ WorkoutWars.CompetitionEditController = Ember.ObjectController.extend
     addExercise: (exercise) -> 
       competition = @get('model')
 
-      eventExercise = {
+      competitionExercise = {
         exerciseId: exercise.id
         exerciseableId: competition.id
         exerciseableType: "Competition"
       }
 
-      eventExercise = @store.createRecord('eventExercise', eventExercise)
-      eventExercise.save().then =>
+      competitionExercise = @store.createRecord('competitionExercise', competitionExercise)
+      competitionExercise.save().then =>
         location.reload()
 
     removeExercise: (exercise) -> 
       competition = @get('model')
-      competition.get('eventExercises').then (eventExercises) ->
-        eventExercises.forEach (eventExercise) ->
-          if eventExercise
-            eventExerciseId = eventExercise.get('exerciseId') 
+      competition.get('competitionExercises').then (competitionExercises) ->
+        competitionExercises.forEach (competitionExercise) ->
+          if competitionExercise
+            competitionExerciseId = competitionExercise.get('exerciseId') 
             exerciseId = exercise.get('id')
-            if "#{eventExerciseId}" == "#{exerciseId}"
-              eventExercise.deleteRecord()
-              eventExercise.save().then =>
+            if "#{competitionExerciseId}" == "#{exerciseId}"
+              competitionExercise.deleteRecord()
+              competitionExercise.save().then =>
                 location.reload()
 
     saveCompetition: ->  
