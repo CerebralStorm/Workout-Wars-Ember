@@ -3,6 +3,4 @@ class TeamCompetitionSerializer < ActiveModel::Serializer
 
   embed :ids
   
-  has_many :event_exercises, as: :exerciseable
-  has_many :exercises, through: :event_exercises
 end

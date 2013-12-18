@@ -21,12 +21,6 @@ end
 # Test Data
 pushups = Exercise.find_by_name("Pushups")
 competition = Competition.create(name: "Pushups Galore", start_date: Date.today, end_date: Date.today+3.weeks, lower_level_restriction: 0, upper_level_restriction: 20)
-team_competition = TeamCompetition.create(name: "Team Pushups Galore", start_date: Date.today, end_date: Date.today+3.weeks, lower_level_restriction: 0, upper_level_restriction: 20)
-challenge = Challenge.create(name: "Most Pushups in 60 Sec", start_date: Date.today, end_date: Date.today+3.weeks, lower_level_restriction: 0, upper_level_restriction: 20)
-team_challenge = TeamChallenge.create(name: "Team Most Pushups in 60 Sec", start_date: Date.today, end_date: Date.today+3.weeks, lower_level_restriction: 0, upper_level_restriction: 20)
-competition.event_exercises.create(exercise: pushups)
-team_competition.event_exercises.create(exercise: pushups)
-challenge.event_exercises.create(exercise: pushups)
-team_challenge.event_exercises.create(exercise: pushups)
+competition.competition_exercises.create(exercise: pushups)
 
 puts "Complete!"

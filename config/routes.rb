@@ -17,7 +17,7 @@ WorkoutWars::Application.routes.draw do
       resources :users
       resources :activities
       resources :exercises
-      resources :event_exercises
+      resources :competition_exercises
       resources :competition_joins
       resources :event_activities
       devise_for :users
