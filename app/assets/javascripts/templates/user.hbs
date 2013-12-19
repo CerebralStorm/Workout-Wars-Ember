@@ -1,3 +1,18 @@
+{{#if name}}
+  <h1>{{name}}</h1>
+  <hr>
+  <p>Email: {{email}}</p>
+{{else}}
+  <h1>{{email}}</h1>
+  <hr>
+{{/if}}
+
+{{#if nickname}}
+  <p>Nickname: {{nickname}}</p>
+{{/if}}
+
+<hr>
+
 <ul class="nav nav-tabs">
   <li>{{#linkTo "activities"}}Activities{{/linkTo}}</li>
   <li>{{#linkTo "user.competitions"}}Competitions{{/linkTo}}</li>
@@ -10,3 +25,4 @@
 </ul>
 
 {{outlet}}
+

@@ -21,6 +21,7 @@
 //= require moment
 //= require picker
 //= require picker.date
+//= require list-view
 //= require highcharts
 WorkoutWars = Ember.Application.create({
     LOG_TRANSITIONS: true
