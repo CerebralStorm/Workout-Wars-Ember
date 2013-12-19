@@ -13,6 +13,8 @@ WorkoutWars.User = DS.Model.extend
   height: DS.attr('number')
   age: DS.attr('number')
   level: DS.attr('number')
-  xp_level: DS.attr('number')
+  experience: DS.attr('number')
+  nextLevelExperience: DS.attr('number')
+  previousLevelExperience: DS.attr('number')
 
  
