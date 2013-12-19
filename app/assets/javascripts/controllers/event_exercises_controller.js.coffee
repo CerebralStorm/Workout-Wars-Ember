@@ -1,2 +1,2 @@
-WorkoutWars.EventExercisesController = Ember.ArrayController.extend
-  sortProperties: ['exerciseable_type']
+WorkoutWars.CompetitionExercisesController = Ember.ArrayController.extend
+  sortProperties: ['id']

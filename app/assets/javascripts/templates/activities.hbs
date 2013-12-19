@@ -6,14 +6,13 @@
   <div class="col-md-4">
     {{#if isCurrentUser}}
       {{#linkTo "activities.create" class="btn btn-lg btn-success btn-block"}}New Activity{{/linkTo}}
+      <hr>
     {{/if}}
     <h4>Recent Activity</h4>
     <ul class="nav">
-      {{#each controller}}
-        <li>{{#linkTo "activity" this}}{{date createdAt}} - {{exercise.name}}{{/linkTo}}</li>
-      {{else}}
-        <li>You haven't logged any activites recently.</li>
-      {{/each}}
+      {{#collection Ember.ListView contentBinding="controller" height=200 rowHeight=10}}
+          <li>{{#linkTo "activity" this}}{{date createdAt}} - {{exercise.name}}{{/linkTo}}</li>
+      {{/collection}}
     </ul>
   </div>
 

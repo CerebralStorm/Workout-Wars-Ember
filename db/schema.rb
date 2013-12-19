@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213001405) do
+ActiveRecord::Schema.define(version: 20131219063020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,28 @@ ActiveRecord::Schema.define(version: 20131213001405) do
     t.datetime "updated_at"
   end
 
+  create_table "competition_activities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.integer  "competition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competition_exercises", force: true do |t|
+    t.integer  "exercise_id"
+    t.integer  "competition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competition_joins", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "competition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "competitions", force: true do |t|
     t.string   "name"
     t.datetime "start_date"
@@ -64,44 +86,23 @@ ActiveRecord::Schema.define(version: 20131213001405) do
     t.datetime "updated_at"
   end
 
-  create_table "event_activities", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.integer  "actable_id"
-    t.string   "actable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "event_activities", ["actable_id", "actable_type"], name: "index_event_activities_on_actable_id_and_actable_type", using: :btree
-
-  create_table "event_exercises", force: true do |t|
-    t.integer  "exercise_id"
-    t.integer  "exerciseable_id"
-    t.string   "exerciseable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "event_exercises", ["exerciseable_id", "exerciseable_type"], name: "index_event_exercises_on_exerciseable_id_and_exerciseable_type", using: :btree
-
-  create_table "event_joins", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "joinable_id"
-    t.string   "joinable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "event_joins", ["joinable_id", "joinable_type"], name: "index_event_joins_on_joinable_id_and_joinable_type", using: :btree
-
   create_table "exercises", force: true do |t|
     t.string   "name"
+    t.float    "experience_multiplier"
     t.boolean  "reps"
     t.boolean  "weight"
     t.boolean  "duration"
     t.boolean  "calories"
     t.boolean  "distance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experience_sources", force: true do |t|
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.integer  "experienceable_id"
+    t.string   "experienceable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

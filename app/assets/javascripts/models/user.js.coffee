@@ -1,7 +1,7 @@
 WorkoutWars.User = DS.Model.extend
   activities: DS.hasMany('activity', { async: true }) 
-  eventJoins: DS.hasMany('eventJoin', { async: true }) 
-  eventActivities: DS.hasMany('eventActivity', { async: true }) 
+  competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
+  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
   competitions: DS.hasMany('competition', { async: true }) 
   name: DS.attr('string')
   nickname: DS.attr('string')
@@ -13,6 +13,8 @@ WorkoutWars.User = DS.Model.extend
   height: DS.attr('number')
   age: DS.attr('number')
   level: DS.attr('number')
-  xp_level: DS.attr('number')
+  experience: DS.attr('number')
+  nextLevelExperience: DS.attr('number')
+  previousLevelExperience: DS.attr('number')
 
  

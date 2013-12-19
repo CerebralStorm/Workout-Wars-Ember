@@ -1,1 +1,0 @@
-WorkoutWars.UserCompetitionsController = Ember.ArrayController.extend()

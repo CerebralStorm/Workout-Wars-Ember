@@ -6,15 +6,47 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   has_many :activities
-  has_many :event_activities
-  has_many :event_joins
-  has_many :competitions, through: :event_joins, source: :joinable, source_type: "Competition"
-
-  def create_event_activities(activity)
+  has_many :competition_activities
+  has_many :competition_joins
+  has_many :competitions, through: :competition_joins
+  has_many :experience_sources
+  
+  def create_competition_activities(activity)
     competitions.each do |competition|
       if competition.has_exercise?(activity.exercise)
-        competition.event_activities.create!(activity_id: activity.id, user_id: self.id)
+        competition.competition_activities.create!(activity_id: activity.id, user_id: self.id)
       end
     end
+  end
+
+  def experience
+    self.experience_sources.sum(:amount)
+  end
+
+  def next_level_experience
+    self.xp_level * self.xp_multiplier
+  end
+
+  def previous_level_experience
+    (self.xp_level-1) * (self.xp_multiplier-100)
+  end
+
+  def xp_for_levelup
+    next_level_xp - experience
+  end
+
+  def set_level
+    while experience >= next_level_experience
+      self.level += 1
+      self.xp_level += 1
+      self.xp_multiplier += 100
+    end 
+    while experience < previous_level_experience
+      break if self.xp_level == 1
+      self.level -= 1
+      self.xp_level -= 1
+      self.xp_multiplier -= 100
+    end 
+    self.save
   end
 end
