@@ -6,4 +6,6 @@ class CompetitionActivity < ActiveRecord::Base
   validates_presence_of :activity
   validates_presence_of :user
   validates_presence_of :competition
+
+  delegate :total_experience, to: :activity
 end

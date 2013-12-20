@@ -49,4 +49,13 @@ class User < ActiveRecord::Base
     end 
     self.save
   end
+
+  def total_experience_for_competition(competition)
+    actities = competition_activities.where(competition: competition)
+    result = 0
+    actities.each do |activity|
+      result += activity.total_experience
+    end
+    result
+  end
 end

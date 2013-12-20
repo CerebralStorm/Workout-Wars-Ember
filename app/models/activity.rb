@@ -21,15 +21,15 @@ class Activity < ActiveRecord::Base
     (metric * exercise_type.xp_multiplier).floor
   end
 
-  def total_xp
+  def total_experience
     self.send(metric) * experience_multiplier
   end
 
   def update_experience_source_and_user
     if experience_source.nil?
-      create_experience_source!(amount: total_xp, user: self.user)
+      create_experience_source!(amount: total_experience, user: self.user)
     else
-      experience_source.amount = total_xp
+      experience_source.amount = total_experience
       experience_source.save
     end
     user.set_level
