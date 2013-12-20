@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
   create_table "competition_joins", force: true do |t|
     t.integer  "user_id"
     t.integer  "competition_id"
+    t.integer  "total_experience", default: 0
+    t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

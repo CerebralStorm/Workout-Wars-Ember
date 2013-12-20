@@ -1,5 +1,5 @@
 class CompetitionJoinSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :competition_id
+  attributes :id, :user_id, :competition_id, :total_experience, :rank
 
   embed :ids, include: true
 
