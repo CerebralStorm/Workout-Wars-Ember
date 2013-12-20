@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   
   def create_competition_activities(activity)
     competitions.each do |competition|
-      if competition.has_exercise?(activity.exercise)
+      if competition.started? && competition.has_exercise?(activity.exercise)
         competition.competition_activities.create!(activity_id: activity.id, user_id: self.id)
       end
     end

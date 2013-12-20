@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.integer  "creator_id"
     t.integer  "winner_id"
     t.integer  "reward"
+    t.boolean  "started",                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

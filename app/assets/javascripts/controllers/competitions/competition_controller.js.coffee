@@ -20,6 +20,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       competitionJoin = @store.createRecord("competitionJoin", competitionJoin)
       competitionJoin.save()
 
+    start: ->
+      competition = @get("model") 
+      competition.set('started', true)
+      competition.save()
+
     delete: (competition) ->
       if window.confirm "Are you sure?"
         @get("model").deleteRecord()

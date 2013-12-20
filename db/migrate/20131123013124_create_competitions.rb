@@ -15,6 +15,7 @@ class CreateCompetitions < ActiveRecord::Migration
       t.integer :creator_id
       t.integer :winner_id
       t.integer :reward
+      t.boolean :started, default: false
 
       t.timestamps
     end

@@ -1,18 +1,19 @@
 <h2>{{name}}</h2>
 <hr>
 
-{{outlet}}
+{{#unless started}}
+  <button class="btn btn-success"{{action "start"}}>Start</button>
+  {{#unless isJoined}}
+    <button class="btn btn-success"{{action "join"}}>Join</button>
+  {{/unless}}
 
-{{#unless isJoined}}
-  <button class="btn btn-success"{{action "join"}}>Join this competition</button>
+  <div class="pull-right">          
+    {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
+    <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
+  </div>
 {{else}}
   {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
-
-<div class="pull-right">          
-  {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
-  <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
-</div>
 
 <div class="row">
   <div class="col-md-4">

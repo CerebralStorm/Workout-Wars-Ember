@@ -10,4 +10,5 @@ WorkoutWars.Competition = DS.Model.extend
   maxParticipants: DS.attr('number')
   lowerLevelRestriction: DS.attr('number')
   upperLevelRestriction: DS.attr('string')
+  started: DS.attr('boolean')
 
