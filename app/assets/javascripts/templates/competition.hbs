@@ -52,16 +52,11 @@
 
 <div class="row">
   <h3>{{name}} Ranking</h3>
-  {{#each user in users}}
+  {{#each controller.competitionJoins}}  
     <hr>
-    <h4>Rank: {{competitionRank controller.model user}}</h4>
-    <h5>User: {{user.email}}</h5>
-    <h5>Total Experience: {{competitionExperience controller.model user}}</h5>          
-    <ul>
-      {{#each user.competitionActivities}}
-        <li>{{this.activity.exercise.name}} - {{this.activity.reps}} - {{date this.activity.createdAt}}</li>
-      {{/each}}
-    </ul>
+    <h4>Rank: {{rank}}</h4>
+    <h5>User: {{this.user.email}}</h5>
+    <h5>Total Experience: {{totalExperience}}</h5>          
   {{/each}}
 </div>
 
