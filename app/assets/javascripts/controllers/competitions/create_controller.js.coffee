@@ -25,15 +25,13 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
     saveCompetition: ->
       competition = {
         name: @get('name')
-        startDate: @get('startDate')
-        endDate: @get('endDate')
+        startDate: moment(@get('endDate'), "MM-DD-YYYY").toDate()
+        endDate: moment(@get('endDate'), "MM-DD-YYYY").toDate()
         maxParticipants: @get('maxParticipants')
         isPublic: @get('isPublic')
         exercises: @get('exercises')
       }
-      console.log @get('startDate')
-      console.log @get('endDate')
-
+      
       competition = @store.createRecord('competition', competition)
       competition.save().then (competition) =>
         @transitionToRoute 'competition', competition

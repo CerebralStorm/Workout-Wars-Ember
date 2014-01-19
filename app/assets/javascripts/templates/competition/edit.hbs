@@ -20,7 +20,9 @@
       <div class="form-group">
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
-          {{view WorkoutWars.DatePicker value=startDate}}
+          <hint>(mm-dd-yyyy)</hint>
+          {{input value=startDate classNames="form-control"}}
+          {{!-- {{view WorkoutWars.DatePicker value=startDate}} --}}
         </div>
       </div>
     </div>
@@ -31,7 +33,9 @@
       <div class="form-group">
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
-          {{view WorkoutWars.DatePicker valueBinding="content.endDate"}}
+          <hint>(mm-dd-yyyy)</hint>
+          {{input value=endDate classNames="form-control"}}
+          {{!-- {{view WorkoutWars.DatePicker valueBinding="content.endDate"}} --}}
         </div>
       </div>
     </div>
@@ -51,9 +55,9 @@
 
     <div class="row">
       <div class="form-group">
-        <label class= "col-sm-4 control-label">Private</label>
+        <label class= "col-sm-4 control-label">Public</label>
         <div class="col-sm-8">
-          {{input type="checkbox" value=isPublic}}
+          {{view Ember.Checkbox checkedBinding="isPublic"}}
         </div>
       </div>
     </div>
