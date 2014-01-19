@@ -1,17 +1,28 @@
-<h1>Challenges</h1>
-{{#linkTo "challenges.create" class="btn btn-lg btn-success btn-block"}}New Challenge{{/linkTo}}
+<h3>Challenges</h3>
+<p>Challenges are a great way for you to <strong>compete against yourself</strong> as well as others. They will motivate you to be the best you can be.</p>
+<p class="text-warning">Bring the pain!</p>
 <hr>
 <div class="row">
-  <div class="col-md-3">
-    <ul class="nav nav-pills nav-stacked">
+  <div class="col-md-4">
+    {{#linkTo "challenges.create" class="btn btn-lg btn-success btn-block"}}New Challenge{{/linkTo}}
+    <h4>Active Challenges</h4>
+    <ul class="nav">
     {{#each controller}}
-      <li>{{#linkTo "challenge" this}}{{name}}{{/linkTo}}</li>
+      {{#unless isDirty}}
+      <li>
+        {{#linkTo "challenge" this}}{{name}}{{/linkTo}}
+      </li>
+      {{/unless}}
     {{else}}
       <li>There are no challenges.</li>
     {{/each}}
     </ul>
   </div>
-  <div class="col-md-9">
+
+  <div class="col-md-8">
     {{outlet}}
   </div>
 </div>
+
+
+

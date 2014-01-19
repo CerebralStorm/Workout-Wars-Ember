@@ -5,6 +5,8 @@ class Competition < ActiveRecord::Base
   has_many :competition_joins
   has_many :users, through: :competition_joins
 
+  validates_presence_of :name
+
   def has_exercise?(exercise)
     exercises.include?(exercise)
   end

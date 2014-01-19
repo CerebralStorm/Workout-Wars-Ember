@@ -20,7 +20,7 @@
       <div class="form-group">
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
-          {{#view WorkoutWars.DatePicker value="dick"}}{{/view}}
+          {{view WorkoutWars.DatePicker value=startDate}}
         </div>
       </div>
     </div>
@@ -32,28 +32,6 @@
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
           {{view WorkoutWars.DatePicker valueBinding="content.endDate"}}
-        </div>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-4 control-label">Lower Level</label>
-        <div class="col-sm-8">
-          {{input value=lowerLevelRestriction classNames="form-control"}}
-        </div>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-4 control-label">Upper Level</label>
-        <div class="col-sm-8">
-          {{input value=upperLevelRestriction classNames="form-control"}}
         </div>
       </div>
     </div>

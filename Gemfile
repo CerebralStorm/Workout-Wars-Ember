@@ -20,6 +20,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'qunit-rails'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "factory_girl_rails", "~> 4.0"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
