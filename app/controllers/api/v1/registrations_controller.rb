@@ -1,6 +1,6 @@
-class Api::V1::UsersController < Api::V1::BaseController
+class Api::V1::RegistrationsController < Api::V1::BaseController
   skip_before_filter :authenticate_user!
-  skip_before_filter :verify_authenticity_token 
+  skip_before_filter :verify_authenticity_token, only: [:create] 
 
   respond_to :json
   def create 
