@@ -1,4 +1,4 @@
-class Api::V1::RegistrationsController < Api::V1::BaseController
+class Api::V1::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :authenticate_user!
   skip_before_filter :verify_authenticity_token 
 
