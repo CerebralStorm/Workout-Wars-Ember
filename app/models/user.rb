@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
   has_many :experience_sources
+
+  before_save :ensure_authentication_token
   
   def create_competition_activities(activity)
     competitions.each do |competition|

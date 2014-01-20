@@ -20,7 +20,7 @@ WorkoutWars::Application.routes.draw do
       resources :competition_exercises
       resources :competition_joins
       resources :competition_activities
-      devise_for :users, :controllers => {:registrations => "api/v1/registrations"}
+      devise_for :users
       get 'current_user' => 'users#get_current_user'
     end
   end
