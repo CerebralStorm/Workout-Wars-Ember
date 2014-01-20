@@ -30,11 +30,12 @@ ActiveRecord::Schema.define(version: 20131219063020) do
 
   create_table "challenges", force: true do |t|
     t.string   "name"
+    t.string   "description"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "max_participants"
     t.integer  "lower_level_restriction"
-    t.string   "upper_level_restriction"
+    t.integer  "upper_level_restriction"
     t.integer  "win_condition_id"
     t.integer  "difficulty_id"
     t.boolean  "is_public"
