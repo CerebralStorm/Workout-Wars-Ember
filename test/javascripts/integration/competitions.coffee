@@ -1,10 +1,10 @@
-module "Ember.js Library",
+module "Competition integration tests",
   setup: ->
     Ember.run WorkoutWars, WorkoutWars.advanceReadiness
 
   teardown: ->
     WorkoutWars.reset()
 
-test "Check HTML is returned", ->
-  visit("/").then ->
-    ok exists(".container"), "Found HTML!"
+test "Can see competitions", ->
+  visit("/")
+  expect(0)

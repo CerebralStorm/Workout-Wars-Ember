@@ -7,35 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-  <meta name="current-user" content="<%= UserSerializer.new(current_user).to_json(root: false) %>" />
-<% end %>
-<div class="container">  
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Workout Wars</a>
+  
+  <% if user_signed_in? %>
+    <meta name="current-user" content="<%= UserSerializer.new(current_user).to_json(root: false) %>" />
+  <% end %>
+  <div class="container">  
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Workout Wars</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Home", unauthenticated_root_path %></li>
+            <li><%= link_to "Sign In", new_user_session_path, id: "sign_in_button" %></li>
+            <li><%= link_to "Sign up", new_user_registration_path, id: "sign_up_button" %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Home", unauthenticated_root_path %></li>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-        </ul>
-      </div><!--/.nav-collapse -->
     </div>
+    <br />
+    <br />
+    <br />
+    <%= render 'shared/flash' %>
+    <%= yield %>
   </div>
-  <br />
-  <br />
-  <br />
-  <%= yield %>
-</div>
 
 </body>
 </html>

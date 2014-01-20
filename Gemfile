@@ -21,6 +21,10 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'cucumber-rails', :require => false
+  gem 'pry'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'qunit-rails'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem "factory_girl_rails", "~> 4.0"

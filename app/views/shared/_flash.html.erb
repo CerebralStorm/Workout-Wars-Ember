@@ -1,0 +1,18 @@
+<% if flash[:error] %>
+  <%= content_tag :div, class: "alert alert-danger alert-dismissable" do %>
+    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">&times;</button>
+    <%= flash[:error] %>
+  <% end %>
+<% end %>
+<% if flash[:notice] %>
+  <%= content_tag :div, class: "alert alert-danger alert-dismissable" do %>
+    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">&times;</button>
+    <%= flash[:notice] %>
+  <% end %>
+<% end %>
+<% if flash[:alert] %>
+  <%= content_tag :div, class: "alert alert-danger alert-dismissable" do %>
+    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">&times;</button>
+    <%= flash[:alert] %>
+  <% end %>
+<% end %>
