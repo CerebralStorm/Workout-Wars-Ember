@@ -1,6 +1,5 @@
 puts "Seeding..."
 
-Exercise.destroy_all
 [
   {name: 'Pushups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
   {name: 'Pullups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
@@ -15,7 +14,7 @@ Exercise.destroy_all
   {name: 'Aerobics',   reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 1}, 
   {name: 'Yoga',       reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 1} 
 ].each do |exercise|
-  Exercise.create!(exercise)
+  Exercise.where(exercise).first_or_create
 end
 
 Challenge.destroy_all
@@ -34,13 +33,13 @@ Challenge.destroy_all
   {name: 'Daily Walking Distance',  description: 'How far can you walk in a day?',     start_date: Time.now,  is_public: true, active: true, creator_id: 1,  created_at: Time.now} ,
   {name: 'Max Days Walking',    description: 'How many days in a row can you walk a mile or more?',start_date: Time.now,  is_public: true, active: true, creator_id: 1,  created_at: Time.now}
 ].each do |challenge|
-  Challenge.create!(challenge)
+  Challenge.where(challenge).first_or_create
 end
 
 # Test Data
 pushups = Exercise.find_by_name("Pushups")
-competition = Competition.create(name: "Pushups Galore", start_date: Date.today, end_date: Date.today+3.weeks, lower_level_restriction: 0, upper_level_restriction: 20)
-competition.competition_exercises.create(exercise: pushups)
+competition = Competition.find_or_create_by_name("Pushups Galore")
+competition.competition_exercises.where(exercise: pushups).first_or_create
 
 
 
