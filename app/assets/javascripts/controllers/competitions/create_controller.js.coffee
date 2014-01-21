@@ -1,37 +1,22 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
-  exercises: []
+  needs: ['exercises']
+  selectedExercise: null
 
-  isValid: (->
-    msg = ""
-    isValid = true
-    value = @get("name")
-    if /^\s+$/.test(value)
-      isValid = false
-      msg['name'].push "Field can't be empty"
-
-    @set("errors", msg)
-    isValid
-  ).property('name')
-
-  content: null
-  name: ""
-  errors: ""
+  selectExercises: ( ->
+    @get('controllers.exercises')
+  ).property()
 
   actions:
+    create: (competition) ->
+      isPublic = true
+      isPublic = false if @get('isPrivate')
+      competition.set('isPublic', isPublic)
 
-    addExercise: (exercise) ->
-      @get('exercises').add(exercise)
+      competition.set('startDate', moment(@get('startDate'), "YYYY-MM-DD").toDate()) if @get('startDate')
+      competition.set('endDate', moment(@get('endDate'), "YYYY-MM-DD").toDate()) if @get('endDate')
 
-    saveCompetition: ->
-      competition = {
-        name: @get('name')
-        startDate: moment(@get('endDate'), "MM-DD-YYYY").toDate()
-        endDate: moment(@get('endDate'), "MM-DD-YYYY").toDate()
-        maxParticipants: @get('maxParticipants')
-        isPublic: @get('isPublic')
-        exercises: @get('exercises')
-      }
-      
-      competition = @store.createRecord('competition', competition)
-      competition.save().then (competition) =>
-        @transitionToRoute 'competition', competition
+      success = (competition) =>
+        @transitionToRoute('competition', competition)
+      failure = (response) =>
+        @set('errors', @get('content.errors'))
+      competition.save().then success, failure

@@ -3,5 +3,5 @@ WorkoutWars.UserEditController = Ember.ObjectController.extend
   actions:
     saveUser: ->
       user = @get("model")
-      user.save()
-      @transitionToRoute "user", user
+      user.save().then (user) =>
+        @transitionToRoute "user", user
