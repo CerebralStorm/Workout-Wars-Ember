@@ -2,9 +2,8 @@
 <hr>
 
 {{#unless started}}
-  <button class="btn btn-success"{{action "start"}}>Start</button>
   {{#unless isJoined}}
-    <button class="btn btn-success"{{action "join"}}>Join</button>
+    <button class="btn btn-success"{{action "join"}}>Join this competition</button>
   {{/unless}}
 
   <div class="pull-right">          
@@ -57,4 +56,6 @@
     <h5>Total Experience: {{totalExperience}}</h5>          
   {{/each}}
 </div>
+
+{{outlet}}
 

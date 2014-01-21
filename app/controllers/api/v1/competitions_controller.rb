@@ -35,6 +35,6 @@ class Api::V1::CompetitionsController < ApplicationController
   private
 
   def competition_params
-    params.require(:competition).permit(:name, :max_participants, :start_date, :end_date, :lower_level_restriction, :upper_level_restriction, :started)
+    params.require(:competition).permit(:name, :max_participants, :start_date, :end_date, competition_exercise_attributes: [ :exercise_id, :competition_id ])
   end
 end

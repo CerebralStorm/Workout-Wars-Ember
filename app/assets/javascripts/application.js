@@ -19,8 +19,6 @@
 //= require_self
 //= require workout_wars
 //= require moment
-//= require picker
-//= require picker.date
 //= require list-view
 //= require highcharts
 WorkoutWars = Ember.Application.create({

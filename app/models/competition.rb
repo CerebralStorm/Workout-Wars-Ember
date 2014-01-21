@@ -6,6 +6,11 @@ class Competition < ActiveRecord::Base
   has_many :users, through: :competition_joins
 
   validates_presence_of :name
+  validates_presence_of :start_date
+  validates_presence_of :end_date
+  validates :max_participants, numericality: { only_integer: true }
+
+  accepts_nested_attributes_for :competition_exercises
 
   def has_exercise?(exercise)
     exercises.include?(exercise)
