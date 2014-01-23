@@ -5,7 +5,7 @@ class Competition < ActiveRecord::Base
   has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins
 
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
   validates_presence_of :end_date
   validate :has_exercise

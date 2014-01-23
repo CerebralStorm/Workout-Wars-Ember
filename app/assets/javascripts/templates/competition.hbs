@@ -16,6 +16,8 @@
   {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
 
+{{outlet}}
+
 <div class="row">
   <div class="col-md-4">
     <h4>Information</h4>
@@ -30,19 +32,16 @@
 
   <div class="col-md-4">
     <h4>Exercises</h4>
-    <ul>
     {{#each compExercise in controller.model.competitionExercises}}
-      <li>{{compExercise.exercise.name}} <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger">&times;</button></li>
+      <ul class="nav">
+        <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+      </ul>
     {{else}}
-      <h4>Add Exercise</h4>
       <ul class="nav">
         {{render "exercises"}}
       </ul>
     {{/each}}
-    </ul>
   </div>
-
-
 
   <div class="col-md-4">
     <h4>Users</h4>
@@ -65,6 +64,3 @@
     <h5>Total Experience: {{totalExperience}}</h5>          
   {{/each}}
 </div>
-
-{{outlet}}
-

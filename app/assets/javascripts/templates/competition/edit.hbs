@@ -1,13 +1,14 @@
+<form {{action 'create' this.model on='submit'}}>
 <div class="row">
   <div class="col-md-8">
     <h4>Competition Settings</h4>
     <hr>
     <div class="row">
-      <div {{bindAttr class=":form-group isValid::has-error"}}>
+      <div {{bindAttr class=":form-group errors.name:has-error:"}}>
         <label class= "col-sm-4 control-label">Name</label>
         <div class="col-sm-8">
-          {{input value=name classNames="form-control"}}
-          {{errors.name}}
+          {{input value=this.model.name classNames="form-control"}}
+          {{#if errors.name}}<span class="help-block">{{errors.name}}</span>{{/if}}
         </div>
       </div>
     </div>
@@ -15,10 +16,11 @@
     <br />
 
     <div class="row">
-      <div class="form-group">
+      <div {{bindAttr class=":form-group errors.startDate:has-error:"}}>
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
           {{input type="date" value=startDate classNames="form-control"}}
+          {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
         </div>
       </div>
     </div>
@@ -26,10 +28,11 @@
     <br />
 
     <div class="row">
-      <div class="form-group">
+      <div {{bindAttr class=":form-group errors.endDate:has-error:"}}>
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
           {{input type="date" value=endDate classNames="form-control"}}
+          {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
         </div>
       </div>
     </div>
@@ -40,7 +43,7 @@
       <div class="form-group">
         <label class= "col-sm-4 control-label">Max Participants</label>
         <div class="col-sm-8">
-          {{input value=maxParticipants classNames="form-control"}}
+          {{input value=this.model.maxParticipants classNames="form-control"}}
         </div>
       </div>
     </div>
@@ -49,20 +52,9 @@
 
     <div class="row">
       <div class="form-group">
-        <label class= "col-sm-4 control-label">Exercise</label>
+        <label class= "col-sm-4 control-label">Private</label>
         <div class="col-sm-8">
-          {{view Ember.Select value=selectedExercise content=selectExercises class="form-control" optionValuePath='content.id' optionLabelPath='content.name' prompt="Please select an exercise"}}
-        </div>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-4 control-label">Public</label>
-        <div class="col-sm-8">
-          {{view Ember.Checkbox checkedBinding="isPublic"}}
+          {{view Ember.Checkbox checkedBinding="isPrivate"}}
         </div>
       </div>
     </div>
@@ -72,10 +64,11 @@
     <div class="row">
       <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
-          <input {{action "saveCompetition"}} type="submit" class="btn btn-lg btn-block btn-success" value="Save" />
+          <button class="btn btn-primary">Create</button>
         </div>      
       </div>
     </div>
   </div>
 </div>
 <hr>
+</form>
