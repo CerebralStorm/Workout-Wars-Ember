@@ -5,8 +5,8 @@ env: DB=postgres
 before_script:
   - psql -c 'create database workoutwars_test' -U postgres
   - psql -c "CREATE USER workoutwars WITH PASSWORD 'uofucs';" -U postgres
-  - rake db:create
-  - rake db:migrate
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
 script: 
   - bundle exec rspec spec
   - bundle exec cucumber features
