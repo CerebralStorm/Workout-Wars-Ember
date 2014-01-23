@@ -8,11 +8,6 @@ class Competition < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
   validates_presence_of :end_date
-  validate :has_exercise
-
-  def has_exercise
-    errors.add(:exercise, "Exercise not set") if exercises.count == 0
-  end
 
   accepts_nested_attributes_for :competition_exercises
 

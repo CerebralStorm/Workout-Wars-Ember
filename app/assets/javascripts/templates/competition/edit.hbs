@@ -19,7 +19,7 @@
       <div {{bindAttr class=":form-group errors.startDate:has-error:"}}>
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
-          {{input type="date" value=startDate classNames="form-control"}}
+          {{view WorkoutWars.DateField valueBinding="controller.startDate" classNames="form-control"}}
           {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
         </div>
       </div>
@@ -31,7 +31,7 @@
       <div {{bindAttr class=":form-group errors.endDate:has-error:"}}>
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
-          {{input type="date" value=endDate classNames="form-control"}}
+          {{view WorkoutWars.DateField valueBinding="controller.endDate" classNames="form-control"}}
           {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
         </div>
       </div>
