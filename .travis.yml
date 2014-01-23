@@ -3,7 +3,7 @@ rvm:
   - "2.0.0"
 env: DB=postgres
 before_script:
-  - psql -c 'create database workoutwars_test' -U postgres
+  - psql -c 'create database workout-wars_test' -U postgres
   - psql -c "CREATE USER workoutwars WITH PASSWORD 'uofucs';" -U postgres
   - bundle exec rake db:create
   - bundle exec rake db:migrate
