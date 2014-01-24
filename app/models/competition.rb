@@ -1,11 +1,15 @@
 class Competition < ActiveRecord::Base
-  has_many :competition_exercises
+  has_many :competition_exercises, dependent: :destroy
   has_many :competition_activities
   has_many :exercises, through: :competition_exercises
-  has_many :competition_joins
+  has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins
 
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
+  validates_presence_of :start_date
+  validates_presence_of :end_date
+
+  accepts_nested_attributes_for :competition_exercises
 
   def has_exercise?(exercise)
     exercises.include?(exercise)

@@ -14,7 +14,7 @@ class Api::V1::CompetitionsController < ApplicationController
     if competition.save
       render json: competition
     else
-      render json: competition, status: 422
+      render json: {errors: competition.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::CompetitionsController < ApplicationController
     if competition.update(competition_params)
       render json: competition
     else
-      render json: competition, status: 422
+      render json: {errors: competition.errors.messages}, status: 422
     end
   end
 
@@ -35,6 +35,6 @@ class Api::V1::CompetitionsController < ApplicationController
   private
 
   def competition_params
-    params.require(:competition).permit(:name, :max_participants, :start_date, :end_date, :lower_level_restriction, :upper_level_restriction, :started)
+    params.require(:competition).permit(:name, :max_participants, :start_date, :end_date, :is_private, competition_exercise_attributes: [ :exercise_id, :competition_id ])
   end
 end

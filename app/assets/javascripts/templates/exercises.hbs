@@ -1,3 +1,4 @@
-{{#collection Ember.ListView contentBinding="controller" height=260 rowHeight=10}}
-    <li {{ action "addExercise" this}}><a href="#">{{name}}</a></li>
-{{/collection}}
+<form {{ action "addExercise" selectedExercise on="submit"}}>
+  {{view Ember.Select value=selectedExercise content=controller class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
+  <button class="btn btn-primary">Add Exercise</button>
+</form>

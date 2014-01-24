@@ -12,15 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-datepicker
 //= require handlebars
 //= require ember
 //= require ember-data
 //= require_self
 //= require workout_wars
 //= require moment
-//= require picker
-//= require picker.date
 //= require list-view
 //= require highcharts
 WorkoutWars = Ember.Application.create({

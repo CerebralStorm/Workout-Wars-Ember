@@ -1,10 +1,11 @@
-module "Competition integration tests",
+module "integration tests",
   setup: ->
-    Ember.run WorkoutWars, WorkoutWars.advanceReadiness
+    Ember.run(WorkoutWars, WorkoutWars.advanceReadiness)
 
   teardown: ->
     WorkoutWars.reset()
 
-test "Can see competitions", ->
-  visit("/")
-  expect(0)
+test "Sign up", ->
+  visit("/users/sign_up").then ->
+    debugger
+    fillIn('#user_email', null, "test@test.com")

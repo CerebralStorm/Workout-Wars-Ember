@@ -2,10 +2,11 @@
 <hr>
 
 {{#unless started}}
-  <button class="btn btn-success"{{action "start"}}>Start</button>
-  {{#unless isJoined}}
-    <button class="btn btn-success"{{action "join"}}>Join</button>
-  {{/unless}}
+  {{#if isJoined}}
+    <button class="btn btn-success"{{action "leave"}}>Leave this competition</button>
+  {{else}}
+    <button class="btn btn-success"{{action "join"}}>Join this competition</button>
+  {{/if}}
 
   <div class="pull-right">          
     {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
@@ -15,13 +16,19 @@
   {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
 
+{{outlet}}
+
 <div class="row">
   <div class="col-md-4">
     <h4>Information</h4>
     <p>Start Date: {{date startDate}}</p>
     <p>End Date: {{date endDate}}</p>
     <p>Max Participants: {{maxParticipants}}</p>
-    <p>Public: {{isPublic}}</p>
+    {{#if isPrivate}}
+      <p>This is a private competition</p>
+    {{else}}
+      <p>This is a public competition</p>
+    {{/if}}
     <p>Active: {{active}}</p>
     <p>Reward: {{reward}}</p>
     <br />
@@ -29,11 +36,15 @@
 
   <div class="col-md-4">
     <h4>Exercises</h4>
-    <ul>
-    {{#each controller.exercises}}
-      <li>{{name}}</li>
+    {{#each compExercise in controller.model.competitionExercises}}
+      <ul class="nav">
+        <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+      </ul>
+    {{else}}
+      <ul class="nav">
+        {{render "exercises"}}
+      </ul>
     {{/each}}
-    </ul>
   </div>
 
   <div class="col-md-4">
@@ -52,9 +63,8 @@
   <h3>{{name}} Ranking</h3>
   {{#each controller.competitionJoins}}  
     <hr>
-    <h4>Rank: {{rank}}</h4>
+    {{#if rank}}<h4>Rank: {{rank}}</h4>{{/if}}
     <h5>User: {{this.user.email}}</h5>
     <h5>Total Experience: {{totalExperience}}</h5>          
   {{/each}}
 </div>
-
