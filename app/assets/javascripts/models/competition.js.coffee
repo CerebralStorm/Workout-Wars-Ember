@@ -10,5 +10,5 @@ WorkoutWars.Competition = DS.Model.extend
   lowerLevelRestriction: DS.attr('number')
   upperLevelRestriction: DS.attr('string')
   started: DS.attr('boolean')
-  isPublic: DS.attr('boolean')
+  isPrivate: DS.attr('boolean')
 
