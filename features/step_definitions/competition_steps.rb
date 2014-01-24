@@ -25,7 +25,7 @@ Then(/^I should see a new competition$/) do
   expect(page).to have_content "Start Date: Jan 1st 2014"
   expect(page).to have_content "End Date: Jan 14th 2014"
   expect(page).to have_content "Max Participants: 20"
-  expect(page).to have_content "Public: true"    
+  expect(page).to have_content "This is a public competition"    
 end
 
 When(/^I fill out the competition with invalid data$/) do
@@ -36,5 +36,5 @@ Then(/^I should see error messages$/) do
   expect(page).to_not have_content "Start Date: Jan 1st 2014"
   expect(page).to_not have_content "End Date: Jan 14th 2014"
   expect(page).to_not have_content "Max Participants: 20"
-  expect(page).to_not have_content "Public: true" 
+  expect(page).to_not have_content "This is a public competition" 
 end
