@@ -11,6 +11,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       success = (competition) =>
         @set('startDate', "")
         @set('endDate', "")
+        @set('isPrivate', false)
         @transitionToRoute('competition', competition)
       failure = (response) =>
         @set('errors', @get('content.errors'))
