@@ -24,7 +24,11 @@
     <p>Start Date: {{date startDate}}</p>
     <p>End Date: {{date endDate}}</p>
     <p>Max Participants: {{maxParticipants}}</p>
-    <p>Public: {{isPublic}}</p>
+    {{#if isPrivate}}
+      <p>This is a private competition</p>
+    {{else}}
+      <p>This is a public competition</p>
+    {{/if}}
     <p>Active: {{active}}</p>
     <p>Reward: {{reward}}</p>
     <br />

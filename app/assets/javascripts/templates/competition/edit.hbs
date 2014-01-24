@@ -1,4 +1,4 @@
-<form {{action 'create' this.model on='submit'}}>
+<form {{action 'create' this on='submit'}}>
 <div class="row">
   <div class="col-md-8">
     <h4>Competition Settings</h4>
@@ -19,7 +19,7 @@
       <div {{bindAttr class=":form-group errors.startDate:has-error:"}}>
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
-          {{view WorkoutWars.DateField valueBinding="controller.startDate" classNames="form-control" name="Start Date"}}
+          {{view WorkoutWars.DateField value=startDate classNames="form-control" name="Start Date"}}
           {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
         </div>
       </div>
@@ -31,8 +31,8 @@
       <div {{bindAttr class=":form-group errors.endDate:has-error:"}}>
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
-          {{view WorkoutWars.DateField valueBinding="controller.endDate" classNames="form-control" name="End Date"}}
-          {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
+          {{view WorkoutWars.DateField value=endDate classNames="form-control" name="End Date"}}
+          {{#if errors.endDate}}<span class="help-block">{{errors.endDate}}</span>{{/if}}
         </div>
       </div>
     </div>

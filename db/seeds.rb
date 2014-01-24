@@ -38,7 +38,7 @@ end
 
 # Test Data
 pushups = Exercise.find_by_name("Pushups")
-competition = Competition.find_or_create_by_name("Pushups Galore")
+competition = Competition.where(name: "Pushups Galore", start_date: Date.today, end_date: 2.weeks.from_now).first_or_create
 competition.competition_exercises.where(exercise: pushups).first_or_create
 
 
