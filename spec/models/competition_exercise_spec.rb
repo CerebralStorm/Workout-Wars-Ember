@@ -25,5 +25,12 @@ describe CompetitionExercise do
     it "should be valid with a user and competition" do
       FactoryGirl.build(:competition_exercise).should be_valid
     end
+
+    it "should not allow a competition to have the same exercise more than once" do
+      comp = FactoryGirl.create(:competition)
+      exercise = FactoryGirl.create(:exercise)
+      FactoryGirl.create(:competition_exercise, competition: comp, exercise: exercise)
+      expect(FactoryGirl.build(:competition_exercise, competition: comp, exercise: exercise)).to_not be_valid
+    end
   end
 end
