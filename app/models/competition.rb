@@ -1,6 +1,6 @@
 class Competition < ActiveRecord::Base
   has_many :competition_exercises, dependent: :destroy
-  has_many :competition_activities
+  has_many :competition_activities, dependent: :destroy
   has_many :exercises, through: :competition_exercises
   has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins

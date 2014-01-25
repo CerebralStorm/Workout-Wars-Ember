@@ -1,4 +1,4 @@
 <form {{ action "addExercise" selectedExercise on="submit"}}>
-  {{view Ember.Select value=selectedExercise content=controller class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
+  {{view Ember.Select value=selectedExercise content=controller name="Exercise Select" class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
   <button class="btn btn-primary">Add Exercise</button>
 </form>
