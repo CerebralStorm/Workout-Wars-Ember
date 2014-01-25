@@ -42,7 +42,11 @@
       </ul>
     {{else}}
       <ul class="nav">
-        {{render "exercises"}}
+        {{#if isAddingExercise}}
+          <p>Saving...</p>
+        {{else}}
+          {{render "exercises"}}
+        {{/if}}
       </ul>
     {{/each}}
   </div>
