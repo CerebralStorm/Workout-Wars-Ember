@@ -13,6 +13,11 @@ Feature: Authentication
     When I try to log in with the right password
     Then I should be logged in
 
+  Scenario: Sign Up
+    When I go to the sign up page
+    And I fill out the form and submit
+    Then I should be logged in
+
   @javascript
   Scenario: Sign Out
     When I try to log in with the right password

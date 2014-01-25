@@ -68,3 +68,49 @@ end
 Then(/^I should see the new exercise$/) do
   expect(page).to have_content "Biking" 
 end
+
+Then(/^I should see the edit and delete button$/) do
+  expect(page).to_not have_selector "a[name='Edit Competition']"
+  expect(page).to_not have_selector "a[name='Delete Competition']"
+end
+
+When(/^I click the "(.*?)" button$/) do |link|
+  click_link link
+end
+
+When(/^I modify the competition$/) do
+  fill_in 'Name', with: "Edited Test Competition"
+  fill_in 'Start Date', with: "02/01/2014"
+  fill_in 'End Date', with: "02/14/2014"
+  fill_in 'Max Participants', with: "30"
+  click_button 'Save'
+end
+
+Then(/^I should see the competition details change$/) do
+  expect(page).to have_content "Edited Test Competition"
+  expect(page).to have_content "Start Date: Feb 1st 2014"
+  expect(page).to have_content "End Date: Feb 14th 2014"
+  expect(page).to have_content "Max Participants: 30"
+  expect(page).to have_content "This is a public competition" 
+end
+
+
+When(/^I confirm$/) do
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I should not see the competition anymore$/) do
+  expect(page).to_not have_content "Test Competition"
+end
+
+When(/^I go to the competition page$/) do
+  click_link "Competitions"
+  click_link "Test Competition"
+end
+
+Then(/^I should not see what creators see$/) do 
+  expect(page).to have_content "Creator: ray@bustinghosts.com"
+  expect(page).to have_content "The creator has not added any exercises for this competition yet"  
+  expect(page).to_not have_selector "a[name='Edit Competition']"
+  expect(page).to_not have_selector "a[name='Delete Competition']"
+end

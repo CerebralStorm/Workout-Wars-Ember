@@ -47,3 +47,14 @@ Then(/^I should be able to change my password to "(.*?)"$/) do |password|
   fill_in "user_password_confirmation", with: password
   click_button "Change my password"
 end
+
+When(/^I go to the sign up page$/) do
+  visit '/users/sign_up'
+end
+
+When(/^I fill out the form and submit$/) do
+  fill_in "Email", with: "test@tester.com"
+  fill_in "user_password", with: "testpassword"
+  fill_in "user_password_confirmation", with: "testpassword"
+  click_button "Sign up"
+end

@@ -34,7 +34,7 @@ Feature: Competitions
     When I fill out the competition with valid data
     And I save it
     Then I should see the edit and delete button
-    When I click the edit button
+    When I click the "Edit" button
     And I modify the competition
     Then I should see the competition details change
 
@@ -43,15 +43,16 @@ Feature: Competitions
     When I fill out the competition with valid data
     And I save it
     Then I should see the edit and delete button
-    When I click the edit button
-    And I modify the competition
-    Then I should see the competition details change
+    When I click the "Delete" button
+    And I confirm
+    Then I should not see the competition anymore
 
   @javascript
   Scenario: View a competition created by another user
     When I fill out the competition with valid data
     And I save it
-    Then I should see the edit and delete button
-    When I click the edit button
-    And I modify the competition
-    Then I should see the competition details change
+    And I log out
+    And I go to the sign up page
+    And I fill out the form and submit
+    And I go to the competition page
+    Then I should not see what creators see

@@ -10,8 +10,8 @@
 
   {{#if hasPermission}}
     <div class="pull-right">          
-      {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
-      <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
+      {{#linkTo "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/linkTo}}
+      <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
     </div>
   {{/if}}
 {{else}}
