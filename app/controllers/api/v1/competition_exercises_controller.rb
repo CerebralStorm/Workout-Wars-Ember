@@ -14,7 +14,7 @@ class Api::V1::CompetitionExercisesController < ApplicationController
     if competition_exercise.save
       render json: competition_exercise
     else
-      render json: {errors: competition.errors.messages}, status: 422
+      render json: {errors: competition_exercise.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::CompetitionExercisesController < ApplicationController
     if competition_exercise.update(exercise_params)
       render json: competition_exercise
     else
-      render json: {errors: competition.errors.messages}, status: 422
+      render json: {errors: competition_exercise.errors.messages}, status: 422
     end
   end
 
