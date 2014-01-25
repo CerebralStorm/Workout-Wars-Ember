@@ -5,10 +5,10 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
 
   isJoined: (->
     result = false
-    currentUser = @get('controllers.application.currentUser')
-    joins = @get('model').get('competitionJoins')
-    joins.forEach (join, index) ->
-      result = true if join.get('user') == currentUser   
+    if currentUser = @get('controllers.application.currentUser')
+      if joins = @get('model').get('competitionJoins')
+        joins.forEach (join, index) ->
+          result = true if join.get('user') == currentUser   
     result
   ).property('competitionJoins.@each')
 
@@ -29,7 +29,12 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       competitionJoin.save()
 
     leave: ->
-      #todo
+      if joins = @get('model').get('competitionJoins')
+        joins.forEach (join, index) ->
+          console.log join
+          # if join.get('user') == @get('controllers.application.currentUser')
+          #   join.deleteRecord()
+          #   join.save()
 
     delete: (competition) ->
       if window.confirm "Are you sure?"
