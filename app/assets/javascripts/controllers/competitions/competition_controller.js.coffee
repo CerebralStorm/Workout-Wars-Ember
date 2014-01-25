@@ -1,8 +1,6 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
   needs: ['application']
 
-  isAddingExercise: false
-
   isJoined: (->
     result = false
     currentUser = @get('controllers.application.currentUser')
@@ -40,19 +38,12 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     edit: ->
       @transitionToRoute "competition.edit"
 
-    addExercise: (exercise) ->
-      @set('isAddingExercise', true)
+    addExercise: (exercise) ->  
       competitionExercise = @store.createRecord("competitionExercise", {
         exercise: exercise
         competition: @get("model")        
       })
-
-      success = (competitionExercise) =>
-        @set('isAddingExercise', false)
-      failure = (response) =>
-        @set('isAddingExercise', false)
-        console.log response
-      competitionExercise.save().then success, failure      
+      competitionExercise.save()    
 
     removeExercise: (exercise) ->
       exercise.deleteRecord()
