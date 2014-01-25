@@ -12,6 +12,7 @@ class Api::V1::CompetitionsController < ApplicationController
   def create
     competition = Competition.new(competition_params)
     if competition.save
+      CompetitionJoin.create(competition: competition, user: current_user)
       render json: competition
     else
       render json: {errors: competition.errors.messages}, status: 422
@@ -35,6 +36,6 @@ class Api::V1::CompetitionsController < ApplicationController
   private
 
   def competition_params
-    params.require(:competition).permit(:name, :max_participants, :start_date, :end_date, :is_private, competition_exercise_attributes: [ :exercise_id, :competition_id ])
+    params.require(:competition).permit(:name, :creator_id, :max_participants, :start_date, :end_date, :is_private, competition_exercise_attributes: [ :exercise_id, :competition_id ])
   end
 end

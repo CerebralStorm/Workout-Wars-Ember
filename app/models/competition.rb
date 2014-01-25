@@ -4,10 +4,12 @@ class Competition < ActiveRecord::Base
   has_many :exercises, through: :competition_exercises
   has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins
+  belongs_to :creator, class_name: "User"
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
   validates_presence_of :end_date
+  validates_presence_of :creator
 
   accepts_nested_attributes_for :competition_exercises
 

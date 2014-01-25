@@ -12,6 +12,14 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     result
   ).property('competitionJoins.@each')
 
+  hasPermission: (->
+    if currentUser = @get('controllers.application.currentUser')
+      creator = @get('model.creator')
+      currentUser.id == creator.id
+    else
+      false
+  ).property('model', 'controllers.application.currentUser')
+
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {

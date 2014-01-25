@@ -3,7 +3,8 @@ FactoryGirl.define do
     sequence(:name) {|n| "Competition #{n}" }    
     start_date Date.today
     end_date Date.today + 14.days
-
+    association :creator, factory: :user
+    
     factory :private_competition do
       public false
     end

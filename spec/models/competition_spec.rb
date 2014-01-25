@@ -46,5 +46,9 @@ describe Competition do
     it "should be valid with valid data" do
       FactoryGirl.build(:competition).should be_valid
     end
+
+    it "should not be valid without a creator" do
+      FactoryGirl.build(:competition, creator: nil).should_not be_valid
+    end
   end
 end
