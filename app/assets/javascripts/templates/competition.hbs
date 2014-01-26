@@ -8,10 +8,12 @@
     <button class="btn btn-success"{{action "join"}}>Join this competition</button>
   {{/if}}
 
-  <div class="pull-right">          
-    {{#linkTo "competition.edit" this class="btn btn-info"}}Edit{{/linkTo}}
-    <a href="#" class="btn btn-danger" {{action delete this}}>Delete</a>
-  </div>
+  {{#if hasPermission}}
+    <div class="pull-right">          
+      {{#linkTo "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/linkTo}}
+      <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
+    </div>
+  {{/if}}
 {{else}}
   {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
@@ -21,6 +23,7 @@
 <div class="row">
   <div class="col-md-4">
     <h4>Information</h4>
+    <p>Creator: {{creator.email}}</p>
     <p>Start Date: {{date startDate}}</p>
     <p>End Date: {{date endDate}}</p>
     <p>Max Participants: {{maxParticipants}}</p>
@@ -36,15 +39,29 @@
 
   <div class="col-md-4">
     <h4>Exercises</h4>
-    {{#each compExercise in controller.model.competitionExercises}}
-      <ul class="nav">
-        <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
-      </ul>
+    {{#if hasPermission}}
+      {{#each compExercise in controller.model.competitionExercises}}
+        <ul class="nav">
+          <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+        </ul>
+      {{else}}
+        <ul class="nav">
+          {{#if isAddingExercise}}
+            <p>Saving...</p>
+          {{else}}
+            {{render "exercises"}}
+          {{/if}}
+        </ul>
+      {{/each}}
     {{else}}
-      <ul class="nav">
-        {{render "exercises"}}
-      </ul>
-    {{/each}}
+      {{#each compExercise in controller.model.competitionExercises}}
+        <ul class="nav">
+          <li>{{compExercise.exercise.name}}</li>
+        </ul>
+      {{else}}
+        <p class="text-info">The creator has not added any exercises for this competition yet</p>
+      {{/each}}
+    {{/if}}
   </div>
 
   <div class="col-md-4">

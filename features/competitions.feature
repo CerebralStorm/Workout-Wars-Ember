@@ -3,6 +3,7 @@ Feature: Competitions
 
   Background:
     Given I am logged in
+    And exercises exist
     And I visit the competitions page
 
   @javascript
@@ -19,3 +20,39 @@ Feature: Competitions
     When I fill out the competition with valid data
     And I save it
     Then I should see a new competition
+
+  # @javascript
+  # Scenario: Create a new valid competition and add an exercise to it
+  #   When I fill out the competition with valid data
+  #   And I save it
+  #   Then I should see a new competition
+  #   When I add an exercise to it
+  #   Then I should see the new exercise
+
+  @javascript
+  Scenario: Edit a competition
+    When I fill out the competition with valid data
+    And I save it
+    Then I should see the edit and delete button
+    When I click the "Edit" button
+    And I modify the competition
+    Then I should see the competition details change
+
+  @javascript
+  Scenario: Delete a competition
+    When I fill out the competition with valid data
+    And I save it
+    Then I should see the edit and delete button
+    When I click the "Delete" button
+    And I confirm
+    Then I should not see the competition anymore
+
+  @javascript
+  Scenario: View a competition created by another user
+    When I fill out the competition with valid data
+    And I save it
+    And I log out
+    And I go to the sign up page
+    And I fill out the form and submit
+    And I go to the competition page
+    Then I should not see what creators see

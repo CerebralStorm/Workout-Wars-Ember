@@ -10,6 +10,14 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     result
   ).property('competitionJoins.@each')
 
+  hasPermission: (->
+    if currentUser = @get('controllers.application.currentUser')
+      creator = @get('model.creator')
+      currentUser.id == creator.id
+    else
+      false
+  ).property('model', 'controllers.application.currentUser')
+
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
@@ -30,12 +38,12 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     edit: ->
       @transitionToRoute "competition.edit"
 
-    addExercise: (exercise) ->
+    addExercise: (exercise) ->  
       competitionExercise = @store.createRecord("competitionExercise", {
         exercise: exercise
         competition: @get("model")        
       })
-      competitionExercise.save()
+      competitionExercise.save()    
 
     removeExercise: (exercise) ->
       exercise.deleteRecord()

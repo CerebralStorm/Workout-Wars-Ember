@@ -3,6 +3,7 @@ WorkoutWars.Competition = DS.Model.extend
   competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
   competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
   users: DS.hasMany('user', { async: true }) 
+  creator: DS.belongsTo('creator', { embedded: 'always' }) 
   name: DS.attr('string')
   startDate: DS.attr('date')
   endDate: DS.attr('date')

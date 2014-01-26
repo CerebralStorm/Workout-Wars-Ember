@@ -36,15 +36,19 @@ describe Competition do
     end
 
     it "should require a start date" do
-      FactoryGirl.build(:competition, start_date: "").should_not be_valid
+      FactoryGirl.build(:competition, start_date: nil).should_not be_valid
     end
 
     it "should require a end date" do
-      FactoryGirl.build(:competition, end_date: "").should_not be_valid
+      FactoryGirl.build(:competition, end_date: nil).should_not be_valid
     end
 
     it "should be valid with valid data" do
       FactoryGirl.build(:competition).should be_valid
+    end
+
+    it "should not be valid without a creator" do
+      FactoryGirl.build(:competition, creator: nil).should_not be_valid
     end
   end
 end
