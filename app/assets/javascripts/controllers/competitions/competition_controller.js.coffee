@@ -45,7 +45,8 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     edit: ->
       @transitionToRoute "competition.edit"
 
-    addExercise: (exercise) ->  
+    addExercise: (exercise) -> 
+      return unless exercise 
       competitionExercise = @store.createRecord("competitionExercise", {
         exercise: exercise
         competition: @get("model")        
