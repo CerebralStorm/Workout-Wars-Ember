@@ -114,3 +114,17 @@ Then(/^I should not see what creators see$/) do
   expect(page).to_not have_selector "a[name='Edit Competition']"
   expect(page).to_not have_selector "a[name='Delete Competition']"
 end
+
+When(/^I leave that competition$/) do
+  click_button "Leave this competition"
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I should be able to join again$/) do
+  expect(page).to have_content "Join this competition"
+end
+
+When(/^I join again I should still be able to leave$/) do
+  click_button "Join this competition"
+  expect(page).to have_content "Leave this competition"
+end

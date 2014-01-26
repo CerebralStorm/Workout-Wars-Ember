@@ -1,12 +1,12 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
-
   isJoined: (->
-    result = false
-    @get('model.competitionJoins').forEach (join) =>
-      if join.get('user') == @get('currentUser.content')
-        result = true
-    return result
-  ).property('model.competitionJoins', 'currentUser.content')
+    if currentUser = @get('currentUser.content')
+      @get('model.competitionJoins').forEach (join) =>
+        if join.get('user') == currentUser
+          return true
+    else
+      false
+  ).property('model.competitionJoins')
 
   hasPermission: (->
     @get('currentUser.id') == @get('model.creator.id')
