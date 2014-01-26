@@ -10,6 +10,13 @@ class Competition < ActiveRecord::Base
   validates_presence_of :start_date
   validates_presence_of :end_date
   validates_presence_of :creator
+  validate :start_and_end_dates
+
+  def start_and_end_dates
+    return unless start_date.present? && end_date.present?
+    errors.add(:start_date, "Start date cannot be a date that has already passed")  if start_date < Date.today
+    errors.add(:end_date, "End date must be a later date than the start date") if end_date <= start_date
+  end
 
   accepts_nested_attributes_for :competition_exercises
 

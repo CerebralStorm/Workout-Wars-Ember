@@ -30,9 +30,17 @@ end
 
 When(/^I fill out the competition with valid data$/) do
   fill_in 'Name', with: "Test Competition"
-  fill_in 'Start Date', with: "01/01/2014"
-  fill_in 'End Date', with: "01/14/2014"
+  fill_in 'Start Date', with: format_date(Date.today)
+  fill_in 'End Date', with: format_date(2.weeks.from_now)
   fill_in 'Max Participants', with: "20"
+end
+
+def format_date(date)
+  date.strftime('%m/%d/%Y')
+end
+
+def read_format_date(date)
+  date.strftime("%b #{date.day.ordinalize} %Y")
 end
 
 When(/^I save it$/) do
@@ -41,8 +49,8 @@ end
 
 Then(/^I should see a new competition$/) do
   expect(page).to have_content "Test Competition"
-  expect(page).to have_content "Start Date: Jan 1st 2014"
-  expect(page).to have_content "End Date: Jan 14th 2014"
+  expect(page).to have_content "Start Date: #{read_format_date(Date.today)}"
+  expect(page).to have_content "End Date: #{read_format_date(2.weeks.from_now)}"
   expect(page).to have_content "Max Participants: 20"
   expect(page).to have_content "This is a public competition"    
 end
@@ -80,16 +88,16 @@ end
 
 When(/^I modify the competition$/) do
   fill_in 'Name', with: "Edited Test Competition"
-  fill_in 'Start Date', with: "02/01/2014"
-  fill_in 'End Date', with: "02/14/2014"
+  fill_in 'Start Date', with: format_date(2.weeks.from_now)
+  fill_in 'End Date', with: format_date(4.weeks.from_now)
   fill_in 'Max Participants', with: "30"
   click_button 'Save'
 end
 
 Then(/^I should see the competition details change$/) do
   expect(page).to have_content "Edited Test Competition"
-  expect(page).to have_content "Start Date: Feb 1st 2014"
-  expect(page).to have_content "End Date: Feb 14th 2014"
+  expect(page).to have_content "Start Date: #{read_format_date(2.weeks.from_now)}"
+  expect(page).to have_content "End Date: #{read_format_date(4.weeks.from_now)}"
   expect(page).to have_content "Max Participants: 30"
   expect(page).to have_content "This is a public competition" 
 end
@@ -127,4 +135,7 @@ end
 When(/^I join again I should still be able to leave$/) do
   click_button "Join this competition"
   expect(page).to have_content "Leave this competition"
+
+When(/^I breakpoint$/) do
+  binding.pry
 end
