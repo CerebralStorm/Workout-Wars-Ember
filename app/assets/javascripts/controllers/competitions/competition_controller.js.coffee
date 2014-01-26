@@ -1,28 +1,25 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
-  needs: ['application']
-  currentUser: Ember.computed.alias("controllers.application.currentUser")
-  
+
   isJoined: (->
-    if currentUser = @get('currentUser')
-      @get('model.competitionJoins').forEach (join) =>
-        if join.get('user') == @get('currentUser')
-          return true
-    else
-      false
-  ).property('model.competitionJoins')
+    result = false
+    @get('model.competitionJoins').forEach (join) =>
+      if join.get('user') == @get('currentUser.content')
+        result = true
+    return result
+  ).property('model.competitionJoins', 'currentUser.content')
 
   hasPermission: (->
-    if currentUser = @get('currentUser')
-      creator = @get('model.creator')
-      currentUser.id == creator.id
-    else
-      false
-  ).property('model', 'currentUser')
+    @get('currentUser.id') == @get('model.creator.id')
+  ).property('model', 'currentUser.content')
+
+  numberOfUsers: (->
+    @get('model.competitionJoins').get('length')
+  ).property('model.competitionJoins')
 
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
-        user: @get('currentUser')
+        user: @get('currentUser.content')
         competition: @get("model")        
       })
       competitionJoin.save()
@@ -30,7 +27,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     leave: ->
       if window.confirm "Are you sure?"
         @get('model.competitionJoins').forEach (join) =>
-          if join.get('user') == @get('currentUser')
+          if join.get('user') == @get('currentUser.content')
             join.deleteRecord()
             join.save()
 

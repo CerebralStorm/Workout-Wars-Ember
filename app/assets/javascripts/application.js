@@ -24,5 +24,6 @@
 WorkoutWars = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
+WorkoutWars.deferReadiness();
 
 //= require_tree .

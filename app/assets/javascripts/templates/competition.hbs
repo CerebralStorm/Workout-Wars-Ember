@@ -1,6 +1,5 @@
 <h2>{{name}}</h2>
 <hr>
-
 {{#unless started}}
   {{#if isJoined}}
     <button class="btn btn-success"{{action "leave"}}>Leave this competition</button>
@@ -30,6 +29,7 @@
     <p>Start Date: {{date startDate}}</p>
     <p>End Date: {{date endDate}}</p>
     <p>Max Participants: {{maxParticipants}}</p>
+    <p>Currently registered: {{numberOfUsers}}</p>
     {{#if isPrivate}}
       <p>This is a private competition</p>
     {{else}}
