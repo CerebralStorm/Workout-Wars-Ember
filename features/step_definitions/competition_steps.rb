@@ -135,6 +135,7 @@ end
 When(/^I join again I should still be able to leave$/) do
   click_button "Join this competition"
   expect(page).to have_content "Leave this competition"
+end
 
 When(/^I breakpoint$/) do
   binding.pry
