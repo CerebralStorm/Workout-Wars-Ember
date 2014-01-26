@@ -1,35 +1,44 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
   needs: ['application']
-
+  currentUser: Ember.computed.alias("controllers.application.currentUser")
+  
   isJoined: (->
-    @get('model').get('users').then (users) =>
-      value = users.contains(@get('controllers.application.currentUser'))
-      return value
-    false
-  ).property('competitionJoins.@each', 'users.@each')
+    if currentUser = @get('currentUser')
+      @get('model.competitionJoins').forEach (join) =>
+        if join.get('user') == @get('currentUser')
+          return true
+    else
+      false
+  ).property('model.competitionJoins')
 
   hasPermission: (->
-    if currentUser = @get('controllers.application.currentUser')
+    if currentUser = @get('currentUser')
       creator = @get('model.creator')
       currentUser.id == creator.id
     else
       false
-  ).property('model', 'controllers.application.currentUser')
+  ).property('model', 'currentUser')
 
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
-        user: @get('controllers.application.currentUser')
+        user: @get('currentUser')
         competition: @get("model")        
       })
-      competitionJoin.save().then (model) =>
-        @get('model').get('competitionJoins').pushObject model
+      competitionJoin.save()
 
-    leave: (join) ->
+    leave: ->
+      if window.confirm "Are you sure?"
+        @get('model.competitionJoins').forEach (join) =>
+          if join.get('user') == @get('currentUser')
+            join.deleteRecord()
+            join.save()
+
+    removeUser: (join) ->
       if window.confirm "Are you sure?"
         join.deleteRecord()
         join.save()
-
+        
     delete: (competition) ->
       if window.confirm "Are you sure?"
         @get("model").deleteRecord()
