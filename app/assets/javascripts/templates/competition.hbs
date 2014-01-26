@@ -18,6 +18,8 @@
   {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
 
+<hr>
+
 {{outlet}}
 
 <div class="row">
@@ -66,12 +68,20 @@
 
   <div class="col-md-4">
     <h4>Users</h4>
-    <ul>
-    {{#each controller.users}}
-      <li>{{email}}</li>
+    <ul class="nav">
+    {{#if hasPermission}}
+      {{#each compJoin in controller.model.competitionJoins}}
+        <li>{{compJoin.user.email}}<button {{action "leave" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+      {{else}}
+        <li>None currently registered</li>
+      {{/each}}
     {{else}}
-      <li>None currently registered</li>
-    {{/each}}
+      {{#each compJoin in controller.model.competitionJoins}}
+        <li>{{compJoin.user.email}}</li>
+      {{else}}
+        <li>None currently registered</li>
+      {{/each}}
+    {{/if}}
     </ul>
   </div>
 </div>

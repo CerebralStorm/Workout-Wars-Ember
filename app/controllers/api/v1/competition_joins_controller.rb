@@ -14,7 +14,7 @@ class Api::V1::CompetitionJoinsController < ApplicationController
     if competition_join.save
       render json: competition_join
     else
-      render json: competition_join, status: 422
+      render json: {errors: competition_join.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::CompetitionJoinsController < ApplicationController
     if competition_join.update(competition_join_params)
       render json: competition_join
     else
-      render json: competition_join, status: 422
+      render json: {errors: competition_join.errors.messages}, status: 422
     end
   end
 

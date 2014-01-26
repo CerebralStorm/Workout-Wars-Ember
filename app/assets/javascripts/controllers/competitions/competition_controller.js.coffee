@@ -1,16 +1,12 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
   needs: ['application']
 
-  isAddingExercise: false
-
   isJoined: (->
-    result = false
-    if currentUser = @get('controllers.application.currentUser')
-      if joins = @get('model').get('competitionJoins')
-        joins.forEach (join, index) ->
-          result = true if join.get('user') == currentUser   
-    result
-  ).property('competitionJoins.@each')
+    @get('model').get('users').then (users) =>
+      value = users.contains(@get('controllers.application.currentUser'))
+      return value
+    false
+  ).property('competitionJoins.@each', 'users.@each')
 
   hasPermission: (->
     if currentUser = @get('controllers.application.currentUser')
@@ -26,15 +22,13 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         user: @get('controllers.application.currentUser')
         competition: @get("model")        
       })
-      competitionJoin.save()
+      competitionJoin.save().then (model) =>
+        @get('model').get('competitionJoins').pushObject model
 
-    leave: ->
-      if joins = @get('model').get('competitionJoins')
-        joins.forEach (join, index) ->
-          console.log join
-          # if join.get('user') == @get('controllers.application.currentUser')
-          #   join.deleteRecord()
-          #   join.save()
+    leave: (join) ->
+      if window.confirm "Are you sure?"
+        join.deleteRecord()
+        join.save()
 
     delete: (competition) ->
       if window.confirm "Are you sure?"
