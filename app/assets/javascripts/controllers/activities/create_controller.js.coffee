@@ -38,7 +38,7 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
 
     saveActivity: -> 
       activity = {
-        user: @get('controllers.application.currentUser')
+        user: @get('currentUser.content')
         exercise: @get('exercise')
         reps: @get('reps')
         distance: @get('distance')
@@ -55,4 +55,4 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
         @set('duration', null)
         @set('calories', null)
         @set('weight', null)
-        @transitionToRoute('activities', @get('controllers.application.currentUser'))
+        @transitionToRoute('activities', @get('currentUser.content'))

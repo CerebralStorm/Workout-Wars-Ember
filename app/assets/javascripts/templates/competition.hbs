@@ -18,7 +18,7 @@
   {{/if}}
 
 {{else}}
-  {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
+  {{#linkTo "activities" currentUser.content class="btn btn-success"}}Log Activity{{/linkTo}}
 {{/unless}}
 
 {{outlet}}
@@ -46,7 +46,12 @@
     {{#if hasPermission}}
       {{#each compExercise in controller.model.competitionExercises}}
         <ul class="nav">
-          <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+          <li>
+            {{compExercise.exercise.name}}
+            {{#unless started}}
+              <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button>
+            {{/unless}}
+          </li>
         </ul>
       {{else}}
         <ul class="nav">

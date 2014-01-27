@@ -7,7 +7,7 @@ Feature: Activity
     And I visit my profile page
 
   @javascript
-  Scenario: Create a new valid competition
+  Scenario: log an activity
     When I go to my activities
     And I add a new one
     Then I should see the new activity
