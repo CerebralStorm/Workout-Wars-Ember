@@ -18,6 +18,13 @@ Feature: Authentication
     And I fill out the form and submit
     Then I should be logged in
 
+  Scenario: change settings
+    When I try to log in with the right password
+    And I go to the settings page
+    And I change my settings
+    And I save
+    Then my changes should be saved
+
   @javascript
   Scenario: Sign Out
     When I try to log in with the right password
