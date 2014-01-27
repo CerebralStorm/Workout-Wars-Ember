@@ -1,6 +1,7 @@
 WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
   needs: ['application']
 
+  exercise: null
   reps: null
   distance: null
   duration: null
@@ -8,37 +9,37 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
   weight: null
 
   useReps: (->
-    value = @get('content.exercise').get('reps') if @get('content.exercise')
-  ).property('content.exercise') 
+    value = @get('exercise').get('reps') if @get('exercise')
+  ).property('exercise') 
   
   useDistance: (->
-    value = @get('content.exercise').get('distance') if @get('content.exercise')
-  ).property('content.exercise') 
+    value = @get('exercise').get('distance') if @get('exercise')
+  ).property('exercise') 
 
   useDuration: (->
-    value = @get('content.exercise').get('duration') if @get('content.exercise')
-  ).property('content.exercise') 
+    value = @get('exercise').get('duration') if @get('exercise')
+  ).property('exercise') 
 
   useCalories: (->
-    value = @get('content.exercise').get('calories') if @get('content.exercise')
-  ).property('content.exercise') 
+    value = @get('exercise').get('calories') if @get('exercise')
+  ).property('exercise') 
 
   useWeight: (->
-    value = @get('content.exercise').get('weight') if @get('content.exercise')
-  ).property('content.exercise') 
+    value = @get('exercise').get('weight') if @get('exercise')
+  ).property('exercise') 
 
   canSave: (->
-    @get('content.exercise')
-  ).property('content.exercise') 
+    @get('exercise')
+  ).property('exercise') 
 
   actions:
     addExercise: (exercise) ->
-      @set('content.exercise', exercise)
+      @set('exercise', exercise)
 
     saveActivity: -> 
       activity = {
         user: @get('controllers.application.currentUser')
-        exercise: @get('content.exercise')
+        exercise: @get('exercise')
         reps: @get('reps')
         distance: @get('distance')
         duration: @get('duration')

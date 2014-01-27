@@ -1,5 +1,6 @@
 WorkoutWars.ActivitiesController = Ember.ArrayController.extend
   needs: ['user']
+  sortProperties: ['createdAt']
 
   isCurrentUser: (->
     currentUser = @get('currentUser.content')
