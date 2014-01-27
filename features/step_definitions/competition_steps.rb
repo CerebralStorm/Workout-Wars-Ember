@@ -35,6 +35,10 @@ When(/^I fill out the competition with valid data$/) do
   fill_in 'Max Participants', with: "20"
 end
 
+When(/^I set the max participants$/) do
+  fill_in 'Max Participants', with: "1"
+end
+
 def format_date(date)
   date.strftime('%m/%d/%Y')
 end
@@ -128,8 +132,9 @@ When(/^I leave that competition$/) do
   page.driver.browser.switch_to.alert.accept
 end
 
-Then(/^I should be able to join again$/) do
-  expect(page).to have_content "Join this competition"
+Then(/^I should( not)? be able to join again$/) do |negate|
+  expectation = negate ? :to_not : :to
+  expect(page).send(expectation, have_content("Join this competition"))
 end
 
 When(/^I join again I should still be able to leave$/) do
