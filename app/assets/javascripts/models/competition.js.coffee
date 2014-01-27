@@ -13,3 +13,11 @@ WorkoutWars.Competition = DS.Model.extend
   started: DS.attr('boolean')
   isPrivate: DS.attr('boolean')
 
+  numOfParticipants: (->
+    @get('maxParticipants') || "No Limit"
+  ).property('maxParticipants')
+
+  numberOfUsers: (->
+    @get('competitionJoins').get('length')
+  ).property('competitionJoins.@each')
+

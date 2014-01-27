@@ -8,9 +8,13 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     @get('currentUser.id') == @get('model.creator.id')
   ).property('model', 'currentUser.content')
 
-  numberOfUsers: (->
-    @get('model.competitionJoins').get('length')
-  ).property('model.competitionJoins')
+  canJoin: (->
+    maxNum = @get('model.maxParticipants')
+    if maxNum
+      return @get('numberOfUsers') < maxNum
+    else
+      true
+  ).property('model.competitionJoins.@each')
 
   actions:
     join: ->
