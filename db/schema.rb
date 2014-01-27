@@ -137,8 +137,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "level",                  default: 1
-    t.integer  "xp_level",               default: 1
-    t.integer  "xp_multiplier",          default: 500
+    t.integer  "experience_level",       default: 1
+    t.integer  "experience_multiplier",  default: 500
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

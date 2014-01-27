@@ -18,11 +18,6 @@ class Activity < ActiveRecord::Base
     user.create_competition_activities(self)
   end
 
-  def xp_from(metric)
-    return 0 if metric.nil?
-    (metric * exercise_type.xp_multiplier).floor
-  end
-
   def total_experience
     self.send(metric) * experience_multiplier
   end
