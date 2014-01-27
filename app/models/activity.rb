@@ -1,9 +1,11 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
-
   has_one :experience_source, as: :experienceable, dependent: :destroy
   has_many :competition_activities, dependent: :destroy
+
+  validates_presence_of :user
+  validates_presence_of :exercise
 
   after_create :create_competition_activities
   after_save :update_experience_source_and_user

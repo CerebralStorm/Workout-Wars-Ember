@@ -49,6 +49,7 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
 
       activity = @store.createRecord('activity', activity)
       activity.save().then =>
+        @set('exercise', null)
         @set('reps', null)
         @set('distance', null)
         @set('duration', null)
