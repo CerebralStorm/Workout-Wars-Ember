@@ -32,5 +32,17 @@ describe CompetitionJoin do
       FactoryGirl.create(:competition_join, competition: comp, user: user)
       expect(FactoryGirl.build(:competition_join, competition: comp, user: user)).to_not be_valid
     end
+
+    it "should not allow users to join a full competition" do 
+      comp = FactoryGirl.create(:competition, max_participants: 5)
+      5.times { FactoryGirl.create(:competition_join, competition: comp) }
+      expect(FactoryGirl.build(:competition_join, competition: comp)).to_not be_valid
+    end
+
+    it "should allow users to join if no max_participants" do 
+      comp = FactoryGirl.create(:competition, max_participants: nil)
+      5.times { FactoryGirl.create(:competition_join, competition: comp) }
+      expect(FactoryGirl.build(:competition_join, competition: comp)).to be_valid
+    end
   end
 end
