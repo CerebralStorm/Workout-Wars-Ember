@@ -1,77 +1,75 @@
 <br />
 <div class="row">
-  <div class="col-md-6">
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Nickname</label>
-        <div class="col-sm-10">
-          {{input name="Nickname" value=nickname classNames="form-control"}}
-        </div>
-      </div>
-    </div> 
-
-    <br />
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Name</label>
-        <div class="col-sm-10">
-          {{input name="Name" value=name classNames="form-control"}}
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Nickname</label>
+      <div class="col-sm-10">
+        {{input name="Nickname" value=nickname classNames="form-control"}}
       </div>
     </div>
+  </div> 
 
-    <br />
+  <br />
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-          {{input name="Email" value=email classNames="form-control"}}
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        {{input name="Name" value=name classNames="form-control"}}
       </div>
     </div>
+  </div>
 
-    <br />
+  <br />
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Age</label>
-        <div class="col-sm-10">
-          {{input name="Age" value=age classNames="form-control"}}
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        {{input name="Email" value=email classNames="form-control"}}
       </div>
     </div>
+  </div>
 
-    <br />
+  <br />
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Height</label>
-        <div class="col-sm-10">
-          {{input name="Height" value=height classNames="form-control"}}
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Age</label>
+      <div class="col-sm-10">
+        {{input name="Age" value=age classNames="form-control"}}
       </div>
     </div>
+  </div>
 
-    <br />
+  <br />
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-2 control-label">Weight</label>
-        <div class="col-sm-10">
-          {{input name="Weight" value=weight classNames="form-control"}}
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Height</label>
+      <div class="col-sm-10">
+        {{input name="Height" value=height classNames="form-control"}}
       </div>
     </div>
+  </div>
 
-    <br />
+  <br />
 
-    <div class="row">
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <input {{action "saveUser"}} type="submit" class="btn btn-lg btn-block btn-success" value="Save" />
-        </div>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-2 control-label">Weight</label>
+      <div class="col-sm-10">
+        {{input name="Weight" value=weight classNames="form-control"}}
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input {{action "saveUser"}} type="submit" class="btn btn-lg btn-block btn-success" value="Save" />
       </div>
     </div>
   </div>

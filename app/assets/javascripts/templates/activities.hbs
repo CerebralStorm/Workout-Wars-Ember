@@ -2,23 +2,21 @@
 <p>Log your activities to <strong>win your competitions and challenges</strong>. You don't want to be the weakest link!</p>
 <p class="text-warning">Don't overdue it! We all need to rest once in a while</p>
 <hr>
-<div class="row">
-  <div class="col-md-4">
-    {{#if isCurrentUser}}
-      {{#linkTo "activities.create" class="btn btn-lg btn-success btn-block"}}New Activity{{/linkTo}}
-      <hr>
-    {{/if}}
-    <h4>Recent Activity</h4>
-    <ul class="nav">
-      {{#collection Ember.ListView contentBinding="controller" height=200 rowHeight=10}}
-          <li>{{#linkTo "activity" this}}{{date createdAt}} - {{exercise.name}}{{/linkTo}}</li>
-      {{/collection}}
-    </ul>
-  </div>
+{{#if isCurrentUser}}
+  {{controller}}
+  {{#linkTo "activities.create" class="btn btn-success"}}New Activity{{/linkTo}}
+  <hr>
+{{/if}}
 
-  <div class="col-md-8">
-    {{outlet}}
-  </div>
-</div>
+{{outlet}}
+
+<hr>
+<h4>Recent Activity</h4>
+<ul class="nav">
+  {{#collection Ember.ListView contentBinding="controller" height=200 rowHeight=10}}
+      <li>{{#linkTo "activity" this}}{{date createdAt}} - {{this.exercise.name}}{{/linkTo}}</li>
+  {{else}}
+  {{/collection}}
+</ul>
 
 

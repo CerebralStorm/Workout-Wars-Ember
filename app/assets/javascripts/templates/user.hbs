@@ -1,52 +1,52 @@
-{{#if name}}
-  <h1>{{name}}</h1>
-  <hr>
-  <p>Email: {{email}}</p>
-{{else}}
-  <h1>{{email}}</h1>
-  <hr>
-{{/if}}
+<div class="row">
+  <div class="col-md-8">
+    <ul class="nav nav-pills nav-justified">
+      <li>{{#linkTo "activities"}}Activities{{/linkTo}}</li>
+      <li>{{#linkTo "user.competitions"}}Competitions{{/linkTo}}</li>
+      <li>{{#linkTo "user.challenges"}}Challenges{{/linkTo}}</li>
+      {{#if isCurrentUser}}
+      <li>{{#linkTo "user.edit"}}Settings{{/linkTo}}</li>
+      {{/if}}
+    </ul>
 
-{{#if nickname}}
-  <p>Nickname: {{nickname}}</p>
-{{/if}}
+    {{outlet}}
+  </div>
 
-{{#if age}}
-  <p>Age: {{age}}</p>
-{{/if}}
+  <div class="col-md-4">
+    {{#if name}}
+      <h1>{{name}}</h1>
+      <hr>
+      <p>Email: {{email}}</p>
+    {{else}}
+      <h1>{{email}}</h1>
+      <hr>
+    {{/if}}
 
-{{#if height}}
-  <p>Height: {{height}}</p>
-{{/if}}
+    {{#if nickname}}
+      <p>Nickname: {{nickname}}</p>
+    {{/if}}
 
-{{#if weight}}
-  <p>Weight: {{weight}}</p>
-{{/if}}
+    {{#if age}}
+      <p>Age: {{age}}</p>
+    {{/if}}
 
-{{#if level}}
-  <p>Level: {{level}}</p>
-{{/if}}
+    {{#if height}}
+      <p>Height: {{height}}</p>
+    {{/if}}
 
-{{#if experience}}
-  <p>Experience: {{experience}}</p>
-{{/if}}
+    {{#if weight}}
+      <p>Weight: {{weight}}</p>
+    {{/if}}
 
-{{#if nextLevelExperience}}
-  <p>Experience to next level: {{nextLevelExperience}}</p>
-{{/if}}
+    {{#if level}}
+      <p>Level: {{level}}</p>
+    {{/if}}
 
-<hr>
+    {{#if experience}}
+      <p>Experience: {{experience}}</p>
+    {{/if}}
 
-<ul class="nav nav-tabs">
-  <li>{{#linkTo "activities"}}Activities{{/linkTo}}</li>
-  <li>{{#linkTo "user.competitions"}}Competitions{{/linkTo}}</li>
-  <li>{{#linkTo "user.teamCompetitions"}}Team Competitions{{/linkTo}}</li>
-  <li>{{#linkTo "user.challenges"}}Challenges{{/linkTo}}</li>
-  <li>{{#linkTo "user.teamChallenges"}}Team Challenges{{/linkTo}}</li>
-  {{#if isCurrentUser}}
-  <li>{{#linkTo "user.edit"}}Settings{{/linkTo}}</li>
-  {{/if}}
-</ul>
-
-{{outlet}}
-
+    {{#if nextLevelExperience}}
+      <p>Experience to next level: {{nextLevelExperience}}</p>
+    {{/if}}
+  </div>
