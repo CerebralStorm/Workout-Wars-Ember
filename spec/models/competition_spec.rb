@@ -51,4 +51,14 @@ describe Competition do
       FactoryGirl.build(:competition, creator: nil).should_not be_valid
     end
   end
+
+  context "#methods" do 
+    describe 'number_of_participants' do 
+      it "should return the number of users for the competition" do 
+        comp = FactoryGirl.create(:competition)
+        10.times { FactoryGirl.create(:competition_join, competition: comp) }
+        expect(comp.number_of_participants).to eq 10
+      end
+    end
+  end
 end

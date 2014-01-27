@@ -37,8 +37,9 @@ Challenge.destroy_all
 end
 
 # Test Data
+user = User.create(name: "tester@testhole.com", password: "testhole")
 pushups = Exercise.find_by_name("Pushups")
-competition = Competition.where(name: "Pushups Galore", start_date: Date.today, end_date: 2.weeks.from_now).first_or_create
+competition = Competition.where(name: "Pushups Galore", start_date: Date.today, end_date: 2.weeks.from_now, creator: user).first_or_create
 competition.competition_exercises.where(exercise: pushups).first_or_create
 
 

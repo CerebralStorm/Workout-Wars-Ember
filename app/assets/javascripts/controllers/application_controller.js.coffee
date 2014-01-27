@@ -3,6 +3,7 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
 
   init: ->
     raw_attributes = $('meta[name="current-user"]').attr('content')
-    attributes = JSON.parse(raw_attributes)
-    @store.find("user", attributes.id).then (user) =>
-      @set('currentUser', user)
+    if raw_attributes 
+      attributes = JSON.parse(raw_attributes)
+      @store.find("user", attributes.id).then (user) =>
+        @set('currentUser', user)

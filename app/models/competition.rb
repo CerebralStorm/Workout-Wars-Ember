@@ -20,6 +20,10 @@ class Competition < ActiveRecord::Base
 
   accepts_nested_attributes_for :competition_exercises
 
+  def number_of_participants
+    competition_joins.count
+  end
+
   def has_exercise?(exercise)
     exercises.include?(exercise)
   end

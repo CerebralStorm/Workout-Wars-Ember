@@ -1,34 +1,41 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
-  needs: ['application']
 
   isJoined: (->
-    result = false
-    currentUser = @get('controllers.application.currentUser')
-    joins = @get('model').get('competitionJoins')
-    joins.forEach (join, index) ->
-      result = true if join.get('user') == currentUser   
-    result
-  ).property('competitionJoins.@each')
+    @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('length') > 0
+  ).property('model.competitionJoins.@each')
 
   hasPermission: (->
-    if currentUser = @get('controllers.application.currentUser')
-      creator = @get('model.creator')
-      currentUser.id == creator.id
+    @get('currentUser.id') == @get('model.creator.id')
+  ).property('model', 'currentUser.content')
+
+  canJoin: (->
+    maxNum = @get('model.maxParticipants')
+    if maxNum
+      return @get('numberOfUsers') < maxNum
     else
-      false
-  ).property('model', 'controllers.application.currentUser')
+      true
+  ).property('model.competitionJoins.@each')
 
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
-        user: @get('controllers.application.currentUser')
+        user: @get('currentUser.content')
         competition: @get("model")        
       })
       competitionJoin.save()
 
     leave: ->
-      #todo
+      if window.confirm "Are you sure?"
+        join = @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('firstObject')
+        if join 
+          join.deleteRecord()
+          join.save()
 
+    removeUser: (join) ->
+      if window.confirm "Are you sure?"
+        join.deleteRecord()
+        join.save()
+        
     delete: (competition) ->
       if window.confirm "Are you sure?"
         @get("model").deleteRecord()
@@ -38,7 +45,8 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     edit: ->
       @transitionToRoute "competition.edit"
 
-    addExercise: (exercise) ->  
+    addExercise: (exercise) -> 
+      return unless exercise 
       competitionExercise = @store.createRecord("competitionExercise", {
         exercise: exercise
         competition: @get("model")        

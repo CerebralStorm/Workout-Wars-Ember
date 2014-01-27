@@ -35,6 +35,10 @@ When(/^I fill out the competition with valid data$/) do
   fill_in 'Max Participants', with: "20"
 end
 
+When(/^I set the max participants$/) do
+  fill_in 'Max Participants', with: "1"
+end
+
 def format_date(date)
   date.strftime('%m/%d/%Y')
 end
@@ -121,6 +125,21 @@ Then(/^I should not see what creators see$/) do
   expect(page).to have_content "The creator has not added any exercises for this competition yet"  
   expect(page).to_not have_selector "a[name='Edit Competition']"
   expect(page).to_not have_selector "a[name='Delete Competition']"
+end
+
+When(/^I leave that competition$/) do
+  click_button "Leave this competition"
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I should( not)? be able to join again$/) do |negate|
+  expectation = negate ? :to_not : :to
+  expect(page).send(expectation, have_content("Join this competition"))
+end
+
+When(/^I join again I should still be able to leave$/) do
+  click_button "Join this competition"
+  expect(page).to have_content "Leave this competition"
 end
 
 When(/^I breakpoint$/) do

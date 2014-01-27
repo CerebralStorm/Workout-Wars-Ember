@@ -1,9 +1,9 @@
 WorkoutWars.Competition = DS.Model.extend
-  competitionExercises: DS.hasMany('competitionExercise', { async: true }) 
-  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
-  competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
-  users: DS.hasMany('user', { async: true }) 
-  creator: DS.belongsTo('creator', { embedded: 'always' }) 
+  competitionExercises: DS.hasMany('competitionExercise', { embedded: 'load' }) 
+  competitionActivities: DS.hasMany('competitionActivity', { embedded: 'load' }) 
+  competitionJoins: DS.hasMany('competitionJoin', { embedded: 'load' }) 
+  users: DS.hasMany('user', { embedded: 'load' }) 
+  creator: DS.belongsTo('creator', { embedded: 'load' }) 
   name: DS.attr('string')
   startDate: DS.attr('date')
   endDate: DS.attr('date')
@@ -12,4 +12,12 @@ WorkoutWars.Competition = DS.Model.extend
   upperLevelRestriction: DS.attr('string')
   started: DS.attr('boolean')
   isPrivate: DS.attr('boolean')
+
+  numOfParticipants: (->
+    @get('maxParticipants') || "No Limit"
+  ).property('maxParticipants')
+
+  numberOfUsers: (->
+    @get('competitionJoins').get('length')
+  ).property('competitionJoins.@each')
 

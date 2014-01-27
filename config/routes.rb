@@ -1,11 +1,11 @@
 WorkoutWars::Application.routes.draw do
   devise_for :users
   unauthenticated do
-    root to: "static#index", as: :authenticated_root
+    root to: "static#index", as: :unauthenticated_root
   end
   
   authenticated :user do
-    root to: "ember#start", as: :unauthenticated_root
+    root to: "ember#start", as: :authenticated_root
   end
     
   namespace :api do

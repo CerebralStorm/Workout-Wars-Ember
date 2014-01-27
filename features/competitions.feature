@@ -56,3 +56,19 @@ Feature: Competitions
     And I fill out the form and submit
     And I go to the competition page
     Then I should not see what creators see
+
+  @javascript
+  Scenario: join and leave a competition
+    When I fill out the competition with valid data
+    And I save it
+    Then I should see a new competition
+    When I leave that competition
+    Then I should be able to join again
+    When I join again I should still be able to leave
+
+  @javascript
+  Scenario: can't join a full competition
+    When I fill out the competition with valid data
+    And I set the max participants
+    And I save it
+    Then I should not be able to join again

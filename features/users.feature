@@ -19,6 +19,14 @@ Feature: Authentication
     Then I should be logged in
 
   @javascript
+  Scenario: change settings
+    When I try to log in with the right password
+    And I go to the settings page
+    And I change my settings
+    And I save it
+    Then my changes should be saved
+
+  @javascript
   Scenario: Sign Out
     When I try to log in with the right password
     And I visit the home page

@@ -58,3 +58,24 @@ When(/^I fill out the form and submit$/) do
   fill_in "user_password_confirmation", with: "testpassword"
   click_button "Sign up"
 end
+
+When(/^I go to the settings page$/) do
+  click_link "Settings"
+end
+
+When(/^I change my settings$/) do
+  fill_in "Nickname", with: "Codizle"
+  fill_in "Name", with: "Cody"
+  fill_in "Age", with: "29"
+  fill_in "Email", with: "codizle@myNewEmail.com"
+  fill_in "Height", with: "60"
+  fill_in "Weight", with: "190"
+end
+
+Then(/^my changes should be saved$/) do
+  expect(page).to have_content "Email: codizle@myNewEmail.com"
+  expect(page).to have_content "Nickname: Codizle"
+  expect(page).to have_content "Age: 29"
+  expect(page).to have_content "Height: 60"
+  expect(page).to have_content "Weight: 190"
+end
