@@ -1,6 +1,12 @@
 WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
   needs: ['application']
 
+  reps: null
+  distance: null
+  duration: null
+  calories: null
+  weight: null
+
   useReps: (->
     value = @get('content.exercise').get('reps') if @get('content.exercise')
   ).property('content.exercise') 
@@ -42,4 +48,9 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
 
       activity = @store.createRecord('activity', activity)
       activity.save().then =>
+        @set('reps', null)
+        @set('distance', null)
+        @set('duration', null)
+        @set('calories', null)
+        @set('weight', null)
         @transitionToRoute('activities', @get('controllers.application.currentUser'))
