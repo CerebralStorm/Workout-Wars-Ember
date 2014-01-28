@@ -4,7 +4,8 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
 
   actions: 
     open: (name) ->
-      @render 'modal1',
+      @controllerFor('application').set 'model', @store.createRecord('activity')
+      @render name,
         into: "application"
         outlet: "modal"
         view: "modal"
@@ -14,5 +15,5 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
         outlet: 'modal'
         parentView: 'application'
 
-    save: ->
+    saveActivity: ->
       alert('actions work like normal!')

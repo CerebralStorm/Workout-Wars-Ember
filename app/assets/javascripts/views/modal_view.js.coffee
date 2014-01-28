@@ -1,10 +1,9 @@
 WorkoutWars.ModalView = Ember.View.extend
+  layoutName: "modal_layout"
+  
   didInsertElement: ->
     Ember.run.next this, ->
       @$(".modal, .modal-backdrop").addClass "in"
-
-
-  layoutName: "modal_layout"
 
   actions:
     close: ->
