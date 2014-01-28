@@ -6,6 +6,10 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
 
+  setValid: (->
+    @set('model.becameValid', true)
+  ).observes('selectedExercise') 
+
   useReps: (->
     @get('selectedExercise').get('reps') if @get('selectedExercise')
   ).property('selectedExercise') 

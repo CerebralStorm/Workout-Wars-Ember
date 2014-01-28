@@ -4,7 +4,7 @@
     <h4>Competition Settings</h4>
     <hr>
     <div class="row">
-      <div {{bindAttr class=":form-group errors.name:has-error:"}}>
+      <div {{bind-attr class=":form-group errors.name:has-error:"}}>
         <label class= "col-sm-4 control-label">Name</label>
         <div class="col-sm-8">
           {{input value=this.model.name classNames="form-control" name="Name"}}
@@ -16,7 +16,7 @@
     <br />
 
     <div class="row">
-      <div {{bindAttr class=":form-group errors.startDate:has-error:"}}>
+      <div {{bind-attr class=":form-group errors.startDate:has-error:"}}>
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
           {{view WorkoutWars.DateField value=startDate classNames="form-control" name="Start Date"}}
@@ -28,7 +28,7 @@
     <br />
 
     <div class="row">
-      <div {{bindAttr class=":form-group errors.endDate:has-error:"}}>
+      <div {{bind-attr class=":form-group errors.endDate:has-error:"}}>
         <label class= "col-sm-4 control-label">End Date</label>
         <div class="col-sm-8">
           {{view WorkoutWars.DateField value=endDate classNames="form-control" name="End Date"}}

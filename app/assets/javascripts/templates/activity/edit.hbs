@@ -10,7 +10,7 @@
   <br />
   <div class="row activity-edit">
     {{#if useReps}}
-    <div {{bindAttr class=":form-group errors.reps:has-error:"}}>
+    <div {{bind-attr class=":form-group errors.reps:has-error:"}}>
       <label class= "col-sm-3 control-label">Reps</label>
       <div class="col-sm-9">
         {{input value=reps name="Reps" classNames="form-control" placeholder=selectedExercise.measurement}}
@@ -20,7 +20,7 @@
     {{/if}}
 
     {{#if useDistance}}
-    <div {{bindAttr class=":form-group errors.distance:has-error:"}}>
+    <div {{bind-attr class=":form-group errors.distance:has-error:"}}>
       <label class= "col-sm-3 control-label">Distance</label>
       <div class="col-sm-9">
         {{input value=distance name="Distance" classNames="form-control" placeholder=selectedExercise.measurement}}
@@ -29,7 +29,7 @@
     {{/if}}
 
     {{#if useDuration}}
-    <div {{bindAttr class=":form-group errors.duration:has-error:"}}>
+    <div {{bind-attr class=":form-group errors.duration:has-error:"}}>
       <label class= "col-sm-3 control-label">Duration</label>
       <div class="col-sm-9">
         {{input value=duration name="Duration" classNames="form-control" placeholder=selectedExercise.measurement}}
@@ -38,7 +38,7 @@
     {{/if}}
 
     {{#if useCalories}}
-    <div {{bindAttr class=":form-group errors.calories:has-error:"}}>
+    <div {{bind-attr class=":form-group errors.calories:has-error:"}}>
       <label class= "col-sm-3 control-label">Calories</label>
       <div class="col-sm-9">
         {{input value=calories name="Calories" classNames="form-control" placeholder=selectedExercise.measurement}}
@@ -47,7 +47,7 @@
     {{/if}}
 
     {{#if useWeight}}
-    <div {{bindAttr class=":form-group errors.weight:has-error:"}}>
+    <div {{bind-attr class=":form-group errors.weight:has-error:"}}>
       <label class= "col-sm-3 control-label">Weight</label>
       <div class="col-sm-9">
         {{input value=weight name="Weight" classNames="form-control" placeholder=selectedExercise.measurement}}
