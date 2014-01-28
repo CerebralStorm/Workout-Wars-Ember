@@ -7,6 +7,7 @@ WorkoutWars.Competition = DS.Model.extend
   name: DS.attr('string')
   startDate: DS.attr('date')
   endDate: DS.attr('date')
+  description: DS.attr('string')
   maxParticipants: DS.attr('number')
   lowerLevelRestriction: DS.attr('number')
   upperLevelRestriction: DS.attr('string')

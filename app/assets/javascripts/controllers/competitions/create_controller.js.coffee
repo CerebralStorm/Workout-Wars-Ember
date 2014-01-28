@@ -1,7 +1,4 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
-  needs: ['exercises', 'application']
-  selectedExercise: null
-
   actions:
     create: (competition) ->
       competition.set('isPrivate', @get('isPrivate')) if @get('isPrivate')
