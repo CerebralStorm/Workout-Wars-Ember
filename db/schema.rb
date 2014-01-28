@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.boolean  "duration"
     t.boolean  "calories"
     t.boolean  "distance"
+    t.text     "description"
+    t.string   "measurement"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

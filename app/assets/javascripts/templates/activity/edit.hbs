@@ -2,14 +2,13 @@
 <ul class="nav">
   {{render "exercises"}}
 </ul>
-
 <h3 class="text-center">{{exercise.name}}</h3>
 <div class="row activity-edit">
   {{#if useReps}}
   <div class="form-group">
     <label class= "col-sm-3 control-label">Reps</label>
     <div class="col-sm-9">
-      {{input value=reps classNames="form-control"}}
+      {{input value=reps name="Reps" classNames="form-control" placeholder=exercise.measurement}}
     </div>
   </div>
   {{/if}}
@@ -18,7 +17,7 @@
   <div class="form-group">
     <label class= "col-sm-3 control-label">Distance</label>
     <div class="col-sm-9">
-      {{input value=distance classNames="form-control"}}
+      {{input value=distance name="Distance" classNames="form-control" placeholder=exercise.measurement}}
     </div>
   </div>
   {{/if}}
@@ -27,7 +26,7 @@
   <div class="form-group">
     <label class= "col-sm-3 control-label">Duration</label>
     <div class="col-sm-9">
-      {{input value=duration classNames="form-control"}}
+      {{input value=duration name="Duration" classNames="form-control" placeholder=exercise.measurement}}
     </div>
   </div>
   {{/if}}
@@ -36,7 +35,7 @@
   <div class="form-group">
     <label class= "col-sm-3 control-label">Calories</label>
     <div class="col-sm-9">
-      {{input value=calories classNames="form-control"}}
+      {{input value=calories name="Calories" classNames="form-control" placeholder=exercise.measurement}}
     </div>
   </div>
   {{/if}}
@@ -45,7 +44,7 @@
   <div class="form-group">
     <label class= "col-sm-3 control-label">Weight</label>
     <div class="col-sm-9">
-      {{input value=weight classNames="form-control"}}
+      {{input value=weight name="Weight" classNames="form-control" placeholder=exercise.measurement}}
     </div>
   </div>
   {{/if}}

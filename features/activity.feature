@@ -3,7 +3,6 @@ Feature: Activity
 
   Background:
     Given I am logged in
-    And exercises exist
     And I visit my profile page
 
   @javascript
@@ -11,3 +10,4 @@ Feature: Activity
     When I go to my activities
     And I add a new one
     Then I should see the new activity
+    And I should see my experience for that activity

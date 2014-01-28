@@ -10,7 +10,7 @@
 
 <hr>
 <h4>Recent Activity</h4>
-<ul class="nav">
+<ul id="recent_activity"class="nav">
   {{#each controller}}
     <li>{{#linkTo "activity" this}}{{date createdAt}} - {{this.exercise.name}}{{/linkTo}}</li>
   {{else}}

@@ -5,3 +5,5 @@ WorkoutWars.Exercise = DS.Model.extend
   duration: DS.attr('boolean')
   calories: DS.attr('boolean')
   weight: DS.attr('boolean')
+  description: DS.attr('string')
+  measurement: DS.attr('string')

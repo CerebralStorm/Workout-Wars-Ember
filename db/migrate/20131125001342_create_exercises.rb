@@ -8,6 +8,8 @@ class CreateExercises < ActiveRecord::Migration
       t.boolean :duration
       t.boolean :calories
       t.boolean :distance
+      t.text :description
+      t.string :measurement
 
       t.timestamps
     end
