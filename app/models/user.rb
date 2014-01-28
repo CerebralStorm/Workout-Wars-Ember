@@ -26,28 +26,28 @@ class User < ActiveRecord::Base
   end
 
   def next_level_experience
-    self.xp_level * self.xp_multiplier
+    self.experience_level * self.experience_multiplier
   end
 
   def previous_level_experience
-    (self.xp_level-1) * (self.xp_multiplier-100)
+    (self.experience_level-1) * (self.experience_multiplier-100)
   end
 
-  def xp_for_levelup
-    next_level_xp - experience
+  def experience_for_levelup
+    next_level_experience - experience
   end
 
   def set_level
     while experience >= next_level_experience
       self.level += 1
-      self.xp_level += 1
-      self.xp_multiplier += 100
+      self.experience_level += 1
+      self.experience_multiplier += 100
     end 
     while experience < previous_level_experience
-      break if self.xp_level == 1
+      break if self.experience_level == 1
       self.level -= 1
-      self.xp_level -= 1
-      self.xp_multiplier -= 100
+      self.experience_level -= 1
+      self.experience_multiplier -= 100
     end 
     self.save
   end

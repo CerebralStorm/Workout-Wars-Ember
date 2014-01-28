@@ -1,45 +1,49 @@
 WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
-  needs: ['application']
+  needs: ['exercises']
+  selectedExercise: null
+
+  exercises: (->
+    @get('controllers.exercises.content')
+  ).property('controllers.exercises')
+
+  setValid: (->
+    @set('model.becameValid', true)
+  ).observes('selectedExercise') 
 
   useReps: (->
-    value = @get('content.exercise').get('reps') if @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise').get('reps') if @get('selectedExercise')
+  ).property('selectedExercise') 
   
   useDistance: (->
-    value = @get('content.exercise').get('distance') if @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise').get('distance') if @get('selectedExercise')
+  ).property('selectedExercise') 
 
   useDuration: (->
-    value = @get('content.exercise').get('duration') if @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise').get('duration') if @get('selectedExercise')
+  ).property('selectedExercise') 
 
   useCalories: (->
-    value = @get('content.exercise').get('calories') if @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise').get('calories') if @get('selectedExercise')
+  ).property('selectedExercise') 
 
   useWeight: (->
-    value = @get('content.exercise').get('weight') if @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise').get('weight') if @get('selectedExercise')
+  ).property('selectedExercise') 
 
   canSave: (->
-    @get('content.exercise')
-  ).property('content.exercise') 
+    @get('selectedExercise')
+  ).property('selectedExercise') 
 
   actions:
-    addExercise: (exercise) ->
-      @set('content.exercise', exercise)
+    create: (activity) -> 
+      activity.set('exercise', @get('selectedExercise'))
+      activity.set('user', @get('currentUser.content'))
 
-    saveActivity: -> 
-      activity = {
-        user: @get('controllers.application.currentUser')
-        exercise: @get('content.exercise')
-        reps: @get('reps')
-        distance: @get('distance')
-        duration: @get('duration')
-        calories: @get('calories')
-        weight: @get('weight')
-      }
-
-      activity = @store.createRecord('activity', activity)
-      activity.save().then =>
-        @transitionToRoute('activities', @get('controllers.application.currentUser'))
+      success = (activity) =>
+        @set('selectedExercise', null)
+        @transitionToRoute('activities', @get('currentUser.content'))
+      failure = (response) =>
+        console.log response
+        @set('errors', @get('content.errors'))
+      activity.save().then success, failure
+        

@@ -14,7 +14,7 @@ class Api::V1::ActivitiesController < ApplicationController
     if activity.save
       render json: activity
     else
-      render json: activity, status: 422
+      render json: {errors: activity.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::ActivitiesController < ApplicationController
     if activity.update(activity_params)
       render json: activity
     else
-      render json: activity, status: 422
+      render json: {errors: activity.errors.messages}, status: 422
     end
   end
 

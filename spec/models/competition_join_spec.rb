@@ -45,4 +45,16 @@ describe CompetitionJoin do
       expect(FactoryGirl.build(:competition_join, competition: comp)).to be_valid
     end
   end
+
+  context "activities" do
+    it "should count my activities toward my competitions" do
+      user = FactoryGirl.create(:user)
+      competition = FactoryGirl.create(:competition, started: true)
+      exercise = FactoryGirl.create(:exercise)
+      FactoryGirl.create(:competition_exercise, competition: competition, exercise: exercise)
+      FactoryGirl.create(:competition_join, user: user, competition: competition)      
+      activity = FactoryGirl.create(:activity, exercise: exercise, user: user)
+      expect(CompetitionJoin.last.total_experience).to eq 100
+    end
+  end
 end

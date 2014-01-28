@@ -7,5 +7,6 @@ class CreateExperienceSources < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :experience_sources, [:experienceable_id, :experienceable_type, :user_id], name: "experience_sources_index"
   end
 end

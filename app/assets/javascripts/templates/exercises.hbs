@@ -1,4 +1,10 @@
 <form {{ action "addExercise" selectedExercise on="submit"}}>
-  {{view Ember.Select value=selectedExercise content=controller name="Exercise Select" class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
-  <button class="btn btn-primary">Add Exercise</button>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-3 control-label"><button class="btn btn-primary">Add Exercise</button></label>
+      <div class="col-sm-9">
+        {{view Ember.Select value=selectedExercise content=controller name="Exercise Select" class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
+      </div>
+    </div>
+  </div>
 </form>

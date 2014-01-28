@@ -1,5 +1,5 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
-  needs: ['exercises']
+  needs: ['exercises', 'application']
   selectedExercise: null
 
   actions:

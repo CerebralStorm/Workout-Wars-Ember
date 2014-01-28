@@ -1,9 +1,26 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
-
   has_one :experience_source, as: :experienceable, dependent: :destroy
   has_many :competition_activities, dependent: :destroy
+
+  validates_presence_of :user
+  validates_presence_of :exercise
+  validate :reps, numericality: true
+  validate :duration, numericality: true
+  validate :distance, numericality: true
+  validate :weight, numericality: true
+  validate :calories, numericality: true
+  validate :reps, numericality: true
+  validate :has_metric
+
+  def has_metric
+    return unless exercise.present?
+    metric = exercise.metric
+    if self.send(metric).nil?
+        errors.add(metric, "Please enter #{metric} for this activity.")
+    end
+  end
 
   after_create :create_competition_activities
   after_save :update_experience_source_and_user
@@ -14,11 +31,6 @@ class Activity < ActiveRecord::Base
 
   def create_competition_activities
     user.create_competition_activities(self)
-  end
-
-  def xp_from(metric)
-    return 0 if metric.nil?
-    (metric * exercise_type.xp_multiplier).floor
   end
 
   def total_experience

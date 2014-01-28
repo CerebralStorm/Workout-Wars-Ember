@@ -4,25 +4,6 @@ Given(/^I am logged in$/) do
   step 'I try to log in with the right password'
 end
 
-Given(/^exercises exist$/) do  
-  [
-    {name: 'Pushups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Pullups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Situps',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Squats',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Lunges',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Burpees',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Running',    reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Biking',     reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Swimming',   reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 1},
-    {name: 'Hiking',     reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 1}, 
-    {name: 'Aerobics',   reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 1}, 
-    {name: 'Yoga',       reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 1} 
-  ].each do |exercise|
-    Exercise.where(exercise).first_or_create
-  end
-end
-
 Given(/^I visit the competitions page$/) do
   visit '/#/competitions'
   click_link "New Competition"
@@ -71,14 +52,12 @@ Then(/^I should see error messages$/) do
 end
 
 When(/^I add an exercise to it$/) do
-  # page.execute_script '$("select[name=\'Exercise Select\'] option:eq(2)").attr("selected", "selected")'
-  sleep 1
-  binding.pry
+  select "Pushups", from: "Exercise Select"
   click_button "Add Exercise"
 end
 
 Then(/^I should see the new exercise$/) do
-  expect(page).to have_content "Biking" 
+  expect(page).to have_content "Pushups" 
 end
 
 Then(/^I should see the edit and delete button$/) do

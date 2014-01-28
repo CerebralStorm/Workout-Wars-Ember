@@ -12,13 +12,13 @@
 
   {{#if hasPermission}}
     <div class="pull-right">          
-      {{#linkTo "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/linkTo}}
+      {{#link-to "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/link-to}}
       <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
     </div>
   {{/if}}
 
 {{else}}
-  {{#linkTo "activities" controllers.application.currentUser class="btn btn-success"}}Log Activity{{/linkTo}}
+  {{#link-to "activities" currentUser.content class="btn btn-success"}}Log Activity{{/link-to}}
 {{/unless}}
 
 {{outlet}}
@@ -41,20 +41,27 @@
     <br />
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-8">
     <h4>Exercises</h4>
     {{#if hasPermission}}
       {{#each compExercise in controller.model.competitionExercises}}
         <ul class="nav">
-          <li>{{compExercise.exercise.name}}<button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
+          <li>
+            {{compExercise.exercise.name}}
+            {{#unless started}}
+              <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button>
+            {{/unless}}
+          </li>
         </ul>
       {{else}}
         <ul class="nav">
-          {{#if isAddingExercise}}
-            <p>Saving...</p>
-          {{else}}
-            {{render "exercises"}}
-          {{/if}}
+          {{#unless started}}
+            {{#if isAddingExercise}}
+              <p>Saving...</p>
+            {{else}}
+              {{render "exercises"}}
+            {{/if}}
+          {{/unless}}
         </ul>
       {{/each}}
     {{else}}
@@ -67,28 +74,9 @@
       {{/each}}
     {{/if}}
   </div>
-
-  <div class="col-md-4">
-    <h4>Users</h4>
-    <ul class="nav">
-    {{#if hasPermission}}
-      {{#each compJoin in controller.competitionJoins}}
-        <li>{{compJoin.user.email}}<button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button></li>
-      {{else}}
-        <li>None currently registered</li>
-      {{/each}}
-    {{else}}
-      {{#each compJoin in controller.model.competitionJoins}}
-        <li>{{compJoin.user.email}}</li>
-      {{else}}
-        <li>None currently registered</li>
-      {{/each}}
-    {{/if}}
-    </ul>
-  </div>
 </div>
 
-<div class="row">
+{{#if started}}
   <h3>{{name}} Ranking</h3>
   {{#each controller.competitionJoins}}  
     <hr>
@@ -96,4 +84,26 @@
     <h5>User: {{this.user.email}}</h5>
     <h5>Total Experience: {{totalExperience}}</h5>          
   {{/each}}
-</div>
+{{else}}
+  <h4>Users</h4>
+  <ul class="nav">
+  {{#if hasPermission}}
+    {{#each compJoin in controller.competitionJoins}}
+      <li>
+        <div class="row">
+          <div class="col-md-4">{{compJoin.user.email}}</div>
+          <div class="col-md-8"><button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button></div>
+        </div>
+      </li>
+    {{else}}
+      <li>None currently registered</li>
+    {{/each}}
+  {{else}}
+    {{#each compJoin in controller.model.competitionJoins}}
+      <li>{{compJoin.user.email}}</li>
+    {{else}}
+      <li>None currently registered</li>
+    {{/each}}
+  {{/if}}
+  </ul>
+{{/if}}

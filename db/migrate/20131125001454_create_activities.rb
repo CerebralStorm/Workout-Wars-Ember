@@ -11,5 +11,6 @@ class CreateActivities < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :activities, [:exercise_id, :user_id]
   end
 end

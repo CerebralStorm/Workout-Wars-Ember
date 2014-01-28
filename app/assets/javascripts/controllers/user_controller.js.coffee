@@ -2,9 +2,7 @@ WorkoutWars.UserController = Ember.ObjectController.extend
   needs: ['application']
 
   isCurrentUser: (->
-    currentUser = @get('controllers.application.currentUser')
-    user = @get('content')
-    user == currentUser
+    @get('content') == @get('currentUser.content')
   ).property('content')  
   
   actions:

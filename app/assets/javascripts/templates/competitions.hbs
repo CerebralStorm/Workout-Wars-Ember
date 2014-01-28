@@ -4,13 +4,13 @@
 <br />
 <div class="row">
   <div class="col-md-4">
-    {{#linkTo "competitions.create" class="btn btn-lg btn-success btn-block"}}New Competition{{/linkTo}}
+    {{#link-to "competitions.create" class="btn btn-lg btn-success btn-block"}}New Competition{{/link-to}}
     <h4>Active Competitions</h4>
     <ul class="nav">
     {{#each controller}}
       {{#unless isDirty}}
       <li>
-        {{#linkTo "competition" this}}{{name}}{{/linkTo}}
+        {{#link-to "competition" this}}{{name}}{{/link-to}}
       </li>
       {{/unless}}
     {{else}}
