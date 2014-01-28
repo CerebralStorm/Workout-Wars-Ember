@@ -1,5 +1,60 @@
 WorkoutWars.ApplicationController = Ember.ObjectController.extend
+  needs: ['exercises']
   currentUser: null
+  selectedExercise: null
+
+  isSuccess: false
+
+  exercises: (->
+    @get('controllers.exercises.content')
+  ).property('controllers.exercises')
+
+  setValid: (->
+    @set('model.becameValid', true)
+  ).observes('selectedExercise') 
+
+  useReps: (->
+    @get('selectedExercise').get('reps') if @get('selectedExercise')
+  ).property('selectedExercise') 
+  
+  useDistance: (->
+    @get('selectedExercise').get('distance') if @get('selectedExercise')
+  ).property('selectedExercise') 
+
+  useDuration: (->
+    @get('selectedExercise').get('duration') if @get('selectedExercise')
+  ).property('selectedExercise') 
+
+  useCalories: (->
+    @get('selectedExercise').get('calories') if @get('selectedExercise')
+  ).property('selectedExercise') 
+
+  useWeight: (->
+    @get('selectedExercise').get('weight') if @get('selectedExercise')
+  ).property('selectedExercise') 
+
+  canSave: (->
+    @get('selectedExercise')
+  ).property('selectedExercise') 
+
+  actions:
+    create: (activity) -> 
+      activity.set('exercise', @get('selectedExercise'))
+      activity.set('user', @get('currentUser'))
+
+      success = (activity) =>
+        @set('isSuccess', true)
+        @set('selectedExercise', null)
+        @set('reps', null)
+        @set('distance', null)
+        @set('duration', null)
+        @set('weight', null)
+        @set('calories', null)
+      failure = (response) =>
+        console.log response
+        @set('isSuccess', false)
+        @set('errors', @get('content.errors'))
+      activity.save().then success, failure
 
   init: ->
     raw_attributes = $('meta[name="current-user"]').attr('content')

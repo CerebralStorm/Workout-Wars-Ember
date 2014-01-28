@@ -1,4 +1,15 @@
 <form {{ action "create" this on="submit"}}>
+<div class="modal-header">
+  <button type="button" class="close" {{action close target="view"}}>&times;</button>
+  <h3>Log Activity</h3>
+</div>
+{{#if isSuccess}}
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Success</strong> Activity successfully created
+  </div>
+{{/if}}
+<div class="modal-body">
   <div class="row">
     <div class="form-group">
       <label class= "col-sm-3 control-label">Exercise</label>
@@ -58,17 +69,12 @@
       </div>
     </div>
     {{/if}}
-
-    {{#if canSave}}
-    <div class="clearfix"></div>
-    <br />
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9">
-        <button class="btn btn-success btn-block">Save</button>
-      </div>
-    </div>
-    {{/if}}
   </div>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn" {{action close target="view"}}>Close</a>
+  <button class="btn btn-primary">Save changes</button>
+</div>
 </form>
 
 

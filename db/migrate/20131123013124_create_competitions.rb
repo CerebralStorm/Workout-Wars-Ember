@@ -9,6 +9,8 @@ class CreateCompetitions < ActiveRecord::Migration
       t.string :upper_level_restriction
       t.integer :competition_win_condition_id
       t.integer :max_participants
+      t.integer :win_condition_id
+      t.string :description
       t.integer :difficulty_id
       t.boolean :is_private
       t.boolean :finished, default: false

@@ -1,5 +1,5 @@
 class CompetitionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :start_date, :end_date, :creator_id, :max_participants, :lower_level_restriction, :upper_level_restriction, :started, :is_private
+  attributes :id, :name, :start_date, :end_date, :creator_id, :max_participants, :lower_level_restriction, :upper_level_restriction, :started, :is_private, :description
 
   embed :ids, include: true
   

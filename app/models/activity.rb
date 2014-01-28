@@ -6,6 +6,12 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :exercise
+  validate :reps, numericality: true
+  validate :duration, numericality: true
+  validate :distance, numericality: true
+  validate :weight, numericality: true
+  validate :calories, numericality: true
+  validate :reps, numericality: true
   validate :has_metric
 
   def has_metric

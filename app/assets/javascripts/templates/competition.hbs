@@ -1,7 +1,45 @@
 <h2>{{name}}</h2>
 <hr>
-{{#unless started}}
-  
+{{#if started}}
+  {{!-- Started Template --}}
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Information</h4>
+      <p>Creator: {{creator.email}}</p>
+      <p>Start Date: {{date startDate}}</p>
+      <p>End Date: {{date endDate}}</p>
+      <p>Max Participants: {{numOfParticipants}}</p>
+      <p>Currently registered: {{numberOfUsers}}</p>
+      {{#if isPrivate}}
+        <p>This is a private competition</p>
+      {{else}}
+        <p>This is a public competition</p>
+      {{/if}}
+      <p>Active: {{active}}</p>
+      <p>Reward: {{reward}}</p>
+      <br />
+    </div>
+
+    <div class="col-md-6">
+      <h4>Exercises</h4>
+      {{#each compExercise in controller.model.competitionExercises}}
+        <ul class="nav">
+          <li> {{compExercise.exercise.name}} </li>
+        </ul>
+      {{/each}}
+    </div>
+  </div>
+  <hr>
+  <h3>{{name}} Ranking</h3>
+  {{#each controller.competitionJoins}}  
+    <hr>
+    {{#if rank}}<h4>Rank: {{rank}}</h4>{{/if}}
+    <h5>User: {{this.user.email}}</h5>
+    <h5>Total Experience: {{totalExperience}}</h5>          
+  {{/each}}
+  {{!-- End Started Template --}}
+{{else}}
+  {{!-- Not Started Template --}}
   {{#if isJoined}}
     <button class="btn btn-info"{{action "leave"}}>Leave this competition</button>
   {{else}}
@@ -11,99 +49,84 @@
   {{/if}}  
 
   {{#if hasPermission}}
-    <div class="pull-right">          
-      {{#link-to "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/link-to}}
-      <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
+    <hr>
+    <div class="row">    
+      <div class="col-md-3">
+        <h4>Creator Pane</h4>
+      </div>
+      <div class="col-sm-9">
+        <div class="pull-right">          
+          {{#link-to "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/link-to}}
+          <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
+        </div>
+      </div>
     </div>
+    <br />
+    {{#unless controller.competitionExercises}}
+      <div class="row">  
+        <div class="form-group">
+          <label class= "col-sm-3 control-label">Exercise</label>
+          <div class="col-sm-3">
+            <button class="btn btn-primary" {{ action "addExercise" }}>Add Exercise</button>
+          </div>
+          <div class="col-sm-6">
+            {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+          </div>
+        </div>
+      </div>
+    {{/unless}}
+    <hr>
+    {{outlet}}
   {{/if}}
 
-{{else}}
-  {{#link-to "activities" currentUser.content class="btn btn-success"}}Log Activity{{/link-to}}
-{{/unless}}
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Information</h4>
+      <p>Creator: {{creator.email}}</p>
+      <p>Start Date: {{date startDate}}</p>
+      <p>End Date: {{date endDate}}</p>
+      <p>Max Participants: {{numOfParticipants}}</p>
+      <p>Currently registered: {{numberOfUsers}}</p>
+      {{#if isPrivate}}
+        <p>This is a private competition</p>
+      {{else}}
+        <p>This is a public competition</p>
+      {{/if}}
+      <p>Description: {{description}}</p>
+      <p>Reward: {{reward}}</p>
+      <br />
+    </div>
 
-{{outlet}}
-
-<div class="row">
-  <div class="col-md-4">
-    <h4>Information</h4>
-    <p>Creator: {{creator.email}}</p>
-    <p>Start Date: {{date startDate}}</p>
-    <p>End Date: {{date endDate}}</p>
-    <p>Max Participants: {{numOfParticipants}}</p>
-    <p>Currently registered: {{numberOfUsers}}</p>
-    {{#if isPrivate}}
-      <p>This is a private competition</p>
-    {{else}}
-      <p>This is a public competition</p>
-    {{/if}}
-    <p>Active: {{active}}</p>
-    <p>Reward: {{reward}}</p>
-    <br />
-  </div>
-
-  <div class="col-md-8">
-    <h4>Exercises</h4>
-    {{#if hasPermission}}
+    <div class="col-md-4">
+      <h4>Exercises</h4>      
       {{#each compExercise in controller.model.competitionExercises}}
         <ul class="nav">
           <li>
             {{compExercise.exercise.name}}
-            {{#unless started}}
+            {{#if hasPermission}}
               <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button>
-            {{/unless}}
+            {{/if}}
           </li>
         </ul>
       {{else}}
-        <ul class="nav">
-          {{#unless started}}
-            {{#if isAddingExercise}}
-              <p>Saving...</p>
-            {{else}}
-              {{render "exercises"}}
-            {{/if}}
-          {{/unless}}
-        </ul>
+        <p class='info-text'>No exercises have been added to this competition.</p>
       {{/each}}
-    {{else}}
-      {{#each compExercise in controller.model.competitionExercises}}
-        <ul class="nav">
-          <li>{{compExercise.exercise.name}}</li>
-        </ul>
-      {{else}}
-        <p class="text-info">The creator has not added any exercises for this competition yet</p>
-      {{/each}}
-    {{/if}}
-  </div>
-</div>
+    </div>
 
-{{#if started}}
-  <h3>{{name}} Ranking</h3>
-  {{#each controller.competitionJoins}}  
-    <hr>
-    {{#if rank}}<h4>Rank: {{rank}}</h4>{{/if}}
-    <h5>User: {{this.user.email}}</h5>
-    <h5>Total Experience: {{totalExperience}}</h5>          
-  {{/each}}
-{{else}}
-  <h4>Users</h4>
-  <ul class="nav">
-  {{#if hasPermission}}
-    {{#each compJoin in controller.competitionJoins}}
-      <li>
-        <div class="row">
-          <div class="col-md-4">{{compJoin.user.email}}</div>
-          <div class="col-md-8"><button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button></div>
-        </div>
-      </li>
-    {{else}}
-      <li>None currently registered</li>
-    {{/each}}
-  {{else}}
-    {{#each compJoin in controller.model.competitionJoins}}
-      <li>{{compJoin.user.email}}</li>
-    {{else}}
-      <li>None currently registered</li>
-    {{/each}}
-  {{/if}}
-  </ul>
+    <div class="col-md-4">
+      <h4>Users</h4>
+      <ul class="nav">      
+        {{#each compJoin in controller.competitionJoins}}
+          <li>
+            {{compJoin.user.email}}
+            {{#if hasPermission}}
+              <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button>
+            {{/if}}
+          </li>
+        {{else}}
+          <li>None currently registered</li>
+        {{/each}}
+    </div>    
+  </div>
+  {{!-- End Not Started Template --}}
 {{/if}}

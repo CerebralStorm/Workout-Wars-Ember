@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20140128030427) do
     t.integer  "lower_level_restriction"
     t.string   "upper_level_restriction"
     t.integer  "competition_win_condition_id"
+    t.integer  "win_condition_id"
+    t.string   "description"
     t.integer  "difficulty_id"
     t.boolean  "is_private"
     t.boolean  "finished",                     default: false
