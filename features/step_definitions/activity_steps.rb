@@ -23,3 +23,19 @@ end
 Then(/^I should see my experience for that activity$/) do
   expect(page).to have_content "Experience: 50"
 end
+
+When(/^that competition has started$/) do
+  sleep 0.5
+  competition = Competition.last
+  competition.started = true
+  competition.save
+end
+
+Then(/^select my competition$/) do
+  click_link "Test Competition"
+end
+
+Then(/^I should see my score and rank updated$/) do
+  expect(page).to have_content "Rank: 1"
+  expect(page).to have_content "Total Experience: 50"
+end
