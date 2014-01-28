@@ -8,18 +8,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#linkTo "index" classNames="navbar-brand"}}WorkoutWars{{/linkTo}}
+      {{#link-to "index" classNames="navbar-brand"}}WorkoutWars{{/link-to}}
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>{{#linkTo "user" currentUser}}Profile{{/linkTo}}</li>
-        <li>{{#linkTo "users"}}Users{{/linkTo}}</li>
-        <li>{{#linkTo "competitions"}}Competitions{{/linkTo}}</li> 
-        <li>{{#linkTo "challenges"}}Challenges{{/linkTo}}</li>                                
+        <li>{{#link-to "user" currentUser}}Profile{{/link-to}}</li>
+        <li>{{#link-to "users"}}Users{{/link-to}}</li>
+        <li>{{#link-to "competitions"}}Competitions{{/link-to}}</li> 
+        <li>{{#link-to "challenges"}}Challenges{{/link-to}}</li>                                
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>{{#linkTo "contact"}}Contact us{{/linkTo}}</li>
-        <li>{{#linkTo "user.edit" currentUser}}Settings{{/linkTo}}</li>
+        <li>{{#link-to "contact"}}Contact us{{/link-to}}</li>
+        <li>{{#link-to "user.edit" currentUser}}Settings{{/link-to}}</li>
         <li><a href="/users/sign_out" data-method="delete" id='sign_out_button'>Sign out</a></li>
       </ul>
     </div><!--/.nav-collapse -->

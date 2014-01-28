@@ -6,6 +6,15 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :exercise
+  validate :has_metric
+
+  def has_metric
+    unless reps.present? || duration.present? || distance.present? || weight.present? || calories.present?
+      [:reps, :duration, :distance, :weight, :calories].each do |metric_type|
+        errors.add(metric_type, "Activity must contain an amount of reps, duration, distance, weight, or calories")
+      end
+    end
+  end
 
   after_create :create_competition_activities
   after_save :update_experience_source_and_user

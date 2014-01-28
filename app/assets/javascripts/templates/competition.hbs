@@ -12,13 +12,13 @@
 
   {{#if hasPermission}}
     <div class="pull-right">          
-      {{#linkTo "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/linkTo}}
+      {{#link-to "competition.edit" this class="btn btn-info" name="Edit Competition"}}Edit{{/link-to}}
       <a href="#" class="btn btn-danger" name="Delete Competition" {{action delete this}}>Delete</a>
     </div>
   {{/if}}
 
 {{else}}
-  {{#linkTo "activities" currentUser.content class="btn btn-success"}}Log Activity{{/linkTo}}
+  {{#link-to "activities" currentUser.content class="btn btn-success"}}Log Activity{{/link-to}}
 {{/unless}}
 
 {{outlet}}

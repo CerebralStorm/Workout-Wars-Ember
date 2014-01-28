@@ -3,16 +3,18 @@
 <p class="text-warning">Don't overdue it! We all need to rest once in a while</p>
 <hr>
 {{#if isCurrentUser}}
-  {{#linkTo "activities.create" name="New Activity" class="btn btn-success"}}New Activity{{/linkTo}}
+  {{#link-to "activities.create" name="New Activity" class="btn btn-success"}}New Activity{{/link-to}}
 {{/if}}
 
+<br />
+<br />
 {{outlet}}
 
 <hr>
 <h4>Recent Activity</h4>
 <ul id="recent_activity"class="nav">
   {{#each controller}}
-    <li>{{#linkTo "activity" this}}{{date createdAt}} - {{this.exercise.name}}{{/linkTo}}</li>
+    <li>{{#link-to "activity" this}}{{date createdAt}} - {{this.exercise.name}}{{/link-to}}</li>
   {{else}}
     <li>No activities logged yet</li>
   {{/each}}

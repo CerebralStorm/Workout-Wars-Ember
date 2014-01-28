@@ -1,61 +1,71 @@
-<h4>Choose an exercise</h4>
-<ul class="nav">
-  {{render "exercises"}}
-</ul>
-<h3 class="text-center">{{exercise.name}}</h3>
-<div class="row activity-edit">
-  {{#if useReps}}
-  <div class="form-group">
-    <label class= "col-sm-3 control-label">Reps</label>
-    <div class="col-sm-9">
-      {{input value=reps name="Reps" classNames="form-control" placeholder=exercise.measurement}}
+<form {{ action "create" this on="submit"}}>
+  <div class="row">
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Exercise</label>
+      <div class="col-sm-9">
+        {{view Ember.Select content=exercises value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+      </div>
     </div>
   </div>
-  {{/if}}
+  <br />
+  <div class="row activity-edit">
+    {{#if useReps}}
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Reps</label>
+      <div class="col-sm-9">
+        {{input value=reps name="Reps" classNames="form-control" placeholder=selectedExercise.measurement}}
+        {{#if errors.reps}}<span class="help-block">{{errors.reps}}</span>{{/if}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if errors.reps}}<span class="help-block">{{errors.reps}}</span>{{/if}}
 
-  {{#if useDistance}}
-  <div class="form-group">
-    <label class= "col-sm-3 control-label">Distance</label>
-    <div class="col-sm-9">
-      {{input value=distance name="Distance" classNames="form-control" placeholder=exercise.measurement}}
+    {{#if useDistance}}
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Distance</label>
+      <div class="col-sm-9">
+        {{input value=distance name="Distance" classNames="form-control" placeholder=selectedExercise.measurement}}
+      </div>
     </div>
-  </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if useDuration}}
-  <div class="form-group">
-    <label class= "col-sm-3 control-label">Duration</label>
-    <div class="col-sm-9">
-      {{input value=duration name="Duration" classNames="form-control" placeholder=exercise.measurement}}
+    {{#if useDuration}}
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Duration</label>
+      <div class="col-sm-9">
+        {{input value=duration name="Duration" classNames="form-control" placeholder=selectedExercise.measurement}}
+      </div>
     </div>
-  </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if useCalories}}
-  <div class="form-group">
-    <label class= "col-sm-3 control-label">Calories</label>
-    <div class="col-sm-9">
-      {{input value=calories name="Calories" classNames="form-control" placeholder=exercise.measurement}}
+    {{#if useCalories}}
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Calories</label>
+      <div class="col-sm-9">
+        {{input value=calories name="Calories" classNames="form-control" placeholder=selectedExercise.measurement}}
+      </div>
     </div>
-  </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if useWeight}}
-  <div class="form-group">
-    <label class= "col-sm-3 control-label">Weight</label>
-    <div class="col-sm-9">
-      {{input value=weight name="Weight" classNames="form-control" placeholder=exercise.measurement}}
+    {{#if useWeight}}
+    <div class="form-group">
+      <label class= "col-sm-3 control-label">Weight</label>
+      <div class="col-sm-9">
+        {{input value=weight name="Weight" classNames="form-control" placeholder=selectedExercise.measurement}}
+      </div>
     </div>
-  </div>
-  {{/if}}
+    {{/if}}
 
-  {{#if canSave}}
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <button {{action "saveActivity"}} class="btn btn-success btn-block">Save</button>
+    {{#if canSave}}
+    <div class="clearfix"></div>
+    <br />
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button class="btn btn-success btn-block">Save</button>
+      </div>
     </div>
+    {{/if}}
   </div>
-  {{/if}}
-</div>
+</form>
 
 

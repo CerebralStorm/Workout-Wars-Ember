@@ -4,13 +4,13 @@
 <hr>
 <div class="row">
   <div class="col-md-4">
-    {{#linkTo "challenges.create" class="btn btn-lg btn-success btn-block"}}New Challenge{{/linkTo}}
+    {{#link-to "challenges.create" class="btn btn-lg btn-success btn-block"}}New Challenge{{/link-to}}
     <h4>Active Challenges</h4>
     <ul class="nav">
     {{#each controller}}
       {{#unless isDirty}}
       <li>
-        {{#linkTo "challenge" this}}{{name}}{{/linkTo}}
+        {{#link-to "challenge" this}}{{name}}{{/link-to}}
       </li>
       {{/unless}}
     {{else}}
