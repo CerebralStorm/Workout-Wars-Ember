@@ -62,18 +62,21 @@
       </div>
     </div>
     <br />
-    <div class="row">  
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">Exercise</label>
-        <div class="col-sm-3">
-          <button class="btn btn-primary" {{ action "addExercise" }}>Add Exercise</button>
-        </div>
-        <div class="col-sm-6">
-          {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+    {{#unless controller.competitionExercises}}
+      <div class="row">  
+        <div class="form-group">
+          <label class= "col-sm-3 control-label">Exercise</label>
+          <div class="col-sm-3">
+            <button class="btn btn-primary" {{ action "addExercise" }}>Add Exercise</button>
+          </div>
+          <div class="col-sm-6">
+            {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+          </div>
         </div>
       </div>
-    </div>
+    {{/unless}}
     <hr>
+    {{outlet}}
   {{/if}}
 
   <div class="row">
@@ -95,21 +98,6 @@
     </div>
 
     <div class="col-md-4">
-      <h4>Users</h4>
-      <ul class="nav">      
-        {{#each compJoin in controller.competitionJoins}}
-          <li>
-            {{compJoin.user.email}}
-            {{#if hasPermission}}
-              <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button>
-            {{/if}}
-          </li>
-        {{else}}
-          <li>None currently registered</li>
-        {{/each}}
-    </div>
-
-    <div class="col-md-4">
       <h4>Exercises</h4>      
       {{#each compExercise in controller.model.competitionExercises}}
         <ul class="nav">
@@ -122,8 +110,21 @@
         </ul>
       {{/each}}
     </div>
+
+    <div class="col-md-4">
+      <h4>Users</h4>
+      <ul class="nav">      
+        {{#each compJoin in controller.competitionJoins}}
+          <li>
+            {{compJoin.user.email}}
+            {{#if hasPermission}}
+              <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button>
+            {{/if}}
+          </li>
+        {{else}}
+          <li>None currently registered</li>
+        {{/each}}
+    </div>    
   </div>
   {{!-- End Not Started Template --}}
 {{/if}}
-
-{{outlet}}
