@@ -24,6 +24,7 @@
       <label class= "col-sm-3 control-label">Distance</label>
       <div class="col-sm-9">
         {{input value=distance name="Distance" classNames="form-control" placeholder=selectedExercise.measurement}}
+        {{#if errors.distance}}<span class="help-block">{{errors.distance}}</span>{{/if}}
       </div>
     </div>
     {{/if}}
@@ -33,6 +34,7 @@
       <label class= "col-sm-3 control-label">Duration</label>
       <div class="col-sm-9">
         {{input value=duration name="Duration" classNames="form-control" placeholder=selectedExercise.measurement}}
+        {{#if errors.duration}}<span class="help-block">{{errors.duration}}</span>{{/if}}
       </div>
     </div>
     {{/if}}
@@ -42,6 +44,7 @@
       <label class= "col-sm-3 control-label">Calories</label>
       <div class="col-sm-9">
         {{input value=calories name="Calories" classNames="form-control" placeholder=selectedExercise.measurement}}
+        {{#if errors.calories}}<span class="help-block">{{errors.calories}}</span>{{/if}}
       </div>
     </div>
     {{/if}}
@@ -51,6 +54,7 @@
       <label class= "col-sm-3 control-label">Weight</label>
       <div class="col-sm-9">
         {{input value=weight name="Weight" classNames="form-control" placeholder=selectedExercise.measurement}}
+        {{#if errors.weight}}<span class="help-block">{{errors.weight}}</span>{{/if}}
       </div>
     </div>
     {{/if}}
