@@ -15,7 +15,8 @@
         <li>{{#link-to "user" currentUser}}Profile{{/link-to}}</li>
         <li>{{#link-to "users"}}Users{{/link-to}}</li>
         <li>{{#link-to "competitions"}}Competitions{{/link-to}}</li> 
-        <li>{{#link-to "challenges"}}Challenges{{/link-to}}</li>                                
+        <li>{{#link-to "challenges"}}Challenges{{/link-to}}</li>   
+        <li><a href="#" {{action open}}>Show Modal1</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>{{#link-to "contact"}}Contact us{{/link-to}}</li>
@@ -30,6 +31,7 @@
   <br />
   <br />
   <br />
+  {{outlet modal}}
   {{outlet}}
   <br />
   <br />
