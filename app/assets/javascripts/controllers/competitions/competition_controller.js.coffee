@@ -1,4 +1,10 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
+  needs: ['exercises']
+  selectedExercise: null
+
+  exercises: (->
+    @get('controllers.exercises.content')
+  ).property('controllers.exercises')
 
   isJoined: (->
     @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('length') > 0
@@ -45,10 +51,10 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     edit: ->
       @transitionToRoute "competition.edit"
 
-    addExercise: (exercise) -> 
-      return unless exercise 
+    addExercise: -> 
+      return unless @get('selectedExercise')
       competitionExercise = @store.createRecord("competitionExercise", {
-        exercise: exercise
+        exercise: @get('selectedExercise')
         competition: @get("model")        
       })
       competitionExercise.save()    
