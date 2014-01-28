@@ -8,9 +8,17 @@ Feature: Activity
   @javascript
   Scenario: log an activity
     When I go to my activities
-    And I add a new one
+    And I add a new activity
     Then I should see the new activity
     And I should see my experience for that activity
+
+  @javascript
+  Scenario: log a bad activity then fix it
+    When I go to my activities
+    And I add a bad new activity
+    Then I should see the error messages
+    And I add a new activity
+    Then I should see the new activity
 
   @javascript
   Scenario: log an activity for a competition
@@ -21,7 +29,7 @@ Feature: Activity
     And that competition has started
     And I visit my profile page
     When I go to my activities
-    And I add a new one
+    And I add a new activity
     Then I should see the new activity
     And I visit the competitions page
     And select my competition

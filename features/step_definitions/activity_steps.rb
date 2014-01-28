@@ -6,10 +6,9 @@ When(/^I go to my activities$/) do
   click_link "Activities"
 end
 
-When(/^I add a new one$/) do
+When(/^I add a new activity$/) do
   click_link "New Activity"
   select "Pushups", from: "Exercise Select"
-  click_button "Add Exercise"
   fill_in "Reps", with: 50 
   click_button "Save"
 end
@@ -38,4 +37,14 @@ end
 Then(/^I should see my score and rank updated$/) do
   expect(page).to have_content "Rank: 1"
   expect(page).to have_content "Total Experience: 50"
+end
+
+When(/^I add a bad new activity$/) do
+  click_link "New Activity"
+  select "Pushups", from: "Exercise Select"
+  click_button "Save"
+end
+
+Then(/^I should see the error messages$/) do
+  expect(page).to have_content "Please enter reps for this activity."
 end

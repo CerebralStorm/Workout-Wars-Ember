@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class= "col-sm-3 control-label">Exercise</label>
       <div class="col-sm-9">
-        {{view Ember.Select content=exercises value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+        {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
       </div>
     </div>
   </div>
