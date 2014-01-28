@@ -11,7 +11,7 @@ class Activity < ActiveRecord::Base
   def has_metric
     unless reps.present? || duration.present? || distance.present? || weight.present? || calories.present?
       [:reps, :duration, :distance, :weight, :calories].each do |metric_type|
-        errors.add(metric_type, "Activity must contain an amount of reps, duration, distance, weight, or calories")
+        errors.add(metric_type, "Please enter a measurement for this activity.")
       end
     end
   end
