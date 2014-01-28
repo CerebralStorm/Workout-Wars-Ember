@@ -6,5 +6,6 @@ class CreateCompetitionExercises < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :competition_exercises, [:exercise_id, :competition_id]
   end
 end

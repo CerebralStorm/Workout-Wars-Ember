@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.datetime "updated_at"
   end
 
+  add_index "activities", ["exercise_id", "user_id"], name: "index_activities_on_exercise_id_and_user_id", using: :btree
+
   create_table "challenges", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -55,12 +57,16 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.datetime "updated_at"
   end
 
+  add_index "competition_activities", ["user_id", "activity_id", "competition_id"], name: "competition_activities_index", using: :btree
+
   create_table "competition_exercises", force: true do |t|
     t.integer  "exercise_id"
     t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "competition_exercises", ["exercise_id", "competition_id"], name: "index_competition_exercises_on_exercise_id_and_competition_id", using: :btree
 
   create_table "competition_joins", force: true do |t|
     t.integer  "user_id"
@@ -70,6 +76,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "competition_joins", ["user_id", "competition_id"], name: "index_competition_joins_on_user_id_and_competition_id", using: :btree
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -112,6 +120,8 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "experience_sources", ["experienceable_id", "experienceable_type", "user_id"], name: "experience_sources_index", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

@@ -8,5 +8,6 @@ class CreateCompetitionJoins < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :competition_joins, [:user_id, :competition_id]
   end
 end
