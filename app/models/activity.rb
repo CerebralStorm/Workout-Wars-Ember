@@ -9,10 +9,10 @@ class Activity < ActiveRecord::Base
   validate :has_metric
 
   def has_metric
-    unless reps.present? || duration.present? || distance.present? || weight.present? || calories.present?
-      [:reps, :duration, :distance, :weight, :calories].each do |metric_type|
-        errors.add(metric_type, "Please enter a measurement for this activity.")
-      end
+    return unless exercise.present?
+    metric = exercise.metric
+    if self.send(metric).nil?
+        errors.add(metric, "Please enter #{metric} for this activity.")
     end
   end
 
