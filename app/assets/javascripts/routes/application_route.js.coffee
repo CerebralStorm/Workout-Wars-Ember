@@ -3,9 +3,9 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
     @controllerFor('exercises').set 'model', @store.find('exercise')
 
   actions: 
-    open: (name) ->
+    logActivity: ->
       @controllerFor('application').set 'model', @store.createRecord('activity')
-      @render name,
+      @render 'log_activity',
         into: "application"
         outlet: "modal"
         view: "modal"

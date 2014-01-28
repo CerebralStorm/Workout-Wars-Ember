@@ -3,6 +3,8 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   currentUser: null
   selectedExercise: null
 
+  isSuccess: false
+
   exercises: (->
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
@@ -41,10 +43,16 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
       activity.set('user', @get('currentUser'))
 
       success = (activity) =>
+        @set('isSuccess', true)
         @set('selectedExercise', null)
-        @set('model', @store.createRecord('activity'))
+        @set('reps', null)
+        @set('distance', null)
+        @set('duration', null)
+        @set('weight', null)
+        @set('calories', null)
       failure = (response) =>
         console.log response
+        @set('isSuccess', false)
         @set('errors', @get('content.errors'))
       activity.save().then success, failure
 
