@@ -4,6 +4,7 @@ FactoryGirl.define do
     start_date 1.day.from_now
     end_date 2.weeks.from_now
     association :creator, factory: :user
+    competition_win_condition
     
     factory :private_competition do
       public false
