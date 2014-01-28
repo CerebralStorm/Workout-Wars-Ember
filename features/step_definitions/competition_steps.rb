@@ -101,7 +101,7 @@ end
 
 Then(/^I should not see what creators see$/) do 
   expect(page).to have_content "Creator: ray@bustinghosts.com"
-  expect(page).to have_content "The creator has not added any exercises for this competition yet"  
+  expect(page).to have_content "No exercises have been added to this competition."  
   expect(page).to_not have_selector "a[name='Edit Competition']"
   expect(page).to_not have_selector "a[name='Delete Competition']"
 end
