@@ -15,4 +15,10 @@ Before do
   ].each do |exercise|
     Exercise.where(exercise).first_or_create
   end
+
+    [
+      {name: 'Most completed by date',  description: 'Winner will be determined by who has completed the most of this competitions exercise by the end date'}
+    ].each do |win_condition|
+      CompetitionWinCondition.where(win_condition).first_or_create
+    end
 end

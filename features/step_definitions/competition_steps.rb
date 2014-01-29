@@ -11,6 +11,7 @@ end
 
 When(/^I fill out the competition with valid data$/) do
   fill_in 'Name', with: "Test Competition"
+  select "Most completed by date", from: "Win Condition Select"
   fill_in 'Start Date', with: format_date(Date.today)
   fill_in 'End Date', with: format_date(2.weeks.from_now)
   fill_in 'Max Participants', with: "20"

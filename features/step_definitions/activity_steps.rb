@@ -36,7 +36,7 @@ end
 
 Then(/^I should see my score and rank updated$/) do
   expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total Experience: 50"
+  expect(page).to have_content "Total: 50"
 end
 
 When(/^I add a bad new activity$/) do
