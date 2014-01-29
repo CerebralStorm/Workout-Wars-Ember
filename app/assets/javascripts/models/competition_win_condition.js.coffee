@@ -1,3 +1,3 @@
 WorkoutWars.CompetitionWinCondition = DS.Model.extend
-  name: DS.belongsTo('name') 
-  description:  DS.belongsTo('description')
+  name: DS.attr('string') 
+  description: DS.attr('string')

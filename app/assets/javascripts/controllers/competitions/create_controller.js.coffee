@@ -4,7 +4,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
 
   winConditions: (->
     @get('controllers.competitionWinConditions.content')
-  ).property('controllers.competitionWinConditions.content')
+  ).property('controllers.competitionWinConditions')
 
   actions:
     create: (competition) ->
