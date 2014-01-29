@@ -1,0 +1,23 @@
+{{#if view.model.isSuccess}}
+  <div class="alert alert-success">
+    <strong>Success</strong>&nbsp;{{view.message}}
+  </div>
+{{/if}}
+
+{{#if view.model.isInfo}}
+  <div class="alert alert-info">
+    <strong>Info</strong>&nbsp;{{view.message}}
+  </div>
+{{/if}}
+
+{{#if view.model.isWarning}}
+  <div class="alert alert-warning">
+    <strong>Warning</strong>&nbsp;{{view.message}}
+  </div>
+{{/if}}
+
+{{#if view.model.isDanger}}
+  <div class="alert alert-danger">
+    <strong>Danger</strong>&nbsp;{{view.message}}
+  </div>
+{{/if}}

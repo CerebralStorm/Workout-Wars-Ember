@@ -3,12 +3,7 @@
   <button type="button" class="close" {{action close target="view"}}>&times;</button>
   <h3>Log Activity</h3>
 </div>
-{{#if isSuccess}}
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>Success</strong> Activity successfully created
-  </div>
-{{/if}}
+{{view WorkoutWars.FlashView model=WorkoutWars.flash}}
 <div class="modal-body">
   <div class="row">
     <div class="form-group">
