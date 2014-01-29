@@ -47,9 +47,9 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
         @set('duration', null)
         @set('weight', null)
         @set('calories', null)
-        WorkoutWars.get("flash").success "Your activity was created"
+        WorkoutWars.get("modalFlash").success "Your activity was created"
       failure = (response) =>
-        WorkoutWars.get("flash").success "Your activity was not created"
+        WorkoutWars.get("modalFlash").danger "Your activity was not created"
         console.log response
         @set('errors', @get('content.errors'))
       activity.save().then success, failure

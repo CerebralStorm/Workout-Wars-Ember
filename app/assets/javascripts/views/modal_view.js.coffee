@@ -13,5 +13,6 @@ WorkoutWars.ModalView = Ember.View.extend
       # events so the handler is only fired once in your browser
       @$(".modal, .modal-backdrop").one "transitionend", (ev) ->
         view.controller.send "close"
-
+        view.controller.send 'clearModalFlash'
+        
       @$(".modal").removeClass "in"

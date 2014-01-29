@@ -8,3 +8,6 @@ WorkoutWars.Activity = DS.Model.extend
   weight: DS.attr('number')
   createdAt: DS.attr('date')
 
+  becameInvalid: ->
+    console.log "test"
+

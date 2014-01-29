@@ -16,5 +16,5 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
         outlet: 'modal'
         parentView: 'application'
 
-    saveActivity: ->
-      alert('actions work like normal!')
+    clearModalFlash: ->
+      WorkoutWars.get("modalFlash").clear()

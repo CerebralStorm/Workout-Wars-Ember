@@ -9,5 +9,7 @@ WorkoutWars.IndexRoute = Ember.Route.extend
     setWarning: (message) ->
       WorkoutWars.get("flash").warning message
 
-    setCleared: ->
+    clearFlash: ->
       WorkoutWars.get("flash").clear()
+
+

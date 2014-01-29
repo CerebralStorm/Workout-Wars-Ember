@@ -3,13 +3,14 @@
   <button type="button" class="close" {{action close target="view"}}>&times;</button>
   <h3>Log Activity</h3>
 </div>
-{{view WorkoutWars.FlashView model=WorkoutWars.flash}}
+{{view WorkoutWars.ModalFlashView model=WorkoutWars.modalFlash}}
 <div class="modal-body">
   <div class="row">
-    <div class="form-group">
+    <div {{bind-attr class=":form-group errors.exercise:has-error:"}}>
       <label class= "col-sm-3 control-label">Exercise</label>
       <div class="col-sm-9">
         {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+        {{#if errors.exercise}}<span class="help-block">{{errors.exercise}}</span>{{/if}}
       </div>
     </div>
   </div>
