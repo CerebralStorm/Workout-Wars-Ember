@@ -54,7 +54,7 @@ describe CompetitionJoin do
       FactoryGirl.create(:competition_exercise, competition: competition, exercise: exercise)
       FactoryGirl.create(:competition_join, user: user, competition: competition)      
       activity = FactoryGirl.create(:activity, exercise: exercise, user: user)
-      expect(CompetitionJoin.last.total_experience).to eq 100
+      expect(CompetitionJoin.last.total).to eq 100
     end
   end
 end

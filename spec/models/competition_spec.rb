@@ -48,7 +48,7 @@ describe Competition do
     end
 
     it "should not be valid without a creator" do
-      expect(FactoryGirl.build(:competition, creator: nil)).to_not be_valid
+      expect(FactoryGirl.build(:competition, user: nil)).to_not be_valid
     end
 
     it "should not be valid without a win condition" do
