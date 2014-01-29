@@ -17,6 +17,18 @@
 
     <div class="row">
       <div {{bind-attr class=":form-group errors.startDate:has-error:"}}>
+        <label class= "col-sm-4 control-label">Win Condition</label>
+        <div class="col-sm-8">
+          {{view Ember.Select content=winConditions name="Win Condition Select" value=selectedWinCondition optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select a win condition"}}
+          {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div {{bind-attr class=":form-group errors.startDate:has-error:"}}>
         <label class= "col-sm-4 control-label">Start Date</label>
         <div class="col-sm-8">
           {{view WorkoutWars.DateField value=startDate classNames="form-control" name="Start Date"}}

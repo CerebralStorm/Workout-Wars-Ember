@@ -14,7 +14,7 @@ class CreateCompetitions < ActiveRecord::Migration
       t.integer :difficulty_id
       t.boolean :is_private
       t.boolean :finished, default: false
-      t.integer :creator_id
+      t.integer :user_id
       t.integer :winner_id
       t.integer :reward
       t.boolean :started, default: false

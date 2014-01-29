@@ -13,7 +13,7 @@ class CreateChallenges < ActiveRecord::Migration
       t.integer :difficulty_id
       t.boolean :is_private
       t.boolean :active, default: true
-      t.integer :creator_id
+      t.integer :user_id
       t.integer :winner_id
       t.integer :reward
 

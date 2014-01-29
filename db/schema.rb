@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140128030427) do
     t.integer  "difficulty_id"
     t.boolean  "is_private"
     t.boolean  "active",                  default: true
-    t.integer  "creator_id"
+    t.integer  "user_id"
     t.integer  "winner_id"
     t.integer  "reward"
     t.datetime "created_at"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140128030427) do
     t.integer  "difficulty_id"
     t.boolean  "is_private"
     t.boolean  "finished",                     default: false
-    t.integer  "creator_id"
+    t.integer  "user_id"
     t.integer  "winner_id"
     t.integer  "reward"
     t.boolean  "started",                      default: false
