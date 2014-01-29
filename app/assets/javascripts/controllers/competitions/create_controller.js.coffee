@@ -1,5 +1,5 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
-  needs: ['competitionWinConditions']
+  needs: ['application', 'competitionWinConditions']
   selectedWinCondition: null
 
   winConditions: (->
@@ -11,7 +11,8 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       competition.set('isPrivate', @get('isPrivate')) if @get('isPrivate')
       competition.set('startDate', moment(@get('startDate')).toDate()) if @get('startDate')
       competition.set('endDate', moment(@get('endDate')).toDate()) if @get('endDate')
-      competition.set('user', @get('currentUser.content'))
+      competition.set('user', @get('controllers.application.currentUser'))
+      competition.set('competitionWinCondition', @get('selectedWinCondition'))
       
       success = (competition) =>
         @set('startDate', "")
