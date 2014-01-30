@@ -1,7 +1,8 @@
-<div class="row">
-  <div class="col-md-10">
-    <h3>Challenge Settings</h3>
-    <hr>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Challenge Settings</h3>
+  </div>
+  <div class="panel-body">
     <div class="row">
       <div class="form-group">
         <label class= "col-sm-3 control-label">Name</label>
@@ -11,41 +12,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">Start Date</label>
-        <div class="col-sm-9">
-          {{input value=startDate classNames="form-control date-field"}}
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">End Date</label>
-        <div class="col-sm-9">
-          {{input value=endDate classNames="form-control date-field"}}
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">Lower Level Restriction</label>
-        <div class="col-sm-9">
-          {{input value=lowerLevelRestriction classNames="form-control"}}
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">Upper Level Restriction</label>
-        <div class="col-sm-9">
-          {{input value=upperLevelRestriction classNames="form-control"}}
-        </div>
-      </div>
-    </div>
+    <br />
 
     <div class="row">
       <div class="form-group">
@@ -56,35 +23,27 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group">
-        <label class= "col-sm-3 control-label">Public</label>
-        <div class="col-sm-9">
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-        </div>
-      </div>
-    </div>
+    <br />
 
     <div class="row">
       <div class="form-group">
         <label class= "col-sm-3 control-label">Private</label>
         <div class="col-sm-9">
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+           {{view Ember.Checkbox checkedBinding="isPrivate"}}
         </div>
       </div>
     </div>
+
+    <br />
 
     <div class="row">
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <input {{action "saveCompetition"}} type="submit" class="btn btn-lg btn-success" value="Save" />
+          <input {{action "saveCompetition"}} type="submit" class="btn btn-block btn-success" value="Save" />
         </div>
       </div>
     </div>
-
-  </div>
-
-  <div class="col-md-2">
-    {{render "exercises"}}
   </div>
 </div>
+
+
