@@ -16,6 +16,19 @@ class Competition < ActiveRecord::Base
 
   after_save :compute_results, if: :finished? 
 
+    def self.start_competitions
+    Competition.where("(?) > start_date", Time.now).each do |competition|
+      competition.started = true
+      competition.save!
+    end
+  end
+
+  def self.finish_competitions
+    Competition.where('end_date < (?)', Time.now).each do |competition|
+      competition.update_attributes!(finished: true)
+    end
+  end
+
   def compute_results
     competition_win_condition.compute_results(self)
   end
@@ -35,4 +48,5 @@ class Competition < ActiveRecord::Base
   def has_exercise?(exercise)
     exercises.include?(exercise)
   end
+
 end
