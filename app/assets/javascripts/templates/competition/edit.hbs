@@ -17,11 +17,11 @@
       <br />
 
       <div class="row">
-        <div {{bind-attr class=":form-group errors.startDate:has-error:"}}>
+        <div {{bind-attr class=":form-group errors.competitionWinCondition:has-error:"}}>
           <label class= "col-sm-4 control-label">Win Condition</label>
           <div class="col-sm-8">
             {{view Ember.Select content=winConditions name="Win Condition Select" value=selectedWinCondition optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select a win condition"}}
-            {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
+            {{#if errors.competitionWinCondition}}<span class="help-block">{{errors.competitionWinCondition}}</span>{{/if}}
           </div>
         </div>
       </div>
