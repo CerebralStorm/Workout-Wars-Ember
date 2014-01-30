@@ -1,27 +1,8 @@
-<div class="row">
-  <div class="col-md-8">
-    <ul class="nav nav-pills nav-justified">
-      <li>{{#link-to "activities"}}Activities{{/link-to}}</li>
-      <li>{{#link-to "user.competitions"}}Competitions{{/link-to}}</li>
-      <li>{{#link-to "user.challenges"}}Challenges{{/link-to}}</li>
-      {{#if isCurrentUser}}
-      <li>{{#link-to "user.edit"}}Settings{{/link-to}}</li>
-      {{/if}}
-    </ul>
-
-    {{outlet}}
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{email}}</h3>
   </div>
-
-  <div class="col-md-4">
-    {{#if name}}
-      <h1>{{name}}</h1>
-      <hr>
-      <p>Email: {{email}}</p>
-    {{else}}
-      <h1>{{email}}</h1>
-      <hr>
-    {{/if}}
-
+  <div class="panel-body">
     {{#if nickname}}
       <p>Nickname: {{nickname}}</p>
     {{/if}}
@@ -50,3 +31,4 @@
       <p>Experience to next level: {{nextLevelExperience}}</p>
     {{/if}}
   </div>
+</div>

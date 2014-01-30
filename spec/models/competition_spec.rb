@@ -32,23 +32,27 @@ describe Competition do
   
   context "validations" do
     it "should require a name" do
-      FactoryGirl.build(:competition, name: "").should_not be_valid
+      expect(FactoryGirl.build(:competition, name: "")).to_not be_valid
     end
 
     it "should require a start date" do
-      FactoryGirl.build(:competition, start_date: nil).should_not be_valid
+      expect(FactoryGirl.build(:competition, start_date: nil)).to_not be_valid
     end
 
     it "should require a end date" do
-      FactoryGirl.build(:competition, end_date: nil).should_not be_valid
+      expect(FactoryGirl.build(:competition, end_date: nil)).to_not be_valid
     end
 
     it "should be valid with valid data" do
-      FactoryGirl.build(:competition).should be_valid
+      expect(FactoryGirl.build(:competition)).to be_valid
     end
 
     it "should not be valid without a creator" do
-      FactoryGirl.build(:competition, creator: nil).should_not be_valid
+      expect(FactoryGirl.build(:competition, user: nil)).to_not be_valid
+    end
+
+    it "should not be valid without a win condition" do
+      expect(FactoryGirl.build(:competition, competition_win_condition: nil)).to_not be_valid
     end
   end
 

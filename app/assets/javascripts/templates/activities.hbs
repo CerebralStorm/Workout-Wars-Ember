@@ -1,23 +1,18 @@
-<h3>Activities</h3>
-<p>Log your activities to <strong>win your competitions and challenges</strong>. You don't want to be the weakest link!</p>
-<p class="text-warning">Don't overdue it! We all need to rest once in a while</p>
-<hr>
-{{#if isCurrentUser}}
-  {{#link-to "activities.create" name="New Activity" class="btn btn-success"}}New Activity{{/link-to}}
-{{/if}}
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Logged Activities</h3>
+      </div>
+      <ul id="recent_activity" class="list-group">
+        {{#each controller}}
+          <li class="list-group-item">{{#link-to "activity" this}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 
-<br />
-<br />
-{{outlet}}
-
-<hr>
-<h4>Recent Activity</h4>
-<ul id="recent_activity"class="nav">
-  {{#each controller}}
-    <li>{{#link-to "activity" this}}{{date createdAt}} - {{this.exercise.name}}{{/link-to}}</li>
-  {{else}}
-    <li>No activities logged yet</li>
-  {{/each}}
-</ul>
-
-
+  <div class="col-md-8">
+    {{outlet}}
+  </div>
+</div>

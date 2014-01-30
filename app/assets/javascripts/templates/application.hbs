@@ -8,20 +8,52 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#link-to "index" classNames="navbar-brand"}}WorkoutWars{{/link-to}}
+      {{#link-to "index" classNames="navbar-brand"}}<img src="/assets/ww-gray.png" height="22" class=""></img> {{/link-to}}
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>{{#link-to "user" currentUser}}Profile{{/link-to}}</li>
-        <li>{{#link-to "users"}}Users{{/link-to}}</li>
-        <li>{{#link-to "competitions"}}Competitions{{/link-to}}</li> 
-        <li>{{#link-to "challenges"}}Challenges{{/link-to}}</li>   
-        <li><a href="#" {{action logActivity}}>Log Activity</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>{{#link-to "contact"}}Contact us{{/link-to}}</li>
-        <li>{{#link-to "user.edit" currentUser}}Settings{{/link-to}}</li>
-        <li><a href="/users/sign_out" data-method="delete" id='sign_out_button'>Sign out</a></li>
+        <li>
+          {{#link-to "profile" currentUser name="My Profile"}}
+            <span class="badge"><span class="glyphicon glyphicon-user"></span></span>
+            My Profile
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "users"}}
+            <span class="badge"><span class="glyphicon glyphicon-eye-open"></span></span>
+            Users            
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "competitions"}}
+            <span class="badge"><span class="glyphicon glyphicon-star-empty"></span></span>
+            Competitions
+          {{/link-to}}
+        </li> 
+        <li>
+          {{#link-to "challenges"}}
+            <span class="badge"><span class="glyphicon glyphicon-star"></span></span>
+            Challenges
+          {{/link-to}}
+        </li>   
+        <li>
+          <a href="#" {{action logActivity}} name="Log Activity">
+            <span class="badge"><span class="glyphicon glyphicon-certificate"></span></span>
+            Log Activity
+          </a>
+        </li>
+        <li>
+          {{#link-to "contact"}}
+            <span class="badge"><span class="glyphicon glyphicon-send"></span></span>
+            Contact us
+          {{/link-to}}
+        </li>
+        <li>
+          <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
+            <span class="badge"><span class="glyphicon glyphicon-off"></span></span>
+            Sign out
+          </a>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -31,7 +63,9 @@
   <br />
   <br />
   <br />
+  <br />
   {{outlet modal}}
+  {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
   {{outlet}}
   <br />
   <br />
@@ -39,9 +73,10 @@
 </div> <!-- /container -->
 
 <!-- FOOTER -->
-<footer>
-  <nav class="navbar navbar-default navbar-bottom" role="navigation">
-    <br />
-    <p class="text-center">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </nav>
-</footer>
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+  <br />
+  <footer>
+    <p class="text-center text-primary">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+  <br />
+</nav>

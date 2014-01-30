@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219063020) do
+ActiveRecord::Schema.define(version: 20140128030427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.integer  "difficulty_id"
     t.boolean  "is_private"
     t.boolean  "active",                  default: true
-    t.integer  "creator_id"
+    t.integer  "user_id"
     t.integer  "winner_id"
     t.integer  "reward"
     t.datetime "created_at"
@@ -71,13 +71,20 @@ ActiveRecord::Schema.define(version: 20131219063020) do
   create_table "competition_joins", force: true do |t|
     t.integer  "user_id"
     t.integer  "competition_id"
-    t.integer  "total_experience", default: 0
+    t.integer  "total",          default: 0
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "competition_joins", ["user_id", "competition_id"], name: "index_competition_joins_on_user_id_and_competition_id", using: :btree
+
+  create_table "competition_win_conditions", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -86,15 +93,16 @@ ActiveRecord::Schema.define(version: 20131219063020) do
     t.integer  "max_participants"
     t.integer  "lower_level_restriction"
     t.string   "upper_level_restriction"
+    t.integer  "competition_win_condition_id"
     t.integer  "win_condition_id"
     t.string   "description"
     t.integer  "difficulty_id"
     t.boolean  "is_private"
-    t.boolean  "active",                  default: true
-    t.integer  "creator_id"
+    t.boolean  "finished",                     default: false
+    t.integer  "user_id"
     t.integer  "winner_id"
     t.integer  "reward"
-    t.boolean  "started",                 default: false
+    t.boolean  "started",                      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,20 +9,9 @@ class CompetitionActivity < ActiveRecord::Base
 
   delegate :total_experience, to: :activity
 
-  after_create :add_to_totals
-  after_destroy :subtract_from_totals
+  after_save :update_competition_win_condition
 
-  def add_to_totals
-    join_model = user.competition_joins.find_by(competition: competition)
-    join_model.total_experience += activity.total_experience
-    join_model.save
-    competition.set_rank
-  end
-
-  def subtract_from_totals
-    join_model = user.competition_joins.find_by(competition: competition)
-    join_model.total_experience -= activity.total_experience
-    join_model.save
-    competition.set_rank
+  def update_competition_win_condition
+    competition.compute_results
   end
 end

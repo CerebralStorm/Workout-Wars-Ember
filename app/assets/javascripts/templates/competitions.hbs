@@ -1,25 +1,24 @@
-<h3>Competitions</h3>
-<p>Competitions are the <strong>best way to get great results</strong>. They will motivate you to workout harder than you have ever been motivated before.</p>
-<p class="text-warning">There can be only one winner!</p>
-<br />
 <div class="row">
-  <div class="col-md-4">
-    {{#link-to "competitions.create" class="btn btn-lg btn-success btn-block"}}New Competition{{/link-to}}
-    <h4>Active Competitions</h4>
-    <ul class="nav">
-    {{#each controller}}
-      {{#unless isDirty}}
-      <li>
-        {{#link-to "competition" this}}{{name}}{{/link-to}}
-      </li>
-      {{/unless}}
-    {{else}}
-      <li>There are no competitions.</li>
-    {{/each}}
-    </ul>
+  <div class="col-md-3">
+    {{#link-to "competitions.create" class="btn btn-success btn-block"}}New Competition{{/link-to}}
+    <hr>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        {{#link-to 'competitions'}}<h3 class="panel-title">Active Competitions</h3>{{/link-to}}
+      </div>
+      <div class="list-group">
+        {{#each controller}}
+          {{#unless isDirty}}
+            {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
+          {{/unless}}
+        {{else}}
+          <a href="#" class="list-group-item">There are no competitions.</a>
+        {{/each}}
+      </div>
+    </div>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-9">
     {{outlet}}
   </div>
 </div>

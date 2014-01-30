@@ -3,18 +3,14 @@
   <button type="button" class="close" {{action close target="view"}}>&times;</button>
   <h3>Log Activity</h3>
 </div>
-{{#if isSuccess}}
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>Success</strong> Activity successfully created
-  </div>
-{{/if}}
+{{view WorkoutWars.ModalFlashView model=WorkoutWars.modalFlash}}
 <div class="modal-body">
   <div class="row">
-    <div class="form-group">
+    <div {{bind-attr class=":form-group errors.exercise:has-error:"}}>
       <label class= "col-sm-3 control-label">Exercise</label>
       <div class="col-sm-9">
         {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+        {{#if errors.exercise}}<span class="help-block">{{errors.exercise}}</span>{{/if}}
       </div>
     </div>
   </div>
@@ -72,7 +68,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <a href="#" class="btn" {{action close target="view"}}>Close</a>
+  <a href="#" class="btn" name="Close" {{action close target="view"}}>Close</a>
   <button class="btn btn-primary">Save changes</button>
 </div>
 </form>

@@ -1,16 +1,24 @@
 class Competition < ActiveRecord::Base
+  belongs_to :competition_win_condition
   has_many :competition_exercises, dependent: :destroy
   has_many :competition_activities, dependent: :destroy
   has_many :exercises, through: :competition_exercises
   has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins
-  belongs_to :creator, class_name: "User"
+  belongs_to :user
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
   validates_presence_of :end_date
-  validates_presence_of :creator
+  validates_presence_of :user
+  validates_presence_of :competition_win_condition
   validate :start_and_end_dates
+
+  after_save :compute_results, if: :finished? 
+
+  def compute_results
+    competition_win_condition.compute_results(self)
+  end
 
   def start_and_end_dates
     return unless start_date.present? && end_date.present?
@@ -28,12 +36,4 @@ class Competition < ActiveRecord::Base
     exercises.include?(exercise)
   end
 
-  def set_rank
-    ranked_users = users.sort_by{ |u| u.total_experience_for_competition(self)}.reverse
-    ranked_users.each_with_index do |user, index|
-      join_model = user.competition_joins.find_by(competition: self)
-      join_model.rank = index+1
-      join_model.save
-    end
-  end
 end

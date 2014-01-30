@@ -2,15 +2,19 @@ Given(/^I visit my profile page$/) do
   click_link "Profile"
 end
 
-When(/^I go to my activities$/) do
+When(/^I open log activity$/) do
+  click_link "Log Activity"
+end
+
+When(/^I go to my activities page$/) do
   click_link "Activities"
 end
 
-When(/^I add a new activity$/) do
-  click_link "New Activity"
+When(/^I add a new activity$/) do  
   select "Pushups", from: "Exercise Select"
   fill_in "Reps", with: 50 
   click_button "Save"
+  click_link "Close"
 end
 
 Then(/^I should see the new activity$/) do
@@ -20,6 +24,7 @@ Then(/^I should see the new activity$/) do
 end
 
 Then(/^I should see my experience for that activity$/) do
+  click_link "Profile"
   expect(page).to have_content "Experience: 50"
 end
 
@@ -36,11 +41,10 @@ end
 
 Then(/^I should see my score and rank updated$/) do
   expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total Experience: 50"
+  expect(page).to have_content "Total: 50"
 end
 
 When(/^I add a bad new activity$/) do
-  click_link "New Activity"
   select "Pushups", from: "Exercise Select"
   click_button "Save"
 end

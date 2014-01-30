@@ -1,5 +1,6 @@
 WorkoutWars.ApplicationRoute = Ember.Route.extend
   setupController: ->
+    @controllerFor('competitionWinConditions').set 'model', @store.find('competitionWinCondition')
     @controllerFor('exercises').set 'model', @store.find('exercise')
 
   actions: 
@@ -15,5 +16,5 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
         outlet: 'modal'
         parentView: 'application'
 
-    saveActivity: ->
-      alert('actions work like normal!')
+    clearModalFlash: ->
+      WorkoutWars.get("modalFlash").clear()

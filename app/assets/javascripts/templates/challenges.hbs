@@ -1,25 +1,24 @@
-<h3>Challenges</h3>
-<p>Challenges are a great way for you to <strong>compete against yourself</strong> as well as others. They will motivate you to be the best you can be.</p>
-<p class="text-warning">Bring the pain!</p>
-<hr>
 <div class="row">
-  <div class="col-md-4">
-    {{#link-to "challenges.create" class="btn btn-lg btn-success btn-block"}}New Challenge{{/link-to}}
-    <h4>Active Challenges</h4>
-    <ul class="nav">
-    {{#each controller}}
-      {{#unless isDirty}}
-      <li>
-        {{#link-to "challenge" this}}{{name}}{{/link-to}}
-      </li>
-      {{/unless}}
-    {{else}}
-      <li>There are no challenges.</li>
-    {{/each}}
-    </ul>
+  <div class="col-md-3">
+    {{#link-to "challenges.create" class="btn btn-success btn-block"}}New Challenge{{/link-to}}
+    <hr>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        {{#link-to 'challenges'}}<h3 class="panel-title">Active Challenges</h3>{{/link-to}}
+      </div>
+      <div class="list-group">
+        {{#each controller}}
+          {{#unless isDirty}}
+            {{#link-to "challenge" this class="list-group-item"}}{{name}}{{/link-to}}
+          {{/unless}}
+        {{else}}
+          <a href="#" class="list-group-item">There are no challenges.</a>
+        {{/each}}
+      </div>
+    </div>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-9">
     {{outlet}}
   </div>
 </div>
