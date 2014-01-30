@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   
   def create_competition_activities(activity)
-    competitions.each do |competition|
-      if competition.started? && competition.has_exercise?(activity.exercise)
+    competitions.where(finished: false).where(started: true).each do |competition|
+      if competition.has_exercise?(activity.exercise)
         competition.competition_activities.create!(activity_id: activity.id, user_id: self.id)
       end
     end
