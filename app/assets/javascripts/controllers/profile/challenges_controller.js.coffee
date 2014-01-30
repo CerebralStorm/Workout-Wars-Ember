@@ -1,0 +1,1 @@
+WorkoutWars.ProfileChallengesController = Ember.ArrayController.extend()

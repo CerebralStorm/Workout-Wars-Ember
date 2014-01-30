@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col-md-3">
-    <div class="panel panel-primary">
+    {{#link-to "challenges.create" class="btn btn-success btn-block"}}New Challenge{{/link-to}}
+    <hr>
+    <div class="panel panel-danger">
       <div class="panel-heading">
         {{#link-to 'challenges'}}<h3 class="panel-title">Active Challenges</h3>{{/link-to}}
       </div>
-      {{#link-to "challenges.create" class="btn btn-success btn-block"}}New Challenge{{/link-to}}
       <div class="list-group">
         {{#each controller}}
           {{#unless isDirty}}

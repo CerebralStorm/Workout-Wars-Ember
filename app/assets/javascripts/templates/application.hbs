@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#link-to "index" classNames="navbar-brand"}}<img src="/assets/ww-logo-large.png" height="22"></img> {{/link-to}}
+      {{#link-to "index" classNames="navbar-brand"}}<img src="/assets/ww-gray.png" height="22"></img> {{/link-to}}
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-          {{#link-to "profile" currentUser}}
+          {{#link-to "profile" currentUser name="My Profile"}}
             <span class="badge"><span class="glyphicon glyphicon-user"></span></span>
-            Profile
+            My Profile
           {{/link-to}}
         </li>
         <li>
@@ -37,7 +37,7 @@
           {{/link-to}}
         </li>   
         <li>
-          <a href="#" {{action logActivity}}>
+          <a href="#" {{action logActivity}} name="Log Activity">
             <span class="badge"><span class="glyphicon glyphicon-certificate"></span></span>
             Log Activity
           </a>
@@ -75,9 +75,10 @@
 </div> <!-- /container -->
 
 <!-- FOOTER -->
-<footer>
-  <nav class="navbar navbar-default navbar-bottom" role="navigation">
-    <br />
-    <p class="text-center">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </nav>
-</footer>
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+  <br />
+  <footer>
+    <p class="text-center text-primary">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+  <br />
+</nav>

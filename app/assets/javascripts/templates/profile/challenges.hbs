@@ -1,1 +1,12 @@
-<h3>Challenges</h3>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Challenges</h3>
+  </div>
+  <ul class="nav">
+    {{#each challenge in controller}}
+      <li>{{#link-to "challenge" challenge}}{{challenge.name}}{{/link-to}}</li>
+    {{else}}
+      <li><a href="#">You haven't attempted any challenges yet</a></li>
+    {{/each}}
+  </ul>
+</div>

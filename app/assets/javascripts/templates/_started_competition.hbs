@@ -1,39 +1,61 @@
-  {{!-- Started Template --}}
-  <div class="row">
-    <div class="col-md-6">
-      <h4>Information</h4>
-      <p>Creator: {{user.email}}</p>
-      <p>Start Date: {{date startDate}}</p>
-      <p>End Date: {{date endDate}}</p>
-      <p>Max Participants: {{numOfParticipants}}</p>
-      <p>Currently registered: {{numberOfUsers}}</p>
-      {{#if isPrivate}}
-        <p>This is a private competition</p>
-      {{else}}
-        <p>This is a public competition</p>
-      {{/if}}
-      <p>Active: {{active}}</p>
-      <p>Reward: {{reward}}</p>
-      <br />
-    </div>
-
-    <div class="col-md-6">
-      <h4>Exercises</h4>
-      {{#each compExercise in controller.model.competitionExercises}}
-        <ul class="list-group">
-          <li class="list-group-item"> {{compExercise.exercise.name}} </li>
-        </ul>
-      {{/each}}
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
+      <table class="table">
+        <tr>
+          <td><strong>Creator</strong></td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td><strong>Start Date</strong></td>
+          <td>{{date startDate}}</td>
+        </tr>
+        <tr>
+          <td><strong>End Date</strong></td>
+          <td>{{date endDate}}</td>
+        </tr>
+        <tr>
+          <td><strong>Max players</strong></td>
+          <td>{{numOfParticipants}}</td>
+        </tr>
+        <tr>
+          <td><strong># of players</strong></td>
+          <td>{{numberOfUsers}}</td>
+        </tr>            
+        <tr>
+          <td><strong>Visability</strong></td>
+          <td>{{#if isPrivate}}Private{{else}}Public{{/if}}</td>
+        </tr> 
+        <tr>
+          <td><strong>Description</strong></td>
+          <td><p>{{description}}</p></td>
+        </tr>            
+      </table>        
     </div>
   </div>
-  <hr>
-  <h3>{{name}} Ranking</h3>
-  {{#each controller.competitionJoins}}  
-    <ul class="list-group">
+    
+  <div class="col-md-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div>
+      <ul class="list-group">      
+        {{#each compExercise in controller.competitionExercises}}
+          <li class="list-group-item">{{compExercise.exercise.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div> 
+</div>
+
+<div class="panel panel-danger">
+  <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
+  <ul class="list-group">      
+    {{#each compJoin in controller.competitionJoins}}
       <li class="list-group-item">
-        {{#if rank}}<h4>Rank: {{rank}}</h4>{{/if}}
-        <h5>User: {{this.user.email}}</h5>
-        <h5>Total: {{total}}</h5>          
+        {{#if rank}}<h4>Rank: {{compJoin.rank}}</h4>{{/if}}
+        <h5>User: {{compJoin.user.email}}</h5>
+        <h5>Total: {{compJoin.total}}</h5>   
       </li>
-  {{/each}}
-  {{!-- End Started Template --}}
+    {{/each}}
+  </ul>
+</div>

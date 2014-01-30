@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-4">
-    <div class="panel panel-primary">
+    <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
-      <ul class="list-group">
+      <ul id="recent_activity" class="list-group">
         {{#each controller}}
           <li class="list-group-item">{{#link-to "activity" this}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}</li>
         {{/each}}

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8">
       {{outlet}}
-      <div class="panel panel-warning">
+      <div class="panel panel-danger">
         <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
         <table class="table">
           <tr>
@@ -37,7 +37,7 @@
       </div>
     </div>    
     <div class="col-md-4">
-      <div class="panel panel-warning">
+      <div class="panel panel-danger">
         <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
         <div class="panel-body">
           <ul class="list-group">
@@ -64,24 +64,25 @@
 {{/if}}
 <div class="row">
   <div class="col-sm-8">
-    <div class="panel panel-primary">
+    <div class="panel panel-danger">
       <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div> 
         <div class="panel-body">
           <div class="row">
             <div class="col-md-3">
-              <button class="btn btn-success" {{ action "addExercise" }}>Add Exercise</button>
+              <button class="btn btn-danger" {{ action "addExercise" }}>Add Exercise</button>
             </div>
 
             <div class="col-md-9">
               {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
             </div>  
+          </div>
         </div>
         <br />
         <table class="table">     
           {{#each compExercise in controller.model.competitionExercises}}        
             <tr>
               <td>
-                <strong>{{compExercise.exercise.name}}</span>
+                <strong>{{compExercise.exercise.name}}</strong>
                 {{#if hasPermission}}
                   <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
                 {{/if}}
@@ -99,7 +100,7 @@
 
 
   <div class="col-md-4">
-    <div class="panel panel-primary">
+    <div class="panel panel-danger">
       <div class="panel-heading"><h3 class="panel-title">Users</h3></div>
       <ul class="list-group">      
         {{#each compJoin in controller.competitionJoins}}
