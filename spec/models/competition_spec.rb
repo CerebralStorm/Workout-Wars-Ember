@@ -56,36 +56,6 @@ describe Competition do
     end
   end
 
-  context ".methods" do 
-    describe ".start_competitions" do 
-      it "should start competitions whose start time is before now" do 
-        FactoryGirl.create(:competition, start_date: 1.day.ago)
-        Competition.start_competitions
-        expect(Competition.last.started).to eq true
-      end
-
-      it "should not start competitions whose start time is later than now" do 
-        FactoryGirl.create(:competition, start_date: 1.hour.from_now)
-        Competition.start_competitions
-        expect(Competition.last.started).to eq false
-      end
-    end
-
-     describe ".finish_competitions" do 
-      it "should not finish competitions whose finish time is after now" do 
-        FactoryGirl.create(:competition, start_date: Time.now, end_date: 1.hour.from_now)        
-        Competition.finish_competitions
-        expect(Competition.last.finished).to eq false
-      end
-
-      it "should finish competitions whose finish time is later than now" do 
-        FactoryGirl.create(:competition, start_date: 2.hours.ago, end_date: 1.hour.ago).save(validate: false)
-        Competition.finish_competitions
-        expect(Competition.last.finished).to eq true
-      end
-    end
-  end
-
   context "#methods" do 
     describe 'number_of_participants' do 
       it "should return the number of users for the competition" do 

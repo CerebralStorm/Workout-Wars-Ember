@@ -1,16 +1,18 @@
 namespace :ww do
   namespace :competitions do
     desc "Start competitions that start today"
-    task :start_competitions => :environment do
-      Competition.where('start_date <= ?', Date.today).each do |competition|
-        competition.update_attributes(started: true)
+    task :start => :environment do
+      Competition.where("(?) > start_date", Time.now).each do |competition|
+        competition.started = true
+        competition.save!
       end
     end
 
     desc "Start competitions that start today"
-    task :finish_competitions => :environment do
-      Competition.where('end_date < ?', Date.today).each do |competition|
-        competition.update_attributes(finished: true)
+    task :finish => :environment do
+      Competition.where('end_date < (?)', Time.now).each do |competition|
+        competition.finished = true
+        competition.save!
       end
     end
   end
