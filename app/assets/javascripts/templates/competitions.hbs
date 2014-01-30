@@ -2,7 +2,7 @@
   <div class="col-md-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Active Competitions</h3>
+        {{#link-to 'competitions'}}<h3 class="panel-title">Active Competitions</h3>{{/link-to}}
       </div>
       {{#link-to "competitions.create" class="btn btn-success btn-block"}}New Competition{{/link-to}}
       <div class="list-group">

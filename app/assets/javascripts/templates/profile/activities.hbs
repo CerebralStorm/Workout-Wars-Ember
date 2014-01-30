@@ -1,7 +1,10 @@
-<h3>Activities</h3>
-
-<ul class="nav nav-pills">
-  {{#each controller}}
-    <li>{{#link-to "activity" this}}Activity{{/link-to}}</li>
-  {{/each}}
-</ul>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Activities</h3>
+  </div>
+  <ul class="list-group">
+    {{#each controller}}
+      <li class="list-group-item">{{#link-to "activity" this}}Activity{{/link-to}}</li>
+    {{/each}}
+  </ul>
+</div>
