@@ -1,0 +1,7 @@
+<h3>Activities</h3>
+
+<ul class="nav nav-pills">
+  {{#each controller}}
+    <li>{{#link-to "activity" this}}Activity{{/link-to}}</li>
+  {{/each}}
+</ul>

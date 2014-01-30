@@ -1,0 +1,170 @@
+<h2>{{name}}</h2>
+<hr>
+{{#if started}}
+  {{!-- Started Template --}}
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Information</h4>
+      <p>Creator: {{user.email}}</p>
+      <p>Start Date: {{date startDate}}</p>
+      <p>End Date: {{date endDate}}</p>
+      <p>Max Participants: {{numOfParticipants}}</p>
+      <p>Currently registered: {{numberOfUsers}}</p>
+      {{#if isPrivate}}
+        <p>This is a private competition</p>
+      {{else}}
+        <p>This is a public competition</p>
+      {{/if}}
+      <p>Active: {{active}}</p>
+      <p>Reward: {{reward}}</p>
+      <br />
+    </div>
+
+    <div class="col-md-6">
+      <h4>Exercises</h4>
+      {{#each compExercise in controller.model.competitionExercises}}
+        <ul class="list-group">
+          <li class="list-group-item"> {{compExercise.exercise.name}} </li>
+        </ul>
+      {{/each}}
+    </div>
+  </div>
+  <hr>
+  <h3>{{name}} Ranking</h3>
+  {{#each controller.competitionJoins}}  
+    <ul class="list-group">
+      <li class="list-group-item">
+        {{#if rank}}<h4>Rank: {{rank}}</h4>{{/if}}
+        <h5>User: {{this.user.email}}</h5>
+        <h5>Total: {{total}}</h5>          
+      </li>
+  {{/each}}
+  {{!-- End Started Template --}}
+{{else}}
+  {{!-- Not Started Template --}} 
+  {{#if hasPermission}}
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-warning">
+          <div class="panel-heading">Information</div>
+          <table class="table">
+            <tr>
+              <td><span class="label label-default">Creator</span></td>
+              <td>{{user.email}}</td>
+            </tr>
+            <tr>
+              <td><span class="label label-default">Start Date</span></td>
+              <td>{{date startDate}}</td>
+            </tr>
+            <tr>
+              <td><span class="label label-default">End Date</span></td>
+              <td>{{date endDate}}</td>
+            </tr>
+            <tr>
+              <td><span class="label label-default">Max players</span></td>
+              <td>{{numOfParticipants}}</td>
+            </tr>
+            <tr>
+              <td><span class="label label-default"># of players</span></td>
+              <td>{{numberOfUsers}}</td>
+            </tr>            
+            <tr>
+              <td><span class="label label-default">Visability</span></td>
+              <td>{{#if isPrivate}}Private{{else}}Public{{/if}}</td>
+            </tr> 
+            <tr>
+              <td><span class="label label-default">Description</span></td>
+              <td><p>{{description}}</p></td>
+            </tr>            
+          </table>        
+        </div>
+      </div>    
+      <div class="col-md-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">Actions</div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                {{#if isJoined}}
+                  <button class="btn btn-danger btn-block"{{action "leave"}}>Leave this competition</button>
+                {{else}}
+                  {{#if canJoin}}
+                    <button class="btn btn-success btn-block"{{action "join"}}>Join this competition</button>
+                  {{/if}}
+                {{/if}} 
+              </li>
+              <li class="list-group-item">
+                {{#link-to "competition.edit" this class="btn btn-info btn-block" name="Edit Competition"}}Edit{{/link-to}}
+              </li>
+              <li class="list-group-item">
+                <a href="#" class="btn btn-danger btn-block" name="Delete Competition" {{action delete this}}>Delete</a>
+              </li>
+            </ul>            
+          </div>
+        </div>
+      </div>
+    </div>
+  {{outlet}}
+  {{/if}}
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Exercises</div> 
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <button class="btn btn-success" {{ action "addExercise" }}>Add Exercise</button>
+              </div>
+
+              <div class="col-md-9">
+                {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+              </div>  
+          </div>
+          <br />
+          <table class="table">     
+            {{#each compExercise in controller.model.competitionExercises}}        
+              <tr>
+                <td>
+                  <span class="label label-default">{{compExercise.exercise.name}}</span>
+                  {{#if hasPermission}}
+                    <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right">Remove</button>
+                  {{/if}}
+                </td>
+              </tr>        
+            {{else}}
+              <tr>
+                <td>No exercises have been added to this competition.</td>
+              </tr>
+            {{/each}}
+          </table>
+        </div> 
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Users</div>
+        <ul class="list-group">      
+          {{#each compJoin in controller.competitionJoins}}
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-8">
+                  {{compJoin.user.email}}
+                </div>
+                <div class="col-md-4">
+                  {{#if hasPermission}}
+                    <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right">Remove</button>
+                  {{/if}}
+                </div>
+              </div>
+            </li>
+          {{else}}
+            <li class="list-group-item">None currently registered</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>    
+  </div>
+  {{!-- End Not Started Template --}}
+{{/if}}

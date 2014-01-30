@@ -1,12 +1,10 @@
 <div class="row">
   <div class="col-md-3">
-    <hr>
-    {{#link-to "competitions.create" class="btn btn-success btn-block"}}New Competition{{/link-to}}
-    <hr>
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Active Competitions</h3>
       </div>
+      {{#link-to "competitions.create" class="btn btn-success btn-block"}}New Competition{{/link-to}}
       <div class="list-group">
         {{#each controller}}
           {{#unless isDirty}}
