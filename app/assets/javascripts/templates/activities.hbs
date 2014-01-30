@@ -4,11 +4,11 @@
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
-      <ul id="recent_activity" class="list-group">
+      <div id="recent_activity" class="list-group">
         {{#each controller}}
-          <li class="list-group-item">{{#link-to "activity" this}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}</li>
+          {{#link-to "activity" this class="list-group-item"}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}
         {{/each}}
-      </ul>
+      </div>
     </div>
   </div>
 

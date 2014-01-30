@@ -13,9 +13,3 @@
  *= require custom
  *= require_tree .
  */
-
-.active{
-  background-color: #4f555d;
-}
-
-
