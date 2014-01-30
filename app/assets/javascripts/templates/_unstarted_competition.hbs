@@ -1,0 +1,124 @@
+{{#if hasPermission}}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
+        <table class="table">
+          <tr>
+            <td><strong>Creator</strong></td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <td><strong>Start Date</strong></td>
+            <td>{{date startDate}}</td>
+          </tr>
+          <tr>
+            <td><strong>End Date</strong></td>
+            <td>{{date endDate}}</td>
+          </tr>
+          <tr>
+            <td><strong>Max players</strong></td>
+            <td>{{numOfParticipants}}</td>
+          </tr>
+          <tr>
+            <td><strong># of players</strong></td>
+            <td>{{numberOfUsers}}</td>
+          </tr>            
+          <tr>
+            <td><strong>Visability</strong></td>
+            <td>{{#if isPrivate}}Private{{else}}Public{{/if}}</td>
+          </tr> 
+          <tr>
+            <td><strong>Description</strong></td>
+            <td><p>{{description}}</p></td>
+          </tr>            
+        </table>        
+      </div>
+    </div>    
+    <div class="col-md-4">
+      <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              {{#if isJoined}}
+                <button class="btn btn-primary btn-block"{{action "leave"}}>Leave</button>
+              {{else}}
+                {{#if canJoin}}
+                  <button class="btn btn-primary btn-block"{{action "join"}}>Join</button>
+                {{/if}}
+              {{/if}} 
+            </li>
+            <li class="list-group-item">
+              {{#link-to "competition.edit" this class="btn btn-primary btn-block" name="Edit Competition"}}Edit{{/link-to}}
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="btn btn-primary btn-block" name="Delete Competition" {{action delete this}}>Delete</a>
+            </li>
+          </ul>            
+        </div>
+      </div>
+    </div>
+  </div>
+{{outlet}}
+{{/if}}
+<div class="row">
+  <div class="col-sm-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div> 
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3">
+              <button class="btn btn-success" {{ action "addExercise" }}>Add Exercise</button>
+            </div>
+
+            <div class="col-md-9">
+              {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+            </div>  
+        </div>
+        <br />
+        <table class="table">     
+          {{#each compExercise in controller.model.competitionExercises}}        
+            <tr>
+              <td>
+                <strong>{{compExercise.exercise.name}}</span>
+                {{#if hasPermission}}
+                  <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                {{/if}}
+              </td>
+            </tr>        
+          {{else}}
+            <tr>
+              <td>No exercises have been added to this competition.</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div> 
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Users</h3></div>
+      <ul class="list-group">      
+        {{#each compJoin in controller.competitionJoins}}
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-8">
+                {{compJoin.user.email}}
+              </div>
+              <div class="col-md-4">
+                {{#if hasPermission}}
+                  <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                {{/if}}
+              </div>
+            </div>
+          </li>
+        {{else}}
+          <li class="list-group-item">None currently registered</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>    
+</div>
