@@ -12,7 +12,7 @@ class Competition < ActiveRecord::Base
   validates_presence_of :end_date
   validates_presence_of :user
   validates_presence_of :competition_win_condition
-  validate :start_and_end_dates
+  validate :start_and_end_dates, if: :new_record?
 
   after_save :compute_results, if: :finished? 
 

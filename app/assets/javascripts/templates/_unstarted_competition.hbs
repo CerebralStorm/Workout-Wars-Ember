@@ -43,18 +43,18 @@
           <ul class="list-group">
             <li class="list-group-item">
               {{#if isJoined}}
-                <button class="btn btn-primary btn-block"{{action "leave"}}>Leave</button>
+                <button class="btn btn-default btn-block"{{action "leave"}}>Leave</button>
               {{else}}
                 {{#if canJoin}}
-                  <button class="btn btn-primary btn-block"{{action "join"}}>Join</button>
+                  <button class="btn btn-default btn-block"{{action "join"}}>Join</button>
                 {{/if}}
               {{/if}} 
             </li>
             <li class="list-group-item">
-              {{#link-to "competition.edit" this class="btn btn-primary btn-block" name="Edit Competition"}}Edit{{/link-to}}
+              {{#link-to "competition.edit" this class="btn btn-default btn-block" name="Edit Competition"}}Edit{{/link-to}}
             </li>
             <li class="list-group-item">
-              <a href="#" class="btn btn-primary btn-block" name="Delete Competition" {{action delete this}}>Delete</a>
+              <a href="#" class="btn btn-default btn-block" name="Delete Competition" {{action delete this}}>Delete</a>
             </li>
           </ul>            
         </div>
@@ -76,24 +76,24 @@
               {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
             </div>  
           </div>
+          <br />
+          <table class="table">     
+            {{#each compExercise in controller.model.competitionExercises}}        
+              <tr>
+                <td>
+                  <strong>{{compExercise.exercise.name}}</strong>
+                  {{#if hasPermission}}
+                    <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                  {{/if}}
+                </td>
+              </tr>        
+            {{else}}
+              <tr>
+                <td>No exercises have been added to this competition.</td>
+              </tr>
+            {{/each}}
+          </table>
         </div>
-        <br />
-        <table class="table">     
-          {{#each compExercise in controller.model.competitionExercises}}        
-            <tr>
-              <td>
-                <strong>{{compExercise.exercise.name}}</strong>
-                {{#if hasPermission}}
-                  <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
-                {{/if}}
-              </td>
-            </tr>        
-          {{else}}
-            <tr>
-              <td>No exercises have been added to this competition.</td>
-            </tr>
-          {{/each}}
-        </table>
       </div> 
     </div>
   </div>
@@ -120,6 +120,6 @@
           <li class="list-group-item">None currently registered</li>
         {{/each}}
       </ul>
-    </div>
-  </div>    
+    </div>    
+  </div>
 </div>

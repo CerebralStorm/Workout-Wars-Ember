@@ -1,21 +1,47 @@
-<button class="btn btn-danger"{{action "delete"}}>Delete</button>
-<button class="btn btn-default"{{action "edit"}}>Edit</button>
 
-{{#if deleteMode}}
-<div class="confirm-box">
-  <h4>Are you sure?</h4>
-  <button class="btn btn-danger"{{action "confirmDelete"}}> Yes </button>
-  <button class="btn btn-default"{{action "cancelDelete"}}> No </button>
-</div>
-{{/if}}
-
-<h2>Name: {{name}}</h2>
-
-<p>Description: {{description}}</p>
-<p>Start Date: {{startDate}}</p>
-<p>End Date: {{endDate}}</p>
-<p>Max Participants: {{maxParticipants}}</p>
-<p>Lower Level Restriction: {{lowerLevelRestriction}}</p>
-<p>Upper Level Restriction: {{upperLevelRestriction}}</p>
-<br />
 {{outlet}}
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
+      <table class="table">
+        <tr>
+          <td><strong>Name</strong></td>
+          <td>{{name}}</td>
+        </tr>
+        <tr>
+          <td><strong>Description</strong></td>
+          <td>{{description}}</td>
+        </tr>
+        <tr>
+          <td><strong>Start Date</strong></td>
+          <td>{{date startDate}}</td>
+        </tr>
+        <tr>
+          <td><strong>End Date</strong></td>
+          <td>{{date endDate}}</td>
+        </tr>                      
+      </table>        
+    </div>
+  </div>
+    
+  <div class="col-md-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
+      <ul class="list-group">      
+        <li class="list-group-item"><button class="btn btn-default btn-block"{{action "delete"}}>Delete</button></li>
+        <li class="list-group-item"><button class="btn btn-default btn-block"{{action "edit"}}>Edit</button></li>
+      </ul>
+    </div>
+  </div> 
+</div>
+
+<div class="panel panel-danger">
+  <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
+  <ul class="list-group">      
+      <li class="list-group-item">
+        <h1>Coming soon!</h1>   
+      </li>
+  </ul>
+</div>
