@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
+  serialization_scope :current_user
 
   before_filter :authenticate_user!, unless: :using_static_controller
 

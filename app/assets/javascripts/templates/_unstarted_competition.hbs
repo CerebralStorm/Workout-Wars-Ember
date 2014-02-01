@@ -55,7 +55,7 @@
               {{/if}}
             {{/if}} 
           </li>
-          {{#if hasPermission}}
+          {{#if canUpdate}}
           <li class="list-group-item">
             {{#link-to "competition.edit" this class="btn btn-default btn-block" name="Edit Competition"}}Edit{{/link-to}}
           </li>
@@ -75,7 +75,7 @@
     <div class="panel panel-danger">
       <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div> 
       <div class="panel-body">
-      {{#if hasPermission}}
+      {{#if canUpdate}}
         {{#unless controller.model.competitionExercises}}
         <div class="row">
           <div class="col-md-3">
@@ -93,7 +93,7 @@
         {{#each compExercise in controller.model.competitionExercises}}        
           <li class="list-group-item">
             <strong>{{compExercise.exercise.name}}</strong>
-            {{#if hasPermission}}
+            {{#if canUpdate}}
               <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
             {{/if}}
           </li>       
@@ -117,7 +117,7 @@
                   {{compJoin.user.email}}
                 </div>
                 <div class="col-md-4">
-                  {{#if hasPermission}}
+                  {{#if canUpdate}}
                     <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
                   {{/if}}
                 </div>

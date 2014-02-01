@@ -1,4 +1,4 @@
 WorkoutWars.CompetitionExercise = DS.Model.extend
-  competition: DS.belongsTo('competition') 
-  exercise: DS.belongsTo('exercise')
+  competition: DS.belongsTo('competition', { async: true }) 
+  exercise: DS.belongsTo('exercise', { async: true })
 

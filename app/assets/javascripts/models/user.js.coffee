@@ -16,5 +16,7 @@ WorkoutWars.User = DS.Model.extend
   experience: DS.attr('number')
   nextLevelExperience: DS.attr('number')
   previousLevelExperience: DS.attr('number')
+  canUpdate: DS.attr('boolean')
+  canDelete: DS.attr('boolean')
 
  
