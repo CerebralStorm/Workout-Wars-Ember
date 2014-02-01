@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   serialization_scope :current_user
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to "/", alert: exception.message
+  end
+
   before_filter :authenticate_user!, unless: :using_static_controller
 
   def using_static_controller

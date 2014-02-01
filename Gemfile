@@ -14,6 +14,7 @@ gem 'ember-data-source'
 gem "foreman"
 gem 'devise', '~> 3.0.2'
 gem 'cancan'
+gem 'rails_admin'
 
 group :production do
   gem 'newrelic_rpm'
