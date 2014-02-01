@@ -1,5 +1,5 @@
 WorkoutWars.Challenge = DS.Model.extend
-  exercises: DS.hasMany('exercise', { embedded: true }) 
+  exercises: DS.hasMany('exercise', { embedded: 'load' }) 
   name: DS.attr('string')
   description: DS.attr('string')
   startDate: DS.attr('date')

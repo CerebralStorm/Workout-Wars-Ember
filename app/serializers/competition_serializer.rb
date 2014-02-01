@@ -3,7 +3,7 @@ class CompetitionSerializer < ActiveModel::Serializer
              :upper_level_restriction, :started, :finished, :is_private, :description, 
              :can_update, :can_delete
 
-  embed :ids
+  embed :ids, include: true
   
   has_many :competition_exercises
   has_many :competition_activities

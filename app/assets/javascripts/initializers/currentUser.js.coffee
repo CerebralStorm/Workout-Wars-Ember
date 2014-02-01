@@ -3,10 +3,9 @@ Ember.Application.initializer
 
   initialize: (container) ->
     store = container.lookup('store:main')
-    attributes = $('meta[name="current-user"]').attr('content')
-
-    if attributes
-      user_attributes = JSON.parse(attributes)
-      store.find('user', user_attributes.id).then (user) =>
+    id = $('meta[name="current-user"]').attr('content')
+    if id
+      id = JSON.parse(id)
+      store.find('user', id).then (user) =>
         controller = container.lookup('controller:currentUser').set('content', user)
         container.typeInjection('controller', 'currentUser', 'controller:currentUser')

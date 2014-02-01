@@ -1,6 +1,6 @@
 WorkoutWars.ApplicationController = Ember.ObjectController.extend
-  needs: ['exercises']
-  currentUser: null
+  needs: ['exercises', 'currentUser']
+  currentUser: Ember.computed.alias('controllers.currentUser.content')
   selectedExercise: null
 
   exercises: (->
@@ -53,10 +53,3 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
         console.log response
         @set('errors', @get('content.errors'))
       activity.save().then success, failure
-
-  init: ->
-    raw_attributes = $('meta[name="current-user"]').attr('content')
-    if raw_attributes 
-      attributes = JSON.parse(raw_attributes)
-      @store.find("user", attributes.id).then (user) =>
-        @set('currentUser', user)

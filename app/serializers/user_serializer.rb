@@ -2,9 +2,9 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :nickname, :email, :gender, :address, :phone, :weight, :height, 
              :age, :admin, :provider, :uid, :level, :experience, :next_level_experience, :can_update, :can_delete
 
-  embed :ids
+  embed :ids, include: true
   
-  has_many :activities
+  has_many :activities, include: true
   
   has_many :competition_activities
   has_many :competition_joins

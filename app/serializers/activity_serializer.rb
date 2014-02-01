@@ -1,7 +1,7 @@
 class ActivitySerializer < ActiveModel::Serializer
   attributes :id, :exercise_id, :user_id, :reps, :weight, :duration, :calories, :distance, :created_at, :updated_at
 
-  embed :ids
+  embed :ids, include: true
   
   has_one :user
   has_one :exercise
