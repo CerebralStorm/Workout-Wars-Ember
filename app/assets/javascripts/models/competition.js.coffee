@@ -13,6 +13,7 @@ WorkoutWars.Competition = DS.Model.extend
   lowerLevelRestriction: DS.attr('number')
   upperLevelRestriction: DS.attr('string')
   started: DS.attr('boolean')
+  finished: DS.attr('boolean')
   isPrivate: DS.attr('boolean')
 
   numOfParticipants: (->
@@ -22,4 +23,13 @@ WorkoutWars.Competition = DS.Model.extend
   numberOfUsers: (->
     @get('competitionJoins').get('length')
   ).property('competitionJoins.@each')
+
+  status: (->
+    if @get('finished')
+      'finished'
+    else if @get('started')
+      'started'
+    else
+      'unstarted'
+  ).property()
 

@@ -22,6 +22,10 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       true
   ).property('model.competitionJoins.@each')
 
+  currentPartial: (->
+    "#{@get('model.status')}_competition"
+  ).property('model')
+
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
