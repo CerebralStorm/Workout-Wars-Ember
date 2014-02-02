@@ -60,7 +60,7 @@ Then(/^I should see the new exercise$/) do
 end
 
 Then(/^I should see the edit and delete button$/) do
-  expect(page).to_not have_selector "a[name='Edit Competition']"
+  expect(page).to_not have_selector "#edit_competition"
   expect(page).to_not have_selector "a[name='Delete Competition']"
 end
 

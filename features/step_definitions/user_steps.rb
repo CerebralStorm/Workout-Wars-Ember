@@ -60,6 +60,7 @@ When(/^I fill out the form and submit$/) do
 end
 
 When(/^I go to the settings page$/) do
+  click_link "My Profile"
   click_link "Settings"
 end
 

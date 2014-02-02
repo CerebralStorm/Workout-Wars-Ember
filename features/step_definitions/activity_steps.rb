@@ -40,6 +40,8 @@ Then(/^select my competition$/) do
 end
 
 Then(/^I should see my score and rank updated$/) do
+  visit "/"
+  visit "/#/competitions/#{Competition.last.id}"
   expect(page).to have_content "Rank: 1"
   expect(page).to have_content "Total: 50"
 end
