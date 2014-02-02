@@ -10,6 +10,7 @@ class CompetitionActivity < ActiveRecord::Base
   delegate :total_experience, to: :activity
 
   after_save :update_competition_win_condition
+  after_destroy :update_competition_win_condition
 
   def update_competition_win_condition
     competition.compute_results

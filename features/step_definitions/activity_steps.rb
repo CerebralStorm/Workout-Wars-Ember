@@ -54,3 +54,41 @@ end
 Then(/^I should see the error messages$/) do
   expect(page).to have_content "Please enter reps for this activity."
 end
+
+When(/^I add an activity that is not in this competition$/) do
+  sleep 0.2
+  click_link "Log Activity"
+  select "Pullups", from: "Exercise Select"
+  fill_in "Reps", with: 50 
+  click_button "Save"
+  click_link "Close"
+end
+
+When(/^I add another activity$/) do
+  click_link "Log Activity"
+  select "Pushups", from: "Exercise Select"
+  fill_in "Reps", with: 50 
+  click_button "Save"
+  click_link "Close"
+end
+
+Then(/^I should see my score and rank updated again$/) do
+  visit "/"
+  visit "/#/competitions/#{Competition.last.id}"
+  expect(page).to have_content "Rank: 1"
+  expect(page).to have_content "Total: 100"
+end
+
+When(/^I delete all of my activities$/) do
+  click_link "Profile"
+  click_link "Activities"
+  Activity.all.each do |activity|
+    click_link activity.id
+    click_link "Delete"
+    page.driver.browser.switch_to.alert.accept
+  end
+end
+
+Then(/^my score should be (\d+)$/) do |total|
+  expect(page).to have_content "Total: #{total}"
+end

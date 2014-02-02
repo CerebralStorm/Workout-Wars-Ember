@@ -6,7 +6,7 @@
       </div>
       <div id="recent_activity" class="list-group">
         {{#each controller}}
-          {{#link-to "activity" this class="list-group-item"}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}
+          {{#link-to "activity" this id=this.id class="list-group-item"}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}
         {{/each}}
       </div>
     </div>

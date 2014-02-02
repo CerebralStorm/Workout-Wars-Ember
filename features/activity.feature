@@ -23,7 +23,7 @@ Feature: Activity
     # Then I should see the new activity
 
   @javascript
-  Scenario: log an activity for a competition
+  Scenario: create/delete an activity for a competition
     And I visit the competitions page
     When I fill out the competition with valid data
     And I save it
@@ -32,6 +32,13 @@ Feature: Activity
     And I visit my profile page
     When I open log activity
     And I add a new activity
+    And I add an activity that is not in this competition
     And I visit the competitions page
     And select my competition
     Then I should see my score and rank updated
+    When I add another activity
+    Then I should see my score and rank updated again
+    When I delete all of my activities
+    And I visit the competitions page
+    And select my competition
+    Then my score should be 0
