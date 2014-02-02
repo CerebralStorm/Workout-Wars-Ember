@@ -13,3 +13,12 @@
 $ ->
   if $('#EmberStart').length > 0
     WorkoutWars.advanceReadiness();
+
+  if $('#user_agree_to_terms').length > 0
+    console.log $('#sign_up_form_button')
+    $('#sign_up_form_button').attr("disabled", "disabled")
+    $('#user_agree_to_terms').click ->
+      if $('#user_agree_to_terms').is(":checked")
+        $('#sign_up_form_button').attr("disabled", false) 
+      else
+        $('#sign_up_form_button').attr("disabled", "disabled")

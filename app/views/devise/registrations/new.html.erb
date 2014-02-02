@@ -39,11 +39,60 @@
   </div>
 
   <br />
+  <div class="row">
+    <div class="terms col-sm-9 col-sm-offset-3">
+      <h4 class="text-center">– PRIVACY POLICY –</h4>
+      <P>This privacy notice discloses the privacy practices for (www.Workout-Wars.com). This privacy notice applies solely to information collected by this web site. It will notify you of the following:</p>
+      
+      <ul>
+        <li>What personally identifiable information is collected from you through the web site, how it is used and with whom it may be shared</li>
+        <li>What choices are available to you regarding the use of your data</li>
+        <li>The security procedures in place to protect the misuse of your information</li>
+        <li>How you can correct any inaccuracies in the information</li>
+      </ul>
+      
+      <p>Information Collection, Use, and Sharing</p>
+      
+      <p>We are the sole owners of the information collected on this site. We only have access to collect information that you voluntarily give us via email or other direct contact from you. We will not sell or rent this information to anyone. We will use your information to respond to you, regarding the reason you contacted us. We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request.</p>
+      
+      <p>In order to use this website, a user must first complete the registration form. During registration a user is required to give certain information (such as name and email address). This information is used soley for identification and will not be sold to any third parties</p>
+      
+      <p>Your Access To and Control Over Information</p>
+      
+      <p>You can do the following at any time by contacting us via email at information@workout-wars.com</p>
+      
+      <ul>    
+        <li>See what data we have obtained from you, if any</li>
+        <li>Change/correct any of your account data</li>
+        <li>Have us delete any data we have about you</li>
+        <li>Express any concern you have about our use of your data</li>
+      </ul>
+      <p>Security</p>
+
+      <p>We take precautions to protect your information. When you submit sensitive information via thewebsite, your information is protected both online and offline.</p>
+
+      <p>While we use encryption to protect sensitive information transmitted online, we also protect your information offline. Only employees who need the information to perform a specific job (for example, customer service) are granted access to personally identifiable information. The computers/servers in which we store personally identifiable information are kept in a secure envronment.</p>
+
+      <p>If you feel that we are not abiding by this privacy policy, you should contact us immediately via email information@workout-wars.com</p>
+      <p><strong>By registering for this site you agree to the privacy policy above.</strong></p>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="checkbox checkbox-agree col-sm-9 col-sm-offset-3">
+      <%= f.check_box :agree_to_terms, id: "user_agree_to_terms" %>
+      <%= f.label :agree_to_terms, " I agree to the terms and conditions above" %>
+    </div>
+  </div>
+
+  <br />
 
   <div class="row">
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-9">
-        <%= f.submit "Sign up", class: "btn btn-success btn-block btn-default" %>
+        <%= f.submit "Sign up", class: "btn btn-success btn-block btn-default", id: "sign_up_form_button" %>
       </div>
     </div>
   </div>

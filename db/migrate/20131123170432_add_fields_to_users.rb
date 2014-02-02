@@ -14,5 +14,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_column :users, :level, :integer, default: 1
     add_column :users, :experience_level, :integer, default: 1
     add_column :users, :experience_multiplier, :integer, default: 500
+    add_column :users, :agree_to_terms, :boolean
   end
 end

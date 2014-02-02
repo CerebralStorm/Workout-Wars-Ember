@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20140201194723) do
     t.integer  "level",                  default: 1
     t.integer  "experience_level",       default: 1
     t.integer  "experience_multiplier",  default: 500
+    t.boolean  "agree_to_terms"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
