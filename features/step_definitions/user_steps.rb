@@ -56,6 +56,7 @@ When(/^I fill out the form and submit$/) do
   fill_in "Email", with: "test@tester.com"
   fill_in "user_password", with: "testpassword"
   fill_in "user_password_confirmation", with: "testpassword"
+  check "I agree to the terms and conditions above"
   click_button "Sign up"
 end
 

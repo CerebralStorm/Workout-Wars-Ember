@@ -18,9 +18,9 @@ describe CompetitionExercise do
       FactoryGirl.build(:competition_exercise, exercise: nil).should_not be_valid
     end
 
-    it "should require a competition" do
-      FactoryGirl.build(:competition_exercise, competition: nil).should_not be_valid
-    end
+    # it "should require a competition" do
+    #   FactoryGirl.build(:competition_exercise, competition: nil).should_not be_valid
+    # end
 
     it "should be valid with a user and competition" do
       FactoryGirl.build(:competition_exercise).should be_valid
