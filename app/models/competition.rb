@@ -7,6 +7,8 @@ class Competition < ActiveRecord::Base
   has_many :users, through: :competition_joins
   belongs_to :user
 
+  accepts_nested_attributes_for :competition_exercises
+
   validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
   validates_presence_of :end_date
@@ -25,8 +27,6 @@ class Competition < ActiveRecord::Base
     errors.add(:start_date, "Start date cannot be a date that has already passed")  if start_date < Date.today
     errors.add(:end_date, "End date must be a later date than the start date") if end_date <= start_date
   end
-
-  accepts_nested_attributes_for :competition_exercises
 
   def number_of_participants
     competition_joins.count
