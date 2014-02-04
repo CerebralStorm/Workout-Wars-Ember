@@ -57,7 +57,7 @@
   <ul class="list-group">      
     {{#each compJoin in controller.competitionJoins}}
       <li class="list-group-item">
-        {{#if rank}}<h4>Rank: {{compJoin.rank}}</h4>{{/if}}
+        {{#if compJoin.rank}}<h4>Rank: {{compJoin.rank}}</h4>{{/if}}
         <h5>User: {{compJoin.user.email}}</h5>
         <h5>Total: {{compJoin.total}}</h5>   
       </li>
