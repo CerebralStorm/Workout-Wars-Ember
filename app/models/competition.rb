@@ -7,7 +7,7 @@ class Competition < ActiveRecord::Base
   has_many :users, through: :competition_joins
   belongs_to :user
 
-  accepts_nested_attributes_for :competition_exercises
+  accepts_nested_attributes_for :competition_exercises, allow_destroy: true
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :start_date
