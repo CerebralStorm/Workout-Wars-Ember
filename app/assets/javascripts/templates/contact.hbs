@@ -1,8 +1,80 @@
-<div class="panel panel-primary">
-  <div class="panel-body">
-    <div class="jumbotron">
-      <h1>Contact Us</h1>
-      <p>We would love to hear feedback</p>
-    </div>  
+<div class="row">
+  <div class="col-md-2">
+  </div>
+
+  <div class="col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Contact Us</h3>
+      </div>
+      <div class="panel-body">
+        <form {{action 'create' this on='submit'}}>
+          <div class="row">
+            <div {{bind-attr class=":form-group errors.name:has-error:"}}>
+              <label class= "col-sm-4 control-label">Name</label>
+              <div class="col-sm-8">
+                {{input value=this.model.name classNames="form-control" name="Name"}}
+                {{#if errors.name}}
+                  {{#each errors.name}}
+                    <span class="help-block">Name {{this.message}}</span>
+                  {{/each}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <div {{bind-attr class=":form-group errors.email:has-error:"}}>
+              <label class= "col-sm-4 control-label">Email</label>
+              <div class="col-sm-8">
+                {{input value=this.model.email classNames="form-control" name="Email"}}
+                {{#if errors.email}}
+                  {{#each errors.email}}
+                    <span class="help-block">Start date {{this.message}}</span>
+                  {{/each}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <div class="form-group">
+              <label class= "col-sm-4 control-label">Subject</label>
+              <div class="col-sm-8">
+                {{input value=this.model.subject classNames="form-control" name="Subject"}}
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <div class="form-group">
+              <label class= "col-sm-4 control-label">Content</label>
+              <div class="col-sm-8">
+                {{textarea value=this.model.content classNames="form-control" name="Content" rows=10}}
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-8">
+                <button class="btn btn-success btn-block">Save</button>
+              </div>      
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
   </div>
 </div>

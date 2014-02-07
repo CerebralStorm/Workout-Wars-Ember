@@ -28,6 +28,7 @@ WorkoutWars::Application.routes.draw do
       resources :competition_win_conditions
       devise_for :users
       get 'current_user' => 'users#get_current_user'
+      resources :feedbacks
     end
   end
 
