@@ -3,11 +3,7 @@ class CreateActivities < ActiveRecord::Migration
     create_table :activities do |t|
       t.integer :exercise_id
       t.integer :user_id
-      t.integer :reps
-      t.float :weight
-      t.float :duration
-      t.float :calories
-      t.float :distance
+      t.float :value
 
       t.timestamps
     end

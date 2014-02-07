@@ -1,18 +1,28 @@
 puts "Seeding..."
 
 [
-  {name: 'Pushups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1, measurement: "Number of Reps"},
-  {name: 'Pullups',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 4, measurement: "Number of Reps"},
-  {name: 'Situps',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1, measurement: "Number of Reps"},
-  {name: 'Squats',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1, measurement: "Number of Reps"},
-  {name: 'Lunges',     reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 1, measurement: "Number of Reps"},
-  {name: 'Burpees',    reps: true, distance: false,  duration: false, weight: false, calories: false, experience_multiplier: 2, measurement: "Number of Reps"},
-  {name: 'Running',    reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 40, measurement: "Number of Miles"},
-  {name: 'Biking',     reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 15, measurement: "Number of Miles"},
-  {name: 'Swimming',   reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 200, measurement: "Number of Miles"},
-  {name: 'Hiking',     reps: false, distance: true,  duration: false, weight: false, calories: false, experience_multiplier: 15, measurement: "Number of Miles"}, 
-  {name: 'Aerobics',   reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 2, measurement: "Number of Minutes"}, 
-  {name: 'Yoga',       reps: false, distance: false, duration: true , weight: false, calories: false, experience_multiplier: 2, measurement: "Number of Minutes"} 
+  {name: 'Reps',      measurement: "Repetitions" },
+  {name: 'Distance',  measurement: "Miles" },
+  {name: 'Duration',  measurement: "Hours" },
+  {name: 'Weight',    measurement: "Pounds" },
+  {name: 'Calories',  measurement: "Total Burned" },
+].each do |metric|
+  Metric.where(metric).first_or_create
+end
+
+[
+  {name: 'Pushups',    metric: Metric.find_by_name("Reps") },
+  {name: 'Pullups',    metric: Metric.find_by_name("Reps") },
+  {name: 'Situps',     metric: Metric.find_by_name("Reps") },
+  {name: 'Squats',     metric: Metric.find_by_name("Reps") },
+  {name: 'Lunges',     metric: Metric.find_by_name("Reps") },
+  {name: 'Burpees',    metric: Metric.find_by_name("Reps") },
+  {name: 'Running',    metric: Metric.find_by_name("Distance") },
+  {name: 'Biking',     metric: Metric.find_by_name("Distance") },
+  {name: 'Swimming',   metric: Metric.find_by_name("Distance") },
+  {name: 'Hiking',     metric: Metric.find_by_name("Distance") }, 
+  {name: 'Aerobics',   metric: Metric.find_by_name("Duration") }, 
+  {name: 'Yoga',       metric: Metric.find_by_name("Duration") } 
 ].each do |exercise|
   Exercise.where(exercise).first_or_create
 end
@@ -40,12 +50,6 @@ end
 ].each do |win_condition|
   CompetitionWinCondition.where(win_condition).first_or_create
 end
-
-# Test Data
-user = User.create(name: "tester@testhole.com", password: "testhole")
-pushups = Exercise.find_by_name("Pushups")
-competition = Competition.where(name: "Pushups Galore", start_date: Date.today, end_date: 2.weeks.from_now, user: user).first_or_create
-competition.competition_exercises.where(exercise: pushups).first_or_create
 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201194723) do
+ActiveRecord::Schema.define(version: 20140207053042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,7 @@ ActiveRecord::Schema.define(version: 20140201194723) do
   create_table "activities", force: true do |t|
     t.integer  "exercise_id"
     t.integer  "user_id"
-    t.integer  "reps"
-    t.float    "weight"
-    t.float    "duration"
-    t.float    "calories"
-    t.float    "distance"
+    t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,13 +106,8 @@ ActiveRecord::Schema.define(version: 20140201194723) do
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.float    "experience_multiplier"
-    t.boolean  "reps"
-    t.boolean  "weight"
-    t.boolean  "duration"
-    t.boolean  "calories"
-    t.boolean  "distance"
+    t.integer  "metric_id"
     t.text     "description"
-    t.string   "measurement"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,6 +122,13 @@ ActiveRecord::Schema.define(version: 20140201194723) do
   end
 
   add_index "experience_sources", ["experienceable_id", "experienceable_type", "user_id"], name: "experience_sources_index", using: :btree
+
+  create_table "metrics", force: true do |t|
+    t.string   "name"
+    t.string   "measurement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
