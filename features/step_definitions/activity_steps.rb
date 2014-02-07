@@ -12,7 +12,7 @@ end
 
 When(/^I add a new activity$/) do  
   select "Pushups", from: "Exercise Select"
-  fill_in "Reps", with: 50 
+  fill_in "Value", with: 50 
   click_button "Save"
   click_link "Close"
 end
@@ -52,14 +52,14 @@ When(/^I add a bad new activity$/) do
 end
 
 Then(/^I should see the error messages$/) do
-  expect(page).to have_content "Please enter reps for this activity."
+  expect(page).to have_content "is not a number"
 end
 
 When(/^I add an activity that is not in this competition$/) do
   sleep 0.2
   click_link "Log Activity"
   select "Pullups", from: "Exercise Select"
-  fill_in "Reps", with: 50 
+  fill_in "Value", with: 50 
   click_button "Save"
   click_link "Close"
 end
@@ -67,7 +67,7 @@ end
 When(/^I add another activity$/) do
   click_link "Log Activity"
   select "Pushups", from: "Exercise Select"
-  fill_in "Reps", with: 50 
+  fill_in "Value", with: 50 
   click_button "Save"
   click_link "Close"
 end

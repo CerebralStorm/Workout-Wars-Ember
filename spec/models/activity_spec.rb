@@ -41,17 +41,17 @@ describe Activity do
     before do 
       @user1 = FactoryGirl.create(:user)
       @user2 = FactoryGirl.create(:user)
-      @exercise = FactoryGirl.create(:exercise, name: "Pushups", reps: true, weight: false, duration: false, calories: false, distance: false)
-      @exercise2 = FactoryGirl.create(:exercise, name: "Pullups", reps: true, weight: false, duration: false, calories: false, distance: false)
+      @exercise = FactoryGirl.create(:exercise, name: "Pushups")
+      @exercise2 = FactoryGirl.create(:exercise, name: "Pullups")
       @win_condition = FactoryGirl.create(:competition_win_condition, name: "Most completed by date")
       @competition = FactoryGirl.create(:competition, started: true)
       FactoryGirl.create(:competition_exercise, exercise: @exercise, competition: @competition)
       FactoryGirl.create(:competition_join, user: @user1, competition: @competition)
       FactoryGirl.create(:competition_join, user: @user2, competition: @competition)
-      FactoryGirl.create(:activity, user: @user1, reps: 100, exercise: @exercise2)
-      FactoryGirl.create(:activity, user: @user2, reps: 100, exercise: @exercise2)
-      FactoryGirl.create(:activity, user: @user1, reps: 50, exercise: @exercise)
-      FactoryGirl.create(:activity, user: @user2, reps: 100, exercise: @exercise)
+      FactoryGirl.create(:activity, user: @user1, value: 100, exercise: @exercise2)
+      FactoryGirl.create(:activity, user: @user2, value: 100, exercise: @exercise2)
+      FactoryGirl.create(:activity, user: @user1, value: 50, exercise: @exercise)
+      FactoryGirl.create(:activity, user: @user2, value: 100, exercise: @exercise)
       @competition.update_attributes(finished: true)
     end
     it "should compute the total" do
