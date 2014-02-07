@@ -24,7 +24,7 @@
     <div {{bind-attr class=":form-group errors.value:has-error:"}}>
       <label class= "col-sm-3 control-label">{{selectedExercise.metric.name}}</label>
       <div class="col-sm-9">
-        {{input value=value name="Reps" classNames="form-control" placeholder=selectedExercise.metric.measurement}}
+        {{input value=value name="Value" classNames="form-control" placeholder=selectedExercise.metric.measurement}}
         {{#if errors.value}}
           {{#each errors.value}}
             <span class="help-block">{{selectedExercise.metric.name}} {{this.message}}</span>
