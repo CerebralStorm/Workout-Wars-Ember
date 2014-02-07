@@ -1,3 +1,7 @@
 class ExerciseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :reps, :distance, :duration, :calories, :weight, :description, :measurement
+  attributes :id, :name, :description
+
+  embed :ids, include: true
+
+  has_one :metric
 end

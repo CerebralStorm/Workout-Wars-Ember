@@ -10,58 +10,26 @@
       <label class= "col-sm-3 control-label">Exercise</label>
       <div class="col-sm-9">
         {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
-        {{#if errors.exercise}}<span class="help-block">{{errors.exercise}}</span>{{/if}}
+        {{#if errors.exercise}}
+          {{#each errors.exercise}}
+            <span class="help-block">Exercise {{this.message}}</span>
+          {{/each}}
+        {{/if}}
       </div>
     </div>
   </div>
   <br />
   <div class="row activity-edit">
-    {{#if useReps}}
-    <div {{bind-attr class=":form-group errors.reps:has-error:"}}>
-      <label class= "col-sm-3 control-label">Reps</label>
+    {{#if selectedExercise}}
+    <div {{bind-attr class=":form-group errors.value:has-error:"}}>
+      <label class= "col-sm-3 control-label">{{selectedExercise.metric.name}}</label>
       <div class="col-sm-9">
-        {{input value=reps name="Reps" classNames="form-control" placeholder=selectedExercise.measurement}}
-        {{#if errors.reps}}<span class="help-block">{{errors.reps}}</span>{{/if}}
-      </div>
-    </div>
-    {{/if}}
-
-    {{#if useDistance}}
-    <div {{bind-attr class=":form-group errors.distance:has-error:"}}>
-      <label class= "col-sm-3 control-label">Distance</label>
-      <div class="col-sm-9">
-        {{input value=distance name="Distance" classNames="form-control" placeholder=selectedExercise.measurement}}
-        {{#if errors.distance}}<span class="help-block">{{errors.distance}}</span>{{/if}}
-      </div>
-    </div>
-    {{/if}}
-
-    {{#if useDuration}}
-    <div {{bind-attr class=":form-group errors.duration:has-error:"}}>
-      <label class= "col-sm-3 control-label">Duration</label>
-      <div class="col-sm-9">
-        {{input value=duration name="Duration" classNames="form-control" placeholder=selectedExercise.measurement}}
-        {{#if errors.duration}}<span class="help-block">{{errors.duration}}</span>{{/if}}
-      </div>
-    </div>
-    {{/if}}
-
-    {{#if useCalories}}
-    <div {{bind-attr class=":form-group errors.calories:has-error:"}}>
-      <label class= "col-sm-3 control-label">Calories</label>
-      <div class="col-sm-9">
-        {{input value=calories name="Calories" classNames="form-control" placeholder=selectedExercise.measurement}}
-        {{#if errors.calories}}<span class="help-block">{{errors.calories}}</span>{{/if}}
-      </div>
-    </div>
-    {{/if}}
-
-    {{#if useWeight}}
-    <div {{bind-attr class=":form-group errors.weight:has-error:"}}>
-      <label class= "col-sm-3 control-label">Weight</label>
-      <div class="col-sm-9">
-        {{input value=weight name="Weight" classNames="form-control" placeholder=selectedExercise.measurement}}
-        {{#if errors.weight}}<span class="help-block">{{errors.weight}}</span>{{/if}}
+        {{input value=value name="Reps" classNames="form-control" placeholder=selectedExercise.metric.measurement}}
+        {{#if errors.value}}
+          {{#each errors.value}}
+            <span class="help-block">{{selectedExercise.metric.name}} {{this.message}}</span>
+          {{/each}}
+        {{/if}}
       </div>
     </div>
     {{/if}}
