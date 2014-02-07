@@ -9,7 +9,11 @@
           <label class= "col-sm-4 control-label">Name</label>
           <div class="col-sm-8">
             {{input value=this.model.name classNames="form-control" name="Name"}}
-            {{#if errors.name}}<span class="help-block">{{errors.name}}</span>{{/if}}
+            {{#if errors.name}}
+              {{#each errors.name}}
+                <span class="help-block">Name {{this.message}}</span>
+              {{/each}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -20,8 +24,19 @@
         <div {{bind-attr class=":form-group errors.competitionWinCondition:has-error:"}}>
           <label class= "col-sm-4 control-label">Win Condition</label>
           <div class="col-sm-8">
-            {{view Ember.Select content=winConditions name="Win Condition Select" value=selectedWinCondition optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select a win condition"}}
-            {{#if errors.competitionWinCondition}}<span class="help-block">{{errors.competitionWinCondition}}</span>{{/if}}
+            {{view Ember.Select 
+              name="Win Condition Select"
+              content=winConditions  
+              value=selectedWinCondition 
+              optionValuePath="content" 
+              optionLabelPath='content.name' 
+              class="form-control" 
+              prompt="Please select a win condition"}}
+            {{#if errors.competitionWinCondition}}
+              {{#each errors.competitionWinCondition}}
+                <span class="help-block">Win condition {{this.message}}</span>
+              {{/each}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -33,7 +48,11 @@
           <label class= "col-sm-4 control-label">Start Date</label>
           <div class="col-sm-8">
             {{view WorkoutWars.DateField value=startDate classNames="form-control" name="Start Date"}}
-            {{#if errors.startDate}}<span class="help-block">{{errors.startDate}}</span>{{/if}}
+            {{#if errors.startDate}}
+              {{#each errors.startDate}}
+                <span class="help-block">Start date {{this.message}}</span>
+              {{/each}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -45,7 +64,11 @@
           <label class= "col-sm-4 control-label">End Date</label>
           <div class="col-sm-8">
             {{view WorkoutWars.DateField value=endDate classNames="form-control" name="End Date"}}
-            {{#if errors.endDate}}<span class="help-block">{{errors.endDate}}</span>{{/if}}
+            {{#if errors.endDate}}
+              {{#each errors.endDate}}
+                <span class="help-block">Start date {{this.message}}</span>
+              {{/each}}
+            {{/if}}
           </div>
         </div>
       </div>
