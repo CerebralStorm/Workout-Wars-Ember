@@ -6,21 +6,7 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :exercise
-  validate :reps, numericality: true
-  validate :duration, numericality: true
-  validate :distance, numericality: true
-  validate :weight, numericality: true
-  validate :calories, numericality: true
-  validate :reps, numericality: true
-  validate :has_metric
-
-  def has_metric
-    return unless exercise.present?
-    metric = exercise.metric
-    if self.send(metric).nil?
-        errors.add(metric, "Please enter #{metric} for this activity.")
-    end
-  end
+  validates :value, numericality: { greater_than: 0 }
 
   after_create :create_competition_activities
   after_save :update_experience_source_and_user
@@ -34,7 +20,7 @@ class Activity < ActiveRecord::Base
   end
 
   def total_experience
-    self.send(metric) * experience_multiplier
+    value * experience_multiplier
   end
 
   def update_experience_source_and_user

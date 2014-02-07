@@ -10,26 +10,6 @@ WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
     @set('model.becameValid', true)
   ).observes('selectedExercise') 
 
-  useReps: (->
-    @get('selectedExercise').get('reps') if @get('selectedExercise')
-  ).property('selectedExercise') 
-  
-  useDistance: (->
-    @get('selectedExercise').get('distance') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useDuration: (->
-    @get('selectedExercise').get('duration') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useCalories: (->
-    @get('selectedExercise').get('calories') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useWeight: (->
-    @get('selectedExercise').get('weight') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
   canSave: (->
     @get('selectedExercise')
   ).property('selectedExercise') 

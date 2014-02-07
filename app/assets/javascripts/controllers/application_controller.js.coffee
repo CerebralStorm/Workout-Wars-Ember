@@ -1,35 +1,12 @@
 WorkoutWars.ApplicationController = Ember.ObjectController.extend
   needs: ['exercises', 'currentUser']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
+  errors: Ember.computed.alias('content.errors')
   selectedExercise: null
 
   exercises: (->
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
-
-  setValid: (->
-    @set('model.becameValid', true)
-  ).observes('selectedExercise') 
-
-  useReps: (->
-    @get('selectedExercise').get('reps') if @get('selectedExercise')
-  ).property('selectedExercise') 
-  
-  useDistance: (->
-    @get('selectedExercise').get('distance') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useDuration: (->
-    @get('selectedExercise').get('duration') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useCalories: (->
-    @get('selectedExercise').get('calories') if @get('selectedExercise')
-  ).property('selectedExercise') 
-
-  useWeight: (->
-    @get('selectedExercise').get('weight') if @get('selectedExercise')
-  ).property('selectedExercise') 
 
   canSave: (->
     @get('selectedExercise')
@@ -42,14 +19,9 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
 
       success = (activity) =>
         @set('selectedExercise', null)
-        @set('reps', null)
-        @set('distance', null)
-        @set('duration', null)
-        @set('weight', null)
-        @set('calories', null)
+        @set('value', null)
         WorkoutWars.get("modalFlash").success "Your activity was created"
       failure = (response) =>
         WorkoutWars.get("modalFlash").danger "Your activity was not created"
-        console.log response
-        @set('errors', @get('content.errors'))
+      
       activity.save().then success, failure
