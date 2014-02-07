@@ -1,9 +1,12 @@
 WorkoutWars::Application.routes.draw do
-  
-  
-  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
   devise_for :users
+  
   unauthenticated do
     root to: "static#index", as: :unauthenticated_root
   end
