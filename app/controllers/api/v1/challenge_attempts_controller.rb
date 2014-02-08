@@ -14,7 +14,7 @@ class Api::V1::ChallengeAttemptsController < ApplicationController
     if challenge_attempt.save
       render json: challenge_attempt
     else
-      render json: challenge_attempt, status: 422
+      render json: {errors: challenge_attempt.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::ChallengeAttemptsController < ApplicationController
     if challenge_attempt.update(challenge_params)
       render json: challenge_attempt
     else
-      render json: challenge_attempt, status: 422
+      render json: {errors: challenge_attempt.errors.messages}, status: 422
     end
   end
 
@@ -35,6 +35,6 @@ class Api::V1::ChallengeAttemptsController < ApplicationController
   private
 
   def challenge_attempt_params
-    params.require(:challenge_attempt).permit(:name, :user_id, :challenge_id)
+    params.require(:challenge_attempt).permit(:name, :user_id, :challenge_id, :result)
   end
 end

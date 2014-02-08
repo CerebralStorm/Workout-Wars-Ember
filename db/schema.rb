@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140208215701) do
     t.string   "description"
     t.integer  "challenge_win_condition_id"
     t.integer  "difficulty_id"
-    t.integer  "exercise_id"
+    t.integer  "metric_id"
     t.integer  "reward"
     t.datetime "created_at"
     t.datetime "updated_at"

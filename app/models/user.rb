@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :competition_activities
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
+  has_many :challenge_attempts
+  has_many :challenges, through: :challenge_attempts
   has_many :experience_sources
 
   before_save :ensure_authentication_token

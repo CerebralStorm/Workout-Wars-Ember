@@ -3,6 +3,7 @@ WorkoutWars.User = DS.Model.extend
   competitionJoins: DS.hasMany('competitionJoin', { embedded: 'load' }) 
   competitionActivities: DS.hasMany('competitionActivity', { embedded: 'load' }) 
   competitions: DS.hasMany('competition', { embedded: 'load' }) 
+  challengeAttempts: DS.hasMany('challengeAttempt', { embedded: 'load' }) 
   name: DS.attr('string')
   nickname: DS.attr('string')
   email: DS.attr('string')

@@ -5,7 +5,7 @@ class CreateChallenges < ActiveRecord::Migration
       t.string :description
       t.integer :challenge_win_condition_id
       t.integer :difficulty_id
-      t.integer :exercise_id
+      t.integer :metric_id
       t.integer :reward
 
       t.timestamps

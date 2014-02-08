@@ -1,16 +1,16 @@
-WorkoutWars.ChallengeController = Ember.ObjectController.extend  
-  isAttempting: false
-
+WorkoutWars.ChallengeController = Ember.ObjectController.extend 
+  errors: null 
   actions: 
-    startAttempt: ->
-      @set('isAttempting', true)
-
     createAttempt: ->
-      console.log "create"
       challengeAttempt = @store.createRecord("challengeAttempt", {
         user: @get('currentUser.content')
         challenge: @get("model")  
         result: @get('result')      
       })
-      challengeAttempt.save()
+      success = (challenge) =>
+        @set('result', null)
+        WorkoutWars.get("flash").success "Your attempt was recorded"
+      failure = (response) =>
+        WorkoutWars.get("flash").danger "Your attempt was not recorded"
+      challengeAttempt.save success, failure
     

@@ -1,12 +1,12 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title">My Challenges</h3>
+    <h3 class="panel-title">My Challenge Attempts</h3>
   </div>
-  <ul class="nav">
-    {{#each challenge in controller}}
-      <li>{{#link-to "challenge" challenge}}{{challenge.name}}{{/link-to}}</li>
+  <ul class="list-group">
+    {{#each attempt in controller}}
+      <li class="list-group-item">{{attempt.result}} - {{attempt.challenge.description}}</li>
     {{else}}
-      <li><a href="#">You haven't attempted any challenges yet</a></li>
+      <li class="list-group-item">You haven't attempted any challenges yet</li>
     {{/each}}
   </ul>
 </div>

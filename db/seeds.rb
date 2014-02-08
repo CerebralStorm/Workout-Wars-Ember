@@ -28,19 +28,18 @@ end
 end
 
 [
-  {name: 'Minute Pushups',          description: 'How many pushups can you do in one minute?',            exercise: Exercise.find_by_name("Pushups")},
-  {name: 'Max Pushups',             description: 'How many pushups can you do in one set?',               exercise: Exercise.find_by_name("Pushups")},
-  {name: 'Minute Pull-ups',         description: 'How many pull-ups can you do in one minute?',           exercise: Exercise.find_by_name("Pullups")},
-  {name: 'Max Pull-ups',            description: 'How many pull-ups can you do in one set?',              exercise: Exercise.find_by_name("Pullups")},
-  {name: 'Minute Sit-ups',          description: 'How many sit-ups can you do in one minute?',            exercise: Exercise.find_by_name("Situps") },
-  {name: 'Max Sit-ups',             description: 'How many sit-ups can you do in one set?',               exercise: Exercise.find_by_name("Situps") },
-  {name: 'Fast Mile Swim',          description: 'How fast can you swim a mile?',                         exercise: Exercise.find_by_name("Swimming")},
-  {name: 'Max Mile Swim',           description: 'How many miles can you swim in one day?',               exercise: Exercise.find_by_name("Swimming")},
-  {name: 'Fastest 5K',              description: 'How fast can you run a 5K?',                            exercise: Exercise.find_by_name("Running")},
-  {name: 'Fastest 10K',             description: 'How fast can you run a 10K?',                           exercise: Exercise.find_by_name("Running")}, 
-  {name: 'Cycle Miles in day',      description: 'How many miles can you bike in one day?',               exercise: Exercise.find_by_name("Biking")}, 
-  {name: 'Daily Walking Distance',  description: 'How far can you walk in a day?',                        exercise: Exercise.find_by_name("Hiking")} ,
-  {name: 'Max Days Walking',        description: 'How many days in a row can you walk a mile or more?',   exercise: Exercise.find_by_name("Hiking")}
+  {name: 'Minute Pushups',          description: 'How many pushups can you do in one minute?',    metric: Metric.find_by_name("Reps")},
+  {name: 'Max Pushups',             description: 'How many pushups can you do in one set?',       metric: Metric.find_by_name("Reps")},
+  {name: 'Minute Pull-ups',         description: 'How many pull-ups can you do in one minute?',   metric: Metric.find_by_name("Reps")},
+  {name: 'Max Pull-ups',            description: 'How many pull-ups can you do in one set?',      metric: Metric.find_by_name("Reps")},
+  {name: 'Minute Sit-ups',          description: 'How many sit-ups can you do in one minute?',    metric: Metric.find_by_name("Reps")},
+  {name: 'Max Sit-ups',             description: 'How many sit-ups can you do in one set?',       metric: Metric.find_by_name("Reps")},
+  {name: 'Fast Mile Swim',          description: 'How fast can you swim a mile?',                 metric: Metric.find_by_name("Duration")},
+  {name: 'Max Mile Swim',           description: 'How many miles can you swim in one day?',       metric: Metric.find_by_name("Distance")},
+  {name: 'Fastest 5K',              description: 'How fast can you run a 5K?',                    metric: Metric.find_by_name("Duration")},
+  {name: 'Fastest 10K',             description: 'How fast can you run a 10K?',                   metric: Metric.find_by_name("Duration")}, 
+  {name: 'Cycle Miles in day',      description: 'How many miles can you bike in one day?',       metric: Metric.find_by_name("Distance")}, 
+  {name: 'Hiking Distance',  description: 'How far can you hike in a day?',                       metric: Metric.find_by_name("Distance")},
 ].each do |challenge|
   Challenge.where(challenge).first_or_create
 end
