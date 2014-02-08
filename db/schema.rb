@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207074501) do
+ActiveRecord::Schema.define(version: 20140208215701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,20 +26,20 @@ ActiveRecord::Schema.define(version: 20140207074501) do
 
   add_index "activities", ["exercise_id", "user_id"], name: "index_activities_on_exercise_id_and_user_id", using: :btree
 
+  create_table "challenge_attempts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "challenge_id"
+    t.float    "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "challenges", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "max_participants"
-    t.integer  "lower_level_restriction"
-    t.integer  "upper_level_restriction"
-    t.integer  "win_condition_id"
+    t.integer  "challenge_win_condition_id"
     t.integer  "difficulty_id"
-    t.boolean  "is_private"
-    t.boolean  "active",                  default: true
-    t.integer  "user_id"
-    t.integer  "winner_id"
+    t.integer  "exercise_id"
     t.integer  "reward"
     t.datetime "created_at"
     t.datetime "updated_at"

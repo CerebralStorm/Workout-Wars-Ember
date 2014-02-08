@@ -15,13 +15,9 @@
           <td>{{description}}</td>
         </tr>
         <tr>
-          <td><strong>Start Date</strong></td>
-          <td>{{date startDate}}</td>
-        </tr>
-        <tr>
-          <td><strong>End Date</strong></td>
-          <td>{{date endDate}}</td>
-        </tr>                      
+          <td><strong>Exercise</strong></td>
+          <td>{{this.exercise.name}}</td>
+        </tr>                     
       </table>        
     </div>
   </div>
@@ -30,8 +26,9 @@
     <div class="panel panel-danger">
       <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
       <ul class="list-group">      
-        <li class="list-group-item"><button class="btn btn-default btn-block"{{action "delete"}}>Delete</button></li>
-        <li class="list-group-item"><button class="btn btn-default btn-block"{{action "edit"}}>Edit</button></li>
+        <li class="list-group-item">
+          <button class="btn btn-default btn-block"{{action "createAttempt"}}>Attempt this challenge</button>
+        </li>
       </ul>
     </div>
   </div> 

@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :feedback do
-    name "MyString"
-    email "MyString"
-    subject "MyString"
-    content "MyString"
+    name "User"
+    email "user@feedback.com"
+    subject "This is a subject"
+    content "Your site is awesome!"
   end
 end
