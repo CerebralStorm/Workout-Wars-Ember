@@ -1,23 +1,27 @@
 {{#if view.model.isSuccess}}
   <div class="alert alert-success">
-    {{view.message}}
+    <span>{{view.message}}</span>   
+    <span class="pull-right"><small>(click to dismiss)</small></span>
   </div>
 {{/if}}
 
 {{#if view.model.isInfo}}
   <div class="alert alert-info">
-    {{view.message}}
+    <span>{{view.message}}</span>   
+    <span class="pull-right"><small>(click to dismiss)</small></span>
   </div>
 {{/if}}
 
 {{#if view.model.isWarning}}
   <div class="alert alert-warning">
-    {{view.message}}
+    <span>{{view.message}}</span>   
+    <span class="pull-right"><small>(click to dismiss)</small></span>
   </div>
 {{/if}}
 
 {{#if view.model.isDanger}}
   <div class="alert alert-danger">
-    {{view.message}}
+    <span>{{view.message}}</span>   
+    <span class="pull-right"><small>(click to dismiss)</small></span>
   </div>
 {{/if}}

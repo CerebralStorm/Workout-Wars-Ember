@@ -14,7 +14,7 @@ class Api::V1::FeedbacksController < ApplicationController
     if feedback.save
       render json: feedback
     else
-      render json: feedback, status: 422
+      render json: {errors: feedback.errors.messages}, status: 422
     end
   end
 
