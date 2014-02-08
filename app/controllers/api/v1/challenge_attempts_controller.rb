@@ -10,7 +10,7 @@ class Api::V1::ChallengeAttemptsController < ApplicationController
   end
 
   def create
-    challenge_attempt = ChallengeAttempt.new(challenge_params)
+    challenge_attempt = ChallengeAttempt.new(challenge_attempt_params)
     if challenge_attempt.save
       render json: challenge_attempt
     else

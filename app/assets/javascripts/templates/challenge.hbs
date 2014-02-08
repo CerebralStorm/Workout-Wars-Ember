@@ -27,8 +27,22 @@
       <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
       <ul class="list-group">      
         <li class="list-group-item">
-          <button class="btn btn-default btn-block"{{action "createAttempt"}}>Attempt this challenge</button>
+          <button class="btn btn-default btn-block"{{action "startAttempt"}}>Attempt this challenge</button>
         </li>
+        {{#if isAttempting}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="form-group">
+              <label class= "col-sm-3 control-label">Result</label>
+              <div class="col-sm-9">
+                {{input value=result classNames="form-control" placeholder=this.exercise.metric.name}}
+              </div>
+            </div>
+          </div>
+          <br />
+          <button class="btn btn-default btn-block"{{action "createAttempt"}}>Record Result</button>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </div> 
@@ -36,9 +50,17 @@
 
 <div class="panel panel-danger">
   <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
-  <ul class="list-group">      
+  <ul class="list-group"> 
+    {{controller.model.challengeAttempts}}
+    {{#each controller.model.challengeAttempts}}     
       <li class="list-group-item">
-        <h1>Coming soon!</h1>   
+        {{this.result}}
+        {{this.user.email}} 
       </li>
+    {{else}}
+      <li class="list-group-item">
+        There are no attempts for this challenge. Be the first!
+      </li>
+    {{/each}}
   </ul>
 </div>

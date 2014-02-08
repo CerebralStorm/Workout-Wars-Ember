@@ -1,5 +1,5 @@
 class ChallengeAttemptSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description
+  attributes :id, :result
   
   embed :ids, include: true
 

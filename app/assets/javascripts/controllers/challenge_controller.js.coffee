@@ -1,18 +1,16 @@
-WorkoutWars.ChallengeController = Ember.ObjectController.extend
-  deleteMode: false
-  
-  delete: ->
-    @toggleProperty('deleteMode')
+WorkoutWars.ChallengeController = Ember.ObjectController.extend  
+  isAttempting: false
 
-  cancelDelete: ->
-    @set('deleteMode', false)  
-    
-  confirmDelete: ->
-    @set('deleteMode', false) 
-    @get("model").deleteRecord()
-    @get("model").save()
-    @transitionToRoute "challenges"
-  
-  edit: ->
-    @transitionToRoute "challenge.edit"
+  actions: 
+    startAttempt: ->
+      @set('isAttempting', true)
+
+    createAttempt: ->
+      console.log "create"
+      challengeAttempt = @store.createRecord("challengeAttempt", {
+        user: @get('currentUser.content')
+        challenge: @get("model")  
+        result: @get('result')      
+      })
+      challengeAttempt.save()
     
