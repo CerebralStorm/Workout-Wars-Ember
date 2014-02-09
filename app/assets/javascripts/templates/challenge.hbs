@@ -45,6 +45,11 @@
         <td>{{this.result}}</td>
         <td><strong>User</strong></td>
         <td>{{this.user.email}}</td>
+        <td><a href="#" class="btn btn-danger btn-xs" {{action "deleteAttempt" this }}>&times;</a></td>
+      </tr>
+    {{else}}
+      <tr>
+        <td>This challenge has not been attempted yet. <strong>You could be the first!</strong></td>
       </tr>
     {{/each}}                    
   </table>        

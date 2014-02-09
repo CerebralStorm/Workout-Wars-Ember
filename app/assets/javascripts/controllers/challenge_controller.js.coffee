@@ -13,4 +13,10 @@ WorkoutWars.ChallengeController = Ember.ObjectController.extend
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your attempt was not recorded"
       challengeAttempt.save success, failure
+
+    deleteAttempt: (attempt) ->
+      if window.confirm "Are you sure?"
+        attempt.deleteRecord()
+        attempt.save().then => 
+          WorkoutWars.get("flash").danger "Your attempt was deleted"
     

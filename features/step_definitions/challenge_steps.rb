@@ -26,3 +26,12 @@ Then(/^I should see my challenge attempts$/) do
     expect(page).to have_text("My Challenge Attempts 50 - How many pushups can you do in one minute?")
   end
 end
+
+When(/^I delete the new challenge attempt$/) do
+  click_link "×"
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I should not see any challenge attempts$/) do
+  expect(page).to have content "Your attempt was deleted"
+end

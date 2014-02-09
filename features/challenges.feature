@@ -11,3 +11,10 @@ Feature: Challenges
     Then I should see a new challenge attempt
     When I go to my profile page
     Then I should see my challenge attempts
+
+  @javascript
+  Scenario: Delete a new challenge attempt
+    When I fill out the challenge attempt with valid data
+    Then I should see a new challenge attempt
+    When I delete the new challenge attempt
+    Then I should not see any challenge attempts
