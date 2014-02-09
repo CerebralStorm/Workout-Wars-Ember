@@ -1,6 +1,3 @@
-
-{{outlet}}
-
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-danger">
@@ -43,13 +40,12 @@
   <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
   <table class="table">
     {{#each controller.model.challengeAttempts}}
-      {{this.isDirty}}
-    <tr>
-      <td><strong>Result</strong></td>
-      <td>{{this.result}}</td>
-      <td><strong>User</strong></td>
-      <td>{{this.user.email}}</td>
-    </tr>
+      <tr>
+        <td><strong>Result</strong></td>
+        <td>{{this.result}}</td>
+        <td><strong>User</strong></td>
+        <td>{{this.user.email}}</td>
+      </tr>
     {{/each}}                    
   </table>        
 </div>
