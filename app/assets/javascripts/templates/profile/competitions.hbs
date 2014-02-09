@@ -5,6 +5,8 @@
   <ul class="nav">
     {{#each comp in controller}}
       <li>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</li>
+    {{else}}
+      <li class="list-group-item">You haven't joined or created any competitions!</li>
     {{/each}}
   </ul>
 </div>

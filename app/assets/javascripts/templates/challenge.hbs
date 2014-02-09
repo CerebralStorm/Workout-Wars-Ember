@@ -24,7 +24,7 @@
             <div class="form-group">
               <label class= "col-sm-3 control-label">Result</label>
               <div class="col-sm-9">
-                {{input value=result classNames="form-control" placeholder=this.metric.name}}
+                {{input name="Result" value=result classNames="form-control" placeholder=this.metric.name}}
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@
 
 <div class="panel panel-danger">
   <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
-  <table class="table">
+  <table class="table leaderboard">
     {{#each controller.model.challengeAttempts}}
       <tr>
         <td><strong>Result</strong></td>

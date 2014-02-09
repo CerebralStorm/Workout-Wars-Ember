@@ -5,6 +5,8 @@
   <ul class="list-group">
     {{#each controller}}
       <li class="list-group-item">{{#link-to "activity" this}}Activity{{/link-to}}</li>
+    {{else}}
+      <li class="list-group-item">You haven't logged any activities yet! Go log some!</li>
     {{/each}}
   </ul>
 </div>
