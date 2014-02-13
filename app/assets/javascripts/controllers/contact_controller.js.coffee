@@ -1,7 +1,7 @@
 WorkoutWars.ContactController = Ember.Controller.extend 
-
   actions:
-    create: (feedback) -> 
+    submit: -> 
+      feedback = @get('model')
       success = (feedback) =>
         WorkoutWars.get("flash").success "Thank you for your feedback!"
         @transitionToRoute('/')
