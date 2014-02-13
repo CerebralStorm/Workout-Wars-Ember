@@ -10,6 +10,8 @@
 #= require_self
 #= require bootstrap
 
+Ember.EasyForm.Config.registerInputType('datePicker', WorkoutWars.DateField)
+
 $ ->
   if $('#EmberStart').length > 0
     WorkoutWars.advanceReadiness();

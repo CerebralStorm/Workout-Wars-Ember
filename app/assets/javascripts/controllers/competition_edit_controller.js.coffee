@@ -21,6 +21,5 @@ WorkoutWars.CompetitionEditController = Ember.ObjectController.extend
         WorkoutWars.get("flash").success "Your competition was created"
         @transitionToRoute('competition', competition)
       failure = (response) =>
-        @set('errors', @get('content.errors'))
         WorkoutWars.get("flash").danger "Your competition was not created"
       competition.save().then success, failure

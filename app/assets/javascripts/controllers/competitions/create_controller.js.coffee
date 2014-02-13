@@ -1,8 +1,11 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   needs: ['application', 'competitionWinConditions']
-  winConditions: Ember.computed.alias('controllers.competitionWinConditions.content')
+  winConditions: (->
+    console.log @get('controllers.competitionWinConditions.content')
+    @get('controllers.competitionWinConditions.content')
+  ).property()
+  #Ember.computed.alias('controllers.competitionWinConditions.content')
   errors: Ember.computed.alias('model.errors')
-  selectedWinCondition: null
 
   actions:
     create: (competition) ->

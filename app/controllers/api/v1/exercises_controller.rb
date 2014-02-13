@@ -14,7 +14,7 @@ class Api::V1::ExercisesController < ApplicationController
     if exercise.save
       render json: exercise
     else
-      render json: exercise, status: 422
+      render json: {errors: exercise.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::ExercisesController < ApplicationController
     if exercise.update(exercise_params)
       render json: exercise
     else
-      render json: exercise, status: 422
+      render json: {errors: exercise.errors.messages}, status: 422
     end
   end
 

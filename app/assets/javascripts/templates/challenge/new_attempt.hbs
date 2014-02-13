@@ -1,0 +1,21 @@
+<form {{action 'create' this.model on='submit'}}>
+  {{this.content}}
+  {{this.model}}
+  <div class="panel panel-danger">
+    <div class="panel-heading"><h3 class="panel-title">Log Attempt</h3></div>
+    <ul class="list-group">      
+      <li class="list-group-item">
+        <div class="row">
+          <div class="form-group">
+            <label class= "col-sm-3 control-label">Result</label>
+            <div class="col-sm-9">
+              {{input name="Result" value=this.model.result classNames="form-control" placeholder=metricName}}
+            </div>
+          </div>
+        </div>
+        <br />
+        <button class="btn btn-default btn-block">Record Result</button>
+      </li>
+    </ul>
+  </div>
+</form>

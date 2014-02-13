@@ -1,10 +1,14 @@
 WorkoutWars.ApplicationController = Ember.ObjectController.extend
-  needs: ['exercises', 'currentUser']
+  needs: ['exercises', 'currentUser', ]
   currentUser: Ember.computed.alias('controllers.currentUser.content')
   errors: Ember.computed.alias('content.errors')
   selectedExercise: null
 
   exercises: (->
+    @get('controllers.exercises.content')
+  ).property('controllers.exercises')
+
+  competitionwinConditions: (->
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
 

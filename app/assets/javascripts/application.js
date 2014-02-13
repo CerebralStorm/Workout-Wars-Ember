@@ -16,6 +16,8 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require ember-validations
+//= require ember-easyform
 //= require_self
 //= require workout_wars
 //= require moment

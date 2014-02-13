@@ -11,9 +11,7 @@
       <div class="col-sm-9">
         {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
         {{#if errors.exercise}}
-          {{#each errors.exercise}}
-            <span class="help-block">Exercise {{this.message}}</span>
-          {{/each}}
+            <span class="help-block">{{errors.exercise}}</span>
         {{/if}}
       </div>
     </div>
@@ -26,9 +24,7 @@
       <div class="col-sm-9">
         {{input value=value name="Value" classNames="form-control" placeholder=selectedExercise.metric.measurement}}
         {{#if errors.value}}
-          {{#each errors.value}}
-            <span class="help-block">{{selectedExercise.metric.name}} {{this.message}}</span>
-          {{/each}}
+          <span class="help-block">{{errors.value}}</span>
         {{/if}}
       </div>
     </div>

@@ -21,14 +21,12 @@
           <br />
 
           <div class="row">
-            <div {{bind-attr class=":form-group errors.email:has-error:"}}>
+            <div {{bind-attr class=":form-group model.errors.email:has-error:"}}>
               <label class= "col-sm-4 control-label">Email</label>
               <div class="col-sm-8">
                 {{input value=model.email classNames="form-control" name="Email"}}
-                {{#if errors.email}}
-                  {{#each errors.email}}
-                    <span class="help-block">Email {{this.message}}</span>
-                  {{/each}}
+                {{#if model.errors.email}}
+                  <span class="help-block">{{model.errors.email}}</span>             
                 {{/if}}
               </div>
             </div>
@@ -37,10 +35,13 @@
           <br />
 
           <div class="row">
-            <div {{bind-attr class=":form-group errors.subject:has-error:"}}>
+            <div {{bind-attr class=":form-group model.errors.subject:has-error:"}}>
               <label class= "col-sm-4 control-label">Subject</label>
               <div class="col-sm-8">
                 {{input value=model.subject classNames="form-control" name="Subject"}}
+                {{#if model.errors.subject}}
+                  <span class="help-block">{{model.errors.subject}}</span>             
+                {{/if}}
               </div>
             </div>
           </div>
@@ -48,10 +49,13 @@
           <br />
     
           <div class="row">
-            <div {{bind-attr class=":form-group  errors.subject:has-error"}}>
+            <div {{bind-attr class=":form-group  model.errors.content:has-error"}}>
               <label class= "col-sm-4 control-label">Content</label>
               <div class="col-sm-8">
                 {{textarea value=model.content classNames="form-control" name="Content" rows=10}}
+                {{#if model.errors.content}}
+                  <span class="help-block">{{model.errors.content}}</span>             
+                {{/if}}
               </div>
             </div>
           </div>
