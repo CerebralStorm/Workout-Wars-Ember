@@ -1,44 +1,22 @@
-<form {{ action "create" this on="submit"}}>
 <div class="modal-header">
-  <button type="button" class="close" {{action close target="view"}}>&times;</button>
+  <button type="button" class="close" {{action "close" target="view"}}>&times;</button>
   <h3>Log Activity</h3>
 </div>
-{{view WorkoutWars.ModalFlashView model=WorkoutWars.modalFlash}}
-<div class="modal-body">
-  <div class="row">
-    <div {{bind-attr class=":form-group errors.exercise:has-error:"}}>
-      <label class= "col-sm-3 control-label">Exercise</label>
-      <div class="col-sm-9">
-        {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
-        {{#if errors.exercise}}
-          {{#each errors.exercise}}
-            <span class="help-block">Exercise {{this.message}}</span>
-          {{/each}}
-        {{/if}}
-      </div>
-    </div>
-  </div>
-  <br />
-  <div class="row activity-edit">
+{{#form-for model wrapper="bootstrap"}}
+  {{view WorkoutWars.ModalFlashView model=WorkoutWars.modalFlash}}
+  <div class="modal-body">
+    {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
     {{#if selectedExercise}}
-    <div {{bind-attr class=":form-group errors.value:has-error:"}}>
-      <label class= "col-sm-3 control-label">{{selectedExercise.metric.name}}</label>
-      <div class="col-sm-9">
-        {{input value=value name="Value" classNames="form-control" placeholder=selectedExercise.metric.measurement}}
-        {{#if errors.value}}
-          {{#each errors.value}}
-            <span class="help-block">{{selectedExercise.metric.name}} {{this.message}}</span>
-          {{/each}}
-        {{/if}}
-      </div>
-    </div>
+      {{input value placeholder=selectedExercise.metric.measurement}}
     {{/if}}
   </div>
-</div>
-<div class="modal-footer">
-  <a href="#" class="btn" name="Close" {{action "close" target="view"}}>Close</a>
-  <button class="btn btn-primary">Save changes</button>
-</div>
-</form>
+  <div class="modal-footer">
+    {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
+  </div>
+{{/form-for}} 
+<a href="#" class="btn" name="Close" {{action "close" target="view"}}>Close</a>
+
+
+
 
 

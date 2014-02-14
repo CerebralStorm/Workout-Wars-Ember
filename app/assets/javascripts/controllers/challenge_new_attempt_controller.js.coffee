@@ -1,0 +1,19 @@
+WorkoutWars.ChallengeNewAttemptController = Ember.ObjectController.extend 
+  needs: ['challenge']
+  metricName: Ember.computed.alias('controllers.challenge.model.metric.name')
+  challenge: Ember.computed.alias('controllers.challenge.model')
+
+  actions: 
+    submit: ->
+      challengeAttempt = @get('model')
+      challengeAttempt.set('user', @get('currentUser.content'))
+      challengeAttempt.set('challenge', @get("challenge")) 
+
+      success = (challengeAttempt) =>
+        WorkoutWars.get("flash").success "Your attempt was recorded"
+        console.log "success"
+      failure = (response) =>
+        WorkoutWars.get("flash").danger "Your attempt was not recorded"
+      challengeAttempt.save success, failure
+      @transitionToRoute("challenge", @get('challenge'))
+        

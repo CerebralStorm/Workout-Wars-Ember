@@ -1,4 +1,5 @@
-WorkoutWars.Competition = DS.Model.extend
+WorkoutWars.Competition = DS.Model.extend(Ember.Validations.Mixin)
+WorkoutWars.Competition.reopen 
   competitionExercises: DS.hasMany('competitionExercise', { embedded: 'load' }) 
   competitionActivities: DS.hasMany('competitionActivity', { embedded: 'load' }) 
   competitionJoins: DS.hasMany('competitionJoin', { embedded: 'load' }) 
@@ -35,3 +36,25 @@ WorkoutWars.Competition = DS.Model.extend
       'unstarted'
   ).property()
 
+
+  validations:
+    name:
+      presence: true
+      length:
+        minimum: 5
+
+    startDate:
+      presence: true
+
+    endDate:
+      presence: true
+
+    competitionWinCondition:
+      presence: true
+
+    maxParticipants:
+      numericality:
+        onlyInteger: true
+        allowBlank: true
+        greaterThan: 0
+        lessThanOrEqualTo: 1000 

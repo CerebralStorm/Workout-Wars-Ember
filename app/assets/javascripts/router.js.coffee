@@ -7,6 +7,7 @@ WorkoutWars.Router.map (match)->
   @resource "challenges", ->
     @resource "challenge", path: ":challenge_id", ->
       @route "edit"
+      @route "newAttempt"
     @route "create"
 
   @resource 'profile', path: "profile/:user_id", ->

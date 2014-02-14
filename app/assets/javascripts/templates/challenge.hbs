@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="panel panel-danger">
       <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
       <table class="table">
@@ -11,29 +11,11 @@
           <td><strong>Description</strong></td>
           <td>{{description}}</td>
         </tr>                   
-      </table>        
+      </table>  
+        {{#link-to 'challenge.newAttempt' class="btn btn-primary"}}New Attempt{{/link-to}}
+        {{outlet}}      
     </div>
   </div>
-    
-  <div class="col-md-6">
-    <div class="panel panel-danger">
-      <div class="panel-heading"><h3 class="panel-title">Log Attempt</h3></div>
-      <ul class="list-group">      
-        <li class="list-group-item">
-          <div class="row">
-            <div class="form-group">
-              <label class= "col-sm-3 control-label">Result</label>
-              <div class="col-sm-9">
-                {{input name="Result" value=result classNames="form-control" placeholder=this.metric.name}}
-              </div>
-            </div>
-          </div>
-          <br />
-          <button class="btn btn-default btn-block"{{action "createAttempt"}}>Record Result</button>
-        </li>
-      </ul>
-    </div>
-  </div> 
 </div>
 
 <div class="panel panel-danger">

@@ -17,10 +17,7 @@ Feature: Activity
   Scenario: log a bad activity then fix it
     When I open log activity
     And I add a bad new activity
-    Then I should see the error messages
-    # KNOWN BUG PREVENTS THIS CURRENTLY
-    # And I add a new activity
-    # Then I should see the new activity
+    Then I should not be able to submit the bad activity
 
   @javascript
   Scenario: create/delete an activity for a competition

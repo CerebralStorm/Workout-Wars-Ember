@@ -3,7 +3,7 @@
     <h3 class="panel-title">Competition Settings</h3>
   </div>
   <div class="panel-body">
-    <label class= "control-label">Select New Win Condition</label>
+    <label class= "control-label">Select a Win Condition</label>
     {{view Ember.Select 
           name="Win Condition Select"
           content=winConditions  
@@ -20,7 +20,7 @@
         {{input maxParticipants}}
         {{input description as="text"}}
         <br />
-        {{submit class="btn btn-primary"}}
+        {{submit id="competitionCreate" class="btn btn-primary"}}
       {{/form-for}}
     {{/if}}
   </div>

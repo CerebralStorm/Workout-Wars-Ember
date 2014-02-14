@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :challenge do
-    exercise
+    metric
     description "do work"
   end
 end

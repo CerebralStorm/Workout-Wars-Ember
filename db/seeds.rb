@@ -3,7 +3,7 @@ puts "Seeding..."
 [
   {name: 'Reps',      measurement: "Repetitions" },
   {name: 'Distance',  measurement: "Miles" },
-  {name: 'Duration',  measurement: "Hours" },
+  {name: 'Duration',  measurement: "Minutes" },
   {name: 'Weight',    measurement: "Pounds" },
   {name: 'Calories',  measurement: "Total Burned" },
 ].each do |metric|

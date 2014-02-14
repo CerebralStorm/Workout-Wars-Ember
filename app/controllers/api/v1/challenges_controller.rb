@@ -14,7 +14,7 @@ class Api::V1::ChallengesController < ApplicationController
     if challenge.save
       render json: challenge
     else
-      render json: challenge, status: 422
+      render json: {errors: challenge.errors.messages}, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::V1::ChallengesController < ApplicationController
     if challenge.update(challenge_params)
       render json: challenge
     else
-      render json: challenge, status: 422
+      render json: {errors: challenge.errors.messages}, status: 422
     end
   end
 
