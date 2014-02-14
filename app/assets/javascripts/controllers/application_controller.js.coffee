@@ -8,10 +8,6 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
 
-  competitionwinConditions: (->
-    @get('controllers.exercises.content')
-  ).property('controllers.exercises')
-
   canSave: (->
     @get('selectedExercise')
   ).property('selectedExercise') 
