@@ -13,7 +13,7 @@ end
 When(/^I add a new activity$/) do  
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
-  click_button "Save"
+  click_button "Log it!"
   click_link "Close"
 end
 
@@ -47,12 +47,11 @@ Then(/^I should see my score and rank updated$/) do
 end
 
 When(/^I add a bad new activity$/) do
-  select "Pushups", from: "Exercise Select"
-  click_button "Save"
+  select "Pushups", from: "Exercise Select"  
 end
 
-Then(/^I should see the error messages$/) do
-  expect(page).to have_content "is not a number"
+Then(/^I should not be able to submit the bad activity$/) do
+  assert page.has_css?("#logActivity[disabled='disabled']")
 end
 
 When(/^I add an activity that is not in this competition$/) do
@@ -60,7 +59,7 @@ When(/^I add an activity that is not in this competition$/) do
   click_link "Log Activity"
   select "Pullups", from: "Exercise Select"
   fill_in "Value", with: 50 
-  click_button "Save"
+  click_button "Log it!"
   click_link "Close"
 end
 
@@ -68,7 +67,7 @@ When(/^I add another activity$/) do
   click_link "Log Activity"
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
-  click_button "Save"
+  click_button "Log it!"
   click_link "Close"
 end
 

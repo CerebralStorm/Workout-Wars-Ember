@@ -14,12 +14,7 @@ Feature: Competitions
   @javascript
   Scenario: Create a new invalid competition
     When I fill out the competition with invalid data
-    And I save it
-    Then I should see error messages
-    # KNOWN BUG PREVENTS THIS CURRENTLY
-    # When I fill out the competition with valid data
-    # And I save it
-    # Then I should see a new competition
+    Then I should not be able to submit the competition form
 
   @javascript
   Scenario: Create a new valid competition and add an exercise to it

@@ -17,7 +17,8 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   ).property('selectedExercise') 
 
   actions:
-    create: (activity) -> 
+    submit: (activity) -> 
+      activity = @get('model')
       activity.set('exercise', @get('selectedExercise'))
       activity.set('user', @get('currentUser'))
 

@@ -4,13 +4,14 @@ Given(/^I visit the challenges page$/) do
 end
 
 When(/^I fill out the challenge attempt with valid data$/) do
-  fill_in "Result", with: 50
-  click_button "Record Result"
+  click_link "New Attempt"
+  fill_in "result", with: 50
+  click_button "Submit"
 end
 
 Then(/^I should see a new challenge attempt$/) do
   within ".leaderboard" do 
-    expect(find('tr:nth-child(1)')).to have_text("Result 50 User ray@bustinghosts.com")
+    expect(find('tr')).to have_text("Result 50 User ray@bustinghosts.com")
   end
 end
 
@@ -33,5 +34,5 @@ When(/^I delete the new challenge attempt$/) do
 end
 
 Then(/^I should not see any challenge attempts$/) do
-  expect(page).to have content "Your attempt was deleted"
+  expect(page).to have_content "Your attempt was deleted"
 end
