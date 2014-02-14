@@ -1,1 +1,3 @@
-WorkoutWars.ProfileChallengesController = Ember.ArrayController.extend()
+WorkoutWars.ProfileChallengesController = Ember.ArrayController.extend
+  sortProperties: ['createdAt']
+  sortAscending: false
