@@ -1,6 +1,6 @@
 WorkoutWars.IndexRoute = Ember.Route.extend
-  setupController: (controller) ->
-    controller.set "title", "Workout Wars Home Page"
+  model: ->
+    @store.find('user')
 
   actions:
     setSuccess: (message) ->

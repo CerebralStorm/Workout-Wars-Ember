@@ -1,51 +1,35 @@
 <div class="container">
   <div class="jumbotron">
     <img src="/assets/ww-logo-large.png" />
+    <h1><p class="text-danger">ALPHA</p></h1>
     <p>Get ready to take your fitness to the next level.</p>
   </div>
+
+  <hr class="featurette-divider">
+
+  <h2 class="featurette-heading">Current User Levels <span class="text-muted">Join the madness</span></h2>
+
+  <div class="panel panel-danger">
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>User</th>
+          <th>Level</th>
+          <th>Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each user in controller}}
+      <tr>
+        <td>{{user.email}}</td>
+        <td><span class="badge">{{user.level}}</span></td>               
+        <td><span class="badge">{{user.experience}}</span></td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+
+  <hr class="featurette-divider">
 </div>
-
-<!-- Marketing messaging and featurettes
-================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
-<div class="container marketing">
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading">Get the results you want. <span class="text-muted"> Compete to Win.</span></h2>
-      <p class="lead">Get fit while having fun competing with your friends and challenging yourself to achieve new levels of fitness. Whatever your fitness goals are the key to achieving results is consistency. We keep you motivated by using your friends and others on the site to challenge you to keep going. We're leveraging postive peer presure to keep you in the game.</p>
-    </div>
-    <div class="col-md-5">
-      <img src="/assets/small-home1.jpg", alt: "Generic Image", class="featurette-image img-responsive" />
-    </div>
-  </div>
-
-  <hr class="featurette-divider">
-
-  <div class="row featurette">
-    <div class="col-md-5">
-      <img src="/assets/small-home2.jpg", alt: "Generic Image", class="featurette-image img-responsive" />
-    </div>
-    <div class="col-md-7">
-      <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">Challenge Yourself.</span></h2>
-      <p class="lead">Challenge yourself to reach your fitness goals. If competing against others isn't your thing then just compete against yourself in personal challenges. Choose one of the pre-defined challenges or create your own and see your progress over time. Need additional motivation, make your challenge public and see how others compare.</p>
-    </div>
-  </div>
-
-  <hr class="featurette-divider">
-
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading">Acheive your goals. <span class="text-muted">Your Way.</span></h2>
-      <p class="lead">Whatever your goals, whatever your motivational needs, we've got you covered. Get started and start seeing the results. Your body with thank you. </p>
-    </div>
-    <div class="col-md-5">
-      <img src="/assets/small-home3.jpg", alt: "Generic Image", class="featurette-image img-responsive" />
-    </div>
-  </div>
-
-  <hr class="featurette-divider">
-
-  <!-- /END THE FEATURETTES -->
-
-</div><!-- /.container -->

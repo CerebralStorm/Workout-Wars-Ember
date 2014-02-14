@@ -1,4 +1,5 @@
 WorkoutWars.ChallengeController = Ember.ObjectController.extend 
+
   actions:     
     deleteAttempt: (attempt) ->
       if window.confirm "Are you sure?"
