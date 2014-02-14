@@ -1,0 +1,3 @@
+{{#each winCondition in controller}}
+<a href="#" class="btn btn-success" {{ action "setWinCondition" winCondition}}>Click here to select <strong>{{winCondition.name}}</strong></a>
+{{/each}}

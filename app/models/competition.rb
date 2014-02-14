@@ -9,7 +9,7 @@ class Competition < ActiveRecord::Base
 
   accepts_nested_attributes_for :competition_exercises, allow_destroy: true
 
-  validates :name, presence: true, uniqueness: true
+  validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :end_date
   validates_presence_of :user
