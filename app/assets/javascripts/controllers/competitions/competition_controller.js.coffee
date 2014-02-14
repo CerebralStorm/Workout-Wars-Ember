@@ -11,12 +11,13 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   ).property('model.competitionJoins.@each')
 
   canJoin: (->
+    return false if @get('isJoined')
     maxNum = @get('model.maxParticipants')
     if maxNum
       return @get('numberOfUsers') < maxNum
     else
       true
-  ).property('model.competitionJoins.@each')
+  ).property('model.competitionJoins.@each', 'isJoined')
 
   currentPartial: (->
     "#{@get('model.status')}_competition"

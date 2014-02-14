@@ -9,6 +9,16 @@
           </td>
         </tr>
         <tr>
+          <td colspan="2">
+            {{#if canJoin}}
+              <div class="text-center">
+                <h4>But it's not to late to join!</h4>
+                <button class="btn btn-default btn-block"{{action "join"}}>Join</button>
+              </div>
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
           <td><strong>Creator</strong></td>
           <td>{{user.email}}</td>
         </tr>
