@@ -20,8 +20,10 @@ end
   {name: 'Running',    metric: Metric.find_by_name("Distance"),   experience_multiplier: 40,    },
   {name: 'Biking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    },
   {name: 'Swimming',   metric: Metric.find_by_name("Distance"),   experience_multiplier: 200,   },
-  {name: 'Hiking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    }, 
+  {name: 'Hiking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    },
+  {name: 'Walking',    metric: Metric.find_by_name("Distance"),   experience_multiplier: 10,    }, 
   {name: 'Aerobics',   metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     }, 
+  {name: 'Zumba',      metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     }, 
   {name: 'Yoga',       metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     } 
 ].each do |exercise|
   Exercise.where(exercise).first_or_create
