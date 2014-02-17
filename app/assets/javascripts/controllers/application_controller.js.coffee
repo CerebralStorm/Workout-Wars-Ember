@@ -5,7 +5,7 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   selectedExercise: null
 
   exercises: (->
-    @get('controllers.exercises.content')
+    @get('controllers.exercises.content').sortBy('name')
   ).property('controllers.exercises')
 
   canSave: (->
