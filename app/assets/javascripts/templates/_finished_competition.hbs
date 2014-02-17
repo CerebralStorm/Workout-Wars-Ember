@@ -10,7 +10,7 @@
         </tr>
         <tr>
           <td><strong>Creator</strong></td>
-          <td>{{user.email}}</td>
+          <td>{{user.handle}}</td>
         </tr>
         <tr>
           <td><strong>Start Date</strong></td>
@@ -58,7 +58,7 @@
     {{#each compJoin in controller.competitionJoins}}
       <li class="list-group-item">
         {{#if compJoin.rank}}<h4>Rank: {{compJoin.rank}}</h4>{{/if}}
-        <h5>User: {{compJoin.user.email}}</h5>
+        <h5>User: {{compJoin.user.handle}}</h5>
         <h5>Total: {{compJoin.total}}</h5>   
       </li>
     {{/each}}

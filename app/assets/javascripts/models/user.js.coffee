@@ -20,6 +20,12 @@ WorkoutWars.User = DS.Model.extend
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
 
+  handle: (-> 
+    return @get('nickname') if @get('nickname')
+    return @get('name') if @get('name')
+    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ")
+  ).property('nickname', 'name', 'email')
+
   loggedExerciseNames: (-> 
     exercises = []
     @get('activities').forEach (activity) -> 

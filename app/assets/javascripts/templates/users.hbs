@@ -7,7 +7,7 @@
       <div class="list-group">
         {{#each controller}}
           {{#unless isDirty}}
-            {{#link-to "user" this class="list-group-item"}}{{email}}{{/link-to}}
+            {{#link-to "user" this class="list-group-item"}}{{handle}}{{/link-to}}
           {{/unless}}
         {{else}}
           <a href="#" class="list-group-item">There are no competitions.</a>

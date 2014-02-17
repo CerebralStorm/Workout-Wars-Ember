@@ -6,7 +6,7 @@ WorkoutWars.UserStatView = Ember.View.extend
     $.each @get('context.model.activityStatsTotal'), (key, value) ->
       keys.push(key)
       values.push(value)
-      
+
     @.$().highcharts
       chart:
         type: "column"
@@ -18,7 +18,7 @@ WorkoutWars.UserStatView = Ember.View.extend
         ]
 
       title:
-        text: "Total activities logged for #{@get('context.model.email')}"
+        text: "Total activities logged for #{@get('context.model.handle')}"
 
       xAxis:
         categories: keys
