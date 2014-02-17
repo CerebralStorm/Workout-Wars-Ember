@@ -6,6 +6,10 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     @get('controllers.exercises.content')
   ).property('controllers.exercises')
 
+  competitionJoins: (->
+    @get('content.competitionJoins').sortBy('rank')
+  ).property('content.competitionJoins')
+
   isJoined: (->
     @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('length') > 0
   ).property('model.competitionJoins.@each')
