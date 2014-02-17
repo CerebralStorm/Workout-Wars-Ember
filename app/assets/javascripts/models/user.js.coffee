@@ -20,4 +20,24 @@ WorkoutWars.User = DS.Model.extend
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
 
+  loggedExerciseNames: (-> 
+    exercises = []
+    @get('activities').forEach (activity) -> 
+      exercises.push(activity.get('exercise.name'))
+    exercises.uniq()
+  ).property()
+
+  activityStatsTotal: (-> 
+    values = {}
+    @get('loggedExerciseNames').forEach (name) ->
+      values[name] = 0
+
+    @get('activities').forEach (activity) -> 
+      key = activity.get('exercise.name')
+      values[key] += parseFloat(activity.get('value'))
+    values
+  ).property()
+
+
+
  
