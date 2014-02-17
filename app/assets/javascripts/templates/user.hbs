@@ -7,10 +7,6 @@
       <p>Nickname: {{nickname}}</p>
     {{/if}}
 
-    {{#if age}}
-      <p>Age: {{age}}</p>
-    {{/if}}
-
     {{#if height}}
       <p>Height: {{height}}</p>
     {{/if}}
@@ -30,5 +26,7 @@
     {{#if nextLevelExperience}}
       <p>Experience to next level: {{nextLevelExperience}}</p>
     {{/if}}
+
+    {{view WorkoutWars.UserStatView}}
   </div>
 </div>

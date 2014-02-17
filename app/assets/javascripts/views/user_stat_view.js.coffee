@@ -1,6 +1,14 @@
 WorkoutWars.UserStatView = Ember.View.extend
   templateName: "user_stats"
+
+  modelChanged: (->
+    @drawChart()
+  ).observes('controller.model')
+
   didInsertElement: ->
+    @drawChart()
+
+  drawChart: ->
     keys = []
     values = []
     $.each @get('context.model.activityStatsTotal'), (key, value) ->
