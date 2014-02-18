@@ -14,7 +14,9 @@ WorkoutWars::Application.routes.draw do
   authenticated :user do
     root to: "ember#start", as: :authenticated_root
   end
-    
+
+  get 'privacy' => 'static#privacy'
+
   namespace :api do
     namespace :v1 do
       resources :competitions

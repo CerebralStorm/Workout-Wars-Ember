@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,21 +60,14 @@
 </div>
 
 <div class="container">
-  <br />
-  <br />
-  <br />
-  <br />
   {{outlet modal}}
   {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
   {{outlet}}
-  <br />
-  <br />
-  <br />
 </div> <!-- /container -->
 
 <!-- FOOTER -->
-<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <footer id="main-footer">
-    <p class="text-center text-primary">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p class="text-center text-primary">&copy; 2013 Senior Project for Cody Tanner, Joey Gibson, John Hanks, and Charmaine Keck &middot; {{#link-to 'privacy'}}Privacy{{/link-to}} &middot; {{#link-to 'privacy'}}Terms{{/link-to}}</p>
   </footer>
 </nav>
