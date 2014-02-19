@@ -1,7 +1,7 @@
 class ChallengeAttemptSerializer < ActiveModel::Serializer
   attributes :id, :result, :created_at
   
-  embed :ids
+  embed :ids, include: true
 
   has_one :user
   has_one :challenge
