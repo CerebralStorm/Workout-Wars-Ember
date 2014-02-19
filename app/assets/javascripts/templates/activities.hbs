@@ -1,20 +1,23 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
       <div id="recent_activity" class="list-group">
-        {{#each controller}}
+        {{#collection Ember.ListView contentBinding="controller" height=500 rowHeight=1}}
+          {{#link-to "activity" this id=this.id class="list-group-item"}}{{dateTime this.createdAt}} - {{this.exercise.name}}{{/link-to}}
+        {{/collection}}
+{{!--         {{#each controller}}
           {{#link-to "activity" this id=this.id class="list-group-item"}}{{dateTime this.createdAt}} - {{this.exercise.name}}{{/link-to}}
         {{else}}
           <div class="list-group-item">You haven't logged any activities yet! Go log some!</div>
-        {{/each}}
+        {{/each}} --}}
       </div>
     </div>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-6">
     {{outlet}}
   </div>
 </div>
