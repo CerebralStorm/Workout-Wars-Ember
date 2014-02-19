@@ -27,20 +27,28 @@
 <div class="panel panel-danger">
   <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
   <table class="table leaderboard">
-    {{#each controller.model.challengeAttempts}}
+    <thead>
+      <tr class="active">
+        <th>Rank</th>
+        <th>User</th>
+        <th>Value</th>
+        <th colspan="2">Attempted On</th>
+      </tr>
+    </thead>
+    {{#each attempt in rankedChallengeAttempts}}
       <tr>
-        <td><strong>Result</strong></td>
-        <td>{{this.result}}</td>
-        <td><strong>User</strong></td>
-        <td>{{this.user.handle}}</td>
+        <td>{{index _view.contentIndex}}</td>
+        <td>{{attempt.user.handle}}</td>
+        <td><span class="badge">{{attempt.result}}</span></td>
+        <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
         <td>
           {{#if canDelete}}
-            <a href="#" class="btn btn-danger btn-xs" {{action "deleteAttempt" this }}>&times;</a>
+            <a href="#" class="btn btn-danger btn-xs" {{action "deleteAttempt" attempt }}>&times;</a>
           {{/if}}
         </td>
       </tr>
     {{else}}
-      <tr>
+      <tr colspan="4">
         <td>This challenge has not been attempted yet. <strong>You could be the first!</strong></td>
       </tr>
     {{/each}}                    
