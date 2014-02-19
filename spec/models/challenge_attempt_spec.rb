@@ -26,4 +26,30 @@ describe ChallengeAttempt do
       FactoryGirl.build(:challenge_attempt).should be_valid
     end
   end
+
+
+  context "#methods" do
+    describe "#create_activity" do 
+      before do 
+        @user = FactoryGirl.create(:user)
+        @exercise = FactoryGirl.create(:exercise)
+        @challenge = FactoryGirl.create(:challenge, exercise: @exercise)
+      end
+
+      it "should create an activity for the user after they complete a challenge" do 
+        @challenge.challenge_attempts.create(user: @user, result: 20)
+        @user.activities.should_not be_empty
+      end
+
+      it "should create assign the correct value to the activity created by the challenge attempt" do 
+        @challenge.challenge_attempts.create(user: @user, result: 20)
+        @user.activities.first.value.should eq 20
+      end
+
+      it "should have the correct exercise" do 
+        @challenge.challenge_attempts.create(user: @user, result: 20)
+        @user.activities.first.exercise.should eq @exercise
+      end
+    end
+  end
 end
