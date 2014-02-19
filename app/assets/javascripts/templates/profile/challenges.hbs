@@ -13,7 +13,7 @@
       <tbody>
       {{#each attempt in controller}}
       <tr>
-        <td>{{attempt.challenge.name}}</td>
+        <td>{{#link-to "challenge" attempt.challenge}}{{attempt.challenge.name}}{{/link-to}}</td>
         <td><span class="badge">{{attempt.result}}</span></td>               
         <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
       </tr>

@@ -11,12 +11,14 @@
     {{/if}}
   </div>
   <div class="modal-footer">
-    {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
+    {{#if isSaving}}
+      <a href="#" class="btn" name="Close" disabled>Saving...</a>
+    {{else}}
+      {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
+    {{/if}}
   </div>
 {{/form-for}} 
 <a href="#" class="btn" name="Close" {{action "close" target="view"}}>Close</a>
-
-
 
 
 
