@@ -6,7 +6,7 @@
       </div>
       <div id="recent_activity" class="list-group">
         {{#each controller}}
-          {{#link-to "activity" this id=this.id class="list-group-item"}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}
+          {{#link-to "activity" this id=this.id class="list-group-item"}}{{dateTime this.createdAt}} - {{this.exercise.name}}{{/link-to}}
         {{else}}
           <div class="list-group-item">You haven't logged any activities yet! Go log some!</div>
         {{/each}}

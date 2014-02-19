@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208215701) do
+ActiveRecord::Schema.define(version: 20140219004042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140208215701) do
     t.string   "description"
     t.integer  "challenge_win_condition_id"
     t.integer  "difficulty_id"
-    t.integer  "metric_id"
+    t.integer  "exercise_id"
     t.integer  "reward"
     t.datetime "created_at"
     t.datetime "updated_at"

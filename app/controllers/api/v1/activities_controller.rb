@@ -2,7 +2,11 @@ class Api::V1::ActivitiesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Activity.all 
+    if params[:ids]
+      respond_with Activity.where(id: params[:ids])
+    else
+      respond_with Activity.all 
+    end
   end
 
   def show
