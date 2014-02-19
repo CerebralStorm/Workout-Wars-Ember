@@ -27,6 +27,10 @@ WorkoutWars.Competition.reopen
     @get('competitionJoins').get('length')
   ).property('competitionJoins.@each')
 
+  isFull: (->
+    @get('numberOfUsers') == @get('numOfParticipants')
+  ).property('maxParticipants')
+
   status: (->
     if @get('finished')
       'finished'

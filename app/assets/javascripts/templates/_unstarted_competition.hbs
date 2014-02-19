@@ -6,7 +6,13 @@
       <table class="table">
         <tr>
           <td colspan="2">
-            <h3 class="text-success text-center">Registration Open</h3>
+            <h3 class="text-success text-center">
+              {{#if isFull}}
+                Currently Full
+              {{else}}
+                Registration Open
+              {{/if}}
+            </h3>
           </td>
         </tr>
         <tr>
