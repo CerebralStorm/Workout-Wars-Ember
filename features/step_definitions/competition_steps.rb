@@ -100,7 +100,7 @@ When(/^I go to the competition page$/) do
 end
 
 Then(/^I should not see what creators see$/) do 
-  expect(page).to have_content "ray@bustinghosts.com"
+  expect(page).to have_content "Hulk Hogan"
   expect(page).to have_content "No exercises have been added to this competition."  
   expect(page).to_not have_selector "a[name='Edit Competition']"
   expect(page).to_not have_selector "a[name='Delete Competition']"

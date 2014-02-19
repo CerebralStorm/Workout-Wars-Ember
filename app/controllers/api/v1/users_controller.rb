@@ -4,7 +4,11 @@ class Api::V1::UsersController < ApplicationController
   respond_to :json
 
   def index
-    respond_with User.all
+    if params[:ids]
+      respond_with User.where(id: params[:ids])
+    else
+      respond_with User.all 
+    end
   end
 
   def show

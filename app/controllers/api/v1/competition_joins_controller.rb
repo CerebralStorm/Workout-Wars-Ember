@@ -2,7 +2,11 @@ class Api::V1::CompetitionJoinsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with CompetitionJoin.all
+    if params[:ids]
+      respond_with CompetitionJoin.where(id: params[:ids])
+    else
+      respond_with CompetitionJoin.all 
+    end
   end
 
   def show

@@ -2,7 +2,11 @@ class Api::V1::CompetitionExercisesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with CompetitionExercise.all
+    if params[:ids]
+      respond_with CompetitionExercise.where(id: params[:ids])
+    else
+      respond_with CompetitionExercise.all 
+    end
   end
 
   def show

@@ -4,15 +4,13 @@ class UserSerializer < ActiveModel::Serializer
 
   embed :ids, include: true
   
-  has_many :activities, include: true
-  
+  has_many :activities  
   has_many :competition_activities
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
 
-  # `scope` is current_user
   def can_update    
     Ability.new(scope).can?(:update, object)
   end

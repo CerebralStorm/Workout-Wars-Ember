@@ -2,7 +2,11 @@ class Api::V1::ChallengeAttemptsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with ChallengeAttempt.all
+    if params[:ids]
+      respond_with ChallengeAttempt.where(id: params[:ids])
+    else
+      respond_with ChallengeAttempt.all 
+    end
   end
 
   def show
