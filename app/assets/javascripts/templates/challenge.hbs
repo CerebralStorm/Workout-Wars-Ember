@@ -10,10 +10,16 @@
         <tr>
           <td><strong>Description</strong></td>
           <td>{{description}}</td>
-        </tr>                   
-      </table>  
+        </tr>   
+        <tr>
+          <td><strong>Exercise</strong></td>
+          <td>{{exercise.name}}</td>
+        </tr>                  
+      </table> 
+      <div class="panel-body">
         {{#link-to 'challenge.newAttempt' class="btn btn-primary"}}New Attempt{{/link-to}}
-        {{outlet}}      
+        {{outlet}} 
+      </div>      
     </div>
   </div>
 </div>

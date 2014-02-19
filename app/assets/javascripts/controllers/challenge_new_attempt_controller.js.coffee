@@ -1,6 +1,6 @@
 WorkoutWars.ChallengeNewAttemptController = Ember.ObjectController.extend 
   needs: ['challenge']
-  metricName: Ember.computed.alias('controllers.challenge.model.metric.name')
+  metricName: Ember.computed.alias('controllers.challenge.model.exercise.metric.measurement')
   challenge: Ember.computed.alias('controllers.challenge.model')
 
   actions: 
