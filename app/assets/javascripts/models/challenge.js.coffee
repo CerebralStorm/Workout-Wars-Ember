@@ -1,5 +1,5 @@
 WorkoutWars.Challenge = DS.Model.extend
-  metric: DS.belongsTo('metric', { embedded: 'load' }) 
-  challengeAttempts: DS.hasMany('challengeAttempt', { embedded: 'load' }) 
+  exercise: DS.belongsTo('exercise', { async: true }) 
+  challengeAttempts: DS.hasMany('challengeAttempt', { async: true }) 
   name: DS.attr('string')
   description: DS.attr('string')
