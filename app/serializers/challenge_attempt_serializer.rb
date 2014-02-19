@@ -5,4 +5,8 @@ class ChallengeAttemptSerializer < ActiveModel::Serializer
 
   has_one :user
   has_one :challenge
+
+  def can_delete
+    Ability.new(scope).can?(:delete, object)
+  end
 end
