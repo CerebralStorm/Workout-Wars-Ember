@@ -1,4 +1,5 @@
 WorkoutWars.Exercise = DS.Model.extend
+  metric:  DS.belongsTo('metric', { async: true })
   name: DS.attr('string')
   description: DS.attr('string')
-  metric:  DS.belongsTo('metric', { embedded: "always" })
+  experienceMultiplier:  DS.attr('number')

@@ -1,7 +1,7 @@
 class ExerciseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description
+  attributes :id, :name, :description, :experience_multiplier
 
-  embed :ids, include: true
+  embed :ids
 
   has_one :metric
 end

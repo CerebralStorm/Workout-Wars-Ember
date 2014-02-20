@@ -7,35 +7,11 @@
         {{#link-to 'competitions'}}<h3 class="panel-title">New Competitions</h3>{{/link-to}}
       </div>
       <div class="list-group">
-        {{#each newCompetitions}}
+        {{#each controller}}
           {{#unless isDirty}}
-            {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
-          {{/unless}}
-        {{else}}
-          <a href="#" class="list-group-item">There are no competitions.</a>
-        {{/each}}
-      </div>
-      <br />
-      <div class="panel-heading">
-        {{#link-to 'competitions'}}<h3 class="panel-title">Started Competitions</h3>{{/link-to}}
-      </div>
-      <div class="list-group">
-        {{#each startedCompetitions}}
-          {{#unless isDirty}}
-            {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
-          {{/unless}}
-        {{else}}
-          <a href="#" class="list-group-item">There are no competitions.</a>
-        {{/each}}
-      </div>
-      <br />
-      <div class="panel-heading">
-        {{#link-to 'competitions'}}<h3 class="panel-title">Finished Competitions</h3>{{/link-to}}
-      </div>
-      <div class="list-group">
-        {{#each finishedCompetitions}}
-          {{#unless isDirty}}
-            {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
+            {{#link-to "competition" this class="list-group-item"}}
+              <span {{bind-attr class="this.status"}}>{{name}}</span>
+            {{/link-to}}
           {{/unless}}
         {{else}}
           <a href="#" class="list-group-item">There are no competitions.</a>

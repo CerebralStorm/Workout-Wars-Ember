@@ -1,9 +1,9 @@
 WorkoutWars.User = DS.Model.extend
   activities: DS.hasMany('activity', { embedded: "always" }) 
-  competitionJoins: DS.hasMany('competitionJoin', { embedded: "always" }) 
-  competitionActivities: DS.hasMany('competitionActivity', { embedded: "always" }) 
-  competitions: DS.hasMany('competition', { embedded: "always" }) 
-  challengeAttempts: DS.hasMany('challengeAttempt', { embedded: "always" }) 
+  competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
+  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitions: DS.hasMany('competition', { async: true }) 
+  challengeAttempts: DS.hasMany('challengeAttempt', { async: true }) 
   name: DS.attr('string')
   nickname: DS.attr('string')
   email: DS.attr('string')
@@ -41,6 +41,19 @@ WorkoutWars.User = DS.Model.extend
     @get('activities').forEach (activity) -> 
       key = activity.get('exercise.name')
       values[key] += parseFloat(activity.get('value'))
+    values
+  ).property()
+
+  activityExperienceTotal: (-> 
+    values = {}
+    @get('loggedExerciseNames').forEach (name) ->
+      values[name] = 0
+
+    @get('activities').forEach (activity) -> 
+      key = activity.get('exercise.name')
+      multiplier = activity.get('exercise.experienceMultiplier')
+      value =  activity.get('value') * multiplier
+      values[key] += value
     values
   ).property()
 
