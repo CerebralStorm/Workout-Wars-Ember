@@ -4,7 +4,7 @@ class UserSerializer < ActiveModel::Serializer
 
   embed :ids
   
-  has_many :activities, include: true  
+  has_many :activities 
   has_many :competition_activities
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
