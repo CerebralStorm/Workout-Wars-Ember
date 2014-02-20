@@ -1,4 +1,4 @@
-WorkoutWars.UserStatView = Ember.View.extend
+WorkoutWars.UserExperienceView = Ember.View.extend
   templateName: "highchart"
 
   modelChanged: (->
@@ -11,7 +11,7 @@ WorkoutWars.UserStatView = Ember.View.extend
   drawChart: ->
     keys = []
     values = []
-    $.each @get('context.model.activityStatsTotal'), (key, value) ->
+    $.each @get('context.model.activityExperienceTotal'), (key, value) ->
       keys.push(key)
       values.push(value)
 
@@ -26,7 +26,7 @@ WorkoutWars.UserStatView = Ember.View.extend
         ]
 
       title:
-        text: "Total activities logged for #{@get('context.model.handle')}"
+        text: "Experience Distribution"
 
       xAxis:
         categories: keys
@@ -40,13 +40,13 @@ WorkoutWars.UserStatView = Ember.View.extend
       yAxis:
         min: 0
         title:
-          text: "Total (All-Time)"
+          text: "Experience (All-Time)"
 
       legend:
         enabled: false
 
       tooltip:
-        pointFormat: "Total: <b>{point.y:.1f}</b>"
+        pointFormat: "Experience Total: <b>{point.y:.1f}</b>"
 
       series: [
         name: "Exercises"

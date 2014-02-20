@@ -23,6 +23,7 @@ WorkoutWars::Application.routes.draw do
       resources :users
       resources :activities
       resources :exercises
+      resources :metrics
       resources :competition_exercises
       resources :competition_joins
       resources :competition_activities
