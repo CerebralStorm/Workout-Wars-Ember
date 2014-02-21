@@ -1,5 +1,5 @@
 WorkoutWars.User = DS.Model.extend
-  activities: DS.hasMany('activity', { embedded: "always" }) 
+  activities: DS.hasMany('activity', { async: true }) 
   competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
   competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
   competitions: DS.hasMany('competition', { async: true }) 
@@ -26,36 +26,15 @@ WorkoutWars.User = DS.Model.extend
     return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ") if @get('email')
   ).property('nickname', 'name', 'email')
 
-  loggedExerciseNames: (-> 
-    exercises = []
-    @get('activities').forEach (activity) -> 
-      exercises.push(activity.get('exercise.name'))
-    exercises.uniq()
-  ).property()
-
   activityStatsTotal: (-> 
-    values = {}
-    @get('loggedExerciseNames').forEach (name) ->
-      values[name] = 0
-
-    @get('activities').forEach (activity) -> 
-      key = activity.get('exercise.name')
-      values[key] += parseFloat(activity.get('value'))
-    values
-  ).property()
-
-  activityExperienceTotal: (-> 
-    values = {}
-    @get('loggedExerciseNames').forEach (name) ->
-      values[name] = 0
-
-    @get('activities').forEach (activity) -> 
-      key = activity.get('exercise.name')
-      multiplier = activity.get('exercise.experienceMultiplier')
-      value =  activity.get('value') * multiplier
-      values[key] += value
-    values
-  ).property()
+    @get('activities').then (activities) =>
+      values = {}
+      activities.forEach (activity) -> 
+        key = activity.get('exercise.name')
+        values[key] = 0 unless values[key] > 0
+        values[key] += parseFloat(activity.get('value'))
+      values
+  ).property('activities')
 
 
 
