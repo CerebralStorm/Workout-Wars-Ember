@@ -14,14 +14,15 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   ).property('selectedExercise') 
 
   actions:
-    submit: (activity) -> 
+    submit: -> 
       @set('isSaving', true)
       activity = @get('model')
       activity.set('exercise', @get('selectedExercise'))
       activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
-        @get('currentUser.content').get('activities').pushObject(activity)
+        @get('currentUser.content').get('activities').then (activities) =>
+          activities.pushObject(activity)
         @set('isSaving', false)
         @set('selectedExercise', null)
         @set('value', null)
