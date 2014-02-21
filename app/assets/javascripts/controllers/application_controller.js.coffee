@@ -1,5 +1,5 @@
 WorkoutWars.ApplicationController = Ember.ObjectController.extend
-  needs: ['exercises', 'currentUser', ]
+  needs: ['exercises', 'currentUser']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
   errors: Ember.computed.alias('content.errors')
   selectedExercise: null
@@ -18,9 +18,10 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
       @set('isSaving', true)
       activity = @get('model')
       activity.set('exercise', @get('selectedExercise'))
-      activity.set('user', @get('currentUser'))
+      activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
+        @get('currentUser.content').get('activities').pushObject(activity)
         @set('isSaving', false)
         @set('selectedExercise', null)
         @set('value', null)
