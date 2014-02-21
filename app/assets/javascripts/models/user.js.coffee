@@ -23,7 +23,7 @@ WorkoutWars.User = DS.Model.extend
   handle: (-> 
     return @get('nickname') if @get('nickname')
     return @get('name') if @get('name')
-    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ")
+    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ") if @get('email')
   ).property('nickname', 'name', 'email')
 
   loggedExerciseNames: (-> 

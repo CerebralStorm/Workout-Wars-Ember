@@ -11,7 +11,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   ).property('content.competitionJoins')
 
   isJoined: (->
-    @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('length') > 0
+    joined = false
+    user = @get('currentUser.content')
+    @get('model.competitionJoins').forEach (join) =>
+      joined = true if join.get('user') == user
+    joined
   ).property('model.competitionJoins.@each')
 
   canJoin: (->
@@ -67,4 +71,8 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     removeExercise: (exercise) ->
       exercise.deleteRecord()
       exercise.save()
+
+
+
+
     

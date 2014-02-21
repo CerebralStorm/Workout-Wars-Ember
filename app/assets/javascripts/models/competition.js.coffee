@@ -24,7 +24,7 @@ WorkoutWars.Competition.reopen
   ).property('maxParticipants')
 
   numberOfUsers: (->
-    @get('competitionJoins').get('length')
+    @get('competitionJoins.length')
   ).property('competitionJoins.@each')
 
   isFull: (->
