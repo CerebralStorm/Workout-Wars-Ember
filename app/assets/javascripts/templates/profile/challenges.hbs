@@ -12,11 +12,13 @@
       </thead>
       <tbody>
       {{#each attempt in controller}}
-      <tr>
-        <td>{{#link-to "challenge" attempt.challenge}}{{attempt.challenge.name}}{{/link-to}}</td>
-        <td><span class="badge">{{attempt.result}}</span></td>               
-        <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
-      </tr>
+        {{#unless attempt.isDeleted}}
+          <tr>
+            <td>{{#link-to "challenge" attempt.challenge}}{{attempt.challenge.name}}{{/link-to}}</td>
+            <td><span class="badge">{{attempt.result}}</span></td>               
+            <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
+          </tr>
+        {{/unless}}
       {{else}}
         <tr>
           <td colspan="3">You haven't attempted any challenges yet! Go try some!</td>
