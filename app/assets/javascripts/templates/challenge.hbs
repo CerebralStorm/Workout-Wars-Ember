@@ -14,7 +14,11 @@
         <tr>
           <td><strong>Exercise</strong></td>
           <td>{{exercise.name}}</td>
-        </tr>                  
+        </tr>   
+        <tr>
+          <td><strong>Number of Attempts</strong></td>
+          <td>{{numOfAttempts}}</td>
+        </tr>               
       </table> 
       <div class="panel-body">
         {{#link-to 'challenge.newAttempt' class="btn btn-primary"}}New Attempt{{/link-to}}
@@ -35,14 +39,14 @@
         <th colspan="2">Attempted On</th>
       </tr>
     </thead>
-    {{#each attempt in rankedChallengeAttempts}}
+    {{#each attempt in attempts}}
       <tr>
         <td>{{index _view.contentIndex}}</td>
         <td>{{attempt.user.handle}}</td>
         <td><span class="badge">{{attempt.result}}</span></td>
         <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
         <td>
-          {{#if canDelete}}
+          {{#if attempt.canDelete}}
             <a href="#" class="btn btn-danger btn-xs" {{action "deleteAttempt" attempt }}>&times;</a>
           {{/if}}
         </td>
