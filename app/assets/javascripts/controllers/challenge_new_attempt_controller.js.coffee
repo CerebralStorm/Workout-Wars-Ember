@@ -10,10 +10,11 @@ WorkoutWars.ChallengeNewAttemptController = Ember.ObjectController.extend
       challengeAttempt.set('challenge', @get("challenge")) 
 
       success = (challengeAttempt) =>
+        @get("challenge.challengeAttempts").pushObject(challengeAttempt)
         WorkoutWars.get("flash").success "Your attempt was recorded and an activity has been logged."
-        console.log "success"
+        @transitionToRoute("challenge", @get('challenge'))
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your attempt was not recorded"
-      challengeAttempt.save success, failure
-      @transitionToRoute("challenge", @get('challenge'))
+      challengeAttempt.save().then success, failure
+      
         
