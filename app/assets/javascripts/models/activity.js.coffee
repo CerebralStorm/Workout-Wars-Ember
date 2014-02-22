@@ -10,5 +10,6 @@ WorkoutWars.Activity.reopen
       numericality:
         onlyInteger: true
         greaterThan: 0
+        lessThan: 1000
 
 
