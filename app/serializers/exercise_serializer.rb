@@ -3,6 +3,6 @@ class ExerciseSerializer < ActiveModel::Serializer
 
   embed :ids
 
-  has_one :metric
+  has_one :metric, include: true
   has_one :user
 end

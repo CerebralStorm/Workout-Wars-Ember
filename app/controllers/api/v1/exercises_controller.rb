@@ -16,7 +16,8 @@ class Api::V1::ExercisesController < ApplicationController
   def create
     exercise = Exercise.new(exercise_params)
     if exercise.save
-      render json: exercise
+      user_exercise = UserExercise.create(user: current_user, exercise: exercise)
+      render json: {exercise: exercise, user_exercise: user_exercise}
     else
       render json: {errors: exercise.errors.messages}, status: 422
     end

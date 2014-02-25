@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140225205236) do
     t.float    "result"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "activity_id"
   end
 
   create_table "challenges", force: true do |t|
@@ -103,6 +104,11 @@ ActiveRecord::Schema.define(version: 20140225205236) do
     t.datetime "updated_at"
   end
 
+  create_table "exercise_sets", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.float    "experience_multiplier"
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140225205236) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "exercise_set_id"
     t.integer  "user_id"
     t.boolean  "custom"
   end
@@ -192,6 +199,7 @@ ActiveRecord::Schema.define(version: 20140225205236) do
     t.integer  "experience_level",       default: 1
     t.integer  "experience_multiplier",  default: 500
     t.boolean  "agree_to_terms"
+    t.integer  "exercise_set_id"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
