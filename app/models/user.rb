@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   has_many :activities
+  has_many :exercises
   has_many :competition_activities
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
