@@ -4,4 +4,5 @@ class ExerciseSerializer < ActiveModel::Serializer
   embed :ids
 
   has_one :metric
+  has_one :user
 end

@@ -15,11 +15,11 @@ WorkoutWars.ProfileExercisesController = Ember.ArrayController.extend
       exercise = @get('newExercise')
       
       success = (exercise) =>
+        console.log exercise
         @set('newExercise', @store.createRecord('exercise', {
           user: @get('currentUser.content')
         }))
         WorkoutWars.get("flash").success "Your exercise was updated"
-        @transitionToRoute('exercise', exercise)
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your exercise was not updated"
       exercise.save().then success, failure

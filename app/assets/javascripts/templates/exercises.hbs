@@ -1,10 +1,24 @@
-<form {{ action "addExercise" selectedExercise on="submit"}}>
-  <div class="row">
-    <div class="form-group">
-      <label class= "col-sm-3 control-label"><button class="btn btn-primary">Add Exercise</button></label>
-      <div class="col-sm-9">
-        {{view Ember.Select value=selectedExercise content=controller name="Exercise Select" class="form-control" optionValuePath='content' optionLabelPath='content.name' prompt="Please select an exercise"}}
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Custom Exercises</h3>
+      </div>
+      <div class="list-group">
+        {{#each controller}}
+          {{#unless this.isDeleted}}
+            {{#link-to "exercise" this id=this.id class="list-group-item"}}
+              {{dateTime this.createdAt}} - {{name}}
+            {{/link-to}}
+          {{/unless}}
+        {{else}}
+          <div class="list-group-item">You haven't logged any activities yet! Go log some!</div>
+        {{/each}}
       </div>
     </div>
   </div>
-</form>
+
+  <div class="col-md-6">
+    {{outlet}}
+  </div>
+</div>
