@@ -4,8 +4,9 @@
   </div>
   <div class="panel-body">        
     <a href="#" class="btn btn-danger pull-right" {{action "delete" this}}>Delete</a>
-    <h2>{{name}}</h2>
-    <p>{{metric.name}}</p>
-    <p>Created At: {{date createdAt}}</p>
+    <h2>{{this.exercise.name}}</h2>
+    <p>{{this.exercise.description}}</p>
+    <p>{{this.exercise.experienceMultiplier}}</p>
+    <p>Created At: {{date this.exercise.createdAt}}</p>
   </div>
 </div>

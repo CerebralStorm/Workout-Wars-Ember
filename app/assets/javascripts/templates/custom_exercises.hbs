@@ -4,14 +4,10 @@
       <div class="panel-heading">
         <h3 class="panel-title">Custom Exercises</h3>
       </div>
-      <div class="list-group">
-        {{#link-to "customExercises.create" class="list-group-item"}}New Exercises{{/link-to}}
+      {{#link-to "customExercises.create" class="btn btn-success"}}New Exercises{{/link-to}}
+      <div class="list-group">        
         {{#each controller}}
-          {{#unless this.isDeleted}}
-            {{#link-to "customExercise" this id=this.id class="list-group-item"}}
-              {{dateTime this.createdAt}} - {{name}}
-            {{/link-to}}
-          {{/unless}}
+          {{#link-to "customExercise" this class="list-group-item"}}{{this.exercise.name}}{{/link-to}}
         {{else}}
           <div class="list-group-item">You haven't created any exercises yet.</div>
         {{/each}}

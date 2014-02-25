@@ -1,6 +1,4 @@
 WorkoutWars::Application.routes.draw do
-  resources :user_exercises
-
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -26,6 +24,7 @@ WorkoutWars::Application.routes.draw do
       resources :activities
       resources :exercises
       resources :metrics
+      resources :user_exercises
       resources :competition_exercises
       resources :competition_joins
       resources :competition_activities

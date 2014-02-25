@@ -1,4 +1,4 @@
-class Api::V1::UserExercisesExercisesController < ApplicationController
+class Api::V1::UserExercisesController < ApplicationController
   respond_to :json
 
   def index
