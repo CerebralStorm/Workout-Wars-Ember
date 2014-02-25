@@ -1,4 +1,5 @@
-WorkoutWars.Exercise = DS.Model.extend
+WorkoutWars.Exercise = DS.Model.extend(Ember.Validations.Mixin)
+WorkoutWars.Exercise.reopen
   metric:  DS.belongsTo('metric', { async: true })
   user:  DS.belongsTo('user', { async: true })
   name: DS.attr('string')
@@ -12,9 +13,6 @@ WorkoutWars.Exercise = DS.Model.extend
         minimum: 5
 
     description:
-      presence: true
-
-    user:
       presence: true
 
     metric:
