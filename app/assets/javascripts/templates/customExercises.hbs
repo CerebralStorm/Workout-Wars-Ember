@@ -8,7 +8,7 @@
         {{#link-to "customExercises.create" class="list-group-item"}}New Exercises{{/link-to}}
         {{#each controller}}
           {{#unless this.isDeleted}}
-            {{#link-to "exercise" this id=this.id class="list-group-item"}}
+            {{#link-to "customExercise" this id=this.id class="list-group-item"}}
               {{dateTime this.createdAt}} - {{name}}
             {{/link-to}}
           {{/unless}}
