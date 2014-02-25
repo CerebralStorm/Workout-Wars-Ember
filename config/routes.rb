@@ -1,4 +1,6 @@
 WorkoutWars::Application.routes.draw do
+  resources :user_exercises
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

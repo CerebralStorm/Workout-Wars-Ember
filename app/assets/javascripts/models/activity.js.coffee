@@ -8,7 +8,6 @@ WorkoutWars.Activity.reopen
   validations:
     value:
       numericality:
-        onlyInteger: true
         greaterThan: 0
         lessThan: 1000
 

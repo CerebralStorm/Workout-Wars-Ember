@@ -5,8 +5,10 @@ class UserSerializer < ActiveModel::Serializer
   embed :ids
   
   has_many :activities
-  has_many :exercises
   has_many :competition_activities
+  has_many :user_exercises
+  has_many :exercises, through: :user_exercises
+  has_many :exercises
   has_many :competition_joins
   has_many :competitions, through: :competition_joins
   has_many :challenge_attempts
