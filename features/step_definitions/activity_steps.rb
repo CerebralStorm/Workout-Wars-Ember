@@ -10,7 +10,8 @@ When(/^I go to my activities page$/) do
   click_link "Activities"
 end
 
-When(/^I add a new activity$/) do  
+When(/^I add a new activity$/) do 
+  sleep 0.2 
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
@@ -47,6 +48,7 @@ Then(/^I should see my score and rank updated$/) do
 end
 
 When(/^I add a bad new activity$/) do
+  sleep 0.2
   select "Pushups", from: "Exercise Select"  
 end
 
@@ -55,8 +57,8 @@ Then(/^I should not be able to submit the bad activity$/) do
 end
 
 When(/^I add an activity that is not in this competition$/) do
-  sleep 0.2
   click_link "Log Activity"
+  sleep 0.2
   select "Pullups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
@@ -65,6 +67,7 @@ end
 
 When(/^I add another activity$/) do
   click_link "Log Activity"
+  sleep 0.2
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
