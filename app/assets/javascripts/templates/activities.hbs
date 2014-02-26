@@ -15,7 +15,7 @@
         </ul>
         {{#each currentPage}}
           {{#unless this.isDeleted}}
-            {{#link-to "activity" this id=this.id class="list-group-item"}}
+            {{#link-to "activity" this class="list-group-item"}}
               {{dateTime this.createdAt}} - {{this.exercise.name}}
             {{/link-to}}
           {{/unless}}
