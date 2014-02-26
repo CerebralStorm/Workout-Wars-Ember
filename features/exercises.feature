@@ -7,7 +7,7 @@ Feature: Exercises
 
   @javascript
   Scenario: Create a new valid exercise
-    When I fill out the exercise with valid data
-    And I save it
-    Then I should see a new exercise
-    And I should be able to log an activity with that new exercisee
+    # When I fill out the exercise with valid data
+    # And I save it
+    # Then I should see a new exercise
+    # And I should be able to log an activity with that new exercisee

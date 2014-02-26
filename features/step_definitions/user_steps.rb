@@ -22,7 +22,7 @@ end
 
 
 When(/^I log out$/) do
-  first('#sign_out_button').click
+  click_link "Sign out"
 end
 
 Then(/^I should be logged out$/) do
