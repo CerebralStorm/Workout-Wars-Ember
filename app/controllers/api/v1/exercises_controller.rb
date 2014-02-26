@@ -5,7 +5,7 @@ class Api::V1::ExercisesController < ApplicationController
     if params[:ids]
       respond_with Exercise.where(id: params[:ids])
     else
-      respond_with Exercise.all 
+      respond_with Exercise.where("custom IS NULL OR custom = ?", false)
     end
   end
 

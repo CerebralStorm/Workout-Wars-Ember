@@ -6,8 +6,10 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   isSaving: false
 
   exercises: (->
-    @get('controllers.exercises.content').sortBy('name')
-  ).property('controllers.exercises')
+    exercises = @get('controllers.exercises.content')
+    customExercises = @get('currentUser.content').get('exercises')
+    exercises.pushObjects(customExercises)
+  ).property('controllers.exercises', 'currentUser.exercises')
 
   canSave: (->
     @get('selectedExercise')
