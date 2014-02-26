@@ -30,3 +30,6 @@ WorkoutWars.Router.map (match)->
   @route "contact",
     path: "/contact"
 
+  @route "privacy",
+    path: "/privacy"
+
