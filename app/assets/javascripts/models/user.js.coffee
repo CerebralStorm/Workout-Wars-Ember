@@ -1,9 +1,11 @@
 WorkoutWars.User = DS.Model.extend
-  activities: DS.hasMany('activity', { embedded: 'load' }) 
-  competitionJoins: DS.hasMany('competitionJoin', { embedded: 'load' }) 
-  competitionActivities: DS.hasMany('competitionActivity', { embedded: 'load' }) 
-  competitions: DS.hasMany('competition', { embedded: 'load' }) 
-  challengeAttempts: DS.hasMany('challengeAttempt', { embedded: 'load' }) 
+  activities: DS.hasMany('activity', { async: true })
+  exercises: DS.hasMany('exercise', { async: true })  
+  userExercises: DS.hasMany('userExercise', { async: true }) 
+  competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
+  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitions: DS.hasMany('competition', { async: true }) 
+  challengeAttempts: DS.hasMany('challengeAttempt', { async: true }) 
   name: DS.attr('string')
   nickname: DS.attr('string')
   email: DS.attr('string')
@@ -23,26 +25,18 @@ WorkoutWars.User = DS.Model.extend
   handle: (-> 
     return @get('nickname') if @get('nickname')
     return @get('name') if @get('name')
-    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ")
+    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ") if @get('email')
   ).property('nickname', 'name', 'email')
 
-  loggedExerciseNames: (-> 
-    exercises = []
-    @get('activities').forEach (activity) -> 
-      exercises.push(activity.get('exercise.name'))
-    exercises.uniq()
-  ).property()
-
   activityStatsTotal: (-> 
-    values = {}
-    @get('loggedExerciseNames').forEach (name) ->
-      values[name] = 0
-
-    @get('activities').forEach (activity) -> 
-      key = activity.get('exercise.name')
-      values[key] += parseFloat(activity.get('value'))
-    values
-  ).property()
+    @get('activities').then (activities) =>
+      values = {}
+      activities.forEach (activity) -> 
+        key = activity.get('exercise.name')
+        values[key] = 0 unless values[key] > 0
+        values[key] += parseFloat(activity.get('value'))
+      values
+  ).property('activities')
 
 
 

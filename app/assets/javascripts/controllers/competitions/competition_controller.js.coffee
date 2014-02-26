@@ -11,7 +11,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   ).property('content.competitionJoins')
 
   isJoined: (->
-    @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('length') > 0
+    joined = false
+    user = @get('currentUser.content')
+    @get('model.competitionJoins').forEach (join) =>
+      joined = true if join.get('user') == user
+    joined
   ).property('model.competitionJoins.@each')
 
   canJoin: (->
@@ -33,24 +37,26 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         user: @get('currentUser.content')
         competition: @get("model")        
       })
-      competitionJoin.save()
+      competitionJoin.save().then (join) =>
+        @get("model.competitionJoins").pushObject(join) 
+        @get('model').save().then =>
+          @transitionToRoute("competition", @get('model')) 
 
     leave: ->
       if window.confirm "Are you sure?"
         join = @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('firstObject')
         if join 
-          join.deleteRecord()
-          join.save()
+          join.destroyRecord().then =>
+            @transitionToRoute("competition", @get('model'))
 
     removeUser: (join) ->
       if window.confirm "Are you sure?"
-        join.deleteRecord()
-        join.save()
+        join.destroyRecord().then =>
+            @transitionToRoute("competition", @get('model'))
         
     delete: (competition) ->
       if window.confirm "Are you sure?"
-        @get("model").deleteRecord()
-        @get("model").save().then =>
+        @get("model").destroyRecord().then =>
           @transitionToRoute("competitions")    
     
     edit: ->
@@ -62,9 +68,15 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         exercise: @get('selectedExercise')
         competition: @get("model")        
       })
-      competitionExercise.save()    
+      competitionExercise.save().then (exercise) =>
+        @get("model.competitionExercises").pushObject(exercise) 
+        @transitionToRoute("competition", @get('model'))   
 
     removeExercise: (exercise) ->
-      exercise.deleteRecord()
-      exercise.save()
+      exercise.destroyRecord().then =>
+        @transitionToRoute("competition", @get('model'))
+
+
+
+
     

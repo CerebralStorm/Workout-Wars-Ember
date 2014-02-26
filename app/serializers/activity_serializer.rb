@@ -1,9 +1,9 @@
 class ActivitySerializer < ActiveModel::Serializer
-  attributes :id, :exercise_id, :user_id, :value
+  attributes :id, :exercise_id, :user_id, :value, :created_at
 
-  embed :ids, include: true
+  embed :ids
   
-  has_one :user
-  has_one :exercise
+  has_one :user, include: true
+  has_one :exercise, include: true
   has_many :competition_activities
 end

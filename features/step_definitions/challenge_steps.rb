@@ -11,7 +11,7 @@ end
 
 Then(/^I should see a new challenge attempt$/) do
   within ".leaderboard" do 
-    expect(find('tr')).to have_text("Result 50 User ray@bustinghosts.com")
+    expect(find('tbody tr')).to have_text("1 Hulk Hogan 50")
   end
 end
 
@@ -24,7 +24,7 @@ end
 
 Then(/^I should see my challenge attempts$/) do
   within ".challenges-panel" do 
-    expect(page).to have_text("My Challenge Attempts 50 - How many pushups can you do in one minute?")
+    expect(find('tbody tr')).to have_text("Minute Pushups 50")
   end
 end
 
@@ -35,4 +35,11 @@ end
 
 Then(/^I should not see any challenge attempts$/) do
   expect(page).to have_content "Your attempt was deleted"
+end
+
+Then(/^I should see an activity created for my challenge attempts$/) do
+  within ".profile-navigation" do 
+    click_link "Activities"
+  end
+  expect(page).to have_content "Pushups"
 end

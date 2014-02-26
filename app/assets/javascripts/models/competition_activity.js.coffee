@@ -1,4 +1,4 @@
 WorkoutWars.CompetitionActivity = DS.Model.extend
-  user: DS.belongsTo('user', { embedded: 'load' }) 
-  activity: DS.belongsTo('activity', { embedded: 'load' })
-  competition: DS.belongsTo('competition', { embedded: 'load' }) 
+  user: DS.belongsTo('user', { async: true }) 
+  activity: DS.belongsTo('activity', { async: true })
+  competition: DS.belongsTo('competition', { async: true }) 

@@ -1,11 +1,11 @@
 WorkoutWars.Competition = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Competition.reopen 
-  competitionExercises: DS.hasMany('competitionExercise', { embedded: 'load' }) 
-  competitionActivities: DS.hasMany('competitionActivity', { embedded: 'load' }) 
-  competitionJoins: DS.hasMany('competitionJoin', { embedded: 'load' }) 
-  users: DS.hasMany('user', { embedded: 'load' }) 
-  competitionWinCondition: DS.belongsTo('competitionWinCondition', { embedded: 'load' })
-  user: DS.belongsTo('user', { embedded: 'load' }) 
+  competitionExercises: DS.hasMany('competitionExercise', { async: true }) 
+  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitionJoins: DS.hasMany('competitionJoin', { embedded: "always" }) 
+  users: DS.hasMany('user', { async: true }) 
+  competitionWinCondition: DS.belongsTo('competitionWinCondition', { async: true })
+  user: DS.belongsTo('user', { async: true }) 
   name: DS.attr('string')
   startDate: DS.attr('date')
   endDate: DS.attr('date')
@@ -24,8 +24,12 @@ WorkoutWars.Competition.reopen
   ).property('maxParticipants')
 
   numberOfUsers: (->
-    @get('competitionJoins').get('length')
+    @get('competitionJoins.length')
   ).property('competitionJoins.@each')
+
+  isFull: (->
+    @get('numberOfUsers') == @get('numOfParticipants')
+  ).property('maxParticipants')
 
   status: (->
     if @get('finished')

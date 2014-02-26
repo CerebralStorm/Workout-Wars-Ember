@@ -22,6 +22,14 @@ class Ability
         challenge.try(:user_id) == user.id
       end
 
+      can :manage, Exercise do |exercise|
+        exercise.try(:user_id) == user.id
+      end
+
+      can :manage, ChallengeAttempt do |challenge_attempt|
+        challenge_attempt.try(:user_id) == user.id
+      end
+
       can :manage, User do |passed_user|
         passed_user.try(:id) == user.id
       end

@@ -2,7 +2,11 @@ class Api::V1::FeedbacksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Feedback.all
+    if params[:ids]
+      respond_with Feedback.where(id: params[:ids])
+    else
+      respond_with Feedback.all 
+    end
   end
 
   def show

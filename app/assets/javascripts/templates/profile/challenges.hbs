@@ -1,24 +1,28 @@
 <div class="panel panel-info challenges-panel">
   <div class="panel-heading">
-    <h3 class="panel-title">Challenges I've Completed</h3>
+    <h3 class="panel-title">My Challenge Attemptss</h3>
   </div>
-  <ul class="list-group">
-    {{#each controller}}
-      <li class="list-group-item">
-        {{#link-to "challenge" this.challenge}}
-          <div class="row">
-            <div class="col-md-8">
-              {{this.challenge.name}}
-            </div>
-            <div class='col-md-4'>
-              {{date this.createdAt}}
-            </div>
-          </div>
-          
-        {{/link-to}}
-      </li>
-    {{else}}
-      <li class="list-group-item">You haven't logged any activities yet! Go log some!</li>
-    {{/each}}
-  </ul>
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>Challenge</th>
+          <th>Result</th>
+          <th>Attempted on</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each attempt in controller}}
+        {{#unless attempt.isDeleted}}
+          <tr>
+            <td>{{#link-to "challenge" attempt.challenge}}{{attempt.challenge.name}}{{/link-to}}</td>
+            <td><span class="badge">{{attempt.result}}</span></td>               
+            <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
+          </tr>
+        {{/unless}}
+      {{else}}
+        <tr>
+          <td colspan="3">You haven't attempted any challenges yet! Go try some!</td>
+      {{/each}}
+      </tbody>
+    </table>
 </div>

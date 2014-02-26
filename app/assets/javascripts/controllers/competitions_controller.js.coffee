@@ -1,2 +1,2 @@
 WorkoutWars.CompetitionsController = Ember.ArrayController.extend
-  sortProperties: ['name']
+  sortProperties: ['finished', 'started', 'name']

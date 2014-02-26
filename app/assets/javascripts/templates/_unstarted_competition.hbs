@@ -6,7 +6,13 @@
       <table class="table">
         <tr>
           <td colspan="2">
-            <h3 class="text-success text-center">Registration Open</h3>
+            <h3 class="text-success text-center">
+              {{#if isFull}}
+                Currently Full
+              {{else}}
+                Registration Open
+              {{/if}}
+            </h3>
           </td>
         </tr>
         <tr>
@@ -89,13 +95,15 @@
         {{/unless}}        
       {{/if}} 
       <ul class="list-group">     
-        {{#each compExercise in controller.model.competitionExercises}}        
+        {{#each compExercise in controller.model.competitionExercises}} 
+          {{#unless compExercise.isDeleted}}       
           <li class="list-group-item">
             <strong>{{compExercise.exercise.name}}</strong>
             {{#if canUpdate}}
               <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
             {{/if}}
-          </li>       
+          </li> 
+          {{/unless}}      
         {{else}}
           <li class="list-group-item">No exercises have been added to this competition.</li>
         {{/each}}
@@ -109,7 +117,8 @@
       <div class="panel-heading"><h3 class="panel-title">Users</h3></div>
       <div class="panel-body">
         <ul class="list-group">      
-          {{#each compJoin in controller.competitionJoins}}
+          {{#each compJoin in controller.model.competitionJoins}}
+            {{#unless compJoin.isDeleted}}
             <li class="list-group-item">
               <div class="row">
                 <div class="col-md-8">
@@ -122,6 +131,7 @@
                 </div>
               </div>
             </li>
+            {{/unless}}
           {{else}}
             <li class="list-group-item">None currently registered</li>
           {{/each}}

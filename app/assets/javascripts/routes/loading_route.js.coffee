@@ -1,1 +1,1 @@
-WorkoutWars.LoadingRoute = Ember.Route.extend()
+#WorkoutWars.LoadingRoute = Ember.Route.extend()

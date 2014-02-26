@@ -1,12 +1,24 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
       <div id="recent_activity" class="list-group">
-        {{#each controller}}
-          {{#link-to "activity" this id=this.id class="list-group-item"}}{{date this.createdAt}} - {{this.exercise.name}}{{/link-to}}
+        <ul class="pager">  
+          {{#unless noPreviousPage}}        
+            <li><a href="#" {{action 'previousPage'}}>Previous</a></li>
+          {{/unless}}
+          {{#unless noNextPage}}
+            <li><a href="#" {{action 'nextPage'}}>Next</a></li>
+          {{/unless}}
+        </ul>
+        {{#each currentPage}}
+          {{#unless this.isDeleted}}
+            {{#link-to "activity" this class="list-group-item"}}
+              {{dateTime this.createdAt}} - {{this.exercise.name}}
+            {{/link-to}}
+          {{/unless}}
         {{else}}
           <div class="list-group-item">You haven't logged any activities yet! Go log some!</div>
         {{/each}}
@@ -14,7 +26,7 @@
     </div>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-6">
     {{outlet}}
   </div>
 </div>
