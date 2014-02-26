@@ -59,8 +59,8 @@ Then(/^I should see the new exercise$/) do
 end
 
 Then(/^I should see the edit and delete button$/) do
-  expect(page).to_not have_selector "#edit_competition"
-  expect(page).to_not have_selector "a[name='Delete Competition']"
+  expect(page).to have_selector "#edit_competition"
+  expect(page).to have_selector "a[name='Delete Competition']"
 end
 
 When(/^I click the "(.*?)" button$/) do |link|
