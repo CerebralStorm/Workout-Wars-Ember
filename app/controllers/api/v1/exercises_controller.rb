@@ -16,7 +16,7 @@ class Api::V1::ExercisesController < ApplicationController
   def create
     exercise = Exercise.new(exercise_params)
     if exercise.save
-      user_exercise = UserExercise.create(user: current_user, exercise: exercise)
+      UserExercise.create(user: current_user, exercise: exercise)
       render json: exercise
     else
       render json: {errors: exercise.errors.messages}, status: 422
@@ -40,6 +40,6 @@ class Api::V1::ExercisesController < ApplicationController
   private
 
   def exercise_params
-    params.require(:exercise).permit(:name, :description, :metric_id, :user_id, :experience_multiplier)
+    params.require(:exercise).permit(:name, :description, :metric_id, :user_id, :experience_multiplier, :custom)
   end
 end

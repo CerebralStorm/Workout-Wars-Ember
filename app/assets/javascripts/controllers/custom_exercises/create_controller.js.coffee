@@ -6,10 +6,11 @@ WorkoutWars.CustomExercisesCreateController = Ember.Controller.extend
     submit: ->
       exercise = @get('model')
       exercise.set('user', @get('currentUser.content'))
+      exercise.set('custom', true)
       
       success = (exercise) =>
         WorkoutWars.get("flash").success "Your exercise was updated"
-        @transitionToRoute('exercise', exercise)
+        @transitionToRoute('customExercises')
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your exercise was not updated"
       exercise.save().then success, failure

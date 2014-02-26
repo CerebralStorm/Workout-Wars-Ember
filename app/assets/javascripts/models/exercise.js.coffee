@@ -2,9 +2,12 @@ WorkoutWars.Exercise = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Exercise.reopen
   metric:  DS.belongsTo('metric', { async: true })
   user:  DS.belongsTo('user', { async: true })
+  userExercises:  DS.hasMany('userExercise', { async: true })
   name: DS.attr('string')
   description: DS.attr('string')
   experienceMultiplier:  DS.attr('number')
+  canDelete: DS.attr('boolean')
+  custom: DS.attr('boolean')
 
   validations:
     name:
