@@ -81,8 +81,10 @@ end
 When(/^I delete all of my activities$/) do
   click_link "Profile"
   click_link "Activities"
-  Activity.all.each do |activity|
-    click_link activity.id
+  3.times do 
+    within "#recent_activity" do 
+      first('a').click
+    end
     click_link "Delete"
     page.driver.browser.switch_to.alert.accept
   end

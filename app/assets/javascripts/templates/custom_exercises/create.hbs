@@ -1,0 +1,25 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Create Custom Exercise</h3>
+  </div>
+  <div class="panel-body">
+    <label class= "control-label">Select Exercise Metric</label>
+    {{view Ember.Select 
+          name="Metric Select"
+          content=metrics  
+          value=this.model.metric
+          optionValuePath="content" 
+          optionLabelPath='content.name' 
+          class="form-control" 
+          prompt="Please select a metric"}}
+    {{#if this.model.metric}}
+      {{#form-for this.model wrapper="bootstrap"}}
+        {{input name}}
+        {{input description as="text"}}
+        {{input experienceMultiplier}}
+        <br />
+        {{submit class="btn btn-primary"}}
+      {{/form-for}}
+    {{/if}}
+  </div>
+</div>

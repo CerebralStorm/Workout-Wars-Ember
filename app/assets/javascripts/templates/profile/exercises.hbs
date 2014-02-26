@@ -1,0 +1,39 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">New Custom Exercises</h3>
+  </div>
+  <div class="panel-body">
+    {{view Ember.Select 
+          name="Metric Select"
+          content=metrics  
+          value=newExercise.metric
+          optionValuePath="content" 
+          optionLabelPath='content.name' 
+          class="form-control" 
+          prompt="Please select your exercise metric"}}
+    {{#if newExercise.metric}}
+    {{#form-for newExercise wrapper="bootstrap"}}
+        {{input name}}
+        {{input description as="text"}}
+        {{input experienceMultiplier}}
+
+        <br />
+        {{submit id="exerciseCreate" class="btn btn-primary"}}
+      {{/form-for}}
+    {{/if}}
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Custom Exercises</h3>
+  </div>
+  <div class="panel-body">
+
+{{#each controller}}
+  <p>a{{this}}</p>
+{{else}}
+  <p>You haven't created any custom exercises yet</p>
+{{/each}}
+  </div>
+</div>

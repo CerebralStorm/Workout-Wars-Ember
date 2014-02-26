@@ -41,6 +41,11 @@ describe ChallengeAttempt do
         @user.activities.should_not be_empty
       end
 
+      it "should match up the correct activity" do 
+        challenge_attempt = @challenge.challenge_attempts.create(user: @user, result: 20)
+        expect(challenge_attempt.activity).to eq @user.activities.first
+      end
+
       it "should create assign the correct value to the activity created by the challenge attempt" do 
         @challenge.challenge_attempts.create(user: @user, result: 20)
         @user.activities.first.value.should eq 20
@@ -49,6 +54,21 @@ describe ChallengeAttempt do
       it "should have the correct exercise" do 
         @challenge.challenge_attempts.create(user: @user, result: 20)
         @user.activities.first.exercise.should eq @exercise
+      end
+    end
+
+    describe "#destroy_activity" do 
+      before do 
+        @user = FactoryGirl.create(:user)
+        @exercise = FactoryGirl.create(:exercise)
+        @challenge = FactoryGirl.create(:challenge, exercise: @exercise)
+        @challenge_attempt = @challenge.challenge_attempts.create(user: @user, result: 20)
+      end
+
+      it "should create an activity for the user after they complete a challenge" do 
+        expect(@user.activities).to_not be_empty
+        @challenge_attempt.destroy
+        expect(@user.activities).to be_empty
       end
     end
   end

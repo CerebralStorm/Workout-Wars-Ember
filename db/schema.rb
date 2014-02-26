@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219004042) do
+ActiveRecord::Schema.define(version: 20140225205236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140219004042) do
     t.float    "result"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "activity_id"
   end
 
   create_table "challenges", force: true do |t|
@@ -103,6 +104,11 @@ ActiveRecord::Schema.define(version: 20140219004042) do
     t.datetime "updated_at"
   end
 
+  create_table "exercise_sets", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.float    "experience_multiplier"
@@ -110,6 +116,9 @@ ActiveRecord::Schema.define(version: 20140219004042) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "exercise_set_id"
+    t.integer  "user_id"
+    t.boolean  "custom"
   end
 
   create_table "experience_sources", force: true do |t|
@@ -152,6 +161,15 @@ ActiveRecord::Schema.define(version: 20140219004042) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
+  create_table "user_exercises", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "exercise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_exercises", ["user_id", "exercise_id"], name: "index_user_exercises_on_user_id_and_exercise_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -181,6 +199,7 @@ ActiveRecord::Schema.define(version: 20140219004042) do
     t.integer  "experience_level",       default: 1
     t.integer  "experience_multiplier",  default: 500
     t.boolean  "agree_to_terms"
+    t.integer  "exercise_set_id"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
