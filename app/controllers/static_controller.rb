@@ -2,7 +2,7 @@ class StaticController < ApplicationController
   def index
   end
 
-  def static
+  def privacy
   end
   
 end
