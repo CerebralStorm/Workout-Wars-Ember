@@ -18,8 +18,29 @@ When(/^I add a new activity$/) do
   click_link "Close"
 end
 
+When(/^I add two new activities$/) do
+  sleep 0.2 
+  select "Pushups", from: "Exercise Select"
+  fill_in "Value", with: 50 
+  click_button "Log it!"
+
+  sleep 0.2 
+  select "Running", from: "Exercise Select"
+  fill_in "Value", with: 5 
+  click_button "Log it!"
+  click_link "Close"
+end
+
 Then(/^I should see the new activity$/) do
   within "#recent_activity" do 
+    expect(page).to have_content "Pushups"
+    expect(page).to have_content "#{read_format_date(Date.today)}"
+  end
+end
+
+Then(/^I should see the other new activity$/) do
+  within "#recent_activity" do 
+    expect(page).to have_content "Running"
     expect(page).to have_content "#{read_format_date(Date.today)}"
   end
 end
@@ -27,6 +48,11 @@ end
 Then(/^I should see my experience for that activity$/) do
   click_link "Profile"
   expect(page).to have_content "Experience: 50"
+end
+
+Then(/^I should see my experience for both activities$/) do
+  click_link "Profile"
+  expect(page).to have_content "Experience: 250"
 end
 
 When(/^that competition has started$/) do

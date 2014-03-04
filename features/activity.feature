@@ -14,6 +14,15 @@ Feature: Activity
     And I should see my experience for that activity
 
   @javascript
+  Scenario: log two activities back to back
+    When I open log activity
+    And I add two new activities
+    And I go to my activities page
+    Then I should see the new activity
+    And I should see the other new activity
+    And I should see my experience for both activities
+
+  @javascript
   Scenario: log a bad activity then fix it
     When I open log activity
     And I add a bad new activity

@@ -23,8 +23,7 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
       activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
-        @get('currentUser.content').get('activities').then (activities) =>
-          activities.pushObject(activity)
+        @set('model', @store.createRecord('activity'))
         @set('isSaving', false)
         @set('selectedExercise', null)
         @set('value', null)
