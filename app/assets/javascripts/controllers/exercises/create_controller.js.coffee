@@ -1,4 +1,4 @@
-WorkoutWars.CustomExercisesCreateController = Ember.Controller.extend
+WorkoutWars.ExercisesCreateController = Ember.Controller.extend
   needs: ['metrics']
   metrics: Ember.computed.alias('controllers.metrics.content')
 

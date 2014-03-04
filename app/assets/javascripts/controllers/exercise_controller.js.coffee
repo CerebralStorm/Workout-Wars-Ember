@@ -1,4 +1,4 @@
-WorkoutWars.CustomExerciseController = Ember.ObjectController.extend
+WorkoutWars.ExerciseController = Ember.ObjectController.extend
   actions:
     delete: (activity) ->
       if window.confirm "Are you sure?"
