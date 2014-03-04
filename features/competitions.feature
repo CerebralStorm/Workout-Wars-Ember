@@ -62,6 +62,18 @@ Feature: Competitions
     When I join again I should still be able to leave
 
   @javascript
+  Scenario: join and leave a competition many times
+    When I fill out the competition with valid data
+    And I save it
+    Then I should see a new competition
+    When I leave that competition
+    Then I should be able to join again
+    When I join again I should still be able to leave
+    When I leave that competition
+    Then I should be able to join again
+    When I join again I should still be able to leave
+
+  @javascript
   Scenario: can't join a full competition
     When I fill out the competition with valid data
     And I set the max participants

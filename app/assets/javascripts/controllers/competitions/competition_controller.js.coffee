@@ -1,22 +1,21 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
   needs: ['exercises']
   selectedExercise: null
+  exercises: Ember.computed.alias('controllers.exercises.content')
 
-  exercises: (->
-    @get('controllers.exercises.content')
-  ).property('controllers.exercises')
-
-  competitionJoins: (->
-    @get('content.competitionJoins').sortBy('rank')
-  ).property('content.competitionJoins')
+  sortedJoins: Ember.computed.sort "competitionJoins", (a, b) ->
+    if a.rank > b.rank
+      return 1
+    else return -1  if a.rank < b.rank
+    0
 
   isJoined: (->
     joined = false
     user = @get('currentUser.content')
-    @get('model.competitionJoins').forEach (join) =>
+    @get('competitionJoins').forEach (join) =>
       joined = true if join.get('user') == user
     joined
-  ).property('model.competitionJoins.@each')
+  ).property('competitionJoins')
 
   canJoin: (->
     return false if @get('isJoined')
@@ -25,7 +24,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       return @get('numberOfUsers') < maxNum
     else
       true
-  ).property('model.competitionJoins.@each', 'isJoined')
+  ).property('competitionJoins.@each', 'isJoined')
 
   currentPartial: (->
     "#{@get('model.status')}_competition"
@@ -38,16 +37,14 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         competition: @get("model")        
       })
       competitionJoin.save().then (join) =>
-        @get("model.competitionJoins").pushObject(join) 
-        @get('model').save().then =>
-          @transitionToRoute("competition", @get('model')) 
+        @get("model").reload()
 
     leave: ->
       if window.confirm "Are you sure?"
-        join = @get('model.competitionJoins').filterBy('user', @get('currentUser.content')).get('firstObject')
+        join = @get('competitionJoins').filterBy('user', @get('currentUser.content')).get('firstObject')
         if join 
           join.destroyRecord().then =>
-            @transitionToRoute("competition", @get('model'))
+            @get("model").reload()
 
     removeUser: (join) ->
       if window.confirm "Are you sure?"
@@ -69,7 +66,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         competition: @get("model")        
       })
       competitionExercise.save().then (exercise) =>
-        @get("model.competitionExercises").pushObject(exercise) 
+        @get("competitionExercises").pushObject(exercise) 
         @transitionToRoute("competition", @get('model'))   
 
     removeExercise: (exercise) ->
