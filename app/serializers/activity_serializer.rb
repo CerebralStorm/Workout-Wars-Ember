@@ -3,7 +3,7 @@ class ActivitySerializer < ActiveModel::Serializer
 
   embed :ids
   
-  has_one :user, include: true
+  has_one :user
   has_one :exercise, include: true
   has_many :competition_activities
 end

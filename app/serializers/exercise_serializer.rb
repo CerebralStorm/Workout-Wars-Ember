@@ -1,5 +1,5 @@
 class ExerciseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :experience_multiplier, :user_id, :can_delete, :custom
+  attributes :id, :name, :description, :experience_multiplier, :user_id, :metric_id, :can_delete, :custom
 
   embed :ids
 

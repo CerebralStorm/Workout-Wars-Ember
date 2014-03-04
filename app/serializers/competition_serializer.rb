@@ -1,7 +1,7 @@
 class CompetitionSerializer < ActiveModel::Serializer
   attributes :id, :name, :start_date, :end_date, :max_participants, :lower_level_restriction, 
              :upper_level_restriction, :started, :finished, :is_private, :description, 
-             :can_update, :can_delete
+             :can_update, :can_delete, :user_id
 
   embed :ids
   

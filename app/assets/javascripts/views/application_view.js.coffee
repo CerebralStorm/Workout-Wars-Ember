@@ -3,9 +3,9 @@ WorkoutWars.ApplicationView = Ember.View.extend
 
 Ember.View.reopen
   didInsertElement: ->
-    @.$().hide().slideToggle(400)
+    @.$().hide().fadeIn(400)
     @._super()
     
   willDestroyElement: ->
-    @.$().slideToggle(250)
+    @.$().fadeOut(400)
     @._super()

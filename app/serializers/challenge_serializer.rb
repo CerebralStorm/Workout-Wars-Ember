@@ -1,5 +1,5 @@
 class ChallengeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description
+  attributes :id, :name, :exercise_id, :description
   
   embed :ids
 
