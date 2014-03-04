@@ -7,7 +7,7 @@
       {{#link-to "customExercises.create" class="btn btn-success"}}New Exercises{{/link-to}}
       <div class="list-group">        
         {{#each controller}}
-          {{#link-to "customExercise" this class="list-group-item"}}{{this.exercise.name}}{{/link-to}}
+          {{#link-to "customExercise" this class="list-group-item"}}{{this.name}}{{/link-to}}
         {{else}}
           <div class="list-group-item">You haven't created any exercises yet.</div>
         {{/each}}
