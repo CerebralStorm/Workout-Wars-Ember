@@ -1,8 +1,6 @@
 WorkoutWars.Exercise = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Exercise.reopen
   metric:  DS.belongsTo('metric', { async: true })
-  user:  DS.belongsTo('user', { async: true })
-  userExercises:  DS.hasMany('userExercise', { async: true })
   name: DS.attr('string')
   description: DS.attr('string')
   experienceMultiplier:  DS.attr('number')
@@ -24,4 +22,3 @@ WorkoutWars.Exercise.reopen
     experienceMultiplier:
       numericality:
         greaterThan: 0
-        lessThanOrEqualTo: 100 

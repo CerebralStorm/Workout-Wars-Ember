@@ -9,6 +9,6 @@ WorkoutWars.Activity.reopen
     value:
       numericality:
         greaterThan: 0
-        lessThan: 1000
+        lessThan: 100000
 
 

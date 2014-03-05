@@ -5,7 +5,6 @@ class ExerciseSerializer < ActiveModel::Serializer
 
   has_one :metric, include: true
   has_one :user
-  has_many :user_exercises
 
   def can_delete
     Ability.new(scope).can?(:delete, object)
