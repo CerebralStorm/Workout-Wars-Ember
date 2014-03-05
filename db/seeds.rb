@@ -6,6 +6,7 @@ puts "Seeding..."
   {name: 'Duration',  measurement: "Minutes" },
   {name: 'Weight',    measurement: "Pounds" },
   {name: 'Calories',  measurement: "Total Burned" },
+  {name: 'Elevation', measurement: "Feet" },
 ].each do |metric|
   Metric.where(metric).first_or_create
 end

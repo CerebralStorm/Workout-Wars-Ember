@@ -23,6 +23,5 @@ WorkoutWars.Exercise.reopen
 
     experienceMultiplier:
       numericality:
-        onlyInteger: true
         greaterThan: 0
         lessThanOrEqualTo: 100 

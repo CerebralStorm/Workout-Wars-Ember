@@ -9,8 +9,8 @@ WorkoutWars.ExercisesCreateController = Ember.Controller.extend
       exercise.set('custom', true)
       
       success = (exercise) =>
-        WorkoutWars.get("flash").success "Your exercise was updated"
-        @transitionToRoute('customExercises')
+        WorkoutWars.get("flash").success "Your exercise was created. It will be available for use once it is approved by an admin."
+        @transitionToRoute('exercise', exercise)
       failure = (response) =>
-        WorkoutWars.get("flash").danger "Your exercise was not updated"
+        WorkoutWars.get("flash").danger "Your exercise was not created"
       exercise.save().then success, failure
