@@ -5,7 +5,7 @@ WorkoutWars.Exercise.reopen
   description: DS.attr('string')
   experienceMultiplier:  DS.attr('number')
   canDelete: DS.attr('boolean')
-  custom: DS.attr('boolean')
+  approved: DS.attr('boolean')
 
   validations:
     name:

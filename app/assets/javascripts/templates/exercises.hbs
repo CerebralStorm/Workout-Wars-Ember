@@ -1,26 +1,49 @@
 <div class="row">
-  <div class="col-md-3">
-    {{#link-to "exercises.create" class="btn btn-info btn-block"}}Request New Competition{{/link-to}}
+  <div class="col-md-6">
+    {{#link-to "exercises.create" class="btn btn-info btn-block"}}Request New Exercise{{/link-to}}
     <hr>
-    <div class="panel panel-danger">
-      <div class="panel-heading">
-        {{#link-to 'competitions'}}<h3 class="panel-title">Existing Exercises</h3>{{/link-to}}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            {{#link-to 'competitions'}}<h3 class="panel-title">Existing Exercises</h3>{{/link-to}}
+          </div>
+          <div class="list-group">
+            {{#each approvedExercises}}
+              {{#unless isDirty}}
+                {{#link-to "exercise" this class="list-group-item"}}
+                  <span {{bind-attr class="this.status"}}>{{name}}</span>
+                {{/link-to}}
+              {{/unless}}
+            {{else}}
+              <a href="#" class="list-group-item">There are no exercises.</a>
+            {{/each}}
+          </div>
+        </div>
       </div>
-      <div class="list-group">
-        {{#each controller}}
-          {{#unless isDirty}}
-            {{#link-to "exercise" this class="list-group-item"}}
-              <span {{bind-attr class="this.status"}}>{{name}}</span>
-            {{/link-to}}
-          {{/unless}}
-        {{else}}
-          <a href="#" class="list-group-item">There are no exercises.</a>
-        {{/each}}
+
+      <div class="col-md-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            {{#link-to 'competitions'}}<h3 class="panel-title">Pending Exercises</h3>{{/link-to}}
+          </div>
+          <div class="list-group">
+            {{#each pendingExercises}}
+              {{#unless isDirty}}
+                {{#link-to "exercise" this class="list-group-item"}}
+                  <span {{bind-attr class="this.status"}}>{{name}}</span>
+                {{/link-to}}
+              {{/unless}}
+            {{else}}
+              <a href="#" class="list-group-item">There are no exercises pending approval.</a>
+            {{/each}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-6">
     {{outlet}}
   </div>
 </div>

@@ -2,10 +2,11 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   needs: ['exercises', 'currentUser']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
   exercises: Ember.computed.alias('controllers.exercises.content')
+  approvedExercises: Ember.computed.filterBy("exercises", 'approved', true)
   errors: Ember.computed.alias('content.errors')
   isSaving: false
   exercisesSorting: ["name"]
-  alphabeticalExercises: Ember.computed.sort("exercises", "exercisesSorting")
+  alphabeticalExercises: Ember.computed.sort("approvedExercises", "exercisesSorting")
 
   actions:
     submit: -> 
