@@ -5,7 +5,7 @@ class Api::V1::ExercisesController < ApplicationController
     if params[:ids]
       respond_with Exercise.where(id: params[:ids])
     else
-      respond_with Exercise.where("custom IS NULL OR custom = ?", false)
+      respond_with Exercise.all
     end
   end
 
@@ -16,7 +16,6 @@ class Api::V1::ExercisesController < ApplicationController
   def create
     exercise = Exercise.new(exercise_params)
     if exercise.save
-      UserExercise.create(user: current_user, exercise: exercise)
       render json: exercise
     else
       render json: {errors: exercise.errors.messages}, status: 422

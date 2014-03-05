@@ -1,7 +1,5 @@
 class Exercise < ActiveRecord::Base
   belongs_to :metric
-  belongs_to :user
-  has_many :user_exercises, dependent: :destroy
 
   validates_presence_of :metric
   validates_presence_of :experience_multiplier

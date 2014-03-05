@@ -11,18 +11,18 @@ Before do
 end
 
 [
-  {name: 'Pushups',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     },
-  {name: 'Pullups',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 4,     },
-  {name: 'Situps',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     },
-  {name: 'Squats',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     },
-  {name: 'Lunges',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     },
-  {name: 'Burpees',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 2,     },
-  {name: 'Running',    metric: Metric.find_by_name("Distance"),   experience_multiplier: 40,    },
-  {name: 'Biking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    },
-  {name: 'Swimming',   metric: Metric.find_by_name("Distance"),   experience_multiplier: 200,   },
-  {name: 'Hiking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    }, 
-  {name: 'Aerobics',   metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     }, 
-  {name: 'Yoga',       metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     } 
+  {name: 'Pushups',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     approved: true},
+  {name: 'Pullups',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 4,     approved: true},
+  {name: 'Situps',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     approved: true},
+  {name: 'Squats',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     approved: true},
+  {name: 'Lunges',     metric: Metric.find_by_name("Reps"),       experience_multiplier: 1,     approved: true},
+  {name: 'Burpees',    metric: Metric.find_by_name("Reps"),       experience_multiplier: 2,     approved: true},
+  {name: 'Running',    metric: Metric.find_by_name("Distance"),   experience_multiplier: 40,    approved: true},
+  {name: 'Biking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    approved: true},
+  {name: 'Swimming',   metric: Metric.find_by_name("Distance"),   experience_multiplier: 200,   approved: true},
+  {name: 'Hiking',     metric: Metric.find_by_name("Distance"),   experience_multiplier: 15,    approved: true}, 
+  {name: 'Aerobics',   metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     approved: true}, 
+  {name: 'Yoga',       metric: Metric.find_by_name("Duration"),   experience_multiplier: 2,     approved: true} 
 ].each do |exercise|
   Exercise.where(exercise).first_or_create
 end

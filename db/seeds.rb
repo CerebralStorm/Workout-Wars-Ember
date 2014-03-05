@@ -6,6 +6,7 @@ puts "Seeding..."
   {name: 'Duration',  measurement: "Minutes" },
   {name: 'Weight',    measurement: "Pounds" },
   {name: 'Calories',  measurement: "Total Burned" },
+  {name: 'Elevation', measurement: "Feet" },
 ].each do |metric|
   Metric.where(metric).first_or_create
 end
@@ -55,6 +56,27 @@ end
   CompetitionWinCondition.where(win_condition).first_or_create
 end
 
+
+## Ensure original exercises are Approved. 
+[
+  'Pushups' ,   
+  'Pullups' ,   
+  'Situps'  ,    
+  'Squats'  ,    
+  'Lunges'  ,    
+  'Burpees' ,   
+  'Running' ,   
+  'Biking'  ,    
+  'Swimming',  
+  'Hiking'  ,    
+  'Walking' ,   
+  'Aerobics',  
+  'Zumba'   ,     
+  'Yoga'          
+].each do |exercise|
+  exercise = Exercise.find_by_name(exercise)
+  exercise.update_attributes(approved: true) if exercise.present?
+end
 
 
 
