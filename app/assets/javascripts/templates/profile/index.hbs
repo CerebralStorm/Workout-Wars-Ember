@@ -3,14 +3,22 @@
     <h3 class="panel-title">Profile</h3>
   </div>
   <div class="panel-body">
-    <p>Name: {{name}}
-    <p>Email: {{email}}</p>
-    <p>Nickname: {{nickname}}</p>
-    <p>Age: {{age}}</p>
-    <p>Height: {{height}}</p>
-    <p>Weight: {{weight}}</p>
-    <p>Level: {{level}}</p>
-    <p>Experience: {{experience}}</p>
-    <p>Experience to next level: {{nextLevelExperience}}</p>
+    <div class="row">
+      <div class="col-md-8">
+        <p>Name: {{name}}
+        <p>Email: {{email}}</p>
+        <p>Nickname: {{nickname}}</p>
+        <p>Age: {{age}}</p>
+        <p>Height: {{height}}</p>
+        <p>Weight: {{weight}}</p>
+        <p>Level: {{level}}</p>
+        <p>Experience: {{experience}}</p>
+        <p>Experience to next level: {{nextLevelExperience}}</p>
+      </div>
+
+      <div class="col-md-4">
+        {{gravatarUrlLarge this}}
+      </div>
+    </div>
   </div>
 </div>

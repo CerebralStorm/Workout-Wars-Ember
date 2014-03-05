@@ -20,9 +20,8 @@ class User < ActiveRecord::Base
     # if avatar_url.present?
     #   avatar_url
     # else
-      default_url = "#{ENV['SITE_URL']}/assets/guest.png"
       gravatar_id = Digest::MD5.hexdigest(email.downcase)
-      self.avatar_url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=48&d=#{Rack::Utils.escape(default_url)}"
+      self.avatar_url = "http://gravatar.com/avatar/#{gravatar_id}.png"
     #end
   end
   
