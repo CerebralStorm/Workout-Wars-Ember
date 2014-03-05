@@ -1,12 +1,11 @@
 WorkoutWars.ExercisesCreateController = Ember.Controller.extend
-  needs: ['metrics']
+  needs: ['metrics', 'exercises']
   metrics: Ember.computed.alias('controllers.metrics.content')
 
   actions:
     submit: ->
       exercise = @get('model')
       exercise.set('user', @get('currentUser.content'))
-      exercise.set('custom', true)
       
       success = (exercise) =>
         WorkoutWars.get("flash").success "Your exercise was created. It will be available for use once it is approved by an admin."

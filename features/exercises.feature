@@ -3,11 +3,13 @@ Feature: Exercises
 
   Background:
     Given I am logged in
-    And I visit the custom exercises page
+    And I visit the exercises page
 
   @javascript
   Scenario: Create a new valid exercise
     When I fill out the exercise with valid data
     And I save it
-    #Then I should see a new exercise
-    # And I should be able to log an activity with that new exercisee
+    Then I should see a new exercise
+    When that exercise is approved
+    Then I should be able to log an activity with that new exercisee
+    And I should gain experience for it
