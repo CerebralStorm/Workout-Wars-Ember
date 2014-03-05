@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8">
     <div class="panel panel-danger">
-      <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
+      <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>
       <table class="table">
         <tr>
           <td colspan="2">
@@ -13,7 +13,7 @@
             {{#if canJoin}}
               <div class="text-center">
                 <h4>But it's not to late to join!</h4>
-                <button class="btn btn-default btn-block"{{action "join"}}>Join</button>
+                <button class="btn btn-lg btn-danger"{{action "join"}}>Join</button>
               </div>
             {{/if}}
           </td>
