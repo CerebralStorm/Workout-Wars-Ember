@@ -9,7 +9,7 @@
             {{#link-to 'competitions'}}<h3 class="panel-title">Existing Exercises</h3>{{/link-to}}
           </div>
           <div class="list-group">
-            {{#each approvedExercises}}
+            {{#each alphabeticalApprovedExercises}}
               {{#unless isDirty}}
                 {{#link-to "exercise" this class="list-group-item"}}
                   <span {{bind-attr class="this.status"}}>{{name}}</span>
@@ -28,7 +28,7 @@
             {{#link-to 'competitions'}}<h3 class="panel-title">Pending Exercises</h3>{{/link-to}}
           </div>
           <div class="list-group">
-            {{#each pendingExercises}}
+            {{#each alphabeticalPendingExercises}}
               {{#unless isDirty}}
                 {{#link-to "exercise" this class="list-group-item"}}
                   <span {{bind-attr class="this.status"}}>{{name}}</span>

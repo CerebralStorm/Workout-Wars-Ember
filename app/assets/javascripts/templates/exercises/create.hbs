@@ -13,6 +13,7 @@
           class="form-control" 
           prompt="Please select a metric"}}
     {{#if this.model.metric}}
+      <p class="text-info">{{model.metric.name}} is measured in {{model.metric.measurement}}<p>
       {{#form-for this.model wrapper="bootstrap"}}
         {{input name}}
         {{input description as="text"}}
