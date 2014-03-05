@@ -1,8 +1,10 @@
-WorkoutWars.ChallengeController = Ember.ObjectController.extend 
+WorkoutWars.ChallengeController = Ember.ObjectController.extend   
+  rankSort: ['result']
+  sortedAttempts: Ember.computed.sort("challengeAttempts", 'rankSort')
 
-  rankedChallengeAttempts: (->
-    @get('model.challengeAttempts').sortBy('result').reverse()
-  ).property('model.challengeAttempts')
+  rankedAttempts: (->
+    @get('sortedAttempts').reverse()
+  ).property('sortedAttempts')
 
   actions:     
     deleteAttempt: (attempt) ->
