@@ -3,29 +3,23 @@
     <h3 class="panel-title">{{handle}}</h3>
   </div>
   <div class="panel-body">
-    {{#if nickname}}
-      <p>Nickname: {{nickname}}</p>
-    {{/if}}
+    <div class="row">
+      <div class="col-md-8">
+        <blockquote>
+        <p>Nickname: {{nickname}}</p>
+        <p>Age: {{age}}</p>
+        <p>Height: {{height}}</p>
+        <p>Weight: {{weight}}</p>
+        <p>Level: {{level}}</p>
+        <p>Experience: {{experience}}</p>
+        <p>Experience to next level: {{nextLevelExperience}}</p>
+        </blockquote>
+      </div>
 
-    {{#if height}}
-      <p>Height: {{height}}</p>
-    {{/if}}
-
-    {{#if weight}}
-      <p>Weight: {{weight}}</p>
-    {{/if}}
-
-    {{#if level}}
-      <p>Level: {{level}}</p>
-    {{/if}}
-
-    {{#if experience}}
-      <p>Experience: {{experience}}</p>
-    {{/if}}
-
-    {{#if nextLevelExperience}}
-      <p>Experience to next level: {{nextLevelExperience}}</p>
-    {{/if}}
+      <div class="col-md-4">
+        {{gravatarUrlLarge this.model}}
+      </div>
+    </div>
 
     {{view WorkoutWars.UserStatView}}
   </div>
