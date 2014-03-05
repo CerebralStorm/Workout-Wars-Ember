@@ -57,6 +57,27 @@ end
 end
 
 
+## Ensure original exercises are Approved. 
+[
+  'Pushups' ,   
+  'Pullups' ,   
+  'Situps'  ,    
+  'Squats'  ,    
+  'Lunges'  ,    
+  'Burpees' ,   
+  'Running' ,   
+  'Biking'  ,    
+  'Swimming',  
+  'Hiking'  ,    
+  'Walking' ,   
+  'Aerobics',  
+  'Zumba'   ,     
+  'Yoga'          
+].each do |exercise|
+  exercise = Exercise.find_by_name(exercise)
+  exercise.update_attributes(approved: true) if exercise.present?
+end
+
 
 
 
