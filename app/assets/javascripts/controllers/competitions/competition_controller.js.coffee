@@ -2,12 +2,8 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   needs: ['exercises']
   selectedExercise: null
   exercises: Ember.computed.alias('controllers.exercises.content')
-
-  sortedJoins: Ember.computed.sort "competitionJoins", (a, b) ->
-    if a.rank > b.rank
-      return 1
-    else return -1  if a.rank < b.rank
-    0
+  rankSort: ['rank']
+  rankedJoins: Ember.computed.sort "competitionJoins", 'rankSort'
 
   isJoined: (->
     joined = false
