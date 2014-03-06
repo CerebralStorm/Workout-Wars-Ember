@@ -17,6 +17,7 @@ gem 'devise', '~> 3.0.2'
 gem 'cancan'
 gem 'rails_admin'
 gem 'letter_opener_web', '~> 1.1.0', :group => :development
+gem 'omniauth-facebook'
 
 group :production do
   gem 'newrelic_rpm'

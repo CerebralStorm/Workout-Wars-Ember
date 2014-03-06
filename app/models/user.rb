@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :activities
   has_many :competition_activities
@@ -15,6 +16,25 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
   before_save :set_avatar_url
+
+  def self.find_for_facebook_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+        user.name = auth.info.name   # assuming the user model has a name
+        user.image = auth.info.image # assuming the user model has an image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
 
   def set_avatar_url
     # if avatar_url.present?
