@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
       user.name = auth.info.name  
       user.avatar_url = auth.info.image
       user.save
+      user
     else
       where(auth.slice(:provider, :uid)).first_or_create do |user|
           user.provider = auth.provider
