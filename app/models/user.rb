@@ -18,13 +18,21 @@ class User < ActiveRecord::Base
   before_save :set_avatar_url
 
   def self.find_for_facebook_oauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.name = auth.info.name   # assuming the user model has a name
-        user.avatar_url = auth.info.image # assuming the user model has an image
+    if user = User.find_by(email: auth.info.email)
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name  
+      user.avatar_url = auth.info.image
+      user.save
+    else
+      where(auth.slice(:provider, :uid)).first_or_create do |user|
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.email = auth.info.email
+          user.password = Devise.friendly_token[0,20]
+          user.name = auth.info.name  
+          user.avatar_url = auth.info.image
+      end
     end
   end
 
@@ -37,12 +45,12 @@ class User < ActiveRecord::Base
   end
 
   def set_avatar_url
-    # if avatar_url.present?
-    #   avatar_url
-    # else
+    if avatar_url.present?
+      avatar_url
+    else
       gravatar_id = Digest::MD5.hexdigest(email.downcase)
       self.avatar_url = "http://gravatar.com/avatar/#{gravatar_id}.png"
-    #end
+    end
   end
   
   def create_competition_activities(activity)
