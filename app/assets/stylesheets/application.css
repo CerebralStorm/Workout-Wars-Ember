@@ -11,5 +11,6 @@
  *= require_self
  *= require datepicker
  *= require custom
+ *= require font-awesome
  *= require_tree .
  */

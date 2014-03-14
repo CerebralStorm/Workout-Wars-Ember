@@ -282,6 +282,7 @@ DEPENDENCIES
   ember-rails
   ember-source
   factory_girl_rails (~> 4.0)
+  font-awesome-rails
   foreman
   jbuilder (~> 1.2)
   jquery-rails
