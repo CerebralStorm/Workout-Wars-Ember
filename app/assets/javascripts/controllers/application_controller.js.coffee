@@ -12,7 +12,7 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
     submit: -> 
       @set('isSaving', true)
       activity = @get('model')
-      activity.set('user', @get('currentUser.content'))
+      activity.set('user', @get('currentUser'))
 
       success = (activity) =>
         @set('model', @store.createRecord('activity'))
