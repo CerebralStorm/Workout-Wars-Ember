@@ -1,66 +1,39 @@
-<div class="row">
-  <div class="col-md-8">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>
-      <table class="table">
-        <tr>
-          <td colspan="2">
-            <h3 class="text-danger text-center">The competition is finished</h3>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Creator</strong></td>
-          <td>{{user.handle}}</td>
-        </tr>
-        <tr>
-          <td><strong>Start Date</strong></td>
-          <td>{{date startDate}}</td>
-        </tr>
-        <tr>
-          <td><strong>End Date</strong></td>
-          <td>{{date endDate}}</td>
-        </tr>
-        <tr>
-          <td><strong>Max players</strong></td>
-          <td>{{numOfParticipants}}</td>
-        </tr>
-        <tr>
-          <td><strong># of players</strong></td>
-          <td>{{numberOfUsers}}</td>
-        </tr>            
-        <tr>
-          <td><strong>Visability</strong></td>
-          <td>{{#if isPrivate}}Private{{else}}Public{{/if}}</td>
-        </tr> 
-        <tr>
-          <td><strong>Description</strong></td>
-          <td><p>{{description}}</p></td>
-        </tr>            
-      </table>        
-    </div>
-  </div>
-    
-  <div class="col-md-4">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div>
-      <ul class="list-group">      
-        {{#each compExercise in controller.competitionExercises}}
-          <li class="list-group-item">{{compExercise.exercise.name}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div> 
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>      
+  <ul class="list-group">
+    {{info-item title="Status" value=status}}
+    {{info-item title="Creator" value=user.handle}}
+    {{info-item title="Start Date" value=startDate isDate="true"}}
+    {{info-item title="End Date" value=endDate isDate="true"}}
+    {{info-item title="Max players" value=numOfParticipants}}
+    {{info-item title="# of players" value=numberOfUsers}} 
+    {{info-item title="Description" value=description}} 
+    {{info-item title="Exercises" value=exerciseString}}      
+  </ul>    
 </div>
 
 <div class="panel panel-info">
   <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
-  <ul class="list-group">      
-    {{#each compJoin in rankedJoins}}
-      <li class="list-group-item">
-        {{#if compJoin.rank}}<h4>Rank: {{compJoin.rank}}</h4>{{/if}}
-        <h5>User: {{compJoin.user.handle}}</h5>
-        <h5>Total: {{compJoin.total}}</h5>   
-      </li>
-    {{/each}}
-  </ul>
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>User</th>
+          <th>Rank</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each compJoin in rankedJoins}}
+        <tr>
+          <td>{{compJoin.user.handle}}</td>
+          <td>{{compJoin.rank}}</td>               
+          <td><span class="badge">{{compJoin.total}}</span></td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="3">You haven't attempted any challenges yet! Go try some!</td>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
