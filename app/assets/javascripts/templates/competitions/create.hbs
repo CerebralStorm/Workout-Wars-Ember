@@ -1,27 +1,31 @@
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">Competition Settings</h3>
-  </div>
-  <div class="panel-body">
-    <label class= "control-label">Select a Win Condition</label>
-    {{view Ember.Select 
-          name="Win Condition Select"
-          content=winConditions  
-          value=this.model.competitionWinCondition
-          optionValuePath="content" 
-          optionLabelPath='content.name' 
-          class="form-control" 
-          prompt="Please select a win condition"}}
-    {{#if model.competitionWinCondition}}
-      {{#form-for model wrapper="bootstrap"}}
-        {{input name}}
-        {{input startDate as='datePicker'}}
-        {{input endDate as='datePicker'}}
-        {{input maxParticipants}}
-        {{input description as="text"}}
-        <br />
-        {{submit id="competitionCreate" class="btn btn-primary"}}
-      {{/form-for}}
-    {{/if}}
-  </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Competition Settings</h3>
+      </div>
+      <div class="panel-body">
+        <label class= "control-label">Select a Win Condition</label>
+        {{view Ember.Select 
+              name="Win Condition Select"
+              content=winConditions  
+              value=this.model.competitionWinCondition
+              optionValuePath="content" 
+              optionLabelPath='content.name' 
+              class="form-control" 
+              prompt="Please select a win condition"}}
+        {{#if model.competitionWinCondition}}
+          {{#form-for model wrapper="bootstrap"}}
+            {{input name}}
+            {{input startDate as='datePicker'}}
+            {{input endDate as='datePicker'}}
+            {{input maxParticipants}}
+            {{input description as="text"}}
+            <br />
+            {{submit id="competitionCreate" class="btn btn-primary"}}
+          {{/form-for}}
+        {{/if}}
+      </div>
+    </div>
+  </div> 
 </div>

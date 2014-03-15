@@ -5,7 +5,7 @@ WorkoutWars::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   unauthenticated do
     root to: "static#index", as: :unauthenticated_root

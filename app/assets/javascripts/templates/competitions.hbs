@@ -1,26 +1,54 @@
 <div class="row">
+  <div class="col-sm-10">
+    <h1>Competitions</h1>
+  </div>
+
+  <div class="col-sm-2">
+    {{#link-to "competitions.create" class="btn btn-success pull-right"}}
+      <i class="fa fa-plus fa-2x"></i><br>
+      New Competition
+    {{/link-to}}
+  </div>
+</div>
+<hr>
+<div class="row">
   <div class="col-md-3">
-    {{#link-to "competitions.create" class="btn btn-info btn-block"}}New Competition{{/link-to}}
-    <hr>
-    <div class="panel panel-danger">
+    <div class="panel panel-info">
       <div class="panel-heading">
-        {{#link-to 'competitions'}}<h3 class="panel-title">Active Competitions</h3>{{/link-to}}
+        Status
+      </div>
+      <ul class="nav nav-pills nav-stacked">
+        <li {{bind-attr class="showUnstarted:active"}}>
+          <a href="#" {{action "showCompetition" "showUnstarted"}}>Not Started</a>
+        </li>
+        <li {{bind-attr class="showStarted:active"}}>
+          <a href="#" {{action "showCompetition" "showStarted"}}>Started</a>
+        </li>
+        <li {{bind-attr class="showFinished:active"}}>
+          <a href="#" {{action "showCompetition" "showFinished"}}>Finished</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Competitions
       </div>
       <div class="list-group">
-        {{#each controller}}
-          {{#unless isDirty}}
-            {{#link-to "competition" this class="list-group-item"}}
-              <span {{bind-attr class="this.status"}}>{{name}}</span>
-            {{/link-to}}
-          {{/unless}}
+        {{#each currentCompetitions}}
+          {{#link-to "competition" this class="list-group-item"}}
+            <span {{bind-attr class="this.status"}}>{{name}}</span>
+          {{/link-to}}
         {{else}}
-          <a href="#" class="list-group-item">There are no competitions.</a>
+          <a href="#" class="list-group-item">There are currently no competitions of the selected.</a>
         {{/each}}
       </div>
     </div>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-6">
     {{outlet}}
   </div>
 </div>
