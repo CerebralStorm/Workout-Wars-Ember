@@ -26,19 +26,6 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     "#{@get('model.status')}_competition"
   ).property('model')
 
-  exerciseString: (->
-    @get('competitionExercises').then (compExercises) ->
-      value = ""
-      compExercises.forEach (compExercise) ->        
-        temp = compExercise.get('exercise').then (exercise) =>
-          return exercise.get('name')
-
-        temp.then (name) =>
-          value += name
-
-      value
-  ).property('competitionExercises')
-
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
