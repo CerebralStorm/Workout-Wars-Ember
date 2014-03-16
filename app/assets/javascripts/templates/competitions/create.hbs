@@ -15,15 +15,33 @@
               class="form-control" 
               prompt="Please select a win condition"}}
         {{#if model.competitionWinCondition}}
-          {{#form-for model wrapper="bootstrap"}}
-            {{input name}}
-            {{input startDate as='datePicker'}}
-            {{input endDate as='datePicker'}}
-            {{input maxParticipants}}
-            {{input description as="text"}}
-            <br />
-            {{submit id="competitionCreate" class="btn btn-primary"}}
-          {{/form-for}}
+          {{view Ember.Select 
+              name="Exercise Select"
+              content=selectExercises  
+              value=selectedExercise
+              optionValuePath="content" 
+              optionLabelPath='content.name' 
+              class="form-control" 
+              prompt="Please select an exercise"}}
+          {{#if selectedExercise}}
+            <button {{action "addExercise"}}>Add Exercise</button>
+          {{/if}}
+          <ul>
+            {{#each exercises}}
+              <li>{{this.name}}</li>
+            {{/each}}
+          </ul>
+          {{#if exercises}}
+            {{#form-for model wrapper="bootstrap"}}
+              {{input name}}
+              {{input startDate as='datePicker'}}
+              {{input endDate as='datePicker'}}
+              {{input maxParticipants}}
+              {{input description as="text"}}
+              <br />
+              {{submit id="competitionCreate" class="btn btn-primary"}}
+            {{/form-for}}
+          {{/if}}
         {{/if}}
       </div>
     </div>
