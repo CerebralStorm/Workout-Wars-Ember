@@ -4,15 +4,15 @@
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
+      <ul class="pager">  
+        {{#unless noPreviousPage}}        
+          <li><a href="#" {{action 'previousPage'}}>Previous</a></li>
+        {{/unless}}
+        {{#unless noNextPage}}
+          <li><a href="#" {{action 'nextPage'}}>Next</a></li>
+        {{/unless}}
+      </ul>
       <div id="recent_activity" class="list-group">
-        <ul class="pager">  
-          {{#unless noPreviousPage}}        
-            <li><a href="#" {{action 'previousPage'}}>Previous</a></li>
-          {{/unless}}
-          {{#unless noNextPage}}
-            <li><a href="#" {{action 'nextPage'}}>Next</a></li>
-          {{/unless}}
-        </ul>
         {{#each currentPage}}
           {{#unless this.isDeleted}}
             {{#link-to "activity" this class="list-group-item"}}
@@ -30,3 +30,5 @@
     {{outlet}}
   </div>
 </div>
+
+{{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}}
