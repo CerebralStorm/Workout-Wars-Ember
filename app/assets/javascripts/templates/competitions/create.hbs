@@ -15,6 +15,7 @@
               class="form-control" 
               prompt="Please select a win condition"}}
         {{#if model.competitionWinCondition}}
+          <br>
           {{view Ember.Select 
               name="Exercise Select"
               content=selectExercises  
@@ -22,15 +23,18 @@
               optionValuePath="content" 
               optionLabelPath='content.name' 
               class="form-control" 
-              prompt="Please select an exercise"}}
+              prompt="Select the exercise you would like to add"}}
           {{#if selectedExercise}}
-            <button {{action "addExercise"}}>Add Exercise</button>
+            <br>
+            <button {{action "addExercise" class="btn btn-success"}}>Add Exercise</button>
+            <br>
           {{/if}}
-          <ul>
+          <br>
+          <ol>
             {{#each exercises}}
               <li>{{this.name}}</li>
             {{/each}}
-          </ul>
+          </ol>
           {{#if exercises}}
             {{#form-for model wrapper="bootstrap"}}
               {{input name}}

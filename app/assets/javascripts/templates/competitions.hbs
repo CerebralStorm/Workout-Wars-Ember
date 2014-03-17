@@ -38,9 +38,11 @@
       </div>
       <div class="list-group">
         {{#each currentCompetitions}}
-          {{#link-to "competition" this class="list-group-item"}}
-            <span {{bind-attr class="this.status"}}>{{name}}</span>
-          {{/link-to}}
+          {{#unless this.isDeleted}}
+            {{#link-to "competition" this class="list-group-item"}}
+              <span {{bind-attr class="this.status"}}>{{name}}</span>
+            {{/link-to}}
+          {{/unless}}
         {{else}}
           <a href="#" class="list-group-item">There are currently no competitions of the selected.</a>
         {{/each}}
