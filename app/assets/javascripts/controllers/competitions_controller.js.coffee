@@ -22,4 +22,4 @@ WorkoutWars.CompetitionsController = Ember.ArrayController.extend
     competitions.pushObjects(@get('startedCompetitions')) if @get('showStarted')
     competitions.pushObjects(@get('finishedCompetitions')) if @get('showFinished')
     competitions
-  ).property('showUnstarted', 'showStarted', 'showFinished')
+  ).property('showUnstarted', 'showStarted', 'showFinished', 'controller.content')
