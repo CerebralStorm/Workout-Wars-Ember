@@ -1,8 +1,8 @@
 WorkoutWars.CompetitionsController = Ember.ArrayController.extend
   sortProperties: ['finished', 'started', 'name']
   showUnstarted: true
-  showStarted: false
-  showFinished: false
+  showStarted: true
+  showFinished: true
 
   unstartedCompetitions: (->
     @get('model').filterBy('status', 'unstarted')
@@ -23,10 +23,3 @@ WorkoutWars.CompetitionsController = Ember.ArrayController.extend
     competitions.pushObjects(@get('finishedCompetitions')) if @get('showFinished')
     competitions
   ).property('showUnstarted', 'showStarted', 'showFinished')
-
-  actions: 
-    showCompetition: (type) ->
-      @set('showUnstarted', false)
-      @set('showStarted', false)
-      @set('showFinished', false)
-      @set(type, true)

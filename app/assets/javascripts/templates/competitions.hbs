@@ -15,19 +15,25 @@
   <div class="col-md-3">
     <div class="panel panel-info">
       <div class="panel-heading">
-        Status
+        Status Filter
       </div>
-      <ul class="nav nav-pills nav-stacked">
-        <li {{bind-attr class="showUnstarted:active"}}>
-          <a href="#" {{action "showCompetition" "showUnstarted"}}>Not Started</a>
-        </li>
-        <li {{bind-attr class="showStarted:active"}}>
-          <a href="#" {{action "showCompetition" "showStarted"}}>Started</a>
-        </li>
-        <li {{bind-attr class="showFinished:active"}}>
-          <a href="#" {{action "showCompetition" "showFinished"}}>Finished</a>
-        </li>
-      </ul>
+      <div class="panel-body">
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=showUnstarted}} Unstarted
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=showStarted}} Started
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=showFinished}} Finished
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -39,12 +45,10 @@
       <div class="list-group">
         {{#each currentCompetitions}}
           {{#unless this.isDeleted}}
-            {{#link-to "competition" this class="list-group-item"}}
-              <span {{bind-attr class="this.status"}}>{{name}}</span>
-            {{/link-to}}
+            {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
           {{/unless}}
         {{else}}
-          <a href="#" class="list-group-item">There are currently no competitions of the selected.</a>
+          <a href="#" class="list-group-item">There are currently no competitions of the selected type.</a>
         {{/each}}
       </div>
     </div>
