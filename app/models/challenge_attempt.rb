@@ -17,6 +17,6 @@ class ChallengeAttempt < ActiveRecord::Base
   end
 
   def destroy_activity
-    self.activity.destroy
+    self.activity.destroy if self.activity.present?
   end
 end
