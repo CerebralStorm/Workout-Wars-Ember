@@ -5,8 +5,8 @@ describe Exercise do
 
   context "associations" do
     it 'should have many user exercises' do
-      Exercise.reflect_on_association(:user_exercises).should_not be_nil
-      Exercise.reflect_on_association(:user_exercises).macro.should eql(:has_many)
+      Exercise.reflect_on_association(:metric).should_not be_nil
+      Exercise.reflect_on_association(:metric).macro.should eql(:belongs_to)
     end
   end
   
