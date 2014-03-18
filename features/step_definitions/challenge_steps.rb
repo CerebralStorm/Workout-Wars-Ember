@@ -11,7 +11,7 @@ end
 
 Then(/^I should see a new challenge attempt$/) do
   within ".leaderboard" do 
-    expect(find('tbody tr')).to have_text("1 Hulk Hogan 50")
+    expect(find('tbody tr')).to have_text("Hulk Hogan 50")
   end
 end
 
