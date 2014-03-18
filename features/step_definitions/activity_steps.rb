@@ -22,7 +22,8 @@ When(/^I add two new activities$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-
+  sleep 0.2 
+  click_link "New Activity"
   sleep 0.2 
   select "Running", from: "Exercise Select"
   fill_in "Value", with: 5 
