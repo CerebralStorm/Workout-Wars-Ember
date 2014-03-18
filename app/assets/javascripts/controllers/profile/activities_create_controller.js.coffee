@@ -1,5 +1,6 @@
 WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
-  needs: ['exercises']
+  needs: ['exercises', 'profile']
+  profile: Ember.computed.alias('controllers.profile.content')
   exercises: Ember.computed.alias('controllers.exercises.content')
   approvedExercises: Ember.computed.filterBy("exercises", 'approved', true)
   isSaving: false
@@ -13,6 +14,7 @@ WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
       activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
+        @get('profile').get('activities').addObject(activity)
         @set('model', @store.createRecord('activity'))
         @set('isSaving', false)
         @set('value', null)

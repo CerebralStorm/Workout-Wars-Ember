@@ -3,4 +3,4 @@ WorkoutWars.ActivityController = Ember.ObjectController.extend
     delete: (activity) ->
       if window.confirm "Are you sure?"
         @get("model").destroyRecord().then =>
-          @transitionToRoute("activities")  
+          @transitionToRoute("profile.activities")  

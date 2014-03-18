@@ -8,16 +8,8 @@
         <i class="fa fa-plus fa-2x"></i><br>
         New Activity
       {{/link-to}}
-      <ul class="pager">  
-        {{#unless noPreviousPage}}        
-          <li><a href="#" {{action 'previousPage'}}>Previous</a></li>
-        {{/unless}}
-        {{#unless noNextPage}}
-          <li><a href="#" {{action 'nextPage'}}>Next</a></li>
-        {{/unless}}
-      </ul>
       <div id="recent_activity" class="list-group">
-        {{#each currentPage}}
+        {{#each controller}}
           {{#unless this.isDeleted}}
             {{#link-to "activity" this class="list-group-item"}}
               {{shortDateTime this.createdAt}} - {{this.exercise.name}}
