@@ -3,6 +3,7 @@ class CreateExerciseMetrics < ActiveRecord::Migration
     create_table :exercise_metrics do |t|
       t.integer :exercise_id
       t.integer :metric_id
+      t.float :experience_multiplier
 
       t.timestamps
     end

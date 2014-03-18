@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20140318185828) do
   create_table "exercise_metrics", force: true do |t|
     t.integer  "exercise_id"
     t.integer  "metric_id"
+    t.float    "experience_multiplier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
