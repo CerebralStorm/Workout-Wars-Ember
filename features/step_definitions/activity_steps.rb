@@ -15,7 +15,6 @@ When(/^I add a new activity$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 When(/^I add two new activities$/) do
@@ -28,20 +27,23 @@ When(/^I add two new activities$/) do
   select "Running", from: "Exercise Select"
   fill_in "Value", with: 5 
   click_button "Log it!"
-  click_link "Close"
+end
+
+def activity_date(date)
+  date.strftime('%m/%d/%y')
 end
 
 Then(/^I should see the new activity$/) do
   within "#recent_activity" do 
     expect(page).to have_content "Pushups"
-    expect(page).to have_content "#{read_format_date(Date.today)}"
+    expect(page).to have_content "#{activity_date(Date.today)}"
   end
 end
 
 Then(/^I should see the other new activity$/) do
   within "#recent_activity" do 
     expect(page).to have_content "Running"
-    expect(page).to have_content "#{read_format_date(Date.today)}"
+    expect(page).to have_content "#{activity_date(Date.today)}"
   end
 end
 

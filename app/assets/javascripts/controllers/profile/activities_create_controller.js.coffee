@@ -14,6 +14,7 @@ WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
       activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
+        @get('profile').reload()
         @get('profile').get('activities').addObject(activity)
         @set('model', @store.createRecord('activity'))
         @set('isSaving', false)
