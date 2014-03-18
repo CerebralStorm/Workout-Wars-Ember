@@ -3,7 +3,7 @@ Given(/^I visit the exercises page$/) do
 end
 
 When(/^I fill out the exercise with valid data$/) do
-  click_link "Request New Exercise"
+  click_link "New Exercise"
   select "Reps", from: "Metric Select"
   fill_in "Name", with: "Man Makers"
   fill_in "Description", with: "A pushup followed by a lawnmower using dumbells, all while maintaining the plank position"
