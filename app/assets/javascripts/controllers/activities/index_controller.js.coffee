@@ -1,1 +1,0 @@
-WorkoutWars.ActivitiesIndexController = Ember.ArrayController.extend()
