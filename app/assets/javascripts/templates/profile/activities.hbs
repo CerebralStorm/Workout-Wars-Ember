@@ -4,6 +4,10 @@
       <div class="panel-heading">
         <h3 class="panel-title">Logged Activities</h3>
       </div>
+      {{#link-to 'profile.activities.create' class="text-center btn btn-success btn-block"}}
+        <i class="fa fa-plus fa-2x"></i><br>
+        New Activity
+      {{/link-to}}
       <ul class="pager">  
         {{#unless noPreviousPage}}        
           <li><a href="#" {{action 'previousPage'}}>Previous</a></li>
