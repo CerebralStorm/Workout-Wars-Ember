@@ -1,5 +1,5 @@
 WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
-  needs: ['exercises', 'profile']
+  needs: ['exercises', 'profile', 'profileActivities']
   profile: Ember.computed.alias('controllers.profile.content')
   exercises: Ember.computed.alias('controllers.exercises.content')
   approvedExercises: Ember.computed.filterBy("exercises", 'approved', true)
@@ -14,11 +14,10 @@ WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
       activity.set('user', @get('currentUser.content'))
 
       success = (activity) =>
-        @get('profile').reload()
-        @get('profile').get('activities').addObject(activity)
-        @set('model', @store.createRecord('activity'))
         @set('isSaving', false)
-        @set('value', null)
+        @get('profile').reload()
+        @get('controllers.profileActivities.content').pushObject(activity)
+        @transitionToRoute('profile.activities')
         WorkoutWars.get("flash").success "Your activity was created"
       failure = (response) =>
         @set('isSaving', false)

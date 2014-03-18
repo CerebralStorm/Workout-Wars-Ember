@@ -33,15 +33,13 @@
   <table class="table leaderboard">
     <thead>
       <tr class="active">
-        <th>Rank</th>
         <th>User</th>
         <th>Value</th>
         <th colspan="2">Attempted On</th>
       </tr>
     </thead>
-    {{#each attempt in rankedAttempts}}
+    {{#each attempt in challengeAttempts}}
       <tr>
-        <td>{{index _view.contentIndex}}</td>
         <td>{{attempt.user.handle}}</td>
         <td><span class="badge">{{attempt.result}}</span></td>
         <td><span class="badge">{{dateTime attempt.createdAt}}</span></td>
