@@ -29,6 +29,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
 
         Ember.RSVP.Promise.all(promises).then (resolvedPs) =>
           WorkoutWars.get("flash").success "Your competition was updated"
+          competition.reload()
           @transitionToRoute('competition', competition)
         
       failure = (response) =>

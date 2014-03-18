@@ -32,7 +32,7 @@
       </div>
       <div class="list-group">
         {{#each currentCompetitions}}
-          {{#unless this.isDeleted}}
+          {{#unless this.isNew}}
             {{#link-to "competition" this class="list-group-item"}}{{name}}{{/link-to}}
           {{/unless}}
         {{else}}
