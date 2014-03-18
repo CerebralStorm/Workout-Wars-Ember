@@ -18,10 +18,10 @@
           {{/link-to}}
         </li>
         <li class="text-center">
-          <a href="#" {{action "logActivity"}} name="Log Activity">
+          {{#link-to "profile.activities.create" currentUser name="New Activity"}}
             <i class="fa fa-bolt fa-3x"></i><br>
             Log Activity
-          </a>
+          {{/link-to}}
         </li>
         <li class="text-center">
           {{#link-to "profile" currentUser name="My Profile"}}

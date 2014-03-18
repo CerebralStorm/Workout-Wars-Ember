@@ -1,12 +1,30 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Activities</h3>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Logged Activities</h3>
+      </div>
+      {{#link-to 'profile.activities.create' class="text-center btn btn-success btn-block"}}
+        <i class="fa fa-plus fa-2x"></i><br>
+        New Activity
+      {{/link-to}}
+      <div id="recent_activity" class="list-group">
+        {{#each controller}}
+          {{#unless this.isDeleted}}
+            {{#link-to "activity" this class="list-group-item"}}
+              {{shortDateTime this.createdAt}} - {{this.exercise.name}}
+            {{/link-to}}
+          {{/unless}}
+        {{else}}
+          <div class="list-group-item">You haven't logged any activities yet! Go log some!</div>
+        {{/each}}
+      </div>
+    </div>
   </div>
-  <ul class="list-group">
-    {{#each controller}}
-      <li class="list-group-item">{{#link-to "activity" this}}Activity{{/link-to}}</li>
-    {{else}}
-      <li class="list-group-item">You haven't logged any activities yet! Go log some!</li>
-    {{/each}}
-  </ul>
+
+  <div class="col-md-8">
+    {{outlet}}
+  </div>
 </div>
+
+{{!-- {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}} --}}

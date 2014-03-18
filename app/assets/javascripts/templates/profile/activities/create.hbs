@@ -1,0 +1,19 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Log Activity</h3>
+  </div>
+  <div class="panel-body">
+    {{#form-for model wrapper="bootstrap"}}
+      {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+      {{#if model.exercise}}
+        {{input value placeholder=model.exercise.metric.measurement}}
+      {{/if}}
+      <br>
+      {{#if isSaving}}
+        <a href="#" class="btn" name="Close" disabled>Saving...</a>
+      {{else}}
+        {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
+      {{/if}}
+    {{/form-for}} 
+  </div>
+</div>

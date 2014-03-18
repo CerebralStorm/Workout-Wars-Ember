@@ -1,6 +1,6 @@
 WorkoutWars.Competition = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Competition.reopen 
-  competitionExercises: DS.hasMany('competitionExercise', { async: true }) 
+  competitionExercises: DS.hasMany('competitionExercise', { embedded: "always" }) 
   competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
   competitionJoins: DS.hasMany('competitionJoin', { embedded: "always" }) 
   users: DS.hasMany('user', { async: true }) 

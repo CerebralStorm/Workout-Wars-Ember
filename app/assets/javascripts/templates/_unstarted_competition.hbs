@@ -1,142 +1,64 @@
-<div class="row">
-  <div class="col-md-8">
-    {{outlet}}
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>
-      <table class="table">
-        <tr>
-          <td colspan="2">
-            <h3 class="text-success text-center">
-              {{#if isFull}}
-                Currently Full
-              {{else}}
-                Registration Open
-              {{/if}}
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Creator</strong></td>
-          <td>{{user.handle}}</td>
-        </tr>
-        <tr>
-          <td><strong>Start Date</strong></td>
-          <td>{{date startDate}}</td>
-        </tr>
-        <tr>
-          <td><strong>End Date</strong></td>
-          <td>{{date endDate}}</td>
-        </tr>
-        <tr>
-          <td><strong>Max players</strong></td>
-          <td>{{numOfParticipants}}</td>
-        </tr>
-        <tr>
-          <td><strong># of players</strong></td>
-          <td>{{numberOfUsers}}</td>
-        </tr>            
-        <tr>
-          <td><strong>Visability</strong></td>
-          <td>{{#if isPrivate}}Private{{else}}Public{{/if}}</td>
-        </tr> 
-        <tr>
-          <td><strong>Description</strong></td>
-          <td><p>{{description}}</p></td>
-        </tr>            
-      </table>        
-    </div>
-  </div> 
-
-  <div class="col-md-4">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item">
-            {{#if isJoined}}
-              <button class="btn btn-default btn-block"{{action "leave"}}>Leave Competition</button>
-            {{else}}
-              {{#if canJoin}}
-                <button class="btn btn-default btn-block"{{action "join"}}>Join</button>
-              {{/if}}
-            {{/if}} 
-          </li>
-          {{#if canUpdate}}
-          <li class="list-group-item">
-            {{#link-to "competition.edit" this id="edit_competition" class="btn btn-default btn-block"}}Edit{{/link-to}}
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="btn btn-default btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
-          </li>
-          {{/if}}
-        </ul>            
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>    
+  <ul class="list-group">
+    {{#if isJoined}}
+      <li class="list-group-item">      
+        <button class="btn btn-info btn-block"{{action "leave"}}>Leave Competition</button>
+      </li>
+    {{/if}}
+    {{#if canJoin}}
+      <li class="list-group-item">  
+        <button class="btn btn-success btn-block"{{action "join"}}>Join</button>
+      </li>
+    {{/if}} 
+    </li>
+    {{#if canUpdate}}
+      {{!-- <li class="list-group-item">
+        {{#link-to "competition.edit" this id="edit_competition" class="btn btn-default btn-block"}}Edit{{/link-to}}
+      </li> --}}
+      <li class="list-group-item">
+        <a href="#" class="btn btn-danger btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
+      </li>
+    {{/if}} 
+    {{info-item title="Status" value=status}}
+    {{info-item title="Creator" value=user.handle}}
+    {{info-item title="Start Date" value=startDate isDate="true"}}
+    {{info-item title="End Date" value=endDate isDate="true"}}
+    {{info-item title="Max players" value=numOfParticipants}}
+    {{info-item title="# of players" value=numberOfUsers}} 
+    {{info-item title="Description" value=description}} 
+    <li class="list-group-item">
+      <div class="row">
+        <strong class="col-sm-4">Exercises</strong>
+        <p class="col-md-8">
+          {{#each compExercise in competitionExercises}}
+            {{compExercise.exercise.name}} &nbsp;
+          {{/each}}
+        </p>
       </div>
-    </div>
-  </div>
+    </li>     
+  </ul>    
 </div>
 
-<div class="row">
-  <div class="col-md-8">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Exercises</h3></div> 
-      <div class="panel-body">
-      {{#if canUpdate}}
-        {{#unless controller.model.competitionExercises}}
-        <div class="row">
-          <div class="col-md-3">
-            <button class="btn btn-default" {{ action "addExercise" }}>Add Exercise</button>
-          </div>
-
-          <div class="col-md-9">
-            {{view Ember.Select content=exercises name="Exercise Select" value=selectedExercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
-          </div> 
-        </div>
-        <br />
-        {{/unless}}        
-      {{/if}} 
-      <ul class="list-group">     
-        {{#each compExercise in controller.model.competitionExercises}} 
-          {{#unless compExercise.isDeleted}}       
-          <li class="list-group-item">
-            <strong>{{compExercise.exercise.name}}</strong>
-            {{#if canUpdate}}
-              <button {{action "removeExercise" compExercise }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
-            {{/if}}
-          </li> 
-          {{/unless}}      
-        {{else}}
-          <li class="list-group-item">No exercises have been added to this competition.</li>
-        {{/each}}
-      </table>  
-      </div>       
-    </div>
-  </div> 
-
-  <div class="col-md-4">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3 class="panel-title">Users</h3></div>
-      <div class="panel-body">
-        <ul class="list-group">      
-          {{#each compJoin in rankedJoins}}
-            {{#unless compJoin.isDeleted}}
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-md-8">
-                  {{compJoin.user.handle}}
-                </div>
-                <div class="col-md-4">
-                  {{#if canUpdate}}
-                    <button {{action "removeUser" compJoin }} class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button>
-                  {{/if}}
-                </div>
-              </div>
-            </li>
-            {{/unless}}
-          {{else}}
-            <li class="list-group-item">None currently registered</li>
-          {{/each}}
-        </ul>          
-      </div>
-    </div>
+<div class="panel panel-info leaderboard">
+  <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>User</th>
+          <th>Rank</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each compJoin in rankedJoins}}
+        <tr>
+          <td>{{compJoin.user.handle}}</td>
+          <td>{{compJoin.rank}}</td>               
+          <td><span class="badge">{{compJoin.total}}</span></td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
   </div>
 </div>

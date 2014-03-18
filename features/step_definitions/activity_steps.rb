@@ -15,7 +15,6 @@ When(/^I add a new activity$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 When(/^I add two new activities$/) do
@@ -23,25 +22,29 @@ When(/^I add two new activities$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-
+  sleep 0.2 
+  click_link "New Activity"
   sleep 0.2 
   select "Running", from: "Exercise Select"
   fill_in "Value", with: 5 
   click_button "Log it!"
-  click_link "Close"
+end
+
+def activity_date(date)
+  date.strftime('%m/%d/%y')
 end
 
 Then(/^I should see the new activity$/) do
   within "#recent_activity" do 
     expect(page).to have_content "Pushups"
-    expect(page).to have_content "#{read_format_date(Date.today)}"
+    expect(page).to have_content "#{activity_date(Date.today)}"
   end
 end
 
 Then(/^I should see the other new activity$/) do
   within "#recent_activity" do 
     expect(page).to have_content "Running"
-    expect(page).to have_content "#{read_format_date(Date.today)}"
+    expect(page).to have_content "#{activity_date(Date.today)}"
   end
 end
 
@@ -67,10 +70,11 @@ Then(/^select my competition$/) do
 end
 
 Then(/^I should see my score and rank updated$/) do
-  visit "/"
-  visit "/#/competitions/#{Competition.last.id}"
-  expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total: 50"
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "50"
+  end
 end
 
 When(/^I add a bad new activity$/) do
@@ -83,12 +87,11 @@ Then(/^I should not be able to submit the bad activity$/) do
 end
 
 When(/^I add an activity that is not in this competition$/) do
-  click_link "Log Activity"
   sleep 0.2
+  click_link "New Activity"
   select "Pullups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 When(/^I add another activity$/) do
@@ -97,14 +100,16 @@ When(/^I add another activity$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 Then(/^I should see my score and rank updated again$/) do
-  visit "/"
-  visit "/#/competitions/#{Competition.last.id}"
-  expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total: 100"
+  step 'I visit the competitions page'
+  step 'select my competition'
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "100"
+  end
 end
 
 When(/^I delete all of my activities$/) do
@@ -112,6 +117,7 @@ When(/^I delete all of my activities$/) do
   click_link "Activities"
   3.times do 
     within "#recent_activity" do 
+      sleep 0.2
       first('a').click
     end
     click_link "Delete"
@@ -120,5 +126,9 @@ When(/^I delete all of my activities$/) do
 end
 
 Then(/^my score should be (\d+)$/) do |total|
-  expect(page).to have_content "Total: #{total}"
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "#{total}"
+  end
 end

@@ -22,7 +22,7 @@ end
 
 
 When(/^I log out$/) do
-  click_link "Sign out"
+  click_link "Logout"
 end
 
 Then(/^I should be logged out$/) do
@@ -61,7 +61,7 @@ When(/^I fill out the form and submit$/) do
 end
 
 When(/^I go to the settings page$/) do
-  click_link "My Profile"
+  click_link "Profile"
   click_link "Settings"
 end
 
