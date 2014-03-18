@@ -70,10 +70,11 @@ Then(/^select my competition$/) do
 end
 
 Then(/^I should see my score and rank updated$/) do
-  visit "/"
-  visit "/#/competitions/#{Competition.last.id}"
-  expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total: 50"
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "50"
+  end
 end
 
 When(/^I add a bad new activity$/) do
@@ -102,10 +103,13 @@ When(/^I add another activity$/) do
 end
 
 Then(/^I should see my score and rank updated again$/) do
-  visit "/"
-  visit "/#/competitions/#{Competition.last.id}"
-  expect(page).to have_content "Rank: 1"
-  expect(page).to have_content "Total: 100"
+  step 'I visit the competitions page'
+  step 'select my competition'
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "100"
+  end
 end
 
 When(/^I delete all of my activities$/) do
@@ -113,6 +117,7 @@ When(/^I delete all of my activities$/) do
   click_link "Activities"
   3.times do 
     within "#recent_activity" do 
+      sleep 0.2
       first('a').click
     end
     click_link "Delete"
@@ -121,5 +126,9 @@ When(/^I delete all of my activities$/) do
 end
 
 Then(/^my score should be (\d+)$/) do |total|
-  expect(page).to have_content "Total: #{total}"
+  within ".leaderboard" do 
+    expect(page).to have_content "Hulk Hogan"
+    expect(page).to have_content "1"
+    expect(page).to have_content "#{total}"
+  end
 end
