@@ -12,32 +12,24 @@ Feature: Competitions
     Then I should see a new competition
 
   @javascript
-  Scenario: Create a new invalid competition
-    When I fill out the competition with invalid data
+  Scenario: Incompelte competition form
+    When I don't fill out the competition form completely
     Then I should not be able to submit the competition form
 
-  @javascript
-  Scenario: Create a new valid competition and add an exercise to it
-    When I fill out the competition with valid data
-    And I save it
-    Then I should see a new competition
-    When I add an exercise to it
-    Then I should see the new exercise
-
-  @javascript
-  Scenario: Edit a competition
-    When I fill out the competition with valid data
-    And I save it
-    Then I should see the edit and delete button
-    When I click the "Edit" button
-    And I modify the competition
-    Then I should see the competition details change
+  # @javascript
+  # Scenario: Edit a competition
+  #   When I fill out the competition with valid data
+  #   And I save it
+  #   Then I should see the edit and delete button
+  #   When I click the "Edit" button
+  #   And I modify the competition
+  #   Then I should see the competition details change
 
   @javascript
   Scenario: Delete a competition
     When I fill out the competition with valid data
     And I save it
-    Then I should see the edit and delete button
+    Then I should see the delete button
     When I click the "Delete" button
     And I confirm
     Then I should not see the competition anymore

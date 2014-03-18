@@ -22,7 +22,7 @@ end
 
 
 When(/^I log out$/) do
-  click_link "Sign out"
+  click_link "Logout"
 end
 
 Then(/^I should be logged out$/) do
