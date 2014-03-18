@@ -86,12 +86,11 @@ Then(/^I should not be able to submit the bad activity$/) do
 end
 
 When(/^I add an activity that is not in this competition$/) do
-  click_link "Log Activity"
   sleep 0.2
+  click_link "New Activity"
   select "Pullups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 When(/^I add another activity$/) do
@@ -100,7 +99,6 @@ When(/^I add another activity$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  click_link "Close"
 end
 
 Then(/^I should see my score and rank updated again$/) do

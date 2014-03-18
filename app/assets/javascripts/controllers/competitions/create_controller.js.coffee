@@ -1,5 +1,5 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
-  needs: ['competitionWinConditions', 'currentUser', 'exercises']
+  needs: ['competitionWinConditions', 'currentUser', 'exercises', 'competitions']
   winConditions: Ember.computed.alias('controllers.competitionWinConditions.content')
   selectExercises: Ember.computed.alias('controllers.exercises.content')
   errors: Ember.computed.alias('model.errors')
@@ -21,8 +21,6 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       success = (competition) =>
         promises = Ember.A()
         @get('exercises').forEach (exercise) =>
-          console.log exercise
-          console.log competition
           compExercise = @store.createRecord('competitionExercise', {
             exercise: exercise
             competition: competition

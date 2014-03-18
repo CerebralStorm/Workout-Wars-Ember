@@ -33,7 +33,6 @@ Feature: Activity
     And I visit the competitions page
     When I fill out the competition with valid data
     And I save it
-    When I add an exercise to it
     And that competition has started
     And I visit my profile page
     When I open log activity

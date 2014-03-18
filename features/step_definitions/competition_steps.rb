@@ -5,12 +5,16 @@ Given(/^I am logged in$/) do
 end
 
 Given(/^I visit the competitions page$/) do
-  visit '/#/competitions'
-  click_link "New Competition"
+  within ".navbar-collapse" do 
+    click_link "Competitions"
+  end
 end
 
 When(/^I fill out the competition with valid data$/) do
+  click_link "New Competition"
   select "Most completed by date", from: "Win Condition Select"
+  select "Pushups", from: "Exercise Select"
+  click_button "Add Exercise"
   fill_in 'Name', with: "Test Competition"
   fill_in 'startDate', with: format_date(Date.today)
   fill_in 'endDate', with: format_date(2.weeks.from_now)
