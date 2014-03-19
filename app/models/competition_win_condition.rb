@@ -13,11 +13,19 @@ class CompetitionWinCondition < ActiveRecord::Base
   end
 
   def most_completed_by_date
+    compute_total_by(:value)
+  end
+
+  def highest_score_by_date
+    compute_total_by(:total_experience)
+  end
+
+  def compute_total_by(variable)
     @users.each do |user|
       join = user.competition_joins.find_by(competition: @competition)
       total = 0
       @competition.competition_activities.where(user: user).each do |comp_activity|
-        total += comp_activity.activity.value
+        total += comp_activity.activity.send(variable)
       end
       join.update_attributes(total: total)
     end
@@ -26,8 +34,5 @@ class CompetitionWinCondition < ActiveRecord::Base
     @competition.competition_joins.order('total DESC').each_with_index do |comp_join, index|
       comp_join.update_attributes(rank: index+1) 
     end
-  end
-
-  def most_experience_by_date
   end
 end
