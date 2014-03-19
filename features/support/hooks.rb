@@ -1,4 +1,6 @@
 Before do
+  require_relative '../../app/controllers/api/v1/competition_exercises_controller'
+  require_relative '../../app/serializers/competition_exercise_serializer'
 
 [
   {name: 'Reps',      measurement: "Repetitions" },
@@ -48,7 +50,8 @@ end
 end
 
 [
-  {name: 'Most completed by date',  description: 'Winner will be determined by who has completed the most of this competitions exercise by the end date'}
+  {name: 'Most completed by date',  description: 'Winner will be determined by who has completed the most of this competitions exercise by the end date', multi_exercise: false},
+  {name: 'Highest score by date',  description: 'Winner will be determined by who has the highest total score from all exercises by the end date', multi_exercise: true}
 ].each do |win_condition|
   CompetitionWinCondition.where(win_condition).first_or_create
 end

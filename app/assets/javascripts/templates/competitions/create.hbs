@@ -12,7 +12,7 @@
           prompt="Please select a win condition"}}
     {{#if model.competitionWinCondition}}
       <br />
-      {{#unless exercises}}
+      {{#if canAddExercise}}
         {{view Ember.Select 
             name="Exercise Select"
             content=selectExercises  
@@ -26,8 +26,8 @@
           <button class="btn btn-success" {{action "addExercise" }}>Add Exercise</button>
           <br />
         {{/if}}
-      {{/unless}}
-      <h4>Exercise</h4>
+      {{/if}}
+      <h4>Exercises</h4>
       <ul>
         {{#each exercises}}
           <li>{{this.name}}</li>
