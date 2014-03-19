@@ -1,11 +1,16 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   needs: ['competitionWinConditions', 'currentUser', 'exercises', 'competitions']
   winConditions: Ember.computed.alias('controllers.competitionWinConditions.content')
-  selectExercises: Ember.computed.alias('controllers.exercises.content')
+  approvedExercises: Ember.computed.alias('controllers.exercises.content')
   errors: Ember.computed.alias('model.errors')
   selectedExercise: null
   exercises: []
   canClearExercises: true
+  
+  selectExercises: (->
+    @get('approvedExercises').filter (exercise) =>
+      !@get('exercises').contains(exercise)
+  ).property('exercises.@each')
 
   clearExercises: (->
     if @get('canClearExercises')
