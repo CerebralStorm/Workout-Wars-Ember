@@ -1,6 +1,7 @@
 WorkoutWars.ApplicationRoute = Ember.Route.extend
   setupController: ->
     @controllerFor('competitionWinConditions').set 'model', @store.find('competitionWinCondition')
+    @store.find('exercise')
     @controllerFor('exercises').set 'model', @store.filter 'exercise', (exercise) ->
       exercise.get('approved')
     @controllerFor('metrics').set 'model', @store.find('metric')
