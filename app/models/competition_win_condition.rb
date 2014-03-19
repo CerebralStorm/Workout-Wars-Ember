@@ -4,7 +4,7 @@ class CompetitionWinCondition < ActiveRecord::Base
   def compute_results(competition)
     @competition = competition
     @users = competition.users
-    @exercise = competition.exercises.first # Only 1 exercise for now
+    @exercises = competition.exercises
     self.send(computing_method_call)    
   end
 
@@ -13,7 +13,6 @@ class CompetitionWinCondition < ActiveRecord::Base
   end
 
   def most_completed_by_date
-    #This method will have to change if a competition can have multiple exercises
     @users.each do |user|
       join = user.competition_joins.find_by(competition: @competition)
       total = 0
@@ -27,5 +26,8 @@ class CompetitionWinCondition < ActiveRecord::Base
     @competition.competition_joins.order('total DESC').each_with_index do |comp_join, index|
       comp_join.update_attributes(rank: index+1) 
     end
+  end
+
+  def most_experience_by_date
   end
 end
