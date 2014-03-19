@@ -5,9 +5,11 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   errors: Ember.computed.alias('model.errors')
   selectedExercise: null
   exercises: []
+  canClearExercises: true
 
   clearExercises: (->
-    @set('exercises', []) unless @get('content.competitionWinCondition.multiExercise')
+    if @get('canClearExercises')
+      @set('exercises', []) unless @get('content.competitionWinCondition.multiExercise')
   ).observes('content.competitionWinCondition')
 
   canAddExercise: (->
@@ -22,6 +24,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       @set('selectedExercise', null)
 
     submit: ->
+      @set('canClearExercises', false)
       competition = @get('model')
       competition.set('startDate', moment(@get('model.startDate')).toDate())
       competition.set('endDate', moment(@get('model.endDate')).toDate())
@@ -40,6 +43,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
           WorkoutWars.get("flash").success "Your competition was updated"
           @transitionToRoute('competition', competition).then =>
             competition.reload()
+            @set('canClearExercises', true)
         
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your competition was not updated"
