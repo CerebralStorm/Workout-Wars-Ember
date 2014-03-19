@@ -36,4 +36,8 @@ class Competition < ActiveRecord::Base
     exercises.include?(exercise)
   end
 
+  def activeness
+    competition_activities.where("created_at < ? AND created_at > ?", Time.now, 1.week.ago).count
+  end
+
 end

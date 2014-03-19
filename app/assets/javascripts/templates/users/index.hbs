@@ -17,3 +17,31 @@
   </div>
 </div>
 
+<h2 class="featurette-heading">Current User Levels <span class="text-muted">Join the madness</span></h2>
+
+<div class="panel panel-info">
+  <table class="table table-hover">
+    <thead>
+      <tr class="active">
+        <th>User</th>
+        <th>Picture</th>
+        <th>Level</th>
+        <th>Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each user in controller}}
+    <tr>
+      <td>{{user.handle}}</td>
+      <td>{{gravatarUrlSmall user}}</td>
+      <td><span class="badge">{{user.level}}</span></td>               
+      <td><span class="badge">{{user.experience}}</span></td>
+    </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+<hr class="featurette-divider">
+

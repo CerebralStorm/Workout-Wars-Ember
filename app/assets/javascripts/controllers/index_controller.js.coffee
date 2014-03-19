@@ -1,3 +1,3 @@
 WorkoutWars.IndexController = Ember.ArrayController.extend
-  sortProperties: ['level', 'experience']
+  sortProperties: ['activeness']
   sortAscending: false
