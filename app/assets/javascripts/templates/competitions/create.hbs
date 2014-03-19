@@ -28,11 +28,14 @@
         {{/if}}
       {{/if}}
       <h4>Exercises</h4>
-      <ul>
+      <ul class="list-group">
         {{#each exercises}}
-          <li>{{this.name}}</li>
+          <li class="list-group-item">
+            {{this.name}} 
+            <a href="#" class="btn btn-xs btn-danger pull-right" {{action "removeExercise" this}}>x</a>
+          </li>
         {{else}}
-          <li>You haven't added one yet.</li>
+          <li class="list-group-item">You haven't added one yet.</li>
         {{/each}}
       </ul>
       <br />

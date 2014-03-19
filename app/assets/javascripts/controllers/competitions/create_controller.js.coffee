@@ -6,7 +6,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   selectedExercise: null
   exercises: []
   canClearExercises: true
-  
+
   selectExercises: (->
     @get('approvedExercises').filter (exercise) =>
       !@get('exercises').contains(exercise)
@@ -27,6 +27,9 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       exercise = @get('selectedExercise')
       @get('exercises').pushObject(exercise)
       @set('selectedExercise', null)
+
+    removeExercise: (exercise) ->
+      @get('exercises').removeObject(exercise)
 
     submit: ->
       @set('canClearExercises', false)
