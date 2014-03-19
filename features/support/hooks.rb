@@ -1,4 +1,6 @@
 Before do
+  require_relative '../../app/controllers/api/v1/competition_exercises_controller'
+  require_relative '../../app/serializers/competition_exercise_serializer'
 
 [
   {name: 'Reps',      measurement: "Repetitions" },

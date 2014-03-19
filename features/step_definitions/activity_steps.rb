@@ -94,6 +94,14 @@ When(/^I add an activity that is not in this competition$/) do
   click_button "Log it!"
 end
 
+When(/^I add an activity for the second exercise in this competition$/) do
+  sleep 0.2
+  click_link "New Activity"
+  select "Situps", from: "Exercise Select"
+  fill_in "Value", with: 50 
+  click_button "Log it!"
+end
+
 When(/^I add another activity$/) do
   click_link "Log Activity"
   sleep 0.2

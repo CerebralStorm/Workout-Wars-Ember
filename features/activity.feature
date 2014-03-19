@@ -47,3 +47,23 @@ Feature: Activity
     And I visit the competitions page
     And select my competition
     Then my score should be 0
+
+  @javascript
+  Scenario: create/delete an activity for a highscore competition
+    And I visit the competitions page
+    When I fill out the high score competition with valid data
+    And I save it
+    And that competition has started
+    And I visit my profile page
+    When I open log activity
+    And I add a new activity
+    And I add an activity that is not in this competition
+    And I visit the competitions page
+    And select my competition
+    Then I should see my score and rank updated
+    When I add another activity
+    Then I should see my score and rank updated again
+    When I delete all of my activities
+    And I visit the competitions page
+    And select my competition
+    Then my score should be 0
