@@ -69,6 +69,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
       exercise.destroyRecord().then =>
         @transitionToRoute("competition", @get('model'))
 
+    sendFacebook: (competition) ->
+      FB.ui
+        method: 'send'
+        link: window.location.href
+
 
 
 
