@@ -5,6 +5,10 @@
   <div class="panel-body">            
     <h2>{{name}}</h2>
     <p><strong>Description:</strong> {{description}}</p>
+    <p><strong>Metrics</strong></p>
+    {{#each metrics}}
+      <p>{{this.name}}</p>
+    {{/each}}
     <p><strong>Measurement:</strong> {{metric.name}}</p>
     <p><strong>Experience Multiplier:</strong> {{experienceMultiplier}}</p>
   </div>

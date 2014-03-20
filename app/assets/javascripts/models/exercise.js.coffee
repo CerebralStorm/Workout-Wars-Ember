@@ -1,6 +1,7 @@
 WorkoutWars.Exercise = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Exercise.reopen
   exerciseMetrics: DS.hasMany('exerciseMetric', { async: true })
+  metrics: DS.hasMany('metric', { async: true })
   name: DS.attr('string')
   description: DS.attr('string')
   experienceMultiplier:  DS.attr('number')

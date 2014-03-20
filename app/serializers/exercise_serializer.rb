@@ -3,8 +3,9 @@ class ExerciseSerializer < ActiveModel::Serializer
 
   embed :ids
 
-  has_one :metric, include: true
-
+  has_many :metrics, include: true
+  has_many :exercise_metrics
+  
   def can_delete
     Ability.new(scope).can?(:delete, object)
   end
