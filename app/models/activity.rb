@@ -6,10 +6,9 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :exercise
-  validates :value, numericality: { greater_than: 0 }
 
-  after_create :create_competition_activities
-  after_save :update_experience_source_and_user
+  #after_create :create_competition_activities
+  #after_save :update_experience_source_and_user
   after_destroy :set_user_level
 
   delegate :experience_multiplier, to: :exercise
@@ -20,7 +19,8 @@ class Activity < ActiveRecord::Base
   end
 
   def total_experience
-    value * experience_multiplier
+    #value * experience_multiplier
+    100
   end
 
   def update_experience_source_and_user
@@ -35,5 +35,9 @@ class Activity < ActiveRecord::Base
 
   def set_user_level
     user.set_level
+  end
+
+  def values_json
+    values.to_json
   end
 end

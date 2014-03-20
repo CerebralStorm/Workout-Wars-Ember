@@ -5,7 +5,9 @@
   <div class="panel-body">        
     <a href="#" class="btn btn-danger pull-right" {{action "delete" this}}>Delete</a>
     <h2>{{exercise.name}}</h2>
-    <p>{{exercise.metric.name}}: {{value}}</p>
+    {{#each values}}
+      <p><strong>{{this.name}}</strong>: {{this.value}}</p>
+    {{/each}}    
     <p>Created At: {{date createdAt}}</p>
   </div>
 </div>
