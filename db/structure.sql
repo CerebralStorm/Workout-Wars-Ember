@@ -819,6 +819,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: activities_values; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX activities_values ON activities USING gin ("values");
+
+
+--
 -- Name: competition_activities_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -949,3 +956,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140318185828');
 INSERT INTO schema_migrations (version) VALUES ('20140319231947');
 
 INSERT INTO schema_migrations (version) VALUES ('20140319232031');
+
+INSERT INTO schema_migrations (version) VALUES ('20140319235025');
+
+INSERT INTO schema_migrations (version) VALUES ('20140319235821');

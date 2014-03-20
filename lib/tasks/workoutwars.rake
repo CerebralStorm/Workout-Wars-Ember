@@ -32,4 +32,15 @@ namespace :ww do
       end
     end
   end
+  namespace :exercises do 
+    desc "create exercise metric models to attach exercises to metrics"
+    task :reattach_metrics => :environment do 
+      Exercise.find_each do |exercise|
+        if exercise.respond_to?(:metric) 
+          metric = exercise.metric
+          ExerciseMetric.create!(exercise: exercise, metric: metric, experience_multiplier: exercise.experience_multiplier)
+        end
+      end
+    end
+  end
 end
