@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319231947) do
+ActiveRecord::Schema.define(version: 20140320143933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "activities", force: true do |t|
     t.integer  "exercise_id"
@@ -26,6 +25,16 @@ ActiveRecord::Schema.define(version: 20140319231947) do
   end
 
   add_index "activities", ["exercise_id", "user_id"], name: "index_activities_on_exercise_id_and_user_id", using: :btree
+
+  create_table "activity_values", force: true do |t|
+    t.integer  "metric_id"
+    t.integer  "activity_id"
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_values", ["activity_id", "metric_id"], name: "index_activity_values_on_activity_id_and_metric_id", using: :btree
 
   create_table "challenge_attempts", force: true do |t|
     t.integer  "user_id"
