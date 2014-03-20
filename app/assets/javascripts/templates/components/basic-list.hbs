@@ -1,0 +1,11 @@
+{{#each activity in collection}}
+  <div class="list-group">
+    {{#link-to 'activity' activity class="list-group-item"}}
+      <dl>
+        <dt>{{activity.exercise.name}}</dt>
+        <dd>{{time activity.createdAt}}</dd>
+        <dd>{{activity.value}} {{activity.exercise.metric.measurement}}</dd>
+      </dl>
+    {{/link-to}}
+  </div>
+{{/each}}

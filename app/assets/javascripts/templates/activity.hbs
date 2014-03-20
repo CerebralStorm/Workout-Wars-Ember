@@ -1,11 +1,3 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Activity Details</h3>
-  </div>
-  <div class="panel-body">        
-    <a href="#" class="btn btn-danger pull-right" {{action "delete" this}}>Delete</a>
-    <h2>{{exercise.name}}</h2>
-    <p>{{exercise.metric.name}}: {{value}}</p>
-    <p>Created At: {{date createdAt}}</p>
-  </div>
-</div>
+<ul class="list-group">
+  <li class="list-group-item"><a href="#" class="btn btn-block btn-danger" {{action "delete" this}}>Delete</a></li>
+</ul>

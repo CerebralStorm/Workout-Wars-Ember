@@ -31,4 +31,28 @@
   </div>
 </div>
 
-{{!-- {{view Ember.Calendar.CalendarView controllerBinding='controllers.calendar'}} --}}
+{{date startDate}} - {{date endDate}}
+<a href="#" {{action "prevWeek"}}>Prev</a>
+<a href="#" {{action "nextWeek"}}>Next</a>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+  </tr>
+  <tr>
+    <td>
+      {{basic-list collection=sundayActivities}}
+    </td>
+    <td>{{basic-list collection=mondayActivities}}</td>
+    <td>{{basic-list collection=tuesdayActivities}}</td>
+    <td>{{basic-list collection=wednesdayActivities}}</td>
+    <td>{{basic-list collection=thursdayActivities}}</td>
+    <td>{{basic-list collection=fridayActivities}}</td>
+    <td>{{basic-list collection=saturdayActivities}}</td>
+  </tr>
+</table>
