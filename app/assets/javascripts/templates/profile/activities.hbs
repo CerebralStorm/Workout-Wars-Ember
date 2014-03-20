@@ -1,14 +1,20 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h1 class="panel-title pull-left">Activities</h1>
-    {{#link-to 'profile.activities.create' class="pull-right btn btn-success"}}
-      <i class="fa fa-plus">New Activity</i>    
-    {{/link-to}}
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-3">
+        <h1 class="panel-title pull-left">Activities</h1>
+      </div>
+      <div class="col-md-6">
+        <p class="lead text-center">{{date startDate}} - {{date endDate}}</p>
+      </div>
+      <div class="col-md-3">
+        {{#link-to 'profile.activities.create' class="btn btn-success"}}
+          <i class="fa fa-plus">New Activity</i>    
+        {{/link-to}}
+      </div>
+    </div>
   </div>
   {{outlet}}
-  <div id="recent_activity">
-    <p class="lead text-center">{{date startDate}} - {{date endDate}}</p>
     <ul class="pager">
       <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
       <li><a href="#" {{action "nextWeek"}}>Next</a></li>
@@ -35,7 +41,6 @@
         <td>{{basic-list collection=saturdayActivities}}</td>
       </tr>
     </table>
-  </div>
 </div>
 
 
