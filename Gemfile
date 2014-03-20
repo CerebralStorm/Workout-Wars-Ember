@@ -19,6 +19,7 @@ gem 'rails_admin'
 gem 'letter_opener_web', '~> 1.1.0', :group => :development
 gem 'omniauth-facebook'
 gem "font-awesome-rails"
+gem 'thread_safe', '0.2.0'
 
 group :production do
   gem 'newrelic_rpm'
