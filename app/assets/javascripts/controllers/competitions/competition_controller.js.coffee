@@ -74,6 +74,13 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
         method: 'send'
         link: window.location.href
 
+    postFacebook: (competition) ->
+      FB.ui
+        method: "feed"
+        link: window.location.href
+        caption: "Come join #{competition.get('name')} on www.workout-wars.com"
+      , (response) ->
+
 
 
 
