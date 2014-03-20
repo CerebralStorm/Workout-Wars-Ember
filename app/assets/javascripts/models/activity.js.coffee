@@ -8,12 +8,13 @@ WorkoutWars.Activity.reopen
   values: (->
     valueObjects = Ember.A()
     values = JSON.parse(@get('valuesJson'))
-    $.each values, (key,value) ->
-      item = Ember.Object.create({
-        name: key
-        value: value
-      })
-      valueObjects.pushObject(item)
+    if values
+      $.each values, (key,value) ->
+        item = Ember.Object.create({
+          name: key
+          value: value
+        })
+        valueObjects.pushObject(item)
     valueObjects
   ).property('valuesJson')
 

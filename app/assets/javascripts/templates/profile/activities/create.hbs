@@ -6,7 +6,9 @@
     {{#form-for model wrapper="bootstrap"}}
       {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
       {{#if model.exercise}}
-        {{input value placeholder=model.exercise.metric.measurement}}
+        {{#each model.exercise.metrics}}
+          {{input value placeholder=this.measurement}}
+        {{/each}}
       {{/if}}
       <br>
       {{#if isSaving}}
