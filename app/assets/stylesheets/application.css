@@ -12,7 +12,6 @@
  *= require datepicker
  *= require custom
  *= require font-awesome
- *= require ember-calendar
  *= require style
  *= require_tree .
  */
