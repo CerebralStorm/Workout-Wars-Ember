@@ -3,43 +3,31 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-9">
             <h1 class="panel-title pull-left">Activities</h1>
           </div>
-          <div class="col-md-6">
-            <strong class="text-center">{{date startDate}} - {{date endDate}}</strong>
-          </div>
           <div class="col-md-3">
-            {{#link-to 'profile.activities.create' class="btn btn-smbtn-block btn-success"}}
+            {{#link-to 'profile.activities.create' class="btn btn-sm btn-block btn-success"}}
               <i class="fa fa-plus">New Activity</i>    
             {{/link-to}}
           </div>
         </div>
       </div>
+      <p class="text-center"><strong>{{date startDate}} - {{date endDate}}</strong></p>
       <ul class="pager">
         <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
         <li><a href="#" {{action "nextWeek"}}>Next</a></li>
       </ul>
-      <table class="table table-bordered table-striped">
+      <table id="activity-calendar" class="table table-bordered table-striped">
         <tr>
-          <th>Sunday</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
+          {{#each tableTitles}}
+            <th>{{this}}</th>
+          {{/each}}
         </tr>
         <tr>
-          <td>
-            {{basic-list collection=sundayActivities}}
-          </td>
-          <td>{{basic-list collection=mondayActivities}}</td>
-          <td>{{basic-list collection=tuesdayActivities}}</td>
-          <td>{{basic-list collection=wednesdayActivities}}</td>
-          <td>{{basic-list collection=thursdayActivities}}</td>
-          <td>{{basic-list collection=fridayActivities}}</td>
-          <td>{{basic-list collection=saturdayActivities}}</td>
+          {{#each activitiesByDay}}
+            <td>{{basic-list collection=this}}</td>
+          {{/each}}
         </tr>
       </table>
     </div>

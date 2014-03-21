@@ -11,61 +11,32 @@ WorkoutWars.ProfileActivitiesController = Ember.ArrayController.extend
   init: ->
     day = moment().subtract('days', moment().day())
     @set('startDate', day)
-    
-  sundayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 0).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
 
-  mondayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 1).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
+  calculateDate: (startDate, numOfDays) ->
+    date = moment(startDate)
+    date.add('days', numOfDays)
 
-  tuesdayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 2).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
+  tableTitles: (->
+    titles = Ember.A()
+    i = 0
+    while i < 7
+      titles.pushObject(@calculateDate(@get('startDate'), i).format('dddd MM/DD'))
+      i++
+    titles
+  ).property('startDate')
 
-  wednesdayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 3).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
-
-  thursdayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 4).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
-
-  fridayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 5).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
-  ).property('startDate', 'content.@each')
-
-  saturdayActivities: (->
-    date = moment(@get('startDate'))
-    date = date.add('days', 6).startOf('day')
-    @get('model').filter (activity) =>
-      createdStart = moment(activity.get('createdAt')).startOf('day')
-      createdStart.diff(date, 'days') == 0
+  activitiesByDay: (->
+    activitySet = Ember.A()
+    i = 0
+    while i < 7
+      date = @calculateDate(@get('startDate'), i).startOf('day')
+      activities = @get('model').filter (activity) =>
+        createdStart = moment(activity.get('createdAt')).startOf('day')
+        createdStart.diff(date, 'days') == 0
+      activitySet.pushObject(activities)
+      i++
+    console.log activitySet
+    activitySet
   ).property('startDate', 'content.@each')
 
   actions:
