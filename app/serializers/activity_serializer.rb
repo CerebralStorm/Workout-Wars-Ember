@@ -6,4 +6,5 @@ class ActivitySerializer < ActiveModel::Serializer
   has_one :user
   has_one :exercise, include: true
   has_many :competition_activities
+  has_many :competitions, through: :competition_activities
 end

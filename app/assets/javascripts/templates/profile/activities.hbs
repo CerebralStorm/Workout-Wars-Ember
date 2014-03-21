@@ -1,46 +1,56 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <div class="row">
-      <div class="col-md-3">
-        <h1 class="panel-title pull-left">Activities</h1>
+<div class="row">
+  <div {{bind-attr class="inChild:col-md-8:col-md-12"}}>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-3">
+            <h1 class="panel-title pull-left">Activities</h1>
+          </div>
+          <div class="col-md-6">
+            <strong class="text-center">{{date startDate}} - {{date endDate}}</strong>
+          </div>
+          <div class="col-md-3">
+            {{#link-to 'profile.activities.create' class="btn btn-smbtn-block btn-success"}}
+              <i class="fa fa-plus">New Activity</i>    
+            {{/link-to}}
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <p class="lead text-center">{{date startDate}} - {{date endDate}}</p>
-      </div>
-      <div class="col-md-3">
-        {{#link-to 'profile.activities.create' class="btn btn-success"}}
-          <i class="fa fa-plus">New Activity</i>    
-        {{/link-to}}
-      </div>
+      <ul class="pager">
+        <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
+        <li><a href="#" {{action "nextWeek"}}>Next</a></li>
+      </ul>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th>Sunday</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+        </tr>
+        <tr>
+          <td>
+            {{basic-list collection=sundayActivities}}
+          </td>
+          <td>{{basic-list collection=mondayActivities}}</td>
+          <td>{{basic-list collection=tuesdayActivities}}</td>
+          <td>{{basic-list collection=wednesdayActivities}}</td>
+          <td>{{basic-list collection=thursdayActivities}}</td>
+          <td>{{basic-list collection=fridayActivities}}</td>
+          <td>{{basic-list collection=saturdayActivities}}</td>
+        </tr>
+      </table>
     </div>
   </div>
-  {{outlet}}
-    <ul class="pager">
-      <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
-      <li><a href="#" {{action "nextWeek"}}>Next</a></li>
-    </ul>
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-      </tr>
-      <tr>
-        <td>
-          {{basic-list collection=sundayActivities}}
-        </td>
-        <td>{{basic-list collection=mondayActivities}}</td>
-        <td>{{basic-list collection=tuesdayActivities}}</td>
-        <td>{{basic-list collection=wednesdayActivities}}</td>
-        <td>{{basic-list collection=thursdayActivities}}</td>
-        <td>{{basic-list collection=fridayActivities}}</td>
-        <td>{{basic-list collection=saturdayActivities}}</td>
-      </tr>
-    </table>
+
+  <div {{bind-attr class="inChild:col-md-4:"}}>
+    <div class="activity-fixed-vertical">
+      {{outlet}}
+    </div>
+  </div>
 </div>
+
 
 

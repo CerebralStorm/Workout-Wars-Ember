@@ -19,7 +19,6 @@
 //= require ember-validations
 //= require ember-facebook
 //= require ember-easyform
-//= require ember-calendar
 //= require_self
 //= require workout_wars
 //= require moment

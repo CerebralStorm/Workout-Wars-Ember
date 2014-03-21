@@ -2,6 +2,7 @@ WorkoutWars.ProfileActivitiesController = Ember.ArrayController.extend
   sortProperties: ['createdAt']
   sortAscending: false
   startDate: null
+  inChild: false
   
   endDate: (->
     moment(@get('startDate')).add('days', 6)
