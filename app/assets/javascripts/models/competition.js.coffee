@@ -59,6 +59,9 @@ WorkoutWars.Competition.reopen
     startDate:
       presence: true
 
+    description:
+      presence: true
+
     endDate:
       presence: true
 

@@ -9,18 +9,20 @@
   <div class='row'>
     <div class='col-md-8'>
       <h2>Competition Hotness</h2>
+      <ul class='list-group-item'>
       {{#each controller}}
         {{hot-item model=this}}
       {{/each}}
+      </ul>
     </div>
 
     <div class="col-md-4">
       <h2>Recent Activity</h2>
       <div class="well well-lg">
         <ul class="list-group">          
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" /> Summer logged 20 Pushups</li>
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" /> Scott logged 15 Pullups</li>
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" /> Joey logged nothing</li>
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Summer logged 20 Pushups</li>
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Scott logged 15 Pullups</li>
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Joey logged nothing</li>
         </ul>
       </div>
     </div>
