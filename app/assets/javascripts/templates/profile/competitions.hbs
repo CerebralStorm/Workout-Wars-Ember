@@ -1,12 +1,27 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">My Competitions</h3>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">My Competitions</h3>
+      </div>
+      <ul class="nav">
+        {{#each comp in controller}}
+          <li>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</li>
+        {{else}}
+          <li class="list-group-item">You haven't joined or created any competitions!</li>
+        {{/each}}
+      </ul>
+    </div>
   </div>
-  <ul class="nav">
-    {{#each comp in controller}}
-      <li>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</li>
-    {{else}}
-      <li class="list-group-item">You haven't joined or created any competitions!</li>
-    {{/each}}
-  </ul>
+
+  <div class="col-md-6">
+    <div class="centered">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Trophies</h3>
+        </div>
+        <img id="trophy_pic" src='/assets/trophy-case.png' class="img-responsive"/>
+      </div> 
+    </div>   
+  </div>
 </div>
