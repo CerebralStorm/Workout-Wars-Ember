@@ -35,7 +35,6 @@ WorkoutWars.ActivitiesController = Ember.ArrayController.extend
         createdStart.diff(date, 'days') == 0
       activitySet.pushObject(activities)
       i++
-    console.log activitySet
     activitySet
   ).property('startDate', 'content.@each')
 
