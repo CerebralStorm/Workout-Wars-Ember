@@ -1,0 +1,11 @@
+div.panel {
+  background-color:rgba(10,10,10,0.5);
+}
+
+div.jumbotron {
+  background-color:rgba(10,10,10,0.5);
+}
+
+p { 
+  font-color: #fff !important;
+}
