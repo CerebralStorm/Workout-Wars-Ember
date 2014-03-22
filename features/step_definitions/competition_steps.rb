@@ -21,6 +21,29 @@ When(/^I fill out the competition with valid data$/) do
   fill_in 'maxParticipants', with: "20"
 end
 
+When(/^I fill out the high score competition with valid data$/) do
+  click_link "New Competition"
+  select "Highest score by date", from: "Win Condition Select"
+  select "Pushups", from: "Exercise Select"
+  click_button "Add Exercise"
+  select "Situps", from: "Exercise Select"
+  click_button "Add Exercise"
+  fill_in 'Name', with: "Test Competition"
+  fill_in 'startDate', with: format_date(Date.today)
+  fill_in 'endDate', with: format_date(2.weeks.from_now)
+  fill_in 'maxParticipants', with: "20"
+end
+
+Then(/^I should see a new high score competition$/) do
+  expect(page).to have_content "Test Competition"
+  expect(page).to have_content "Highest score by date"
+  expect(page).to have_content "#{read_format_date(Date.today)}"
+  expect(page).to have_content "#{read_format_date(2.weeks.from_now)}"
+  expect(page).to have_content "20" 
+  expect(page).to have_content "Pushups" 
+  expect(page).to have_content "Situps" 
+end
+
 When(/^I set the max participants$/) do
   fill_in 'maxParticipants', with: "1"
 end
@@ -39,10 +62,11 @@ end
 
 Then(/^I should see a new competition$/) do
   expect(page).to have_content "Test Competition"
+  expect(page).to have_content "Most completed by date"
   expect(page).to have_content "#{read_format_date(Date.today)}"
   expect(page).to have_content "#{read_format_date(2.weeks.from_now)}"
   expect(page).to have_content "20"  
-  #expect(page).to have_content "Pushups" 
+  expect(page).to have_content "Pushups" 
 end
 
 When(/^I don't fill out the competition form completely$/) do

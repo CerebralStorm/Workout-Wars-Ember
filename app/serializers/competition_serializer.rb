@@ -11,6 +11,7 @@ class CompetitionSerializer < ActiveModel::Serializer
   has_many :competition_joins, include: true
   has_many :users, through: :competition_joins
   has_one :user
+  has_one :competition_win_condition
 
   def can_update    
     Ability.new(scope).can?(:update, object)

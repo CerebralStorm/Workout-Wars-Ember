@@ -1,5 +1,5 @@
 WorkoutWars.ActivityController = Ember.ObjectController.extend
-  needs: ['profile']
+  needs: ['profile', 'profileActivities']
   profile: Ember.computed.alias('controllers.profile.content')
   
   actions:

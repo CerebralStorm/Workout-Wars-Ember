@@ -1,6 +1,20 @@
 <div class="panel panel-info">
   <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>    
   <ul class="list-group">
+    <li class="list-group-item">  
+      <ul class="list-inline">
+        <li>
+          <a href="#" {{action "sendFacebook" this }}>
+            <img src="/assets/fb-invite.png" alt="Invite via Facebook" height="42">
+          </a>
+        </li>
+        <li>
+          <a href="#" {{action "postFacebook" this }}>
+            <img src="/assets/fb-share.png" alt="Share via Facebook" height="42">
+          </a>
+        </li>
+      </ul>  
+    </li>
     {{#if isJoined}}
       <li class="list-group-item">      
         <button class="btn btn-info btn-block"{{action "leave"}}>Leave Competition</button>
@@ -22,6 +36,7 @@
     {{/if}} 
     {{info-item title="Status" value=status}}
     {{info-item title="Creator" value=user.handle}}
+    {{info-item title="Win Condition" value=competitionWinCondition.name}} 
     {{info-item title="Start Date" value=startDate isDate="true"}}
     {{info-item title="End Date" value=endDate isDate="true"}}
     {{info-item title="Max players" value=numOfParticipants}}

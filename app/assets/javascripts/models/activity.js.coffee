@@ -1,6 +1,7 @@
 WorkoutWars.Activity = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Activity.reopen 
   user: DS.belongsTo('user', { async: true }) 
+  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
   exercise: DS.belongsTo('exercise', { embedded: "always" }) 
   value: DS.attr('number')
   createdAt: DS.attr('date')
@@ -9,6 +10,6 @@ WorkoutWars.Activity.reopen
     value:
       numericality:
         greaterThan: 0
-        lessThan: 100000
+        lessThan: 1000
 
 

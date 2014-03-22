@@ -6,10 +6,16 @@ Feature: Competitions
     And I visit the competitions page
 
   @javascript
-  Scenario: Create a new valid competition
+  Scenario: Create a new valid Most completed by date competition
     When I fill out the competition with valid data
     And I save it
     Then I should see a new competition
+
+  @javascript
+  Scenario: Create a new valid highest score by date competition
+    When I fill out the high score competition with valid data
+    And I save it
+    Then I should see a new high score competition
 
   @javascript
   Scenario: Incompelte competition form

@@ -16,13 +16,13 @@ describe CompetitionWinCondition do
   end
 
   context "compute win conditions" do
-    describe "most_completed_by_date" do 
+    describe "#most_completed_by_date" do 
       before do 
         @user1 = FactoryGirl.create(:user)
         @user2 = FactoryGirl.create(:user)
         @exercise = FactoryGirl.create(:exercise, name: "Pushups")
         @win_condition = FactoryGirl.create(:competition_win_condition, name: "Most completed by date")
-        @competition = FactoryGirl.create(:competition, started: true)
+        @competition = FactoryGirl.create(:competition, started: true, competition_win_condition: @win_condition)
         FactoryGirl.create(:competition_exercise, exercise: @exercise, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user1, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user2, competition: @competition)
@@ -33,6 +33,31 @@ describe CompetitionWinCondition do
       it "should compute the total" do
         expect(CompetitionJoin.first.total).to eq 50
         expect(CompetitionJoin.last.total).to eq 100
+      end
+
+      it "should compute the rank" do
+        expect(CompetitionJoin.first.rank).to eq 2
+        expect(CompetitionJoin.last.rank).to eq 1
+      end
+    end
+
+    describe "#highest_score_by_date" do 
+      before do 
+        @user1 = FactoryGirl.create(:user)
+        @user2 = FactoryGirl.create(:user)
+        @exercise = FactoryGirl.create(:exercise, name: "Running", experience_multiplier: 40)
+        @win_condition = FactoryGirl.create(:competition_win_condition, name: "Highest score by date")
+        @competition = FactoryGirl.create(:competition, started: true, competition_win_condition: @win_condition)
+        FactoryGirl.create(:competition_exercise, exercise: @exercise, competition: @competition)
+        FactoryGirl.create(:competition_join, user: @user1, competition: @competition)
+        FactoryGirl.create(:competition_join, user: @user2, competition: @competition)
+        FactoryGirl.create(:activity, user: @user1, value: 5, exercise: @exercise)
+        FactoryGirl.create(:activity, user: @user2, value: 10, exercise: @exercise)
+        @competition.update_attributes(finished: true)
+      end
+      it "should compute the total" do
+        expect(CompetitionJoin.first.total).to eq 200
+        expect(CompetitionJoin.last.total).to eq 400
       end
 
       it "should compute the rank" do

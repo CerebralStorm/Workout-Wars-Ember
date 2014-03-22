@@ -1,10 +1,26 @@
 WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   needs: ['competitionWinConditions', 'currentUser', 'exercises', 'competitions']
   winConditions: Ember.computed.alias('controllers.competitionWinConditions.content')
-  selectExercises: Ember.computed.alias('controllers.exercises.content')
+  approvedExercises: Ember.computed.alias('controllers.exercises.content')
   errors: Ember.computed.alias('model.errors')
   selectedExercise: null
   exercises: []
+  canClearExercises: true
+
+  selectExercises: (->
+    @get('approvedExercises').filter (exercise) =>
+      !@get('exercises').contains(exercise)
+  ).property('exercises.@each')
+
+  clearExercises: (->
+    if @get('canClearExercises')
+      @set('exercises', []) unless @get('content.competitionWinCondition.multiExercise')
+  ).observes('content.competitionWinCondition')
+
+  canAddExercise: (->
+    return true if @get('exercises').length < 1
+    @get('content.competitionWinCondition.multiExercise')
+  ).property('exercises.@each', 'content.competitionWinCondition')
 
   actions:
     addExercise: ->
@@ -12,7 +28,11 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
       @get('exercises').pushObject(exercise)
       @set('selectedExercise', null)
 
+    removeExercise: (exercise) ->
+      @get('exercises').removeObject(exercise)
+
     submit: ->
+      @set('canClearExercises', false)
       competition = @get('model')
       competition.set('startDate', moment(@get('model.startDate')).toDate())
       competition.set('endDate', moment(@get('model.endDate')).toDate())
@@ -29,8 +49,9 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
 
         Ember.RSVP.Promise.all(promises).then (resolvedPs) =>
           WorkoutWars.get("flash").success "Your competition was updated"
-          competition.reload()
-          @transitionToRoute('competition', competition)
+          @transitionToRoute('competition', competition).then =>
+            competition.reload()
+            @set('canClearExercises', true)
         
       failure = (response) =>
         WorkoutWars.get("flash").danger "Your competition was not updated"

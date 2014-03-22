@@ -6,3 +6,6 @@ Ember.Handlebars.registerBoundHelper 'dateTime', (date) ->
 
 Ember.Handlebars.registerBoundHelper 'shortDateTime', (date) ->
   if date == null then "" else moment(date).format("MM/DD/YY h:mm a")
+
+Ember.Handlebars.registerBoundHelper 'time', (date) ->
+  if date == null then "" else moment(date).format("h:mm a")
