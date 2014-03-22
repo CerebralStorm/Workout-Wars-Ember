@@ -1,4 +1,4 @@
-WorkoutWars.ProfileActivitiesController = Ember.ArrayController.extend
+WorkoutWars.ActivitiesController = Ember.ArrayController.extend
   sortProperties: ['createdAt']
   sortAscending: false
   startDate: null

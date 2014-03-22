@@ -1,4 +1,4 @@
-WorkoutWars.ProfileActivitiesCreateController = Ember.ObjectController.extend
+WorkoutWars.ActivitiesCreateController = Ember.ObjectController.extend
   needs: ['exercises', 'profile', 'profileActivities', 'profileActivitiesCreate']
   profile: Ember.computed.alias('controllers.profile.content')
   exercises: Ember.computed.alias('controllers.exercises.content')
