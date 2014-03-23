@@ -1,6 +1,6 @@
 {{#each activity in collection}}
   <div class="list-group">
-    {{#link-to 'activity' activity class="list-group-item"}}
+    {{#link-to 'activities.activity' activity class="list-group-item"}}
       <dl>
         <dt>{{activity.exercise.name}}</dt>
         <dd>{{time activity.createdAt}}</dd>

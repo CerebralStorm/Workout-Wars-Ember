@@ -1,5 +1,5 @@
 WorkoutWars.ActivitiesController = Ember.ObjectController.extend
-  needs: ['exercises', 'currentUser', 'application']
+  needs: ['exercises', 'currentUser']
   sortProperties: ['createdAt']
   sortAscending: false
   startDate: null
@@ -45,7 +45,7 @@ WorkoutWars.ActivitiesController = Ember.ObjectController.extend
         activitySet.pushObject(activities)
         i++
     activitySet
-  ).property('startDate', 'currentUser')
+  ).property('startDate', 'currentUser.activities.@each')
 
   actions:
     submit: -> 
@@ -56,6 +56,7 @@ WorkoutWars.ActivitiesController = Ember.ObjectController.extend
       success = (activity) =>
         @set('isSaving', false)
         @get('currentUser').reload()
+        @set('model', @store.createRecord('activity'))
         @transitionToRoute('activities')
         WorkoutWars.get("flash").success "Your activity was created"
       failure = (response) =>
