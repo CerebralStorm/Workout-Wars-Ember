@@ -18,6 +18,7 @@ WorkoutWars.Competition.reopen
   isPrivate: DS.attr('boolean')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
+  activeness: DS.attr('number')
 
   numOfParticipants: (->
     @get('maxParticipants') || "No Limit"
@@ -40,6 +41,14 @@ WorkoutWars.Competition.reopen
       'unstarted'
   ).property()
 
+  fireImg: (->
+    activeness = parseInt(@get('activeness'))
+    size = 30
+    size = 30 + activeness * 10 if activeness > 1
+    size = 180 if activeness >= 15
+    "<img src=\"assets/fire.png\" style=\"width:#{size}px;height:#{size}px\" class=\"img-circle\">"
+  ).property('activeness')
+
 
   validations:
     name:
@@ -48,6 +57,9 @@ WorkoutWars.Competition.reopen
         minimum: 5
 
     startDate:
+      presence: true
+
+    description:
       presence: true
 
     endDate:

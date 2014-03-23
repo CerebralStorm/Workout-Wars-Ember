@@ -1,37 +1,30 @@
 <div class="container">
   <div class="jumbotron">
     <img src="/assets/ww-logo-large.png" class="img-responsive" />    
-    <h1><p class="text-danger text-center">BETA</p></h1>
-    <p>Get ready to take your fitness to the next level.</p>
+    <h1><p class="text-danger text-center">Arena</p></h1>
+    <p class="text-center">Get ready to take your fitness to the next level.</p>
   </div>
 
   <hr class="featurette-divider">
-
-  <h2 class="featurette-heading">Current User Levels <span class="text-muted">Join the madness</span></h2>
-
-  <div class="panel panel-info">
-    <table class="table table-hover">
-      <thead>
-        <tr class="active">
-          <th>User</th>
-          <th>Picture</th>
-          <th>Level</th>
-          <th>Experience</th>
-        </tr>
-      </thead>
-      <tbody>
-      {{#each user in controller}}
-      <tr>
-        <td>{{user.handle}}</td>
-        <td>{{gravatarUrlSmall user}}</td>
-        <td><span class="badge">{{user.level}}</span></td>               
-        <td><span class="badge">{{user.experience}}</span></td>
-      </tr>
+  <div class='row'>
+    <div class='col-md-8'>
+      <h2>Competition Hotness</h2>
+      <ul class='list-group-item'>
+      {{#each controller}}
+        {{hot-item model=this}}
       {{/each}}
-      </tbody>
-    </table>
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Recent Activity</h2>
+      <div class="well well-lg">
+        <ul class="list-group">          
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Summer logged 20 Pushups</li>
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Scott logged 15 Pullups</li>
+          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Joey logged nothing</li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-
-  <hr class="featurette-divider">
 </div>

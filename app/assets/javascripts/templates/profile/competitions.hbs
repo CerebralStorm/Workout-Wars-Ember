@@ -2,11 +2,25 @@
   <div class="panel-heading">
     <h3 class="panel-title">My Competitions</h3>
   </div>
-  <ul class="nav">
-    {{#each comp in controller}}
-      <li>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</li>
-    {{else}}
-      <li class="list-group-item">You haven't joined or created any competitions!</li>
-    {{/each}}
-  </ul>
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>Competition</th>
+          <th>Your Rank</th>
+          <th>Current Leader</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each comp in controller}}
+          <tr>
+            <td>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</td>
+            <td><span class="badge">3</span></td>               
+            <td><span class="badge">John Smith</span></td>
+          </tr>
+      {{else}}
+        <tr>
+          <td colspan="3">You aren't currently in any competitions. Go join one!</td>
+      {{/each}}
+      </tbody>
+    </table>
 </div>

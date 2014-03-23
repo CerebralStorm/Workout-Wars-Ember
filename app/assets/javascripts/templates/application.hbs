@@ -10,17 +10,17 @@
       </button>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav nav-justified">
         <li class="text-center">
           {{#link-to "index"}}
             <i class="fa fa-home fa-3x"></i><br>
-            WW
+            Arena
           {{/link-to}}
         </li>
         <li class="text-center">
-          {{#link-to "profile.activities.create" currentUser name="New Activity"}}
+          {{#link-to "activities"}}
             <i class="fa fa-bolt fa-3x"></i><br>
-            Log Activity
+            Log Exercise
           {{/link-to}}
         </li>
         <li class="text-center">
@@ -53,9 +53,7 @@
             Exercises
           {{/link-to}}
         </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
-        <li>
+        <li class="text-center">
           <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
             <i class="fa fa-sign-out fa-3x"></i><br>
             Logout

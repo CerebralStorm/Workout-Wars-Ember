@@ -1,0 +1,22 @@
+<div class="row">    
+  <br>
+  <div class="col-md-2 col-sm-3 text-center">
+    <a class="story-img" href="#">{{{model.fireImg}}}</a>
+  </div>
+  <div class="col-md-10 col-sm-9">
+    <h3>{{#link-to 'competition' model }}{{model.name}}{{/link-to}}</h3>
+    <div class="row">
+      <div class="col-xs-9">
+        <p>{{model.description}}</p>
+        <p class="lead text-danger">{{model.activeness}} activities logged in the past week.</p>
+        <p class="lead">{{model.numberOfUsers}} users in competition</p>
+        <p class="pull-right">
+          <span class="label label-default">Start {{date model.startDate}}</span> 
+          <span class="label label-default">End {{date model.endDate}}</span>
+        </p>
+        </div>
+      <div class="col-xs-3"></div>
+    </div>
+    <br><br>
+  </div>
+</div>

@@ -43,10 +43,10 @@
       {{#if exercises}}
         {{#form-for model wrapper="bootstrap"}}
           {{input name}}
+          {{input description as="text"}}
           {{input startDate as='datePicker'}}
           {{input endDate as='datePicker'}}
           {{input maxParticipants}}
-          {{input description as="text"}}
           <br />
           {{submit id="competitionCreate" class="btn btn-primary"}}
         {{/form-for}}

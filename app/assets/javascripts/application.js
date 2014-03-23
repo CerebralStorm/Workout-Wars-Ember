@@ -24,7 +24,9 @@
 //= require moment
 //= require highcharts
 
-WorkoutWars = Ember.Application.createWithMixins(Ember.Facebook);
+WorkoutWars = Ember.Application.createWithMixins(Ember.Facebook, {
+  LOG_TRANSITIONS: true
+});
 WorkoutWars.set('appId', '167797983412231');
 WorkoutWars.deferReadiness();
 

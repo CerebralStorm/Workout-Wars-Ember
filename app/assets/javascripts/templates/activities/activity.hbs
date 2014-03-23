@@ -1,0 +1,28 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Activity Details</h3>
+  </div>    
+  <ul class="list-group">
+    <li class="list-group-item">
+      {{exercise.name}}
+    </li>
+    <li class="list-group-item">
+      {{dateTime createdAt}}
+    </li>
+    <li class="list-group-item">
+      {{value}} {{exercise.metric.measurement}}
+    </li>
+      <li class="list-group-item">
+        <strong>Competitions this counted for</strong>
+        <ul>
+          {{#each competitionActivities}}
+            <li>{{this.competition.name}}</li>
+          {{else}}
+            <li>None</li>
+          {{/each}}
+        </ul>
+    <li class="list-group-item">
+      <a href="#" class="btn btn-block btn-danger" {{action "delete" this}}>Delete</a>
+    </li>
+  </ul>
+</div>

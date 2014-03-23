@@ -1,3 +1,5 @@
 WorkoutWars.IndexController = Ember.ArrayController.extend
-  sortProperties: ['level', 'experience']
+  needs: ['currentUser']
+  currentUser: Ember.computed.alias('controllers.currentUser.content')
+  sortProperties: ['activeness']
   sortAscending: false

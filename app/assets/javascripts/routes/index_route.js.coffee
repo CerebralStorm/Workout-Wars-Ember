@@ -1,6 +1,8 @@
 WorkoutWars.IndexRoute = Ember.Route.extend
   model: ->
-    @store.find('user')
+    @store.find('competition')
+    @store.filter 'competition', (competition, index) ->
+      (competition.get('status') != 'finished') && (competition.get('activeness') != 0)
 
   actions:
     setSuccess: (message) ->
