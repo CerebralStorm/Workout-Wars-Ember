@@ -18,11 +18,20 @@
           <td>{{this.total}}</td>
         </tr>
       {{else}}
+        {{#if selectedExercise}}
         <tr>
-          <td>{{this.competition.name}}</td>
-          <td>{{this.rank}}</td>
-          <td>{{this.total}}</td>
+          <td colspan="3">
+            <p class="lead text-warning text-center">You are not currently in any competitions that include {{selectedExercise.name}}. Would you like to</p>
+            <a href="#" class="btn btn-success center-block" {{action "createCompetiton" selectedExercise}}> Create a new one ?</a> 
+            <p class="text-center">- OR -</p> 
+            <a href="#" class="btn btn-primary center-block" {{action "createCompetiton" selectedExercise}}>join an existing one ?</a>
+          </td>
         </tr>
+        {{else}}
+        <tr>
+          <td colspan="3">Competitions not currently available. Either you aren't in any, or they haven't loaded yet.</p></td>
+        </tr>
+        {{/if}}
       {{/each}}
     </table>
   </div>

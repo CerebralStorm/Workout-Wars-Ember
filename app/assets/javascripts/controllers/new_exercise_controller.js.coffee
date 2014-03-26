@@ -17,7 +17,6 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
     submit: -> 
       @set('isSaving', true)
       activity = @get('model')
-      console.log @get('currentUser')
       activity.set('user', @get('currentUser'))
 
       success = (activity) =>
