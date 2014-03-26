@@ -17,13 +17,13 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
     submit: -> 
       @set('isSaving', true)
       activity = @get('model')
-      activity.set('user', @get('currentUser.content'))
+      console.log @get('currentUser')
+      activity.set('user', @get('currentUser'))
 
       success = (activity) =>
         @set('isSaving', false)
-        @get('profile').reload()
-        @get('controllers.profileActivities.content').pushObject(activity)
-        @transitionToRoute('profile.activities')
+        @set('model', @store.createRecord('activity'))
+        @set('controllers.application.selectedExercise', null)
         WorkoutWars.get("flash").success "Your activity was created"
       failure = (response) =>
         @set('isSaving', false)
