@@ -1,6 +1,7 @@
 WorkoutWars.NewExerciseController = Ember.ObjectController.extend
-  needs: ['currentUser', 'exercises']
+  needs: ['currentUser', 'exercises', 'application']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
+  showExercisePanel: Ember.computed.alias('controllers.application.showExercisePanel') 
   exercises: Ember.computed.alias('controllers.exercises.content')
   approvedExercises: Ember.computed.filterBy("exercises", 'approved', true)
   isSaving: false
@@ -24,3 +25,6 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
         WorkoutWars.get("flash").danger "Your activity was not created"
       
       activity.save().then success, failure
+
+    clearActivity: ->
+      @set('model', @store.createRecord('activity'))

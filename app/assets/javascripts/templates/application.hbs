@@ -8,6 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <img src="/assets/ww-brand.png" />
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -50,13 +51,20 @@
 
 <div class="container-fluid">
 <div class="row">
-  <div class="col-md-9">
-    <br>
+  <div {{bind-attr class="showExercisePanel:col-md-9:col-md-11"}}>
     {{outlet modal}}
     {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
     {{outlet}}
   </div>
-  <div id="exercise-panel" class="col-md-3">
+  <div id="exercise-panel" {{bind-attr class="showExercisePanel:col-md-3:col-md-1"}}>
+    <a href="#" {{action "toggleExercisePanel"}}>
+      {{#if showExercisePanel}}
+        <i class="fa fa-3x fa-minus-square"></i>
+      {{else}}
+        <i class="fa fa-plus-square"></i>
+        <small>New Exercise</small>
+      {{/if}}
+    </a>
     {{render "newExercise" newExercise}}
   </div>
 </div> 
