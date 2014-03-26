@@ -8,6 +8,11 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
   exercisesSorting: ["name"]
   alphabeticalExercises: Ember.computed.sort("approvedExercises", "exercisesSorting")
 
+  setSelectedExercise: (->
+    exercise = @get('model.exercise')
+    @set('controllers.application.selectedExercise', exercise)
+  ).observes('content.exercise')
+
   actions:
     submit: -> 
       @set('isSaving', true)
@@ -28,3 +33,4 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
 
     clearActivity: ->
       @set('model', @store.createRecord('activity'))
+      @set('controllers.application.selectedExercise', null)

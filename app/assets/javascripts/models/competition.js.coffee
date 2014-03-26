@@ -20,6 +20,14 @@ WorkoutWars.Competition.reopen
   canDelete: DS.attr('boolean')
   activeness: DS.attr('number')
 
+  exerciseIds: (->
+    compExercises = @get('competitionExercises')
+    ids = Ember.A()
+    compExercises.forEach (compExercise) =>
+      ids.pushObject(compExercise.get('exerciseId'))
+    return ids
+  ).property('competitionExercises.@each')
+
   numOfParticipants: (->
     @get('maxParticipants') || "No Limit"
   ).property('maxParticipants')

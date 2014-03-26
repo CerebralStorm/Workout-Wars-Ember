@@ -1,23 +1,37 @@
 <h1>Dashboard</h1>
 <hr>
-<h3>My Competitions</h3>
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Current Rank</th>
-    <th>Score</th>
-  </tr>
-  {{#each currentUser.competitionJoins}}
-    <tr>
-      <td>{{#link-to "competition" this}}{{this.competition.name}}{{/link-to}}</td>
-      <td>{{this.rank}}</td>
-      <td>{{this.total}}</td>
-    </tr>
-  {{else}}
-    <tr>
-      <td>{{this.competition.name}}</td>
-      <td>{{this.rank}}</td>
-      <td>{{this.total}}</td>
-    </tr>
-  {{/each}}
-</table>
+<div class="row">
+  <div class="col-md-4">
+    <div class="well">
+      <h3 {{bind-attr class="selectedExercise:text-info"}}>{{title}}</h3>
+    </div>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Current Rank</th>
+        <th>Score</th>
+      </tr>
+      {{#each currentCompJoins}}
+        <tr>
+          <td>{{#link-to "competition" this}}{{this.competition.name}}{{/link-to}}</td>
+          <td>{{this.rank}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>{{this.competition.name}}</td>
+          <td>{{this.rank}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  <div class="col-md-8">
+    <div class="well">
+      <h3>Recent Site Activity</h3>
+    </div>
+    {{render "recentActivity" recentActivity}}
+  </div>
+</div>
+{{currentUser.competitionJoins}}

@@ -18,6 +18,12 @@ class Competition < ActiveRecord::Base
 
   after_save :compute_results, if: :finished? 
 
+  def status
+    return 'Finished' if finished?
+    return 'Started' if started?
+    'Unstarted'
+  end
+
   def compute_results
     competition_win_condition.compute_results(self)
   end

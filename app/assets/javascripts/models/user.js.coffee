@@ -20,6 +20,7 @@ WorkoutWars.User = DS.Model.extend
   avatarUrl: DS.attr('string')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
+  activeCompetitionJoins: []
 
   handle: (-> 
     return @get('nickname') if @get('nickname')
@@ -36,7 +37,4 @@ WorkoutWars.User = DS.Model.extend
         values[key] += parseFloat(activity.get('value'))
       values
   ).property('activities')
-
-
-
  

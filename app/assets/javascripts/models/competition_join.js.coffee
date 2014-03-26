@@ -3,3 +3,4 @@ WorkoutWars.CompetitionJoin = DS.Model.extend
   user:  DS.belongsTo('user', { embedded: "always" }) 
   total: DS.attr('number')
   rank: DS.attr('number')
+  competitionStatus: DS.attr('string')
