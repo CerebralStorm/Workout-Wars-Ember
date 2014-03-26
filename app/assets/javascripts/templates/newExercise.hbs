@@ -1,0 +1,18 @@
+<h3>New Exercise</h3> 
+  <ul class="list-group">
+    <li class="list-group-item">
+      {{#form-for model wrapper="bootstrap"}}
+        {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+        {{#if model.exercise}}
+          {{input value placeholder=model.exercise.metric.measurement}}
+        {{/if}}
+        <br>
+        {{#if isSaving}}
+          <a href="#" class="btn" name="Close" disabled>Saving...</a>
+        {{else}}
+          <p class="text-center">{{submit "Log it!" id="logActivity" class="btn btn-lg btn-primary"}}</p>
+        {{/if}}
+      {{/form-for}} 
+    </li>
+  </ul>
+</div>

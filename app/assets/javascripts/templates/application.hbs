@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,7 @@
       </button>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav nav-justified">
+      <ul class="nav navbar-nav">
         <li class="text-center">
           {{#link-to "index"}}
             <i class="fa fa-dashboard fa-3x"></i><br>
@@ -35,6 +35,8 @@
             Users            
           {{/link-to}}
         </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
         <li class="text-center">
           <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
             <i class="fa fa-sign-out fa-3x"></i><br>
@@ -46,13 +48,19 @@
   </div>
 </div>
 
-<div class="container">
-  {{outlet modal}}
-  {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
-  {{outlet}}
-  <br>
-  <br>
-</div> <!-- /container -->
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-9">
+    <br>
+    {{outlet modal}}
+    {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
+    {{outlet}}
+  </div>
+  <div id="exercise-panel" class="col-md-3">
+    {{render "newExercise" newExercise}}
+  </div>
+</div> 
+</div><!-- /container -->
 
 <!-- FOOTER -->
 <nav class="navbar-fixed-bottom" role="navigation">
