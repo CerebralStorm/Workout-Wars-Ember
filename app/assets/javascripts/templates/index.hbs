@@ -1,30 +1,48 @@
-<div class="container">
-  <div class="jumbotron">
-    <img src="/assets/ww-logo-large.png" class="img-responsive" />    
-    <h1><p class="text-danger text-center">Arena</p></h1>
-    <p class="text-center">Get ready to take your fitness to the next level.</p>
+<h1>Dashboard</h1>
+<hr>
+<div class='row'>
+  <div class='col-md-4'>
+    <h3>My Competitions</h3>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Current Rank</th>
+        <th>Score</th>
+      </tr>
+      {{#each currentUser.competitionJoins}}
+        <tr>
+          <td>{{#link-to "competition" this}}{{this.competition.name}}{{/link-to}}</td>
+          <td>{{this.rank}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>{{this.competition.name}}</td>
+          <td>{{this.rank}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+      {{/each}}
+    </table>
   </div>
 
-  <hr class="featurette-divider">
-  <div class='row'>
-    <div class='col-md-8'>
-      <h2>Competition Hotness</h2>
-      <ul class='list-group-item'>
-      {{#each controller}}
-        {{hot-item model=this}}
-      {{/each}}
+  <div class="col-md-4">
+    <h3>New Exercise</h3> 
+      <ul class="list-group">
+        <li class="list-group-item">
+          {{#form-for model wrapper="bootstrap"}}
+            {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+            {{#if model.exercise}}
+              {{input value placeholder=model.exercise.metric.measurement}}
+            {{/if}}
+            <br>
+            {{#if isSaving}}
+              <a href="#" class="btn" name="Close" disabled>Saving...</a>
+            {{else}}
+              <p class="text-center">{{submit "Log it!" id="logActivity" class="btn btn-lg btn-primary"}}</p>
+            {{/if}}
+          {{/form-for}} 
+        </li>
       </ul>
-    </div>
-
-    <div class="col-md-4">
-      <h2>Recent Activity</h2>
-      <div class="well well-lg">
-        <ul class="list-group">          
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Summer logged 20 Pushups</li>
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Scott logged 15 Pullups</li>
-          <li class="list-group-item"><img src="/assets/guest-sml.png" class="img-rounded" />&nbsp; Joey logged nothing</li>
-        </ul>
-      </div>
     </div>
   </div>
 </div>
