@@ -37,4 +37,8 @@ WorkoutWars.User = DS.Model.extend
         values[key] += parseFloat(activity.get('value'))
       values
   ).property('activities')
+
+  recentActivities: (->
+    @get('activities').slice(0,10)
+  ).property('activities.@each')
  
