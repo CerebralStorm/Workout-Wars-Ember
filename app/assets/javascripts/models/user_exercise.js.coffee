@@ -1,7 +1,7 @@
-WorkoutWars.Activity = DS.Model.extend(Ember.Validations.Mixin)
-WorkoutWars.Activity.reopen 
+WorkoutWars.UserExercise = DS.Model.extend(Ember.Validations.Mixin)
+WorkoutWars.UserExercise.reopen 
   user: DS.belongsTo('user', { async: true }) 
-  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitionUserExercises: DS.hasMany('competitionUserExercise', { async: true }) 
   exercise: DS.belongsTo('exercise', { embedded: "always" }) 
   value: DS.attr('number')
   createdAt: DS.attr('date')

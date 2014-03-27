@@ -23,13 +23,13 @@ WorkoutWars::Application.routes.draw do
       resources :challenges
       resources :challenge_attempts
       resources :users
-      resources :activities
+      resources :user_exercises
       resources :exercises
       resources :metrics
       resources :user_exercises
       resources :competition_exercises
       resources :competition_joins
-      resources :competition_activities
+      resources :competition_user_exercises
       resources :competition_win_conditions
       devise_for :users
       get 'current_user' => 'users#get_current_user'

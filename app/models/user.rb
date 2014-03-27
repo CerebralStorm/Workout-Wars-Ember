@@ -54,10 +54,10 @@ class User < ActiveRecord::Base
     end
   end
   
-  def create_competition_activities(activity)
+  def create_competition_user_exercises(user_exercise)
     competitions.where(finished: false).where(started: true).each do |competition|
-      if competition.has_exercise?(activity.exercise)
-        competition.competition_activities.create!(activity_id: activity.id, user_id: self.id)
+      if competition.has_exercise?(user_exercise.exercise)
+        competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
       end
     end
   end

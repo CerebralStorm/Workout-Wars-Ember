@@ -17,7 +17,7 @@ class UserExercise < ActiveRecord::Base
   delegate :metric, to: :exercise
 
   def create_competition_user_exercises
-    user.create_competition_activities(self)
+    user.create_competition_user_exercises(self)
   end
 
   def total_experience

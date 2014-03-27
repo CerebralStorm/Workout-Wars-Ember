@@ -5,7 +5,7 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
   selectedExercise: null
 
   newExercise: (->
-    @store.createRecord('activity')
+    @store.createRecord('userExercise')
   ).property()
 
   actions:      

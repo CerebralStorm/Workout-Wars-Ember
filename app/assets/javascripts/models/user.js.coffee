@@ -1,7 +1,7 @@
 WorkoutWars.User = DS.Model.extend
-  activities: DS.hasMany('activity', { async: true })
+  userExercises: DS.hasMany('userExercise', { async: true })
   competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
-  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitionUserExercises: DS.hasMany('competitionUserExercise', { async: true }) 
   competitions: DS.hasMany('competition', { async: true }) 
   challengeAttempts: DS.hasMany('challengeAttempt', { async: true }) 
   name: DS.attr('string')
@@ -29,16 +29,16 @@ WorkoutWars.User = DS.Model.extend
   ).property('nickname', 'name', 'email')
 
   activityStatsTotal: (-> 
-    @get('activities').then (activities) =>
+    @get('userExercises').then (userExercises) =>
       values = {}
-      activities.forEach (activity) -> 
+      userExercises.forEach (activity) -> 
         key = activity.get('exercise.name')
         values[key] = 0 unless values[key] > 0
         values[key] += parseFloat(activity.get('value'))
       values
-  ).property('activities')
+  ).property('userExercises')
 
-  recentActivities: (->
-    @get('activities').slice(0,10)
-  ).property('activities.@each')
+  recentUserExercises: (->
+    @get('userExercises').slice(0,10)
+  ).property('userExercises.@each')
  

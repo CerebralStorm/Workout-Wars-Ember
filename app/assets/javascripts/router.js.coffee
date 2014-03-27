@@ -24,8 +24,8 @@ WorkoutWars.Router.map (match)->
     @route "stats"
     @route "accolades"
 
-  @resource "activities", path: "/activities", ->
-    @route "activity", path: ":activity_id"
+  @resource "user_exercises", path: "/user_exercises", ->
+    @route "user_exercise", path: ":user_exercise_id"
 
   @resource "users", ->
     @resource "user", path: "/:user_id", ->
