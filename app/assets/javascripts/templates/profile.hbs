@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <hr>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="panel">
       <div class="panel-heading">
         <h3 class="panel-title">Profile for {{name}}</h3>
@@ -27,8 +27,9 @@
     </div>
   </div>
 
-  <div class="col-md-6">
-    <ul class="nav nav-tabs">
+  <div class="col-md-8">
+    <div class="well">
+    <ul class="nav nav-pills">
       <li>
         {{#link-to "profile.stats"}}Stats{{/link-to}}
       </li>
@@ -36,60 +37,18 @@
         {{#link-to "profile.competitions"}}Competitions{{/link-to}}
       </li>
       <li>
-        {{#link-to "profile.challenges"}}Challenges{{/link-to}}
+        {{#link-to "profile.exercises"}}Exercise History{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "profile.accolades"}}Accolades{{/link-to}}
       </li>
       <li>
         {{#link-to "profile.edit"}}Settings{{/link-to}}
       </li>
     </ul>
+    </div>
+
     {{outlet}}
+
   </div>
-
-
-  <div class="col-md-3">
-    <div class="panel">
-      <div class="panel-heading">
-        <h3 class="panel-title">Trophies</h3>
-      </div>
-
-      <div id="trophy_case" class="row">
-        <div class="col-sm-2"></div>
-        <div  class="col-sm-8">
-          <ul class="list-inline row">
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-          </ul>
-          <ul class="list-inline row">
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-          </ul>
-          <ul class="list-inline row">
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-          </ul>
-          <ul class="list-inline row">
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-            <li class='col-sm-2'><img class="img-responsive" src='/assets/trophy.png' /></li>
-          </ul>
-        <div class="col-sm-2"></div>
-        </div>
-      </div>        
-    </div> 
-  </div> 
 </div>

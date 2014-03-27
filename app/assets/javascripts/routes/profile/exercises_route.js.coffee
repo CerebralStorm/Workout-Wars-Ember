@@ -1,3 +1,3 @@
 WorkoutWars.ProfileExercisesRoute = Ember.Route.extend
   model: ->
-    @modelFor('profile').get('exercises')
+    @modelFor('profile').get('activities')
