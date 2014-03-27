@@ -9,9 +9,9 @@ describe Competition do
       Competition.reflect_on_association(:competition_exercises).macro.should eql(:has_many)
     end
 
-    it 'should have many competition activities' do
-      Competition.reflect_on_association(:competition_activities).should_not be_nil
-      Competition.reflect_on_association(:competition_activities).macro.should eql(:has_many)
+    it 'should have many competition user_exercises' do
+      Competition.reflect_on_association(:competition_user_exercises).should_not be_nil
+      Competition.reflect_on_association(:competition_user_exercises).macro.should eql(:has_many)
     end
 
     it 'should have many exercises' do

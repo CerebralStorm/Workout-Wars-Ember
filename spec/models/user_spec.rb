@@ -4,14 +4,14 @@ describe User do
   let(:user) { FactoryGirl.create(:user)}
 
   context "associations" do
-    it 'should have many activities' do
-      User.reflect_on_association(:activities).should_not be_nil
-      User.reflect_on_association(:activities).macro.should eql(:has_many)
+    it 'should have many user_exercises' do
+      User.reflect_on_association(:user_exercises).should_not be_nil
+      User.reflect_on_association(:user_exercises).macro.should eql(:has_many)
     end
 
-    it 'should have many competition_activities' do
-      User.reflect_on_association(:competition_activities).should_not be_nil
-      User.reflect_on_association(:competition_activities).macro.should eql(:has_many)
+    it 'should have many competition_user_exercises' do
+      User.reflect_on_association(:competition_user_exercises).should_not be_nil
+      User.reflect_on_association(:competition_user_exercises).macro.should eql(:has_many)
     end
 
     it 'should have many competition_joins' do
@@ -35,17 +35,17 @@ describe User do
 
   context "experience" do
     it "should return my experience" do
-      FactoryGirl.create(:activity, user: user)
+      FactoryGirl.create(:user_exercise, user: user)
       user.experience.should == 100
     end
 
     it "should tell me how much xp I need for the next level" do 
-      FactoryGirl.create(:activity, user: user)
+      FactoryGirl.create(:user_exercise, user: user)
       user.experience_for_levelup.should == 400
     end
 
     it "should tell me how much xp I needed for the previous level" do 
-      6.times { FactoryGirl.create(:activity, user: user) }
+      6.times { FactoryGirl.create(:user_exercise, user: user) }
       user.previous_level_experience.should == 500
     end
 
@@ -56,18 +56,18 @@ describe User do
 
   context "leveling up" do
     it "should increase my level when I earn enough experience" do
-      6.times { FactoryGirl.create(:activity, user: user) }
+      6.times { FactoryGirl.create(:user_exercise, user: user) }
       user.experience.should == 600
       user.set_level
       user.experience_level.should == 2
       user.level.should == 2
     end
 
-    it "should reduce my level if delete enough activities" do
-      6.times { FactoryGirl.create(:activity, user: user) }
+    it "should reduce my level if delete enough user_exercises" do
+      6.times { FactoryGirl.create(:user_exercise, user: user) }
       user.set_level
       user.experience_level.should == 2
-      2.times { user.activities.last.destroy }
+      2.times { user.user_exercises.last.destroy }
       user.set_level
       user.level.should == 1
     end

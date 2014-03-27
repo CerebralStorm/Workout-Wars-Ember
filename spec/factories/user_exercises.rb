@@ -1,8 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :user_exercise do
-    user
     exercise
+    user
+    value 100
   end
 end

@@ -26,8 +26,8 @@ describe CompetitionWinCondition do
         FactoryGirl.create(:competition_exercise, exercise: @exercise, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user1, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user2, competition: @competition)
-        FactoryGirl.create(:activity, user: @user1, value: 50, exercise: @exercise)
-        FactoryGirl.create(:activity, user: @user2, value: 100, exercise: @exercise)
+        FactoryGirl.create(:user_exercise, user: @user1, value: 50, exercise: @exercise)
+        FactoryGirl.create(:user_exercise, user: @user2, value: 100, exercise: @exercise)
         @competition.update_attributes(finished: true)
       end
       it "should compute the total" do
@@ -51,8 +51,8 @@ describe CompetitionWinCondition do
         FactoryGirl.create(:competition_exercise, exercise: @exercise, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user1, competition: @competition)
         FactoryGirl.create(:competition_join, user: @user2, competition: @competition)
-        FactoryGirl.create(:activity, user: @user1, value: 5, exercise: @exercise)
-        FactoryGirl.create(:activity, user: @user2, value: 10, exercise: @exercise)
+        FactoryGirl.create(:user_exercise, user: @user1, value: 5, exercise: @exercise)
+        FactoryGirl.create(:user_exercise, user: @user2, value: 10, exercise: @exercise)
         @competition.update_attributes(finished: true)
       end
       it "should compute the total" do

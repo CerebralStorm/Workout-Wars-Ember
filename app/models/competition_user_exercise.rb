@@ -5,6 +5,8 @@ class CompetitionUserExercise < ActiveRecord::Base
   validates_presence_of :user_exercise
   validates_presence_of :competition
 
+  delegate :user, to: :user_exercise
+  delegate :exercise, to: :user_exercise
   delegate :total_experience, to: :user_exercise
 
   after_save :update_competition_win_condition
