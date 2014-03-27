@@ -1,5 +1,5 @@
 WorkoutWars.NewExerciseController = Ember.ObjectController.extend
-  needs: ['currentUser', 'exercises', 'application']
+  needs: ['currentUser', 'exercises', 'application', 'index']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
   showExercisePanel: Ember.computed.alias('controllers.application.showExercisePanel') 
   exercises: Ember.computed.alias('controllers.exercises.content')
@@ -22,6 +22,7 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
       success = (userExercise) =>
         @set('isSaving', false)
         @set('model', @store.createRecord('userExercise'))
+        # @get('controllers.index.content').reload() Route refresh
         @set('controllers.application.selectedExercise', null)
         WorkoutWars.get("flash").success "Your userExercise was created"
       failure = (response) =>

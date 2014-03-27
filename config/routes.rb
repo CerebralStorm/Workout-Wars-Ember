@@ -19,6 +19,7 @@ WorkoutWars::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :feeds, only: [:index]
       resources :competitions
       resources :challenges
       resources :challenge_attempts

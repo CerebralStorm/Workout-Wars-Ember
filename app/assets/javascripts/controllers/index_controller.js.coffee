@@ -6,10 +6,6 @@ WorkoutWars.IndexController = Ember.ArrayController.extend
   sortAscending: false
   currentCompJoins: []
 
-  recentActivity: (->
-    @store.find('competition')
-  ).property()
-
   setCurrentCompJoins: (-> 
     user = @get('currentUser')
     if user

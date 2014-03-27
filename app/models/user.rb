@@ -10,12 +10,19 @@ class User < ActiveRecord::Base
   has_many :competition_user_exercises, dependent: :destroy
   has_many :competition_joins, dependent: :destroy
   has_many :competitions, through: :competition_joins
+  has_many :feeds, as: :feedable
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
   has_many :experience_sources
 
   before_save :ensure_authentication_token
   before_save :set_avatar_url
+
+  def handle
+    return nickname if nickname.present?
+    return name if name.present?
+    email.slice(0..(email.index('@')-1))
+  end
 
   def self.find_for_facebook_oauth(auth)
     if user = User.find_by(email: auth.info.email)

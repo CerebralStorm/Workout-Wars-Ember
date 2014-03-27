@@ -18,15 +18,10 @@ WorkoutWars.User = DS.Model.extend
   nextLevelExperience: DS.attr('number')
   previousLevelExperience: DS.attr('number')
   avatarUrl: DS.attr('string')
+  handle: DS.attr('string')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
   activeCompetitionJoins: []
-
-  handle: (-> 
-    return @get('nickname') if @get('nickname')
-    return @get('name') if @get('name')
-    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ") if @get('email')
-  ).property('nickname', 'name', 'email')
 
   activityStatsTotal: (-> 
     @get('userExercises').then (userExercises) =>

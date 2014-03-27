@@ -12,9 +12,15 @@ class UserExercise < ActiveRecord::Base
   after_create :create_competition_user_exercises
   after_save :update_experience_source_and_user
   after_destroy :set_user_level
+  after_create :add_to_feed
 
   delegate :experience_multiplier, to: :exercise
   delegate :metric, to: :exercise
+
+  def add_to_feed
+    description = "#{user.handle} logged #{value} #{metric.measurement} of #{exercise.name}"
+    user.feeds.create(description: description)
+  end
 
   def create_competition_user_exercises
     user.create_competition_user_exercises(self)
