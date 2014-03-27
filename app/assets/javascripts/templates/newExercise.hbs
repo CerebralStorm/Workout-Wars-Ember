@@ -15,15 +15,15 @@
       {{#if isSaving}}
         <a href="#" class="btn" name="Close" disabled>Saving...</a>
       {{else}}
-        <a href="#" class="btn btn-default" {{action "clearActivity"}}>Cancel</a>
-        {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
+        <a href="#" class="btn btn-default" {{action "clearUserExercise"}}>Cancel</a>
+        {{submit "Log it!" id="logExercise" class="btn btn-primary"}}
       {{/if}}
     {{/form-for}} 
   </li>
 </ul>
 <h4>My Recent Exercises</h4>
 <ul class="list-group">
-  {{#each currentUser.recentActivities}}
+  {{#each currentUser.recentUserExercises}}
   <li class="list-group-item">
     <div class="row">
       <div class="col-md-4">
