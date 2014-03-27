@@ -14,7 +14,7 @@ WorkoutWars.IndexController = Ember.ArrayController.extend
     user = @get('currentUser')
     if user
       user.get('competitionJoins').then (joins) =>
-        joins.filter (join) =>
+        joins = joins.filter (join) =>
           join.get('competitionStatus') != "Finished"
 
         if @get('selectedExercise')

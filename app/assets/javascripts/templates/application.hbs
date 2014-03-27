@@ -56,7 +56,7 @@
     {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
     {{outlet}}
   </div>
-  <div id="exercise-panel" {{bind-attr class="showExercisePanel:col-md-3:col-md-1"}}>
+  <div {{bind-attr class=":gray-background showExercisePanel:col-md-3:col-md-1"}}>
     <a href="#" {{action "toggleExercisePanel"}}>
       {{#if showExercisePanel}}
         <i class="fa fa-3x fa-minus-square"></i>

@@ -41,19 +41,14 @@ WorkoutWars.Competition.reopen
   ).property('maxParticipants')
 
   status: (->
-    if @get('finished')
-      'finished'
-    else if @get('started')
-      'started'
-    else
-      'unstarted'
-  ).property()
+    return 'finished' if @get('finished')
+    return 'started' if @get('started')
+    'unstarted'
+  ).property('started', 'finished')
 
   fireImg: (->
     activeness = parseInt(@get('activeness'))
-    size = 30
-    size = 30 + activeness * 10 if activeness > 1
-    size = 180 if activeness >= 15
+    size = (activeness * 2) + 20
     "<img src=\"assets/fire.png\" style=\"width:#{size}px;height:#{size}px\" class=\"img-circle\">"
   ).property('activeness')
 

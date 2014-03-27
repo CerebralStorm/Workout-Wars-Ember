@@ -1,5 +1,79 @@
 <div class="well well-lg">
-  <h2>Competition Description:</h2>
+  <h2>{{name}}</h2>
   <p class="lead">{{description}}</p>
 </div>
-{{partial currentPartial}} 
+
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title">Information for {{name}}</h3></div>    
+  <ul class="list-group">
+    <li class="list-group-item">  
+      <ul class="list-inline">
+        <li>
+          <a href="#" {{action "sendFacebook" this }}>
+            <img src="/assets/fb-invite.png" alt="Invite via Facebook" height="42">
+          </a>
+        </li>
+        <li>
+          <a href="#" {{action "postFacebook" this }}>
+            <img src="/assets/fb-share.png" alt="Share via Facebook" height="42">
+          </a>
+        </li>
+      </ul>  
+    </li>
+    {{#if canJoin}}
+      <li class="list-group-item"><button class="btn btn-danger btn-block" {{action "join"}}>Join</button></li>
+    {{/if}}  
+    {{info-item title="Status" value=status}}
+    {{info-item title="Creator" value=user.handle}}
+    {{info-item title="Win Condition" value=competitionWinCondition.name}} 
+    {{info-item title="Start Date" value=startDate isDate="true"}}
+    {{info-item title="End Date" value=endDate isDate="true"}}
+    {{info-item title="Max players" value=numOfParticipants}}
+    {{info-item title="# of players" value=numberOfUsers}} 
+    <li class="list-group-item">
+      <div class="row">
+        <strong class="col-sm-4">Exercises</strong>
+        <p class="col-md-8">
+          {{#each compExercise in competitionExercises}}
+            {{compExercise.exercise.name}} &nbsp;
+          {{/each}}
+        </p>
+      </div>
+    </li>     
+  </ul>    
+</div>
+
+<div class="panel panel-info leaderboard">
+  <div class="panel-heading"><h3 class="panel-title">Leaderboard</h3></div>
+    <table class="table table-hover">
+      <thead>
+        <tr class="active">
+          <th>User</th>
+          <th>Rank</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each compJoin in rankedJoins}}
+        <tr>
+          <td colspan="3">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>{{compJoin.user.handle}}</td>
+          <td>{{compJoin.rank}}</td>               
+          <td><span class="badge">{{compJoin.total}}</span></td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="3">You haven't attempted any challenges yet! Go try some!</td>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

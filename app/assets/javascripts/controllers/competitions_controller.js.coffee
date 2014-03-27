@@ -1,5 +1,6 @@
 WorkoutWars.CompetitionsController = Ember.ArrayController.extend
-  sortProperties: ['finished', 'started', 'name']
+  sortProperties: ['activeness', 'started']
+  sortAscending: false
   showUnstarted: true
   showStarted: true
   showFinished: true
