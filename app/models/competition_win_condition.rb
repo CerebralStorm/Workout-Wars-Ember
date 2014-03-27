@@ -24,8 +24,8 @@ class CompetitionWinCondition < ActiveRecord::Base
     @users.each do |user|
       join = user.competition_joins.find_by(competition: @competition)
       total = 0
-      @competition.competition_activities.where(user: user).each do |comp_activity|
-        total += comp_activity.activity.send(variable)
+      @competition.competition_user_exercises.where(user: user).each do |user_exercise|
+        total += user_exercise.activity.send(variable)
       end
       join.update_attributes(total: total)
     end

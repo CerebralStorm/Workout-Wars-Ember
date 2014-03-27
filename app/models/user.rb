@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :activities
-  has_many :competition_activities
-  has_many :competition_joins
+  has_many :user_exercises, dependent: :destroy
+  has_many :competition_user_exercises, dependent: :destroy
+  has_many :competition_joins, dependent: :destroy
   has_many :competitions, through: :competition_joins
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
@@ -94,10 +94,10 @@ class User < ActiveRecord::Base
   end
 
   def total_experience_for_competition(competition)
-    actities = competition_activities.where(competition: competition)
+    exercises = competition_user_exercises.where(competition: competition)
     result = 0
-    actities.each do |activity|
-      result += activity.total_experience
+    exercises.each do |exercise|
+      result += exercise.total_experience
     end
     result
   end

@@ -1,22 +1,22 @@
-class Activity < ActiveRecord::Base
+class UserExercise < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
   has_one :experience_source, as: :experienceable, dependent: :destroy
-  has_many :competition_activities, dependent: :destroy
-  has_many :competitions, through: :competition_activities
+  has_many :competition_user_exercises, dependent: :destroy
+  has_many :competitions, through: :competition_user_exercises
 
   validates_presence_of :user
   validates_presence_of :exercise
   validates :value, numericality: { greater_than: 0 }
 
-  after_create :create_competition_activities
+  after_create :create_competition_user_exercises
   after_save :update_experience_source_and_user
   after_destroy :set_user_level
 
   delegate :experience_multiplier, to: :exercise
   delegate :metric, to: :exercise
 
-  def create_competition_activities
+  def create_competition_user_exercises
     user.create_competition_activities(self)
   end
 

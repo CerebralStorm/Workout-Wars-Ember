@@ -1,7 +1,7 @@
 class Competition < ActiveRecord::Base
   belongs_to :competition_win_condition
   has_many :competition_exercises, dependent: :destroy
-  has_many :competition_activities, dependent: :destroy
+  has_many :competition_user_exercises, dependent: :destroy
   has_many :exercises, through: :competition_exercises
   has_many :competition_joins, dependent: :destroy
   has_many :users, through: :competition_joins
@@ -43,7 +43,7 @@ class Competition < ActiveRecord::Base
   end
 
   def activeness
-    competition_activities.where("created_at < ? AND created_at > ?", Time.now, 1.week.ago).count
+    competition_user_exercises.where("created_at < ? AND created_at > ?", Time.now, 1.week.ago).count
   end
 
   def highest_score
