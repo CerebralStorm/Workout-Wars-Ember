@@ -17,4 +17,8 @@ class CompetitionJoin < ActiveRecord::Base
       errors.add(:competition, "is full")
     end
   end
+
+  def power
+    self.total / (competition.highest_score.nonzero? || 1) * 100 #change to percent
+  end
 end

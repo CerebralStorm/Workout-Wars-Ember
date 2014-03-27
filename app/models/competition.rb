@@ -46,4 +46,8 @@ class Competition < ActiveRecord::Base
     competition_activities.where("created_at < ? AND created_at > ?", Time.now, 1.week.ago).count
   end
 
+  def highest_score
+    competition_joins.order('total DESC').first.total.to_f
+  end
+
 end

@@ -4,3 +4,4 @@ WorkoutWars.CompetitionJoin = DS.Model.extend
   total: DS.attr('number')
   rank: DS.attr('number')
   competitionStatus: DS.attr('string')
+  power: DS.attr('number')
