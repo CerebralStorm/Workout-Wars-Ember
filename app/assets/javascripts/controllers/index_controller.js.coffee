@@ -2,7 +2,7 @@ WorkoutWars.IndexController = Ember.ArrayController.extend
   needs: ['currentUser', 'application']
   currentUser: Ember.computed.alias('controllers.currentUser.content')
   selectedExercise: Ember.computed.alias('controllers.application.selectedExercise')
-  sortProperties: ['activeness']
+  sortProperties: ['createdAt']
   sortAscending: false
   currentCompJoins: []
 

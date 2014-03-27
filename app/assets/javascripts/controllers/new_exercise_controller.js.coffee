@@ -21,16 +21,14 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
 
       success = (userExercise) =>
         @set('isSaving', false)
-        @set('model', @store.createRecord('userExercise'))
-        # @get('controllers.index.content').reload() Route refresh
-        @set('controllers.application.selectedExercise', null)
-        WorkoutWars.get("flash").success "Your userExercise was created"
+        @clearUserExercise
+        WorkoutWars.get("flash").success "Your exercise was created"
       failure = (response) =>
         @set('isSaving', false)
-        WorkoutWars.get("flash").danger "Your userExercise was not created"
+        WorkoutWars.get("flash").danger "Your exercise was not created"
       
       userExercise.save().then success, failure
 
-    clearUserExercise: ->
+    clearUserExercise: =>
       @set('model', @store.createRecord('userExercise'))
       @set('controllers.application.selectedExercise', null)
