@@ -32,20 +32,20 @@ WorkoutWars.ProfileExercisesController = Ember.ArrayController.extend
     titles
   ).property('startDate')
 
-  activitiesByDay: (->
+  userExercisesByDay: (->
     user = @get('currentUser')
     activitySet = Ember.A()
     if user      
       i = 0
       while i < 7
         date = @calculateDate(@get('startDate'), i).startOf('day')
-        activities = user.get('activities').filter (activity) =>
+        userExercises = user.get('userExercises').filter (activity) =>
           createdStart = moment(activity.get('createdAt')).startOf('day')
           createdStart.diff(date, 'days') == 0
-        activitySet.pushObject(activities)
+        activitySet.pushObject(userExercises)
         i++
     activitySet
-  ).property('startDate', 'currentUser.activities.@each')
+  ).property('startDate', 'currentUser.userExercises.@each')
 
   actions:
     prevWeek: ->
