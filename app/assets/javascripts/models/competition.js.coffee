@@ -1,7 +1,7 @@
 WorkoutWars.Competition = DS.Model.extend(Ember.Validations.Mixin)
 WorkoutWars.Competition.reopen 
   competitionExercises: DS.hasMany('competitionExercise', { embedded: "always" }) 
-  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitionUserExercises: DS.hasMany('competitionUserExercise', { async: true }) 
   competitionJoins: DS.hasMany('competitionJoin', { embedded: "always" }) 
   users: DS.hasMany('user', { async: true }) 
   competitionWinCondition: DS.belongsTo('competitionWinCondition', { async: true })
@@ -18,6 +18,15 @@ WorkoutWars.Competition.reopen
   isPrivate: DS.attr('boolean')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
+  activeness: DS.attr('number')
+
+  exerciseIds: (->
+    compExercises = @get('competitionExercises')
+    ids = Ember.A()
+    compExercises.forEach (compExercise) =>
+      ids.pushObject(compExercise.get('exerciseId'))
+    return ids
+  ).property('competitionExercises.@each')
 
   numOfParticipants: (->
     @get('maxParticipants') || "No Limit"
@@ -32,13 +41,16 @@ WorkoutWars.Competition.reopen
   ).property('maxParticipants')
 
   status: (->
-    if @get('finished')
-      'finished'
-    else if @get('started')
-      'started'
-    else
-      'unstarted'
-  ).property()
+    return 'finished' if @get('finished')
+    return 'started' if @get('started')
+    'unstarted'
+  ).property('started', 'finished')
+
+  fireImg: (->
+    activeness = parseInt(@get('activeness'))
+    size = (activeness * 2) + 20
+    "<img src=\"assets/fire.png\" style=\"width:#{size}px;height:#{size}px\" class=\"img-circle\">"
+  ).property('activeness')
 
 
   validations:
@@ -48,6 +60,9 @@ WorkoutWars.Competition.reopen
         minimum: 5
 
     startDate:
+      presence: true
+
+    description:
       presence: true
 
     endDate:

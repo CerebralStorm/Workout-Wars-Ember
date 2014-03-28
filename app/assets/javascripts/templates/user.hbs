@@ -1,11 +1,13 @@
-<div class="panel panel-info">
+<div class="panel">
   <div class="panel-heading">
     <h3 class="panel-title">{{handle}}</h3>
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-8">
-        <blockquote>
+      <div class="col-sm-4">
+        {{gravatarUrlLarge this.model}}
+      </div>
+      <div class="col-sm-8">
         <p>Nickname: {{nickname}}</p>
         <p>Age: {{age}}</p>
         <p>Height: {{height}}</p>
@@ -13,14 +15,8 @@
         <p>Level: {{level}}</p>
         <p>Experience: {{experience}}</p>
         <p>Experience to next level: {{nextLevelExperience}}</p>
-        </blockquote>
-      </div>
-
-      <div class="col-md-4">
-        {{gravatarUrlLarge this.model}}
       </div>
     </div>
-
     {{view WorkoutWars.UserStatView}}
   </div>
 </div>

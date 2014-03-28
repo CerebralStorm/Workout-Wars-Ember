@@ -1,19 +1,54 @@
-<ul class="nav nav-tabs">
-  <li>
-    {{#link-to "profile.activities" class="list-group-item"}}Activities{{/link-to}}
-  </li>
-  <li>
-    {{#link-to "profile.stats" class="list-group-item"}}Stats{{/link-to}}
-  </li>
-  <li>
-    {{#link-to "profile.competitions" class="list-group-item"}}Competitions{{/link-to}}
-  </li>
-  <li>
-    {{#link-to "profile.challenges" class="list-group-item"}}Challenges{{/link-to}}
-  </li>
-  <li>
-    {{#link-to "profile.edit" class="list-group-item"}}Settings{{/link-to}}
-  </li>
-</ul>
+<h1>Profile</h1>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Profile for {{name}}</h3>
+      </div>
+      <div class="panel-body">
+        {{gravatarUrlLarge this}}
+        
+        <h4>Progress towards next level</h4>
+        <div class="progress">
+          {{bs-progressbar progress=levelProgress}}
+        </div>
+        <table class="table table-condensed table-bordered">
+          <tr><td><strong>Email:</strong> {{email}}</td></tr>
+          <tr><td><strong>Nickname:</strong> {{nickname}}</td></tr>
+          <tr><td><strong>Age:</strong> {{age}}</td></tr>
+          <tr><td><strong>Height:</strong> {{height}}</td></tr>
+          <tr><td><strong>Weight:</strong> {{weight}}</td></tr>
+          <tr><td><strong>Level:</strong> {{level}}</td></tr>
+          <tr><td><strong>Experience:</strong> {{experience}}</td></tr>
+          <tr><td><strong>Experience to next level:</strong> {{nextLevelExperience}}</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
 
-{{outlet}}
+  <div class="col-md-8">
+    <div class="well">
+    <ul class="nav nav-pills">
+      <li>
+        {{#link-to "profile.stats"}}Stats{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "profile.competitions"}}Competitions{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "profile.exercises"}}Exercise History{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "profile.accolades"}}Accolades{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "profile.edit"}}Settings{{/link-to}}
+      </li>
+    </ul>
+    </div>
+
+    {{outlet}}
+
+  </div>
+</div>

@@ -1,39 +1,40 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">New Custom Exercises</h3>
+<div class="row">
+  <div {{bind-attr class="inChild:col-md-8:col-md-12"}}>
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="panel-title">Exercise Histroy</h1>        
+          </div>
+          <div class="col-md-4">
+            <p class="text-center"><strong>{{date startDate}} - {{date endDate}}</strong></p>       
+          </div>
+          <div class="col-md-4">
+            <ul class="pager">
+              <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
+              <li><a href="#" {{action "nextWeek"}}>Next</a></li>
+            </ul>       
+          </div>
+        </div>
+      </div>
+      <table id="activity-calendar" class="table table-bordered table-striped">
+        <tr>
+          {{#each tableTitles}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        <tr>
+          {{#each userExercisesByDay}}
+            <td>{{basic-list collection=this}}</td>
+          {{/each}}
+        </tr>
+      </table>
+    </div>
   </div>
-  <div class="panel-body">
-    {{view Ember.Select 
-          name="Metric Select"
-          content=metrics  
-          value=newExercise.metric
-          optionValuePath="content" 
-          optionLabelPath='content.name' 
-          class="form-control" 
-          prompt="Please select your exercise metric"}}
-    {{#if newExercise.metric}}
-    {{#form-for newExercise wrapper="bootstrap"}}
-        {{input name}}
-        {{input description as="text"}}
-        {{input experienceMultiplier}}
 
-        <br />
-        {{submit id="exerciseCreate" class="btn btn-primary"}}
-      {{/form-for}}
-    {{/if}}
-  </div>
-</div>
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">My Custom Exercises</h3>
-  </div>
-  <div class="panel-body">
-
-{{#each controller}}
-  <p>a{{this}}</p>
-{{else}}
-  <p>You haven't created any custom exercises yet</p>
-{{/each}}
+  <div {{bind-attr class="inChild:col-md-4:"}}>
+    <div class="activity-fixed-vertical">
+      {{outlet}}
+    </div>
   </div>
 </div>

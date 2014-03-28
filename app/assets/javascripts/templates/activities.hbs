@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">New Exercise</h3>
+      </div>    
+      <ul class="list-group">
+        <li class="list-group-item">
+          {{#form-for model wrapper="bootstrap"}}
+            {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+            {{#if model.exercise}}
+              {{input value placeholder=model.exercise.metric.measurement}}
+            {{/if}}
+            <br>
+            {{#if isSaving}}
+              <a href="#" class="btn" name="Close" disabled>Saving...</a>
+            {{else}}
+              <p class="text-center">{{submit "Log it!" id="logActivity" class="btn btn-lg btn-primary"}}</p>
+            {{/if}}
+          {{/form-for}} 
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-info challenges-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Exercises in your competitions</h3>
+      </div>    
+      <ul class="list-group">
+        <li class="list-group-item">Pushups</li>
+        <li class="list-group-item">Situps</li>
+        <li class="list-group-item">Pullups</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div {{bind-attr class="inChild:col-md-8:col-md-12"}}>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="panel-title">Exercises</h1>        
+          </div>
+          <div class="col-md-4">
+            <p class="text-center"><strong>{{date startDate}} - {{date endDate}}</strong></p>       
+          </div>
+          <div class="col-md-4">
+            <ul class="pager">
+              <li><a href="#" {{action "prevWeek"}}>Previous</a></li>
+              <li><a href="#" {{action "nextWeek"}}>Next</a></li>
+            </ul>       
+          </div>
+        </div>
+      </div>
+      <table id="activity-calendar" class="table table-bordered table-striped">
+        <tr>
+          {{#each tableTitles}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        <tr>
+          {{#each activitiesByDay}}
+            <td>{{basic-list collection=this}}</td>
+          {{/each}}
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div {{bind-attr class="inChild:col-md-4:"}}>
+    <div class="activity-fixed-vertical">
+      {{outlet}}
+    </div>
+  </div>
+</div>

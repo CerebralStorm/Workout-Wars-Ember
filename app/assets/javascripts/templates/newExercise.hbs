@@ -1,0 +1,42 @@
+{{#if showExercisePanel}}
+<h3>New Exercise</h3> 
+<div class="well well-sm">
+  <p class="help-block text-info">When you log an exercise, it will count toward all of your competitions that use that   specific exercise.
+  </p>
+</div>
+<ul class="list-group">
+  <li class="list-group-item">
+    {{#form-for model wrapper="bootstrap"}}
+      {{view Ember.Select content=alphabeticalExercises name="Exercise Select" value=model.exercise optionValuePath="content" optionLabelPath='content.name' class="form-control" prompt="Please select an exercise"}}
+      {{#if model.exercise}}
+        {{input value placeholder=model.exercise.metric.measurement}}
+      {{/if}}
+      <br>
+      {{#if isSaving}}
+        <a href="#" class="btn" name="Close" disabled>Saving...</a>
+      {{else}}
+        <a href="#" class="btn btn-default" {{action "clearUserExercise"}}>Cancel</a>
+        {{submit "Log it!" id="logExercise" class="btn btn-primary"}}
+      {{/if}}
+    {{/form-for}} 
+  </li>
+</ul>
+<h4>My Recent Exercises</h4>
+<ul class="list-group">
+  {{#each currentUser.recentUserExercises}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-4">
+        {{this.value}}
+      </div>
+      <div class="col-md-4">
+        {{this.exercise.name}}
+      </div>
+      <div class="col-md-4">
+        {{shortDateTime this.createdAt}}
+      </div>
+    </div>    
+  </li>
+  {{/each}}
+</ul>
+{{/if}}

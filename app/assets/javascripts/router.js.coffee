@@ -1,8 +1,9 @@
 WorkoutWars.Router.map (match)->
   @resource "competitions", ->
-    @resource "competition", path: "/:competition_id", ->
-      @route "edit"
     @route "create"
+    
+  @resource "competition", path: "competitions/:competition_id", ->
+    @route "edit"
     
   @resource "challenges", ->
     @resource "challenge", path: ":challenge_id", ->
@@ -18,13 +19,13 @@ WorkoutWars.Router.map (match)->
   @resource 'profile', path: "profile/:user_id", ->
     @route "edit"
     @route "competitions"
+    @route "exercises"
     @route "challenges"
     @route "stats"
+    @route "accolades"
 
-    @resource "profile.activities", path: "/activities", ->
-      @resource "activity", path: ":activity_id", ->
-        @route "edit"
-      @route "create"
+  @resource "user_exercises", path: "/user_exercises", ->
+    @route "user_exercise", path: ":user_exercise_id"
 
   @resource "users", ->
     @resource "user", path: "/:user_id", ->

@@ -29,35 +29,35 @@ describe ChallengeAttempt do
 
 
   context "#methods" do
-    describe "#create_activity" do 
+    describe "#create_user_exercise" do 
       before do 
         @user = FactoryGirl.create(:user)
         @exercise = FactoryGirl.create(:exercise)
         @challenge = FactoryGirl.create(:challenge, exercise: @exercise)
       end
 
-      it "should create an activity for the user after they complete a challenge" do 
+      it "should create an user_exercise for the user after they complete a challenge" do 
         @challenge.challenge_attempts.create(user: @user, result: 20)
-        @user.activities.should_not be_empty
+        @user.user_exercises.should_not be_empty
       end
 
-      it "should match up the correct activity" do 
+      it "should match up the correct user_exercise" do 
         challenge_attempt = @challenge.challenge_attempts.create(user: @user, result: 20)
-        expect(challenge_attempt.activity).to eq @user.activities.first
+        expect(challenge_attempt.user_exercise).to eq @user.user_exercises.first
       end
 
-      it "should create assign the correct value to the activity created by the challenge attempt" do 
+      it "should create assign the correct value to the user_exercise created by the challenge attempt" do 
         @challenge.challenge_attempts.create(user: @user, result: 20)
-        @user.activities.first.value.should eq 20
+        @user.user_exercises.first.value.should eq 20
       end
 
       it "should have the correct exercise" do 
         @challenge.challenge_attempts.create(user: @user, result: 20)
-        @user.activities.first.exercise.should eq @exercise
+        @user.user_exercises.first.exercise.should eq @exercise
       end
     end
 
-    describe "#destroy_activity" do 
+    describe "#destroy_user_exercise" do 
       before do 
         @user = FactoryGirl.create(:user)
         @exercise = FactoryGirl.create(:exercise)
@@ -65,10 +65,10 @@ describe ChallengeAttempt do
         @challenge_attempt = @challenge.challenge_attempts.create(user: @user, result: 20)
       end
 
-      it "should create an activity for the user after they complete a challenge" do 
-        expect(@user.activities).to_not be_empty
+      it "should create an user_exercise for the user after they complete a challenge" do 
+        expect(@user.user_exercises).to_not be_empty
         @challenge_attempt.destroy
-        expect(@user.activities).to be_empty
+        expect(@user.user_exercises).to be_empty
       end
     end
   end

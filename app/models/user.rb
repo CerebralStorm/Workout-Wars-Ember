@@ -6,16 +6,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :activities
-  has_many :competition_activities
-  has_many :competition_joins
+  has_many :user_exercises, dependent: :destroy
+  has_many :competition_user_exercises, dependent: :destroy
+  has_many :competition_joins, dependent: :destroy
   has_many :competitions, through: :competition_joins
+  has_many :feeds, as: :feedable
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
   has_many :experience_sources
 
   before_save :ensure_authentication_token
   before_save :set_avatar_url
+
+  def handle
+    return nickname if nickname.present?
+    return name if name.present?
+    email.slice(0..(email.index('@')-1))
+  end
 
   def self.find_for_facebook_oauth(auth)
     if user = User.find_by(email: auth.info.email)
@@ -54,10 +61,10 @@ class User < ActiveRecord::Base
     end
   end
   
-  def create_competition_activities(activity)
+  def create_competition_user_exercises(user_exercise)
     competitions.where(finished: false).where(started: true).each do |competition|
-      if competition.has_exercise?(activity.exercise)
-        competition.competition_activities.create!(activity_id: activity.id, user_id: self.id)
+      if competition.has_exercise?(user_exercise.exercise)
+        competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
       end
     end
   end
@@ -94,10 +101,10 @@ class User < ActiveRecord::Base
   end
 
   def total_experience_for_competition(competition)
-    actities = competition_activities.where(competition: competition)
+    exercises = competition_user_exercises.where(competition: competition)
     result = 0
-    actities.each do |activity|
-      result += activity.total_experience
+    exercises.each do |exercise|
+      result += exercise.total_experience
     end
     result
   end

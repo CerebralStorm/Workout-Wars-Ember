@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -8,31 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <img src="/assets/ww-brand.png" />
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="text-center">
           {{#link-to "index"}}
-            <i class="fa fa-home fa-3x"></i><br>
-            WW
-          {{/link-to}}
-        </li>
-        <li class="text-center">
-          {{#link-to "profile.activities.create" currentUser name="New Activity"}}
-            <i class="fa fa-bolt fa-3x"></i><br>
-            Log Activity
-          {{/link-to}}
-        </li>
-        <li class="text-center">
-          {{#link-to "profile" currentUser name="My Profile"}}
             <i class="fa fa-dashboard fa-3x"></i><br>
-            Profile
-          {{/link-to}}
-        </li>
-        <li class="text-center">
-          {{#link-to "users"}}
-            <i class="fa fa-group fa-3x"></i><br>
-            Users            
+            Dashboard
           {{/link-to}}
         </li>
         <li class="text-center">
@@ -42,20 +25,20 @@
           {{/link-to}}
         </li> 
         <li class="text-center">
-          {{#link-to "challenges"}}
-            <i class="fa fa-flag fa-3x"></i><br>
-            Challenges
+          {{#link-to "profile" currentUser name="My Profile"}}
+            <i class="fa fa-user fa-3x"></i><br>
+            Profile
           {{/link-to}}
-        </li>   
+        </li>
         <li class="text-center">
-          {{#link-to "exercises"}}
-            <i class="fa fa-asterisk fa-3x"></i><br>
-            Exercises
+          {{#link-to "users"}}
+            <i class="fa fa-group fa-3x"></i><br>
+            Users            
           {{/link-to}}
         </li>
       </ul>
       <ul class="nav navbar-nav pull-right">
-        <li>
+        <li class="text-center">
           <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
             <i class="fa fa-sign-out fa-3x"></i><br>
             Logout
@@ -66,13 +49,26 @@
   </div>
 </div>
 
-<div class="container">
-  {{outlet modal}}
-  {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
-  {{outlet}}
-  <br>
-  <br>
-</div> <!-- /container -->
+<div class="container-fluid">
+<div class="row">
+  <div {{bind-attr class="showExercisePanel:col-md-9:col-md-11"}}>
+    {{outlet modal}}
+    {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
+    {{outlet}}
+  </div>
+  <div {{bind-attr class=":gray-background showExercisePanel:col-md-3:col-md-1"}}>
+    <a href="#" {{action "toggleExercisePanel"}}>
+      {{#if showExercisePanel}}
+        <i class="fa fa-3x fa-minus-square"></i>
+      {{else}}
+        <i class="fa fa-plus-square"></i>
+        <small>New Exercise</small>
+      {{/if}}
+    </a>
+    {{outlet "sidebar"}}
+  </div>
+</div> 
+</div><!-- /container -->
 
 <!-- FOOTER -->
 <nav class="navbar-fixed-bottom" role="navigation">

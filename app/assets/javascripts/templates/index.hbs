@@ -1,37 +1,68 @@
-<div class="container">
-  <div class="jumbotron">
-    <img src="/assets/ww-logo-large.png" class="img-responsive" />    
-    <h1><p class="text-danger text-center">BETA</p></h1>
-    <p>Get ready to take your fitness to the next level.</p>
-  </div>
-
-  <hr class="featurette-divider">
-
-  <h2 class="featurette-heading">Current User Levels <span class="text-muted">Join the madness</span></h2>
-
-  <div class="panel panel-info">
-    <table class="table table-hover">
-      <thead>
-        <tr class="active">
-          <th>User</th>
-          <th>Picture</th>
-          <th>Level</th>
-          <th>Experience</th>
-        </tr>
-      </thead>
-      <tbody>
-      {{#each user in controller}}
+<h1>Dashboard</h1>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <div class="well">
+      <h3 {{bind-attr class="selectedExercise:text-info"}}>{{title}}</h3>
+    </div>
+    <table class="table">
       <tr>
-        <td>{{user.handle}}</td>
-        <td>{{gravatarUrlSmall user}}</td>
-        <td><span class="badge">{{user.level}}</span></td>               
-        <td><span class="badge">{{user.experience}}</span></td>
+        <th>Name</th>
+        <th>Current Rank</th>
+        <th>Score</th>
       </tr>
+      {{#each currentCompJoins}}
+        <tr>
+          <td>{{#link-to "competition" this}}{{this.competition.name}}{{/link-to}}</td>
+          <td>{{this.rank}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+      {{else}}
+        {{#if selectedExercise}}
+        <tr>
+          <td colspan="3">
+            <p class="lead text-warning text-center">You are not currently in any competitions that include {{selectedExercise.name}}. Would you like to</p>
+            <a href="#" class="btn btn-success center-block" {{action "createCompetiton" selectedExercise}}> Create a new one ?</a> 
+            <p class="text-center">- OR -</p> 
+            <a href="#" class="btn btn-primary center-block" {{action "createCompetiton" selectedExercise}}>join an existing one ?</a>
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="3">Competitions not currently available. Either you aren't in any, or they haven't loaded yet.</p></td>
+        </tr>
+        {{/if}}
       {{/each}}
-      </tbody>
     </table>
   </div>
 
-
-  <hr class="featurette-divider">
+  <div class="col-md-8">
+    <div class="well">
+      <h3>Recent Site Activity</h3>
+    </div>
+    <ul class="list-group">
+      {{#each controller}}
+        <li class="list-group-item">
+          <div class="row">    
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              <a class="story-img" href="#"><img src="/assets/dumbbell-icon.png" style="width:60px;height:60px" class="img-circle"></a>
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h5>{{description}}</h5>
+              <div class="row">
+                <div class="col-xs-9">
+                  <ul class="list-inline"><li><a href="#">{{shortDateTime createdAt}}</a></li><li><a href="#"></ul>
+                  </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
+{{currentUser.competitionJoins}}

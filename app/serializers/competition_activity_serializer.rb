@@ -1,8 +1,8 @@
-class CompetitionActivitySerializer < ActiveModel::Serializer
-  attributes :id, :activity_id, :user_id, :competition_id
+class CompetitionUserExerciseSerializer < ActiveModel::Serializer
+  attributes :id, :user_exercise_id, :competition_id
 
   embed :ids
 
-  has_one :activity
+  has_one :user_exercise
   has_one :competition
 end

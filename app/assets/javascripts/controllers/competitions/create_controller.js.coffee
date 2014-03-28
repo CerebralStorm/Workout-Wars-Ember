@@ -10,7 +10,7 @@ WorkoutWars.CompetitionsCreateController = Ember.Controller.extend
   selectExercises: (->
     @get('approvedExercises').filter (exercise) =>
       !@get('exercises').contains(exercise)
-  ).property('exercises.@each')
+  ).property('exercises.@each', 'approvedExercises.@each')
 
   clearExercises: (->
     if @get('canClearExercises')

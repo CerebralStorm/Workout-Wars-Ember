@@ -1,7 +1,7 @@
 WorkoutWars.User = DS.Model.extend
-  activities: DS.hasMany('activity', { async: true })
+  userExercises: DS.hasMany('userExercise', { async: true })
   competitionJoins: DS.hasMany('competitionJoin', { async: true }) 
-  competitionActivities: DS.hasMany('competitionActivity', { async: true }) 
+  competitionUserExercises: DS.hasMany('competitionUserExercise', { async: true }) 
   competitions: DS.hasMany('competition', { async: true }) 
   challengeAttempts: DS.hasMany('challengeAttempt', { async: true }) 
   name: DS.attr('string')
@@ -18,25 +18,28 @@ WorkoutWars.User = DS.Model.extend
   nextLevelExperience: DS.attr('number')
   previousLevelExperience: DS.attr('number')
   avatarUrl: DS.attr('string')
+  handle: DS.attr('string')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
+  activeCompetitionJoins: []
 
-  handle: (-> 
-    return @get('nickname') if @get('nickname')
-    return @get('name') if @get('name')
-    return @get('email').replace(new RegExp(/@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$/), " ") if @get('email')
-  ).property('nickname', 'name', 'email')
-
-  activityStatsTotal: (-> 
-    @get('activities').then (activities) =>
+  exerciseStatsTotal: (-> 
+    @get('userExercises').then (userExercises) =>
       values = {}
-      activities.forEach (activity) -> 
+      userExercises.forEach (activity) -> 
         key = activity.get('exercise.name')
         values[key] = 0 unless values[key] > 0
         values[key] += parseFloat(activity.get('value'))
       values
-  ).property('activities')
+  ).property('userExercises')
 
+  recentUserExercises: (->
+    @get('userExercises').slice(0,10)
+  ).property('userExercises.@each')
 
-
+  levelProgress:(->
+    expThisLevel = @get('nextLevelExperience') - @get('previousLevelExperience')
+    expSince = @get('experience') - @get('previousLevelExperience')
+    (expSince / expThisLevel) * 100
+  ).property('nextLevelExperience', 'experience')
  

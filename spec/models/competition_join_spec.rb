@@ -46,15 +46,24 @@ describe CompetitionJoin do
     end
   end
 
-  context "activities" do
-    it "should count my activities toward my competitions" do
+  context "user_exercises" do
+    it "should count my user_exercises toward my competitions" do
       user = FactoryGirl.create(:user)
       competition = FactoryGirl.create(:competition, started: true)
       exercise = FactoryGirl.create(:exercise)
       FactoryGirl.create(:competition_exercise, competition: competition, exercise: exercise)
       FactoryGirl.create(:competition_join, user: user, competition: competition)      
-      activity = FactoryGirl.create(:activity, exercise: exercise, user: user)
+      user_exercise = FactoryGirl.create(:user_exercise, exercise: exercise, user: user)
       expect(CompetitionJoin.last.total).to eq 100
+    end
+  end
+
+  context "rank" do 
+    it "should set my default rank when I join" do 
+      user = FactoryGirl.create(:user)
+      competition = FactoryGirl.create(:competition, started: true)
+      FactoryGirl.create(:competition_join, user: user, competition: competition)
+      expect(CompetitionJoin.last.rank).to eq 1
     end
   end
 end
