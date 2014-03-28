@@ -7,7 +7,7 @@ class CompetitionJoin < ActiveRecord::Base
   validates_uniqueness_of :user_id, scope: :competition_id
   validate :max_number_of_participants
 
-  after_save set_default_rank
+  after_create :set_default_rank
 
   def set_default_rank
     competition.compute_results

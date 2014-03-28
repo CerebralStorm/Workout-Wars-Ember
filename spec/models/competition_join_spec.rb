@@ -57,4 +57,13 @@ describe CompetitionJoin do
       expect(CompetitionJoin.last.total).to eq 100
     end
   end
+
+  context "rank" do 
+    it "should set my default rank when I join" do 
+      user = FactoryGirl.create(:user)
+      competition = FactoryGirl.create(:competition, started: true)
+      FactoryGirl.create(:competition_join, user: user, competition: competition)
+      expect(CompetitionJoin.last.rank).to eq 1
+    end
+  end
 end
