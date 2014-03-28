@@ -6,6 +6,13 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
     @controllerFor('exercises').set 'model', @store.filter 'exercise', (exercise) ->
       exercise.get('approved')
     @controllerFor('metrics').set 'model', @store.find('metric')
+    @controllerFor('newExercise').set 'model', @store.createRecord('userExercise')
+
+  renderTemplate: ->
+    @render()
+    @render "newExercise",
+      outlet: "sidebar"
+      into: "application"
 
   # actions: 
   #   logActivity: ->

@@ -21,7 +21,8 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
 
       success = (userExercise) =>
         @set('isSaving', false)
-        @clearUserExercise
+        @set('model', @store.createRecord('userExercise'))
+        @set('controllers.application.selectedExercise', null)
         WorkoutWars.get("flash").success "Your exercise was created"
       failure = (response) =>
         @set('isSaving', false)
@@ -29,6 +30,6 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
       
       userExercise.save().then success, failure
 
-    clearUserExercise: =>
+    clearUserExercise: ->
       @set('model', @store.createRecord('userExercise'))
       @set('controllers.application.selectedExercise', null)
