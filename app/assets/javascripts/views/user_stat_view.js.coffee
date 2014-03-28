@@ -11,7 +11,7 @@ WorkoutWars.UserStatView = Ember.View.extend
   drawChart: ->
     keys = []
     values = []
-    @get('context.model.activityStatsTotal').then (stats) =>
+    @get('context.model.exerciseStatsTotal').then (stats) =>
       $.each stats, (key, value) ->
         keys.push(key)
         values.push(value)

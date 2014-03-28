@@ -23,7 +23,7 @@ WorkoutWars.User = DS.Model.extend
   canDelete: DS.attr('boolean')
   activeCompetitionJoins: []
 
-  activityStatsTotal: (-> 
+  exerciseStatsTotal: (-> 
     @get('userExercises').then (userExercises) =>
       values = {}
       userExercises.forEach (activity) -> 
