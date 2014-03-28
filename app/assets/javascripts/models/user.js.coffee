@@ -38,6 +38,8 @@ WorkoutWars.User = DS.Model.extend
   ).property('userExercises.@each')
 
   levelProgress:(->
-    (@get('experience') / @get('nextLevelExperience')) * 100
+    expThisLevel = @get('nextLevelExperience') - @get('previousLevelExperience')
+    expSince = @get('experience') - @get('previousLevelExperience')
+    (expSince / expThisLevel) * 100
   ).property('nextLevelExperience', 'experience')
  
