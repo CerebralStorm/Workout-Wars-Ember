@@ -5,4 +5,8 @@ WorkoutWars.UserView = Ember.View.extend
     element = @.$()
     width = element.width()
     element.css('width', width)
-    @.$().affix()
+    @.$().affix
+      offset:
+        top: ->
+          element.css('top','100px')
+          100

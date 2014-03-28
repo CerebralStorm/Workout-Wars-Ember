@@ -22,12 +22,17 @@ WorkoutWars.UserStatView = Ember.View.extend
           margin: [
             50
             50
-            100
+            50
             80
           ]
+          backgroundColor: "#282828"
+          height: 300
 
         title:
           text: "Total activities logged for #{@get('context.model.handle')}"
+          style:
+            color: '#2a9fd6'
+            fontSize: '16px'
 
         xAxis:
           categories: keys
@@ -42,6 +47,9 @@ WorkoutWars.UserStatView = Ember.View.extend
           min: 0
           title:
             text: "Total (All-Time)"
+            style:
+              color: '#2a9fd6'
+              fontSize: '13px'
 
         legend:
           enabled: false
@@ -52,13 +60,14 @@ WorkoutWars.UserStatView = Ember.View.extend
         series: [
           name: "Exercises"
           data: values
+          color: "#77b300"
           dataLabels:
             enabled: true
-            rotation: -90
             color: "#FFFFFF"
-            align: "right"
+            align: "center"
+            verticalAlign: "top"
             x: 4
-            y: 10
+            y: -20
             style:
               fontSize: "13px"
               fontFamily: "Verdana, sans-serif"
