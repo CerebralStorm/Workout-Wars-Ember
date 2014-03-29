@@ -1,11 +1,11 @@
 {{#each userExercise in collection}}
   <div class="list-group">
-    {{#link-to 'user_exercises.user_exercise' userExercise class="list-group-item"}}
+    <a href="#" {{action "openExercise"}} class="list-group-item" name="viewExercise">
       <dl>
         <dt>{{userExercise.exercise.name}}</dt>
         <dd>{{time userExercise.createdAt}}</dd>
         <dd>{{userExercise.value}} {{userExercise.exercise.metric.measurement}}</dd>
       </dl>
-    {{/link-to}}
+    </a>
   </div>
 {{/each}}

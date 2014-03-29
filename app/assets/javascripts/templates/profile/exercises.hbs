@@ -25,7 +25,19 @@
         </tr>
         <tr>
           {{#each userExercisesByDay}}
-            <td>{{basic-list collection=this}}</td>
+            <td>
+              {{#each userExercise in this}}
+              <div class="list-group">
+                <a href="#" {{action "openExercise" userExercise}} class="list-group-item" name="viewExercise">
+                  <dl>
+                    <dt>{{userExercise.exercise.name}}</dt>
+                    <dd>{{time userExercise.createdAt}}</dd>
+                    <dd>{{userExercise.value}} {{userExercise.exercise.metric.measurement}}</dd>
+                  </dl>
+                </a>
+              </div>
+              {{/each}}
+            </td>
           {{/each}}
         </tr>
       </table>
