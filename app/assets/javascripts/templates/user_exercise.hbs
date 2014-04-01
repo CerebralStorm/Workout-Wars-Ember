@@ -2,22 +2,25 @@
   <button type="button" class="close" {{action "close" target="view"}}>&times;</button>
   <h3>Exercise</h3>
 </div>
-{{controller}}
-{{model}}
-{{test}}
+
 <div class="modal-body">        
-  <h2>{{model.name}}</h2>
-  <p><strong>Description:</strong> {{description}}</p>
-  <p><strong>Measurement:</strong> {{metric.name}}</p>
-  <p><strong>Experience Multiplier:</strong> {{experienceMultiplier}}</p>
+  <h2>{{exercise.name}}</h2>
+  <p><strong>Date:</strong> {{shortDateTime model.createdAt}}</p>
+  <p><strong>Measurement:</strong> {{exercise.metric.name}}</p>
+  <p><strong>Experience Multiplier:</strong> {{exercise.experienceMultiplier}}</p>
+
+  <hr>
+
+  <h4>This exercise counted for these competitions</h4>
+  <ul>
+    {{#each model.competitionUserExercises}}
+    <li>
+      {{this.competition.name}}
+    </li>
+    {{/each}}
+  </ul>
 </div>
 
 <div class="modal-footer">
-  {{#if isSaving}}
-    <a href="#" class="btn" name="Close" disabled>Saving...</a>
-  {{else}}
-    {{submit "Log it!" id="logActivity" class="btn btn-primary"}}
-  {{/if}}
+  <a href="#" class="btn btn-default" name="Close" {{action "close" target="view"}}>Close</a>
 </div>
-
-<a href="#" class="btn" name="Close" {{action "close" target="view"}}>Close</a>
