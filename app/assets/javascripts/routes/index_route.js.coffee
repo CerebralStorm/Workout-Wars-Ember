@@ -2,11 +2,6 @@ WorkoutWars.IndexRoute = Ember.Route.extend
   model: ->
     @store.find('feed')
 
-  reload: (->
-    console.log "called"
-    @store.find('feed')
-  ).observes('userExercise.@each')
-
   actions:
     setSuccess: (message) ->
       WorkoutWars.get("flash").success message
