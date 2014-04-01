@@ -31,14 +31,12 @@
         {{info-item title="Max players" value=numOfParticipants}}
         {{info-item title="# of players" value=numberOfUsers}} 
         <li class="list-group-item">
-          <div class="row">
-            <strong class="col-sm-4">Exercises</strong>
-            <p class="col-md-8">
-              {{#each compExercise in competitionExercises}}
-                {{compExercise.exercise.name}} &nbsp;
-              {{/each}}
-            </p>
-          </div>
+          <strong>Exercises</strong>
+          <ul>
+            {{#each competitionExercises}}
+            <li>{{this.exercise.name}}</li>
+            {{/each}}
+          </ul>
         </li>     
       </ul>
     </div>
