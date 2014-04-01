@@ -22,6 +22,13 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
         outlet: "modal"
         view: "modal"
 
+    deleteUserExercise: (userExercise)->
+      if window.confirm "Are you sure?"
+        userExercise.destroyRecord()
+        @disconnectOutlet
+          outlet: 'modal'
+          parentView: 'application'
+
     close: ->
       @disconnectOutlet
         outlet: 'modal'
