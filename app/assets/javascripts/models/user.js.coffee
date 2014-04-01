@@ -34,7 +34,7 @@ WorkoutWars.User = DS.Model.extend
   ).property('userExercises')
 
   recentUserExercises: (->
-    @get('userExercises').slice(0,10)
+    Ember.ArrayProxy.extend(Ember.SortableMixin).create({content: @get('userExercises'), sortProperties: ['createdAt'], sortAscending: false}).slice(0,10)
   ).property('userExercises.@each')
 
   levelProgress:(->

@@ -20,6 +20,7 @@ WorkoutWars.NewExerciseController = Ember.ObjectController.extend
       userExercise.set('user', @get('currentUser'))
 
       success = (userExercise) =>
+        @store.find('feed')
         @get('currentUser').reload()
         @set('isSaving', false)
         @set('model', @store.createRecord('userExercise'))
