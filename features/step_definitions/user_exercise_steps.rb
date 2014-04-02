@@ -10,13 +10,6 @@ When(/^I go to my activities page$/) do
   click_link "Activities"
 end
 
-When(/^I add a new activity$/) do 
-  sleep 0.2 
-  select "Pushups", from: "Exercise Select"
-  fill_in "Value", with: 50 
-  click_button "Log it!"
-end
-
 When(/^I add two new activities$/) do
   sleep 0.2 
   select "Pushups", from: "Exercise Select"
@@ -139,4 +132,47 @@ Then(/^my score should be (\d+)$/) do |total|
     expect(page).to have_content "1"
     expect(page).to have_content "#{total}"
   end
+end
+
+When(/^I add a new user exercise$/) do
+  select "Pushups", from: "Exercise Select"
+  fill_in "Value", with: 50 
+  click_button "Log it!"
+end
+
+Then(/^I should see the new user exercise$/) do
+  within "#recent_exercises" do 
+    expect(page).to have_content "50"
+    expect(page).to have_content "Pushups"    
+  end
+end
+
+Then(/^I should get experience for that user exercise$/) do
+  within "div.navbar-collapse" do 
+    click_link "Profile"
+  end
+
+  within "#user_info" do 
+    expect(page).to have_content "Experience: 50"    
+  end
+end
+
+Then(/^I should see the other new user exercise$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I add a bad new user exercise$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should not be able to submit the bad user exercise$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I add an user exercise that is not in this competition$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I add another user exercise$/) do
+  pending # express the regexp above with the code you wish you had
 end
