@@ -10,7 +10,7 @@ class Ability
       can :create, Competition
       can :create, Challenge
       can :create, Exercise
-      can :create, Activity
+      can :create, UserExercise
 
       can :manage, CompetitionExercise
 
