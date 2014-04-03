@@ -21,6 +21,8 @@ gem 'omniauth-facebook'
 gem "font-awesome-rails"
 gem 'thread_safe', '0.2.0'
 gem 'thin'
+gem 'zero_push'
+gem 'faraday', '0.8.5'
 
 group :production do
   gem 'newrelic_rpm'
