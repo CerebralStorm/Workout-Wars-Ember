@@ -1,5 +1,4 @@
-  <!-- Carousel
-  ================================================== -->
+<div class="well">  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -9,7 +8,7 @@
     </ol>
     <div class="carousel-inner">
       <div class="item active">
-        <%= image_tag "background1.jpg", alt: "First slide" %>
+        <%= image_tag "background1.jpg", alt: "First slide", class: "img-rounded" %>
         <div class="container">
           <div class="carousel-caption">
             <h1>Join in on the madness</h1>
@@ -19,22 +18,22 @@
         </div>
       </div>
       <div class="item">
-        <%= image_tag "background2.jpg", alt: "Second slide" %>
+        <%= image_tag "background2.jpg", alt: "Second slide", class: "img-rounded" %>
         <div class="container">
           <div class="carousel-caption">
             <h1>Never skip a workout again</h1>
             <p>Using ideas from the latest scientific studies, we have found a way to help motivate people to workout at a higher level.</p>
-            <p><%= link_to "Learn More", info_path, class: "btn btn-lg btn-primary" %></p>
+            <p><%= link_to "Sign up and see what it's all about", new_user_registration_path, class: "btn btn-lg btn-primary" %></p>
           </div>
         </div>
       </div>
       <div class="item">
-        <%= image_tag "background3.jpg", alt: "Third slide" %>
+        <%= image_tag "background3.jpg", alt: "Third slide", class: "img-rounded" %>
         <div class="container">
           <div class="carousel-caption">
             <h1>Push yourself to the max</h1>
             <p>Nothing motivates you to workout harder than a nice friendly competition. Check out some of our users results</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            <p><%= link_to "No really, Give it a shot!", new_user_registration_path, class: "btn btn-lg btn-primary" %></p>
           </div>
         </div>
       </div>
@@ -42,86 +41,42 @@
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
   </div><!-- /.carousel -->
+
   <hr class="featurette-divider">
 
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Get the results you want. <span class="text-muted"> Compete to Win.</span></h2>
+      <p class="lead">Get fit while having fun competing with your friends and challenging yourself to achieve new levels of fitness. Whatever your fitness goals are, the key to achieving results is consistency. We keep you motivated by using your friends and others on the site to challenge you to keep going. We're leveraging postive peer presure to keep you in the game.</p>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag "small-home1.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
+    </div>
+  </div>
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+  <hr class="featurette-divider">
 
-    <div class="container marketing">
+  <div class="row featurette">
+    <div class="col-md-5">
+      <%= image_tag "small-home2.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
+    </div>
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Does it work? <span class="text-muted"> Oh yeah!</span></h2>
+      <p class="lead">Signing up is free so there is no reason not to. Once you get a taste of how it can be to push your fitness levels with your friends, you will never want to workout any other way.</p>
+    </div>
+  </div>
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <% image_size = 325 %>
-          <%= image_tag "medium-home1.jpg", height: image_size, width: image_size, alt: "Generic Image", class: "img-circle" %>
-          <h2>Competitions</h2>
-          <p>Nothing pushes you harder than a friendly competition. Here is where you can join a public competition and compete with other users on the site or start your own private competition and challenge your friends in the exercise(s) of your choice.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <%= image_tag "medium-home2.jpg", height: image_size, width: image_size, alt: "Generic Image", class: "img-circle" %>
-          <h2>Challenges</h2>
-          <p>Come see what your made of. Challenge yourself in these individual exercise challenges. How many pushups can you do in a minute? See where you stack up against other users in your fitness level and compare where you against the entire site average.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <%= image_tag "medium-home3.jpg", height: image_size, width: image_size, alt: "Generic Image", class: "img-circle" %>
-          <h2>Teams</h2>
-          <p>Ready to take it to the next level? Form a team and join a team competition where each team members progess is counted toward your team score. Work with your friends to dominate your opponents. Work hard and emerge victorious!</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+  <hr class="featurette-divider">
 
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Acheive your goals. <span class="text-muted">Your Way.</span></h2>
+      <p class="lead">Whatever your goals, whatever your motivational needs, we've got you covered. Get started and start seeing the results. Your body with thank you. </p>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag "small-home3.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
+    </div>
+  </div>
 
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Get the results you want. <span class="text-muted"> Compete to Win.</span></h2>
-          <p class="lead">Get fit while having fun competing with your friends and challenging yourself to achieve new levels of fitness. Whatever your fitness goals are the key to achieving results is consistency. We keep you motivated by using your friends and others on the site to challenge you to keep going. We're leveraging postive peer presure to keep you in the game.</p>
-        </div>
-        <div class="col-md-5">
-          <%= image_tag "small-home1.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <%= image_tag "small-home2.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
-        </div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">Challenge Yourself.</span></h2>
-          <p class="lead">Challenge yourself to reach your fitness goals. If competing against others isn't your thing then just compete against yourself in personal challenges. Choose one of the pre-defined challenges or create your own and see your progress over time. Need additional motivation, make your challenge public and see how others compare.</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Acheive your goals. <span class="text-muted">Your Way.</span></h2>
-          <p class="lead">Whatever your goals, whatever your motivational needs, we've got you covered. Get started and start seeing the results. Your body with thank you. </p>
-        </div>
-        <div class="col-md-5">
-          <%= image_tag "small-home3.jpg", alt: "Generic Image", class: "featurette-image img-responsive" %>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <%= link_to "Privacy", privacy_path %> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
+  <hr class="featurette-divider">
+</div>
