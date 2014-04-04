@@ -8,62 +8,32 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :email, class: "col-sm-3 control-label" %>
-      <div class="col-sm-9">
-        <%= f.email_field :email, :autofocus => true, class: "form-control" %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= f.label :email, class: "control-label sr-only" %>
+    <%= f.email_field :email, :autofocus => true, placeholder: "Please enter your email address", required: true, class: "input-lg form-control"  %>
   </div>
 
-  <br />
-
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :password, class: "col-sm-3 control-label" %>
-      <div class="col-sm-9">
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-    </div>
-  </div>  
-
-  <br />
-
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :password_confirmation, class: "col-sm-3 control-label" %>
-      <div class="col-sm-9">
-        <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "control-label sr-only"  %>      
+    <%= f.password_field :password_confirmation, placeholder: "Please enter your password", class: "input-lg form-control" %>
   </div>
 
-  <br />
-  
-  <div class="row">
-    <div class="terms col-sm-9 col-sm-offset-3">
-      <%= render "shared/privacy" %>
-    </div>
-  </div>
-  
-  <br />
-
-  <div class="row">
-    <div class="checkbox checkbox-agree col-sm-9 col-sm-offset-3">
-      <%= f.check_box :agree_to_terms, id: "user_agree_to_terms" %>
-      <%= f.label :agree_to_terms, " I agree to the terms and conditions above" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "control-label sr-only"  %>      
+    <%= f.password_field :password_confirmation, placeholder: "Please re-enter your password", class: "input-lg form-control" %>
   </div>
 
-  <br />
+  <div class="terms">
+    <%= render "shared/privacy" %>
+  </div>
 
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9">
-        <%= f.submit "Sign up", class: "btn btn-success btn-block btn-default", id: "sign_up_form_button" %>
-      </div>
-    </div>
+  <div class="checkbox checkbox-agree">
+    <%= f.check_box :agree_to_terms, id: "user_agree_to_terms" %>
+    <%= f.label :agree_to_terms, " I agree to the terms and conditions above" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Sign up", class: "btn btn-success btn-block btn-default", id: "sign_up_form_button" %>
   </div>
 <% end %>
 
