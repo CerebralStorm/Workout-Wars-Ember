@@ -1,0 +1,31 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :email, class: "control-label sr-only" %>
+    <%= f.email_field :email, :autofocus => true, placeholder: "Please enter your email address", required: true, class: "input-lg form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, class: "control-label sr-only"  %>      
+    <%= f.password_field :password, placeholder: "Please enter your password", required: true, class: "input-lg form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "control-label sr-only"  %>      
+    <%= f.password_field :password_confirmation, placeholder: "Please re-enter your password", required: true, class: "input-lg form-control" %>
+  </div>
+
+  <div class="terms">
+    <%= render "shared/privacy" %>
+  </div>
+
+  <div class="checkbox checkbox-agree">
+    <%= f.check_box :agree_to_terms, id: "user_agree_to_terms" %>
+    <%= f.label :agree_to_terms, " I agree to the terms and conditions above" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Sign up", class: "btn btn-success btn-block btn-default", id: "sign_up_form_button" %>
+  </div>
+<% end %>
