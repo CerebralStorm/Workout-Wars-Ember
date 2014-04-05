@@ -5,17 +5,20 @@ Feature: Authentication
     Given there is a user "ray@bustinghosts.com" with password "slimer-Ecto-1"
     And I visit the home page
 
+  @javascript
   Scenario: Sign in with bad credentials
     When I try to log in with the wrong password
     Then I should not be logged in
 
+  @javascript
   Scenario: Sign In
     When I try to log in with the right password
     Then I should be logged in
 
+  @javascript
   Scenario: Sign Up
     When I go to the sign up page
-    And I fill out the form and submit
+    And I fill out the sign up form and submit
     Then I should be logged in
 
   @javascript

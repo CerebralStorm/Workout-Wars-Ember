@@ -9,10 +9,14 @@ end
 
 When(/^I try to log in with the (.*?) password$/) do |flag|
   password = (flag == "right") ? "slimer-Ecto-1" : "staypuft"
-  click_link "Sign In"
-  fill_in "user_email", with: "ray@bustinghosts.com"
-  fill_in "user_password", with: password
-  find("input[name='commit']").click
+  within "ul.nav.navbar-nav.navbar-right" do 
+    click_button "Log In"
+  end  
+  within "#loginModal" do 
+    fill_in "user_email", with: "ray@bustinghosts.com"
+    fill_in "user_password", with: password
+    click_button "Log In"
+  end
 end
 
 Then(/^I should( not)? be logged in$/)do |negate|
@@ -30,7 +34,10 @@ Then(/^I should be logged out$/) do
 end
 
 When(/^I visit the password retrieval page$/) do
-  visit '/users/password/new'
+  within "ul.nav.navbar-nav.navbar-right" do 
+    click_button "Log In"
+  end 
+  click_link "Forgot your password?"
 end
 
 Then(/^I should be able to get a password reset email$/) do
@@ -49,15 +56,17 @@ Then(/^I should be able to change my password to "(.*?)"$/) do |password|
 end
 
 When(/^I go to the sign up page$/) do
-  visit '/users/sign_up'
+  click_link "Sign Up Now!"
 end
 
-When(/^I fill out the form and submit$/) do
-  fill_in "Email", with: "test@tester.com"
-  fill_in "user_password", with: "testpassword"
-  fill_in "user_password_confirmation", with: "testpassword"
-  check "I agree to the terms and conditions above"
-  click_button "Sign up"
+When(/^I fill out the sign up form and submit$/) do
+  within "#signupModal" do 
+    fill_in "Email", with: "test@tester.com"
+    fill_in "user_password", with: "testpassword"
+    fill_in "user_password_confirmation", with: "testpassword"
+    check "I agree to the terms and conditions above"
+    click_button "Sign up"
+  end
 end
 
 When(/^I go to the settings page$/) do
