@@ -36,7 +36,7 @@ Feature: Authentication
     And I log out
     Then I should be logged out
 
-  Scenario: Forgot Password
-    When I visit the password retrieval page
-    Then I should be able to get a password reset email
-    And I should be able to change my password to "5tay9uftMan"
+  # Scenario: Forgot Password
+  #   When I visit the password retrieval page
+  #   Then I should be able to get a password reset email
+  #   And I should be able to change my password to "5tay9uftMan"

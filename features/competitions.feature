@@ -46,7 +46,7 @@ Feature: Competitions
     And I save it
     And I log out
     And I go to the sign up page
-    And I fill out the form and submit
+    And I fill out the sign up form and submit
     And I go to the competition page
     Then I should not see what creators see
 
