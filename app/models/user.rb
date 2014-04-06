@@ -65,9 +65,9 @@ class User < ActiveRecord::Base
     competitions.where(finished: false).where(started: true).each do |competition|
       if competition.has_exercise?(user_exercise.exercise)
         competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
-        users = competition.users - self
+        users = competition.users - [self]
         users.each do |user|
-          message = "#{self.handle} logged #{user_exercise.value} #{user_exercises.exercise.metric.measurement} of #{user_exercise.exercise} which counted for #{competition.name}"
+          message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
           user.send_push_notification(message)
         end
       end
