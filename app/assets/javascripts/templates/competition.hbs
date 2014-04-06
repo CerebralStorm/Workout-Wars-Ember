@@ -12,7 +12,10 @@
     <div class="panel">
       <ul class="list-group">
         {{#if canJoin}}
-          <li class="list-group-item"><button class="btn btn-danger btn-block" {{action "join"}}>Join</button></li>
+          <li class="list-group-item"><button class="btn btn-success btn-block" {{action "join"}}>Join</button></li>
+        {{/if}}
+        {{#if isJoined}}
+          <li class="list-group-item"><button class="btn btn-warning btn-block"{{action "leave"}}>Leave Competition</button></li>
         {{/if}}
         {{#if canUpdate}}
           {{!--           
@@ -21,7 +24,7 @@
             </li> 
           --}}
           <li class="list-group-item">
-            <a href="#" class="btn btn-default btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
+            <a href="#" class="btn btn-danger btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
           </li>
         {{/if}}
         <li class="list-group-item">
@@ -89,7 +92,7 @@
           </tr>
         {{else}}
           <tr>
-            <td colspan="3">You haven't attempted any challenges yet! Go try some!</td>
+            <td colspan="3">No users have joined! Go invite some!</td>
         {{/each}}
         </tbody>
       </table>
