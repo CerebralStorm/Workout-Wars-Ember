@@ -2,21 +2,10 @@ Given(/^I visit my profile page$/) do
   click_link "Profile"
 end
 
-When(/^I open log activity$/) do
-  click_link "Log Activity"
-end
-
-When(/^I go to my activities page$/) do
-  click_link "Activities"
-end
-
-When(/^I add two new activities$/) do
-  sleep 0.2 
+When(/^I add two new user exercises$/) do
   select "Pushups", from: "Exercise Select"
   fill_in "Value", with: 50 
   click_button "Log it!"
-  sleep 0.2 
-  click_link "New Activity"
   sleep 0.2 
   select "Running", from: "Exercise Select"
   fill_in "Value", with: 5 
@@ -25,20 +14,6 @@ end
 
 def activity_date(date)
   date.strftime('%m/%d/%y')
-end
-
-Then(/^I should see the new activity$/) do
-  within "#recent_activity" do 
-    expect(page).to have_content "Pushups"
-    expect(page).to have_content "#{activity_date(Date.today)}"
-  end
-end
-
-Then(/^I should see the other new activity$/) do
-  within "#recent_activity" do 
-    expect(page).to have_content "Running"
-    expect(page).to have_content "#{activity_date(Date.today)}"
-  end
 end
 
 Then(/^I should see my experience for that activity$/) do
@@ -63,28 +38,11 @@ Then(/^select my competition$/) do
 end
 
 Then(/^I should see my score and rank updated$/) do
-  within ".leaderboard" do 
+  within "#competitionLeaderboard" do 
     expect(page).to have_content "Hulk Hogan"
     expect(page).to have_content "1"
     expect(page).to have_content "50"
   end
-end
-
-When(/^I add a bad new activity$/) do
-  sleep 0.2
-  select "Pushups", from: "Exercise Select"  
-end
-
-Then(/^I should not be able to submit the bad activity$/) do
-  assert page.has_css?("#logActivity[disabled='disabled']")
-end
-
-When(/^I add an activity that is not in this competition$/) do
-  sleep 0.2
-  click_link "New Activity"
-  select "Pullups", from: "Exercise Select"
-  fill_in "Value", with: 50 
-  click_button "Log it!"
 end
 
 When(/^I add an activity for the second exercise in this competition$/) do
@@ -95,39 +53,18 @@ When(/^I add an activity for the second exercise in this competition$/) do
   click_button "Log it!"
 end
 
-When(/^I add another activity$/) do
-  click_link "Log Activity"
-  sleep 0.2
-  select "Pushups", from: "Exercise Select"
-  fill_in "Value", with: 50 
-  click_button "Log it!"
-end
-
 Then(/^I should see my score and rank updated again$/) do
   step 'I visit the competitions page'
   step 'select my competition'
-  within ".leaderboard" do 
+  within "#competitionLeaderboard" do 
     expect(page).to have_content "Hulk Hogan"
     expect(page).to have_content "1"
     expect(page).to have_content "100"
   end
 end
 
-When(/^I delete all of my activities$/) do
-  click_link "Profile"
-  click_link "Activities"
-  3.times do 
-    within "#recent_activity" do 
-      sleep 0.2
-      first('a').click
-    end
-    click_link "Delete"
-    page.driver.browser.switch_to.alert.accept
-  end
-end
-
 Then(/^my score should be (\d+)$/) do |total|
-  within ".leaderboard" do 
+  within "#competitionLeaderboard" do 
     expect(page).to have_content "Hulk Hogan"
     expect(page).to have_content "1"
     expect(page).to have_content "#{total}"
@@ -147,6 +84,13 @@ Then(/^I should see the new user exercise$/) do
   end
 end
 
+Then(/^I should see the other new user exercise$/) do
+  within "#recent_exercises" do 
+    expect(page).to have_content "5"
+    expect(page).to have_content "Running"    
+  end
+end
+
 Then(/^I should get experience for that user exercise$/) do
   within "div.navbar-collapse" do 
     click_link "Profile"
@@ -157,22 +101,56 @@ Then(/^I should get experience for that user exercise$/) do
   end
 end
 
-Then(/^I should see the other new user exercise$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see my experience for both user exercises$/) do
+  within "div.navbar-collapse" do 
+    click_link "Profile"
+  end
+
+  within "#user_info" do 
+    expect(page).to have_content "Experience: 250"    
+  end
 end
 
 When(/^I add a bad new user exercise$/) do
-  pending # express the regexp above with the code you wish you had
+  select "Pushups", from: "Exercise Select"
+  fill_in "Value", with: "asdf" 
 end
 
-Then(/^I should not be able to submit the bad user exercise$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should( not)? be able to submit the bad user exercise$/) do |flag|
+  if flag.present?
+    expect(page.has_css?("#logExercise[disabled='disabled']")).to eq true
+  else
+    expect(page.has_css?("#logExercise[disabled='disabled']")).to eq false
+  end
+end
+
+When(/^I fix the bad user exercise$/) do
+  fill_in "Value", with: "20" 
 end
 
 When(/^I add an user exercise that is not in this competition$/) do
-  pending # express the regexp above with the code you wish you had
+  sleep 0.2
+  select "Pullups", from: "Exercise Select"
+  fill_in "Value", with: 50 
+  click_button "Log it!"
 end
 
 When(/^I add another user exercise$/) do
-  pending # express the regexp above with the code you wish you had
+  sleep 0.2
+  select "Pushups", from: "Exercise Select"
+  fill_in "Value", with: 50 
+  click_button "Log it!"
+end
+
+When(/^I delete all of my user exercises$/) do
+  click_link "Profile"
+  click_link "Exercise History"
+  3.times do 
+    within "#user-exercise-calendar" do 
+      sleep 0.2
+      first('a[name="viewExercise"]').click
+    end
+    click_button "Delete"
+    page.driver.browser.switch_to.alert.accept
+  end
 end
