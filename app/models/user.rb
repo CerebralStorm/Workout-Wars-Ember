@@ -65,19 +65,24 @@ class User < ActiveRecord::Base
     competitions.where(finished: false).where(started: true).each do |competition|
       if competition.has_exercise?(user_exercise.exercise)
         competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
-
-        # ZeroPush expects a hash as a notification
-        notification = {
-          device_tokens: ["49c24ca3f1fbb09915655e4fb99879510e7fe8c0836561d1e913fc988a1ae666"],
-          alert: "Something really awesome just happened!!",
-          sound: "default",
-          badge: 1
-        }
-
-        # Send the notification
-        ZeroPush.notify(notification) # => true
+        users = competition.users - self
+        users.each do |user|
+          message = "#{self.handle} logged #{user_exercise.value} #{user_exercises.exercise.metric.measurement} of #{user_exercise.exercise} which counted for #{competition.name}"
+          user.send_push_notification(message)
+        end
       end
     end
+  end
+
+  def send_push_notifications(message, sound = "default", badge = 1)
+    notification = {
+      device_tokens: self.device_tokens,
+      alert: message,
+      sound: sound,
+      badge: badge
+    }
+  
+    ZeroPush.notify(notification) 
   end
 
   def experience
