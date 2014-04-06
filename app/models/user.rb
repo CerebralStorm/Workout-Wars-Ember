@@ -65,6 +65,17 @@ class User < ActiveRecord::Base
     competitions.where(finished: false).where(started: true).each do |competition|
       if competition.has_exercise?(user_exercise.exercise)
         competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
+
+        # ZeroPush expects a hash as a notification
+        notification = {
+          device_tokens: ["49c24ca3f1fbb09915655e4fb99879510e7fe8c0836561d1e913fc988a1ae666"],
+          alert: "Something really awesome just happened!!",
+          sound: "default",
+          badge: 1
+        }
+
+        # Send the notification
+        ZeroPush.notify(notification) # => true
       end
     end
   end
@@ -107,5 +118,25 @@ class User < ActiveRecord::Base
       result += exercise.total_experience
     end
     result
+  end
+
+  def add_device_token(token)
+    return false unless token.present?
+    self.device_tokens = [] if self.device_tokens.nil?
+    if !self.device_tokens.include?(token)
+      self.device_tokens << token
+      self.save
+    end 
+    true
+  end
+
+  def remove_device_token(token)
+    return true unless token.present?
+    self.device_tokens = [] if self.device_tokens.nil?
+    if self.device_tokens.include?(token)
+      self.device_tokens -= [token]
+      self.save
+    end 
+    true
   end
 end
