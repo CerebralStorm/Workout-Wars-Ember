@@ -47,6 +47,7 @@ class Api::V1::CompetitionsController < ApplicationController
       :start_date, 
       :end_date, 
       :is_private, 
+      :started,
       :description, 
       :competition_win_condition_id, 
       :competition_exercises_attributes => [:exercise_id, :competition_id, :_destroy]

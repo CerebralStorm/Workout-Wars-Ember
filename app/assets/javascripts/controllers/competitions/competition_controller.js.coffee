@@ -42,6 +42,11 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
           join.destroyRecord().then =>
             @get("model").reload()
 
+    start: ->
+      model = @get('model')
+      model.set('started', true)
+      model.save()
+
     removeUser: (join) ->
       if window.confirm "Are you sure?"
         join.destroyRecord().then =>

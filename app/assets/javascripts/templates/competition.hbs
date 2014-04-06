@@ -14,19 +14,19 @@
         {{#if canJoin}}
           <li class="list-group-item"><button class="btn btn-success btn-block" {{action "join"}}>Join</button></li>
         {{/if}}
+        {{#unless started}}
         {{#if isJoined}}
           <li class="list-group-item"><button class="btn btn-warning btn-block"{{action "leave"}}>Leave Competition</button></li>
         {{/if}}
         {{#if canUpdate}}
-          {{!--           
-            <li class="list-group-item">
-              {{#link-to "competition.edit" this id="edit_competition" class="btn btn-default btn-block"}}Edit{{/link-to}}
-            </li> 
-          --}}
+          <li class="list-group-item">
+            <a href="#" class="btn btn-default btn-block" name="Start Competition" {{action "start" this}}>Start Now!</a>
+          </li>
           <li class="list-group-item">
             <a href="#" class="btn btn-danger btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
           </li>
         {{/if}}
+        {{/unless}}
         <li class="list-group-item">
           <div class="row">
             <div class="col-sm-6">
@@ -40,9 +40,6 @@
               </a>
             </div>
           </div>
-        </li> 
-        <li class="list-group-item">
-
         </li> 
         {{info-item title="Status" value=status}}
         {{info-item title="Creator" value=user.handle}}
