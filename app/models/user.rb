@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
         users = competition.users - [self]
         users.each do |user|
           message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
-          user.send_push_notification(message)
+          user.send_push_notifications(message)
         end
       end
     end
@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   def send_push_notifications(message, sound = "default", badge = 1)
     return if self.device_tokens.nil?
     return if self.device_tokens.empty?
-    
+
     notification = {
       device_tokens: self.device_tokens,
       alert: message,
