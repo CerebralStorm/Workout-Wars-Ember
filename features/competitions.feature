@@ -18,7 +18,7 @@ Feature: Competitions
     Then I should see a new high score competition
 
   @javascript
-  Scenario: Incompelte competition form
+  Scenario: Incomplete competition form
     When I don't fill out the competition form completely
     Then I should not be able to submit the competition form
 

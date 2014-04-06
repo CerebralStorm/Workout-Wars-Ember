@@ -13,8 +13,9 @@ end
 When(/^I fill out the competition with valid data$/) do
   click_link "New Competition"
   select "Most completed by date", from: "Win Condition Select"
-  select "Pushups", from: "Exercise Select"
+  select "Pushups", from: "Competition Exercise Select"
   click_button "Add Exercise"
+  fill_in 'Description', with: "Look ma, I'm a description"
   fill_in 'Name', with: "Test Competition"
   fill_in 'startDate', with: format_date(Date.today)
   fill_in 'endDate', with: format_date(2.weeks.from_now)
@@ -24,10 +25,11 @@ end
 When(/^I fill out the high score competition with valid data$/) do
   click_link "New Competition"
   select "Highest score by date", from: "Win Condition Select"
-  select "Pushups", from: "Exercise Select"
+  select "Pushups", from: "Competition Exercise Select"
   click_button "Add Exercise"
-  select "Situps", from: "Exercise Select"
+  select "Situps", from: "Competition Exercise Select"
   click_button "Add Exercise"
+  fill_in 'Description', with: "Look ma, I'm a description"
   fill_in 'Name', with: "Test Competition"
   fill_in 'startDate', with: format_date(Date.today)
   fill_in 'endDate', with: format_date(2.weeks.from_now)
@@ -42,6 +44,26 @@ Then(/^I should see a new high score competition$/) do
   expect(page).to have_content "20" 
   expect(page).to have_content "Pushups" 
   expect(page).to have_content "Situps" 
+end
+
+When(/^I don't fill out the competition form completely$/) do
+  click_link "New Competition"
+  select "Most completed by date", from: "Win Condition Select"
+  select "Pushups", from: "Competition Exercise Select"
+  click_button "Add Exercise"
+end
+
+When(/^I click the "(.*?)" button$/) do |link|
+  click_link link
+end
+
+When(/^I modify the competition$/) do
+  select "Most completed by date", from: "Win Condition Select"
+  fill_in 'Name', with: "Edited Test Competition"
+  fill_in 'startDate', with: format_date(2.weeks.from_now)
+  fill_in 'endDate', with: format_date(4.weeks.from_now)
+  fill_in 'maxParticipants', with: "30"
+  click_button 'Submit'
 end
 
 When(/^I set the max participants$/) do
@@ -69,32 +91,12 @@ Then(/^I should see a new competition$/) do
   expect(page).to have_content "Pushups" 
 end
 
-When(/^I don't fill out the competition form completely$/) do
-  click_link "New Competition"
-  select "Most completed by date", from: "Win Condition Select"
-  select "Pushups", from: "Exercise Select"
-  click_button "Add Exercise"
-end
-
 Then(/^I should not be able to submit the competition form$/) do
   assert page.has_css?("#competitionCreate[disabled='disabled']")
 end
 
 Then(/^I should see the delete button$/) do
   expect(page).to have_selector "a[name='Delete Competition']"
-end
-
-When(/^I click the "(.*?)" button$/) do |link|
-  click_link link
-end
-
-When(/^I modify the competition$/) do
-  select "Most completed by date", from: "Win Condition Select"
-  fill_in 'Name', with: "Edited Test Competition"
-  fill_in 'startDate', with: format_date(2.weeks.from_now)
-  fill_in 'endDate', with: format_date(4.weeks.from_now)
-  fill_in 'maxParticipants', with: "30"
-  click_button 'Submit'
 end
 
 Then(/^I should see the competition details change$/) do
@@ -105,7 +107,6 @@ Then(/^I should see the competition details change$/) do
   expect(page).to have_content "30"
   expect(page).to have_content "Public" 
 end
-
 
 When(/^I confirm$/) do
   page.driver.browser.switch_to.alert.accept
