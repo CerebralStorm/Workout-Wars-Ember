@@ -10,16 +10,6 @@
     </div>
 
     <div class="panel">
-      <div class="well">
-        <div class="row">
-          <a href="#" {{action "sendFacebook" this }} class="col-sm-6">
-            <img class="img-responsive" src="/assets/fb-invite.png" alt="Invite via Facebook" height="42">
-          </a>
-          <a href="#" {{action "postFacebook" this }} class="col-sm-6">
-            <img class="img-responsive" src="/assets/fb-share.png" alt="Share via Facebook" height="42">
-          </a>
-        </div>
-      </div>
       <ul class="list-group">
         {{#if canJoin}}
           <li class="list-group-item"><button class="btn btn-danger btn-block" {{action "join"}}>Join</button></li>
@@ -33,7 +23,24 @@
           <li class="list-group-item">
             <a href="#" class="btn btn-default btn-block" name="Delete Competition" {{action "delete" this}}>Delete</a>
           </li>
-        {{/if}}  
+        {{/if}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-6">
+              <a href="#" class="btn btn-block btn-default" {{action "postFacebook" this }}>
+                <i class="fa fa-facebook-square"></i> Share
+              </a>
+            </div>
+            <div class="col-sm-6">
+              <a href="#" class="btn btn-block btn-default" {{action "sendFacebook" this }}>
+                <i class="fa fa-facebook-square"></i> Invite
+              </a>
+            </div>
+          </div>
+        </li> 
+        <li class="list-group-item">
+
+        </li> 
         {{info-item title="Status" value=status}}
         {{info-item title="Creator" value=user.handle}}
         {{info-item title="Win Condition" value=competitionWinCondition.name}} 
