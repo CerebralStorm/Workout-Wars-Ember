@@ -75,6 +75,9 @@ class User < ActiveRecord::Base
   end
 
   def send_push_notifications(message, sound = "default", badge = 1)
+    return if self.device_tokens.nil?
+    return if self.device_tokens.empty?
+    
     notification = {
       device_tokens: self.device_tokens,
       alert: message,
