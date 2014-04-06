@@ -25,6 +25,7 @@ WorkoutWars::Application.routes.draw do
       resources :challenges
       resources :challenge_attempts
       resources :users
+      resources :device_tokens, only: [:index, :create, :destroy]
       resources :user_exercises
       resources :exercises
       resources :metrics

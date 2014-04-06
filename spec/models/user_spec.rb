@@ -73,6 +73,49 @@ describe User do
     end
   end
 
-  context "competitions" do  
+  describe "add_device_token" do  
+    it "adds the device token to the user" do 
+      user.add_device_token("1234asdf")
+      expect(user.device_tokens).to eq ["1234asdf"]
+    end
+
+    it "doesn't add it if it is already included" do 
+      user.add_device_token("1234asdf")
+      user.add_device_token("1234asdf")
+      expect(user.device_tokens).to eq ["1234asdf"]
+    end
+
+    it "is false if no token is provided" do 
+      expect(user.add_device_token("")).to eq false
+    end
+
+    it "is false if token is nil" do 
+      expect(user.add_device_token(nil)).to eq false
+    end
+  end
+
+  describe "remove_device_token" do  
+    before do 
+      user.add_device_token("1234asdf")
+    end
+    it "removes the device token to the user" do     
+      expect(user.device_tokens).to eq ["1234asdf"]
+      user.remove_device_token("1234asdf")
+      expect(user.device_tokens).to eq [] 
+    end
+
+    it "doesn't remove it if it is not included" do 
+      user.add_device_token("1234asdf")
+      user.remove_device_token("askjdhg")
+      expect(user.device_tokens).to eq ["1234asdf"]
+    end
+
+    it "is true if no token is provided" do 
+      expect(user.remove_device_token("")).to eq true
+    end
+
+    it "is true if token is nil" do 
+      expect(user.remove_device_token(nil)).to eq true
+    end
   end
 end
