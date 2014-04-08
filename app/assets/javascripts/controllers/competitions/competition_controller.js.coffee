@@ -1,5 +1,6 @@
 WorkoutWars.CompetitionController = Ember.ObjectController.extend
-  needs: ['exercises']
+  needs: ['exercises', 'application']
+  selectedUserExercise: Ember.computed.alias('controllers.application.selectedExercise')
   selectedExercise: null
   exercises: Ember.computed.alias('controllers.exercises.content')
   rankSort: ['rank']
@@ -25,6 +26,15 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   currentPartial: (->
     "#{@get('model.status')}_competition"
   ).property('model')
+
+  highlight: (->
+    exercise = @get('selectedUserExercise')
+    if exercise
+      competition = @get('content')
+      competition.hasExercise(exercise)
+    else
+      false
+  ).property('selectedUserExercise')
 
   actions:
     join: ->

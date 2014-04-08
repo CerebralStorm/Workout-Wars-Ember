@@ -1,32 +1,38 @@
 <h1>Competitions</h1>
 <div class="row">
-  <div class="col-md-4">
-    <div class="list-group">
-      <div class="list-group-item">
-        <div class="row well well-sm">
-          <div class="col-sm-3"><h5>Name</h5></div>
-          <div class="col-sm-3"><h5># of Users</h5></div>                      
-          <div class="col-sm-3"><h5>Status</h5></div>
-          <div class="col-sm-3"><h5>Activeness</h5></div>
-        </div> 
-      </div> 
-      {{#each controller}} 
-        {{#unless this.isNew}}         
-          {{#link-to "competition" this class="list-group-item"}}
-            <div class="row">
-              <div class="col-sm-3">{{this.name}}</div>
-              <div class="col-sm-3">{{this.numberOfUsers}}</div>                      
-              <div class="col-sm-3">
-                <span {{bind-attr class=":label this.started:label-default:label-success" }}>{{this.status}}</span></div>
-              <div class="col-sm-3">{{{this.fireImg}}}</div>
-            </div>
-          {{/link-to}}   
-        {{/unless}}     
-      {{/each}}
+  <div class="col-md-5">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <div class="row">
+            <div class="col-sm-5"><h5>Name</h5></div>
+            <div class="col-sm-2"><h5># of Users</h5></div>                      
+            <div class="col-sm-2"><h5>Status</h5></div>
+            <div class="col-sm-3"><h5>Activeness</h5></div>
+          </div> 
+        </h3>
+      </div>
+      <div class="list-group">
+        {{#each controller}} 
+          {{#unless this.isNew}}
+            <div {{bind-attr class="highlight:highlight-success"}}>
+            {{#link-to "competition" this class="list-group-item"}}
+              <div class="row">
+                <div class="col-sm-5">{{this.name}}</div>
+                <div class="col-sm-2">{{this.numberOfUsers}}</div>                      
+                <div class="col-sm-2">
+                  <span {{bind-attr class=":label this.started:label-default:label-success" }}>{{this.status}}</span></div>
+                <div class="col-sm-3">{{{this.fireImg}}}</div>
+              </div>       
+            {{/link-to}}
+            </div>     
+          {{/unless}}     
+        {{/each}}
+      </div>
     </div>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-7">
     {{outlet}}
   </div>
 </div>
