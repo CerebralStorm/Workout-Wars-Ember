@@ -1,5 +1,5 @@
 class UserExerciseSerializer < ActiveModel::Serializer
-  attributes :id, :exercise_id, :user_id, :value, :created_at
+  attributes :id, :exercise_id, :user_id, :value, :created_at, :total_experience
 
   embed :ids
   

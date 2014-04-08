@@ -5,3 +5,7 @@ WorkoutWars.CompetitionJoin = DS.Model.extend
   rank: DS.attr('number')
   competitionStatus: DS.attr('string')
   power: DS.attr('number')
+
+  hasExercise: (exercise) ->
+    @get('competition').then (competition) ->
+      return competition.hasExercise(exercise)

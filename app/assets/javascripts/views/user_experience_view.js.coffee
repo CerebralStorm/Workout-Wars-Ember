@@ -11,58 +11,69 @@ WorkoutWars.UserExperienceView = Ember.View.extend
   drawChart: ->
     keys = []
     values = []
-    $.each @get('context.model.activityExperienceTotal'), (key, value) ->
-      keys.push(key)
-      values.push(value)
+    @get('context.model.exerciseExperienceTotal').then (stats) =>
+      $.each stats, (key, value) ->
+        keys.push(key)
+        values.push(value)
 
-    @.$().highcharts
-      chart:
-        type: "column"
-        margin: [
-          50
-          50
-          100
-          80
+      @.$().highcharts
+        chart:
+          type: "column"
+          margin: [
+            50
+            50
+            50
+            80
+          ]
+          backgroundColor: "#282828"
+          height: 300
+
+        title:
+          text: "Experience Distribution"
+          style:
+            color: '#2a9fd6'
+            fontSize: '16px'
+
+        xAxis:
+          categories: keys
+          labels:
+            rotation: -45
+            align: "right"
+            style:
+              fontSize: "13px"
+              fontFamily: "Verdana, sans-serif"
+
+        yAxis:
+          min: 0
+          title:
+            text: "Total (All-Time)"
+            style:
+              color: '#2a9fd6'
+              fontSize: '13px'
+
+        legend:
+          enabled: false
+
+        tooltip:
+          pointFormat: "Total: <b>{point.y:.1f}</b>"
+
+        series: [
+          name: "Exercises"
+          data: values
+          color: "#77b300"
+          dataLabels:
+            enabled: true
+            color: "#FFFFFF"
+            align: "center"
+            verticalAlign: "top"
+            x: 4
+            y: -20
+            style:
+              fontSize: "13px"
+              fontFamily: "Verdana, sans-serif"
+              textShadow: "0 0 3px black"
         ]
 
-      title:
-        text: "Experience Distribution"
-
-      xAxis:
-        categories: keys
-        labels:
-          rotation: -45
-          align: "right"
-          style:
-            fontSize: "13px"
-            fontFamily: "Verdana, sans-serif"
-
-      yAxis:
-        min: 0
-        title:
-          text: "Experience (All-Time)"
-
-      legend:
-        enabled: false
-
-      tooltip:
-        pointFormat: "Experience Total: <b>{point.y:.1f}</b>"
-
-      series: [
-        name: "Exercises"
-        data: values
-        dataLabels:
-          enabled: true
-          rotation: -90
-          color: "#FFFFFF"
-          align: "right"
-          x: 4
-          y: 10
-          style:
-            fontSize: "13px"
-            fontFamily: "Verdana, sans-serif"
-            textShadow: "0 0 3px black"
-      ]
 
 
 

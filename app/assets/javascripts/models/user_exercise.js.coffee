@@ -4,6 +4,7 @@ WorkoutWars.UserExercise.reopen
   competitionUserExercises: DS.hasMany('competitionUserExercise', { async: true }) 
   exercise: DS.belongsTo('exercise', { embedded: "always" }) 
   value: DS.attr('number')
+  totalExperience: DS.attr('number')
   createdAt: DS.attr('date')
 
   validations:

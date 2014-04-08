@@ -39,14 +39,14 @@
     {{view WorkoutWars.FlashView model=WorkoutWars.flash}}
     {{outlet}}
   </div>
-  <div {{bind-attr class=":gray-background :panel showExercisePanel:col-md-3:col-md-1"}}>
+  <div {{bind-attr class="showExercisePanel:panel showExercisePanel:col-md-3:col-md-1"}}>
     <a href="#" {{action "toggleExercisePanel"}}>
       {{#if showExercisePanel}}
         <i class="fa fa-3x fa-minus-square"></i>
       {{else}}
-        <p class="text-center">
+        <p class="btn btn-default text-center">
           <i class="fa fa-3x fa-plus-square"></i><br>
-          <strong>Log Exercise</strong>
+          Log Exercise
         </p>
       {{/if}}
     </a>

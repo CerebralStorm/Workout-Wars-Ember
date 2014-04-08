@@ -9,25 +9,19 @@ WorkoutWars.IndexController = Ember.ArrayController.extend
   setCurrentCompJoins: (-> 
     user = @get('currentUser')
     if user
-      user.get('competitionJoins').then (joins) =>
-        joins = joins.filter (join) =>
-          join.get('competitionStatus') != "Finished"
-
+      user.get('activeCompetitionJoins').then (joins) =>
         if @get('selectedExercise')
-          newJoins = Ember.A()
+          @set('currentCompJoins', [])
           joins.forEach (join) =>
-            join.get('competition').then (competition) =>
-              selectedId = parseInt(@get('selectedExercise.id'))
-              if competition.get('exerciseIds').contains(selectedId)
-                newJoins.pushObject(join)
-          @set('currentCompJoins', newJoins)
+            join.hasExercise(@get('selectedExercise')).then (result) =>
+              @get('currentCompJoins').pushObject(join) if result              
         else
           @set('currentCompJoins', joins)
-  ).observes('currentUser.competitionJoins.@each', 'currentUser', 'selectedExercise')
+  ).observes('currentUser.competitionJoins', 'selectedExercise')
 
   title: (->
     if @get('selectedExercise')
-      'That exerise will count toward the following competitions'
+      "#{@get('selectedExercise.name')} will count toward the following competitions"
     else
       "My Competitions"
   ).property('selectedExercise')

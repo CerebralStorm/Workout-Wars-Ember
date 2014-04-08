@@ -20,14 +20,6 @@ WorkoutWars.Competition.reopen
   canDelete: DS.attr('boolean')
   activeness: DS.attr('number')
 
-  exerciseIds: (->
-    compExercises = @get('competitionExercises')
-    ids = Ember.A()
-    compExercises.forEach (compExercise) =>
-      ids.pushObject(compExercise.get('exerciseId'))
-    return ids
-  ).property('competitionExercises.@each')
-
   numOfParticipants: (->
     @get('maxParticipants') || "No Limit"
   ).property('maxParticipants')
@@ -52,6 +44,9 @@ WorkoutWars.Competition.reopen
     "<img src=\"assets/fire.png\" style=\"width:#{size}px;height:#{size}px\" class=\"img-circle\">"
   ).property('activeness')
 
+  hasExercise: (exercise) ->
+    result = @get('competitionExercises').any (compE) ->
+      parseInt(compE.get('exerciseId')) == parseInt(exercise.get('id'))
 
   validations:
     name:

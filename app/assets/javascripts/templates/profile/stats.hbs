@@ -3,6 +3,20 @@
     <h3 class="panel-title">Stats</h3>
   </div>
   <div class="panel-body">
-    {{view WorkoutWars.UserStatView}}
+    <h4 class="text-center">Exercise Totals</h4>
+    <table class="table">
+      <tr>
+        {{#each exerciseTotals}}
+          <th>{{this.name}}</th>
+        {{/each}}
+      </tr>
+      <tr>
+        {{#each exerciseTotals}}
+          <td>{{this.value}}</td>
+        {{/each}}
+      </tr>
+    </table>
+    <hr>
+    {{view WorkoutWars.UserExperienceView}}
   </div>
 </div>

@@ -21,15 +21,37 @@ WorkoutWars.User = DS.Model.extend
   handle: DS.attr('string')
   canUpdate: DS.attr('boolean')
   canDelete: DS.attr('boolean')
-  activeCompetitionJoins: []
+
+  activeCompetitionJoins: (->
+    @get('competitionJoins').then (joins) ->
+      joins.filter (join) =>
+        join.get('competitionStatus') != "Finished"
+  ).property('competitionJoins')
 
   exerciseStatsTotal: (-> 
     @get('userExercises').then (userExercises) =>
       values = {}
-      userExercises.forEach (activity) -> 
-        key = activity.get('exercise.name')
+      userExercises.forEach (userExercise) -> 
+        key = userExercise.get('exercise.name')
         values[key] = 0 unless values[key] > 0
-        values[key] += parseFloat(activity.get('value'))
+        values[key] += parseFloat(userExercise.get('value'))
+      
+      results = Ember.A()
+      $.each values, (key, value) ->
+        object = {}
+        object['name'] = key
+        object['value'] = value
+        results.pushObject(object)
+      results
+  ).property('userExercises')
+
+  exerciseExperienceTotal: (-> 
+    @get('userExercises').then (userExercises) =>
+      values = {}
+      userExercises.forEach (userExercise) -> 
+        key = userExercise.get('exercise.name')
+        values[key] = 0 unless values[key] > 0
+        values[key] += parseFloat(userExercise.get('totalExperience'))
       values
   ).property('userExercises')
 
