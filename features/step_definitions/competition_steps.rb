@@ -11,7 +11,7 @@ Given(/^I visit the competitions page$/) do
 end
 
 When(/^I fill out the competition with valid data$/) do
-  click_link "New Competition"
+  click_link "Click here to start a new Competition"
   select "Most completed by date", from: "Win Condition Select"
   select "Pushups", from: "Competition Exercise Select"
   click_button "Add Exercise"
@@ -23,7 +23,7 @@ When(/^I fill out the competition with valid data$/) do
 end
 
 When(/^I fill out the high score competition with valid data$/) do
-  click_link "New Competition"
+  click_link "Click here to start a new Competition"
   select "Highest score by date", from: "Win Condition Select"
   select "Pushups", from: "Competition Exercise Select"
   click_button "Add Exercise"
@@ -47,7 +47,7 @@ Then(/^I should see a new high score competition$/) do
 end
 
 When(/^I don't fill out the competition form completely$/) do
-  click_link "New Competition"
+  click_link "Click here to start a new Competition"
   select "Most completed by date", from: "Win Condition Select"
   select "Pushups", from: "Competition Exercise Select"
   click_button "Add Exercise"
