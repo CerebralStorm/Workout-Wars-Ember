@@ -6,6 +6,7 @@
 <div class="modal-body">        
   <h2>{{exercise.name}}</h2>
   <p><strong>Date:</strong> {{shortDateTime model.createdAt}}</p>
+  <p><strong>Value:</strong> {{model.value}} {{exercise.metric.measurement}}</p>
   <p><strong>Measurement:</strong> {{exercise.metric.name}}</p>
   <p><strong>Experience Multiplier:</strong> {{exercise.experienceMultiplier}}</p>
 
