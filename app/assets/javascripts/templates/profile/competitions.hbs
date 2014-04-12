@@ -7,15 +7,13 @@
         <tr class="active">
           <th>Competition</th>
           <th>Your Rank</th>
-          <th>Current Leader</th>
         </tr>
       </thead>
       <tbody>
-      {{#each comp in controller}}
+      {{#each compJoin in controller}}
           <tr>
-            <td>{{#link-to "competition" comp}}{{comp.name}}{{/link-to}}</td>
-            <td><span class="badge">3</span></td>               
-            <td><span class="badge">John Smith</span></td>
+            <td>{{#link-to "competition" compJoin.competition}}{{compJoin.competition.name}}{{/link-to}}</td>
+            <td>{{compJoin.rank}}</td>               
           </tr>
       {{else}}
         <tr>
