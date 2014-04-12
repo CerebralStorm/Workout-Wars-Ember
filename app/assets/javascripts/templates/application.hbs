@@ -17,9 +17,14 @@
           <li>{{#link-to "competitions"}}<i class="fa fa-crosshairs"></i> Competitions{{/link-to}}</li>
           <li>{{#link-to "profile" currentUser name="My Profile"}}<i class="fa fa-user"></i> Profile{{/link-to}}</li>
           <li>{{#link-to "users"}}<i class="fa fa-group"></i> Users{{/link-to}}</li>
+          <li class="visible-xs">
+            <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
+              <i class="fa fa-sign-out"></i> Logout
+            </a>
+          </li>
         </ul>
-        <p class="navbar-text navbar-right">Signed in as {{currentUser.handle}}</p>
-        <ul class="nav navbar-nav pull-right">
+        <p class="navbar-text navbar-right hidden-sm">Signed in as {{currentUser.handle}}</p>
+        <ul class="nav navbar-nav pull-right hidden-xs">
           <li class="divider"></li>
           <li>
             <a href="/users/sign_out" data-method="delete" id='sign_out_button'>
