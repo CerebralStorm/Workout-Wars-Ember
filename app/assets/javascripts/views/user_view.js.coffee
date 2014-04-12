@@ -2,11 +2,9 @@ WorkoutWars.UserView = Ember.View.extend
   templateName: 'user'
 
   didInsertElement: ->
-    element = @.$()
+    element = @.$("#user")
     width = element.width()
     element.css('width', width)
-    @.$().affix
-      offset:
-        top: ->
-          element.css('top','100px')
-          100
+    element = @.$("#user_view")
+    height = window.innerHeight - element.offset().top - 40
+    element.css('height', height)

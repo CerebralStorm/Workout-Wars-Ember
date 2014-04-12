@@ -36,3 +36,7 @@ WorkoutWars.ApplicationRoute = Ember.Route.extend
 
     clearModalFlash: ->
       WorkoutWars.get("modalFlash").clear()
+
+    toggleExercisePanel: ->
+      @controllerFor('application').toggleProperty('showExercisePanel')
+      false

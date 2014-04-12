@@ -1,4 +1,8 @@
 {{#if showExercisePanel}}
+<div id="new_exercise" class="scroll">
+<a href="#" class="pull-right" {{action "toggleExercisePanel"}}>
+  <i class="fa fa-3x fa-minus-square"></i>
+</a>
 <h3>Log Exercise</h3> 
 <div class="well well-sm">
   <p class="help-block text-info">When you log an exercise, it will count toward all of your competitions that use that   specific exercise.
@@ -39,4 +43,5 @@
   </li>
   {{/each}}
 </ul>
+</div>
 {{/if}}

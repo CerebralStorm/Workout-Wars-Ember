@@ -8,8 +8,3 @@ WorkoutWars.ApplicationController = Ember.ObjectController.extend
     @store.createRecord('userExercise')
   ).property()
 
-  actions:      
-    toggleExercisePanel: ->
-      @toggleProperty('showExercisePanel')
-      false
-

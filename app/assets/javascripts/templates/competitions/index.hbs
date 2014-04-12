@@ -1,21 +1,20 @@
-<div class="well">
-  <div class="row">
-    <div class="col-sm-6">
-      <img src="/assets/pushup.png" alt="competitions" class="img-rounded img-responsive">
-    </div>
-    <div class="col-sm-6 gray-background panel">
-      <br>
-      <div class="well">
-        {{#link-to "competitions.create" class="btn btn-success btn-block"}}
-          <i class="fa fa-plus fa-2x"></i><br>
-          New Competition
-        {{/link-to}}
-      </div>
-      <h2 class="featurette-heading"></h2>
-      <p class="lead">Competitions are the <strong>best way to get great results</strong>. They will motivate you to workout harder than you have ever been motivated before.</p>
-      <p class="lead text-success">Select a competition from the left to join</p>
-      <p class="text-warning">There can only be one winner!</p>
-    </div>
+<div id="competitions_index" class="panel scroll">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information for active competitions</h3>
+  </div>
+  <div class="panel-body">        
+    {{#link-to "competitions.create" class="btn btn-success btn-block"}}
+      <i class="fa fa-plus fa-2x"></i><br>
+      Click here to start a new Competition
+    {{/link-to}}
+    <h2 class="featurette-heading">Competitions are the <span class="text-muted">best way to get great results</span></h2>
+    <img src="/assets/pushup.png" alt="competitions" class="img-rounded img-responsive">
+
+    <hr>
+
+    <p class="lead"><strong>Competitions</strong> will motivate you to workout harder than you have ever been motivated before.</p>
+    <p class="text-warning">There can only be one winner!</p>
   </div>
 </div>
+
 

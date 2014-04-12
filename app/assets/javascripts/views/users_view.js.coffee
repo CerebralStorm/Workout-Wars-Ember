@@ -2,5 +2,9 @@ WorkoutWars.UsersView = Ember.View.extend
   templateName: 'users'
 
   didInsertElement: ->
-    height = window.innerHeight - (window.innerHeight * 0.25);
-    $('.scroll').css('height', height)
+    element = @.$('#users')
+    height = window.innerHeight - element.offset().top - 40
+    element.css('height', height)
+    element = @.$('#user_list')
+    height = window.innerHeight - element.offset().top - 40
+    element.css('height', height)

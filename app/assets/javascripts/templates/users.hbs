@@ -1,18 +1,21 @@
+<div id="users">
 <h1>Users</h1>
 <div class="row">
   <div class="col-md-4">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Users</h3>
+        <div class="row">
+          <div class="col-sm-9">User</div>
+          <div class="col-sm-3">Level</div>               
+        </div>
       </div>
-      <div class="list-group scroll">
+      <div id="user_list" class="list-group scroll">
         {{#each user in controller}}          
           {{#link-to "user" user class="list-group-item"}}
             <div class="row">
-              <div class="col-sm-3">{{gravatarUrlSmall user}}</div>
-              <div class="col-sm-4">{{user.handle}}</div>          
-              <div class="col-sm-2"><span class="badge">{{user.level}}</span></div>               
-              <div class="col-sm-3"><span class="badge">{{user.experience}}</span></div>
+              <div class="col-sm-4">{{gravatarUrlSmall user}}</div>
+              <div class="col-sm-5">{{user.handle}}</div>          
+              <div class="col-sm-3">{{user.level}}</div>               
             </div>
           {{/link-to}}        
         {{/each}}
@@ -22,10 +25,10 @@
   </div>
 
   <div class="col-md-8">
-    <div class="affix-top">
+    <div id="user" class="affix-top scroll">
     {{outlet}}
     </div>
   </div>
 </div>
-
+</div>
 
