@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   before_save :set_avatar_url
 
+  after_create :create_default_notifications
+
+  def create_default_notifications
+    Notification.all.each do |notification|
+      self.user_notifications.find_or_create_by(notification: notification)
+    end
+  end
+
   def handle
     return nickname if nickname.present?
     return name if name.present?

@@ -128,4 +128,21 @@ describe User do
       expect(user.remove_device_token(nil)).to eq true
     end
   end
+
+  describe "create_default_notifications" do 
+    before do 
+      [
+        'User Exercise' ,   
+        'Competition Start' ,   
+        'Competition End'  ,    
+        'Competition Rank'  ,             
+      ].each do |notification|
+        Notification.find_or_create_by(name: notification)
+      end
+    end 
+
+    it "creates the default notifications" do    
+      expect(user.notifications).to match_array(Notification.all)
+    end
+  end
 end
