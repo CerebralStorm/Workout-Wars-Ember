@@ -79,6 +79,15 @@ end
   exercise.update_attributes(approved: true) if exercise.present?
 end
 
+[
+  'User Exercise' ,   
+  'Competition Start' ,   
+  'Competition End'  ,    
+  'Competition Rank'  ,             
+].each do |notification|
+  Notification.find_or_create_by(name: notification)
+end
+
 
 
 

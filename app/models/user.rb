@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
   has_many :experience_sources
+  has_many :user_notifications
+  has_many :notifications, through: :user_notifications
 
   before_save :ensure_authentication_token
   before_save :set_avatar_url

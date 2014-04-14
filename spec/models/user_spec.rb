@@ -28,6 +28,16 @@ describe User do
       User.reflect_on_association(:experience_sources).should_not be_nil
       User.reflect_on_association(:experience_sources).macro.should eql(:has_many)
     end
+
+    it 'should have many user_notifications' do
+      User.reflect_on_association(:user_notifications).should_not be_nil
+      User.reflect_on_association(:user_notifications).macro.should eql(:has_many)
+    end
+
+    it 'should have many notifications' do
+      User.reflect_on_association(:notifications).should_not be_nil
+      User.reflect_on_association(:notifications).macro.should eql(:has_many)
+    end
   end
   
   context "validations" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406195623) do
+ActiveRecord::Schema.define(version: 20140414232638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,12 @@ ActiveRecord::Schema.define(version: 20140406195623) do
     t.datetime "updated_at"
   end
 
+  create_table "notifications", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
     t.string   "username"
@@ -164,6 +170,14 @@ ActiveRecord::Schema.define(version: 20140406195623) do
   end
 
   add_index "user_exercises", ["exercise_id", "user_id"], name: "index_user_exercises_on_exercise_id_and_user_id", using: :btree
+
+  create_table "user_notifications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "notification_id"
+    t.integer  "time_period"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
