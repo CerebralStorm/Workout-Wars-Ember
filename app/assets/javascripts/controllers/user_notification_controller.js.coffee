@@ -12,5 +12,4 @@ WorkoutWars.UserNotificationController = Ember.ObjectController.extend
 
     submit: ->
       @get('model').save().then =>
-        console.log "here"
-        @transitionToRoute('profile.edit', @get('currentUser'))
+        @set('isEditing', false)

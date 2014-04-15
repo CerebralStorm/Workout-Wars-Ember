@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def create_default_notifications
     Notification.all.each do |notification|
-      self.user_notifications.find_or_create_by(notification: notification)
+      self.user_notifications.find_or_create_by(notification: notification, time_period: 24)
     end
   end
 
