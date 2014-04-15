@@ -74,18 +74,16 @@ class User < ActiveRecord::Base
       if competition.has_exercise?(user_exercise.exercise)
         competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
         users = competition.users - [self]
-        send_user_exercise_notifications(users)
+        send_user_exercise_notifications(users, user_exercise, competition)
       end
     end
   end
 
-  def send_user_exercise_notifications(users)
+  def send_user_exercise_notifications(users, user_exercise, competition)
     notification = Notification.find_by(name: "User Exercise")
-    return unless user.notifications.include?(notification) 
-    
     users.each do |user|
       message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
-      user.send_push_notifications(message) 
+      user.send_push_notifications(message) if user.notifications.include?(notification)
     end
   end
 
