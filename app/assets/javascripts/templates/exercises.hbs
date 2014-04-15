@@ -1,11 +1,12 @@
-{{resource-header title="Exercises" link="exercises.create"}}
+<h1>{{title}}</h1>
+<hr>
 <div class="row">
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            {{#link-to 'competitions'}}<h3 class="panel-title">Existing Exercises</h3>{{/link-to}}
+            <h3 class="panel-title">Existing Exercises</h3>
           </div>
           <div class="list-group">
             {{#each alphabeticalApprovedExercises}}
@@ -24,7 +25,7 @@
       <div class="col-md-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            {{#link-to 'competitions'}}<h3 class="panel-title">Pending Exercises</h3>{{/link-to}}
+            <h3 class="panel-title">Pending Exercises</h3>
           </div>
           <div class="list-group">
             {{#each alphabeticalPendingExercises}}
