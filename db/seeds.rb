@@ -80,12 +80,12 @@ end
 end
 
 [
-  'User Exercise' ,   
-  'Competition Start' ,   
-  'Competition End'  ,    
-  'Competition Rank'  ,             
+  {name: 'User Exercise', use_time_period: false} ,   
+  {name: 'Competition Start', use_time_period: true} ,   
+  {name: 'Competition End', use_time_period: true},    
+  {name: 'Competition Rank', use_time_period: true} ,             
 ].each do |notification|
-  Notification.find_or_create_by(name: notification)
+  Notification.where(notification).first_or_create
 end
 
 

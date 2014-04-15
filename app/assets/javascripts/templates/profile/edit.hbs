@@ -73,10 +73,11 @@
       <p> Notifications
       <ul>
       {{#each userNotifications}} 
-        <li>{{this}}</li>
+        <li>{{this.name}}</li>
       {{/each}}
       </ul>
     {{/if}}
+    
     <div class="row">
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
