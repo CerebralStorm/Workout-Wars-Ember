@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   before_save :set_avatar_url
 
-  after_create :create_default_notifications
-
   def create_default_notifications
     Notification.all.each do |notification|
       self.user_notifications.find_or_create_by(notification: notification)
@@ -76,11 +74,16 @@ class User < ActiveRecord::Base
       if competition.has_exercise?(user_exercise.exercise)
         competition.competition_user_exercises.create!(user_exercise_id: user_exercise.id, user_id: self.id)
         users = competition.users - [self]
-        users.each do |user|
-          message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
-          user.send_push_notifications(message)
-        end
+        send_user_exercise_notifications(users)
       end
+    end
+  end
+
+  def send_user_exercise_notifications(users)
+    notification = Notification.find_by(name: "User Exercise")
+    users.each do |user|
+      message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
+      user.send_push_notifications(message) if user.notifications.include?(notification)
     end
   end
 

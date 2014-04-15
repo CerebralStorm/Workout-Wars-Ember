@@ -139,6 +139,8 @@ describe User do
       ].each do |notification|
         Notification.find_or_create_by(name: notification)
       end
+
+      user.create_default_notifications
     end 
 
     it "creates the default notifications" do    
