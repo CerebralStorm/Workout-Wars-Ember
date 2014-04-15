@@ -11,6 +11,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :competitions, through: :competition_joins
   has_many :challenge_attempts
   has_many :challenges, through: :challenge_attempts
+  has_many :user_notifications
 
   def can_update    
     Ability.new(scope).can?(:update, object)
