@@ -129,15 +129,15 @@ describe User do
     end
   end
 
-  describe "create_default_notifications" do 
+  describe "notifications" do 
     before do 
       [
-        'User Exercise' ,   
-        'Competition Start' ,   
-        'Competition End'  ,    
-        'Competition Rank'  ,             
+        {name: 'User Exercise', use_time_period: false} ,   
+        {name: 'Competition Start', use_time_period: true} ,   
+        {name: 'Competition End', use_time_period: true},    
+        {name: 'Competition Rank', use_time_period: false} ,             
       ].each do |notification|
-        Notification.find_or_create_by(name: notification)
+        Notification.where(notification).first_or_create
       end
 
       user.create_default_notifications
@@ -145,6 +145,22 @@ describe User do
 
     it "creates the default notifications" do    
       expect(user.notifications).to match_array(Notification.all)
+    end
+
+    it "returns true if the user notification is active" do 
+      Notification.all.each do |notification|
+        expect(user.notification_is_active?(notification)).to eq true
+      end
+    end
+
+    it "returns false if the user notification is not active" do 
+      user.user_notifications.each do |notification|
+        notification.update_attributes(active: false)
+      end
+
+      Notification.all.each do |notification|
+        expect(user.notification_is_active?(notification)).to eq false
+      end
     end
   end
 end

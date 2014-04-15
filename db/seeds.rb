@@ -83,7 +83,7 @@ end
   {name: 'User Exercise', use_time_period: false} ,   
   {name: 'Competition Start', use_time_period: true} ,   
   {name: 'Competition End', use_time_period: true},    
-  {name: 'Competition Rank', use_time_period: true} ,             
+  {name: 'Competition Rank', use_time_period: false} ,             
 ].each do |notification|
   Notification.where(notification).first_or_create
 end

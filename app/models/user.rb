@@ -42,12 +42,12 @@ class User < ActiveRecord::Base
       user
     else
       where(auth.slice(:provider, :uid)).first_or_create do |user|
-          user.provider = auth.provider
-          user.uid = auth.uid
-          user.email = auth.info.email
-          user.password = Devise.friendly_token[0,20]
-          user.name = auth.info.name  
-          user.avatar_url = auth.info.image
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+        user.name = auth.info.name  
+        user.avatar_url = auth.info.image
       end
     end
   end
@@ -85,6 +85,10 @@ class User < ActiveRecord::Base
       message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
       user.send_push_notifications(message) if user.notifications.include?(notification)
     end
+  end
+
+  def notification_is_active?(notification)
+    user_notifications.where(notification: notification).first.try(:active)
   end
 
   def send_push_notifications(message, sound = "default", badge = 1)
