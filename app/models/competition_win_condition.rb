@@ -32,7 +32,7 @@ class CompetitionWinCondition < ActiveRecord::Base
 
     #Set rank
     @competition.competition_joins.order('total DESC').each_with_index do |comp_join, index|
-      send_competition_rank_notifications(comp_join.user, index+1, comp_join.rank) if comp_join.rank > index+1
+      send_competition_rank_notifications(comp_join.user, index+1, comp_join.rank) if comp_join.rank < index+1
       comp_join.update_attributes(rank: index+1) 
     end
   end
