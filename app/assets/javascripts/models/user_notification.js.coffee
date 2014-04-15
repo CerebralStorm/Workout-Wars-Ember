@@ -6,3 +6,8 @@ WorkoutWars.UserNotification.reopen
   useTimePeriod: DS.attr('boolean')
   timePeriod: DS.attr('number')
   active: DS.attr('boolean')
+
+  validations:
+    timePeriod:
+      numericality:
+        greaterThan: 0

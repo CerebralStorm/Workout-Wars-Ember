@@ -70,12 +70,36 @@
     <br />
 
     {{#if userNotifications}}
-      <p> Notifications
-      <ul>
-      {{#each userNotifications itemController="userNotification"}} 
-        <li>{{this.name}} - {{input type="checkbox" checked=active class="toggle"}}</li>
+      <h4>Notifications</h4>
+      <table class="table">
+        <tr>
+          <th>Notification Type</th>
+          <th>Active?</th>
+          <th>Time Period <br> (Hours)</th>
+          <th>Edit</th>
+          <th></th>
+        </tr>
+        {{#each userNotifications itemController="userNotification"}}
+        <tr> 
+          <td>{{this.name}}</td>
+          <td>{{input type="checkbox" checked=active}}</td>
+          <td>{{this.timePeriod}}</td>
+          <td>
+            {{#if useTimePeriod}}
+              <a href="#" class="btn btn-default" {{action "edit"}}>Edit Time Period</a>
+            {{/if}}
+          </td>
+          <td>                   
+            {{#if isEditing}}
+            {{#form-for this wrapper="bootstrap"}}
+              {{input timePeriod}}
+              {{submit class="btn btn-primary"}}
+            {{/form-for}}
+            {{/if}}
+          </td>
+        </tr>
       {{/each}}
-      </ul>
+      </table>
     {{/if}}
     
     <div class="row">
