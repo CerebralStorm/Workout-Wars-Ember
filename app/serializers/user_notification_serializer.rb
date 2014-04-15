@@ -1,5 +1,5 @@
 class UserNotificationSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :notification_id, :time_period, :use_time_period, :name
+  attributes :id, :user_id, :notification_id, :time_period, :use_time_period, :name, :active
 
   embed :ids
   

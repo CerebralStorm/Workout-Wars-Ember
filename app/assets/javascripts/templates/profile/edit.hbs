@@ -72,8 +72,8 @@
     {{#if userNotifications}}
       <p> Notifications
       <ul>
-      {{#each userNotifications}} 
-        <li>{{this.name}}</li>
+      {{#each userNotifications itemController="userNotification"}} 
+        <li>{{this.name}} - {{input type="checkbox" checked=active class="toggle"}}</li>
       {{/each}}
       </ul>
     {{/if}}

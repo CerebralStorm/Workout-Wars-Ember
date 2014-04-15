@@ -24,7 +24,7 @@ class Api::V1::UserNotificationsController < ApplicationController
 
   def update
     user_notification = UserNotification.find(params[:id])
-    if UserNotification.update(user_notification_params)
+    if user_notification.update(user_notification_params)
       render json: user_notification
     else
       render json: {errors: UserNotification.errors.messages}, status: 422
@@ -39,6 +39,6 @@ class Api::V1::UserNotificationsController < ApplicationController
   private
 
   def user_notification_params
-    params.require(:user_notification).permit(:user_id, :notification_id, :time_period)
+    params.require(:user_notification).permit(:user_id, :notification_id, :time_period, :active)
   end
 end

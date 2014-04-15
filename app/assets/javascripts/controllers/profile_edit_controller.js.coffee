@@ -1,5 +1,4 @@
-WorkoutWars.ProfileEditController = Ember.ObjectController.extend
-  
+WorkoutWars.ProfileEditController = Ember.ObjectController.extend  
   actions:
     saveUser: ->
       user = @get("model")
