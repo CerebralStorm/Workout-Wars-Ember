@@ -81,9 +81,11 @@ class User < ActiveRecord::Base
 
   def send_user_exercise_notifications(users)
     notification = Notification.find_by(name: "User Exercise")
+    return unless user.notifications.include?(notification) 
+    
     users.each do |user|
       message = "#{self.handle} logged #{user_exercise.value} #{user_exercise.exercise.metric.measurement} of #{user_exercise.exercise.name} which counted for #{competition.name}"
-      user.send_push_notifications(message) if user.notifications.include?(notification)
+      user.send_push_notifications(message) 
     end
   end
 

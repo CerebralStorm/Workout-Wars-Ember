@@ -39,7 +39,8 @@ class CompetitionWinCondition < ActiveRecord::Base
 
   def send_competition_rank_notifications(user, new_rank, old_rank)
     notification = Notification.find_by(name: 'Competition Rank')
+    return unless user.notification_is_active?(notification)
     message = "Your rank has dropped from #{old_rank} to #{new_rank} in the competition #{@competition.name}"
-    user.send_push_notifications(message) if user.notification_is_active?(notification)
+    user.send_push_notifications(message)
   end
 end
