@@ -89,6 +89,13 @@ describe User do
       expect(user.device_tokens).to eq ["1234asdf"]
     end
 
+    it "adds multiple device token to the user" do 
+      user.add_device_token("1234asdf")
+      user.add_device_token("2345asdf")
+      user.add_device_token("3456asdf")
+      expect(user.device_tokens).to eq ["1234asdf", "2345asdf", "3456asdf"]
+    end
+
     it "doesn't add it if it is already included" do 
       user.add_device_token("1234asdf")
       user.add_device_token("1234asdf")
