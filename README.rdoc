@@ -35,7 +35,6 @@ Application Setup:
   To test with curl 
     curl -X POST http://localhost:3000/api/v1/users/sign_in.json --data "email=email@example&password=password"
     curl GET -X DELETE http://localhost:3000/api/v1/users/sign_out.json --data "auth_token=GfRXCyV6BG8iiDUAuNzk"
-
     curl -X POST http://localhost:3000/api/v1/users/sign_in.json --data "email=tester@test.com&password=testhole"
 
 * Services (job queues, cache servers, search engines, etc.)

@@ -149,9 +149,9 @@ class User < ActiveRecord::Base
     return false unless token.present?
     self.device_tokens = [] if self.device_tokens.nil?
     if !self.device_tokens.include?(token)
-      self.device_tokens << token
+      self.device_tokens += [token]
       self.save
-    end 
+    end
     true
   end
 
