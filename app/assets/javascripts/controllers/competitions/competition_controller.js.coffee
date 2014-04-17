@@ -41,7 +41,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   actions:
     join: ->
       competitionJoin = @store.createRecord("competitionJoin", {
-        user: @get('currentUser.content')
+        user: @get('controllers.application.currentUser')
         competition: @get("model")        
       })
       competitionJoin.save().then (join) =>
