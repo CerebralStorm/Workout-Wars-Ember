@@ -45,8 +45,9 @@ WorkoutWars.Competition.reopen
   ).property('activeness')
 
   hasExercise: (exercise) ->
-    result = @get('competitionExercises').any (compE) ->
-      parseInt(compE.get('exerciseId')) == parseInt(exercise.get('id'))
+    @get('competitionExercises').any (compE) =>
+      compE.get('exercise').then (_exercise) =>
+        _exercise == exercise
 
   validations:
     name:

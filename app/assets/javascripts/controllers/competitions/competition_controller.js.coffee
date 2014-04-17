@@ -5,6 +5,7 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
   exercises: Ember.computed.alias('controllers.exercises.content')
   rankSort: ['rank']
   rankedJoins: Ember.computed.sort "competitionJoins", 'rankSort'
+  highlight: false
 
   isJoined: (->
     joined = false
@@ -27,14 +28,15 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     "#{@get('model.status')}_competition"
   ).property('model')
 
-  highlight: (->
+  setHighlight: (->
     exercise = @get('selectedUserExercise')
     if exercise
       competition = @get('content')
-      competition.hasExercise(exercise)
+      competition.hasExercise(exercise).then (result) =>
+        @set('highlight', result) 
     else
-      false
-  ).property('selectedUserExercise')
+      @set('highlight', false)
+  ).observes('controllers.application.selectedExercise')
 
   actions:
     join: ->

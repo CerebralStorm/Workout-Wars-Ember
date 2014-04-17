@@ -1,8 +1,23 @@
 <div id="competition" class="scroll">
 <h2>{{name}}</h2>
 <div class="well well-sm">
-  <p class="lead text-center">Description</p>
-  <p class="lead text-info text-center">{{description}}</p>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="lead">Description</p>
+      <hr>
+      <p class="lead text-info">{{description}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p class="lead">Exercise(s)</p>
+      <hr>
+      <ul>
+        {{#each competitionExercises}}
+          <li class="lead text-warning">{{this.exercise.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-4">
@@ -48,15 +63,7 @@
         {{info-item title="Start Date" value=startDate isDate="true"}}
         {{info-item title="End Date" value=endDate isDate="true"}}
         {{info-item title="Max players" value=numOfParticipants}}
-        {{info-item title="# of players" value=numberOfUsers}} 
-        <li class="list-group-item">
-          <strong>Exercises</strong>
-          <ul>
-            {{#each competitionExercises}}
-            <li>{{this.exercise.name}}</li>
-            {{/each}}
-          </ul>
-        </li>     
+        {{info-item title="# of players" value=numberOfUsers}}    
       </ul>
     </div>
   </div>
