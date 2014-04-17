@@ -28,15 +28,15 @@ WorkoutWars.CompetitionController = Ember.ObjectController.extend
     "#{@get('model.status')}_competition"
   ).property('model')
 
-  setHighlight: (->
-    exercise = @get('selectedUserExercise')
-    if exercise
-      competition = @get('content')
-      competition.hasExercise(exercise).then (result) =>
-        @set('highlight', result) 
-    else
-      @set('highlight', false)
-  ).observes('controllers.application.selectedExercise')
+  # setHighlight: (->
+  #   exercise = @get('selectedUserExercise')
+  #   if exercise
+  #     competition = @get('content')
+  #     competition.hasExercise(exercise).then (result) =>
+  #       @set('highlight', result) 
+  #   else
+  #     @set('highlight', false)
+  # ).observes('controllers.application.selectedExercise')
 
   actions:
     join: ->
