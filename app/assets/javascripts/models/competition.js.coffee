@@ -45,7 +45,7 @@ WorkoutWars.Competition.reopen
   ).property('activeness')
 
   hasExercise: (exercise) ->
-    @get('competitionExercises').any (compE) =>
+    @get('competitionExercises').any (compE) ->
       compE.get('exercise').then (_exercise) =>
         _exercise == exercise
 
