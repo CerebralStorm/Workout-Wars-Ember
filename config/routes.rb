@@ -17,6 +17,7 @@ WorkoutWars::Application.routes.draw do
 
   get 'privacy' => 'static#privacy'
   get 'info' => 'static#info'
+  get 'tutorials' => 'static#tutorials'
 
   namespace :api do
     namespace :v1 do
